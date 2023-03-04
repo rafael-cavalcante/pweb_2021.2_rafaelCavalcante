@@ -23,8 +23,8 @@
     </div>
 
     <div style="padding: 0 20px 0 20px;">
-        <form th:action="@{/adicionarPessoa}" method="POST" th:object="${pessoa}">
-            <p>Formulário de Adicionar Pessoa</p>
+        <form th:action="@{/editar/{id}(id=${pessoa.id})}" method="POST" th:object="${pessoa}">
+            <p>Formulário de Editar Pessoa</p>
             <div class="grid">
                 <div>Nome*: <input type="text" id="nome" name="nome" placeholder="Nome Completo" th:field="*{nome}"
                         required></div>
@@ -48,7 +48,7 @@
                     th:field="*{genero}" required> Não desejo informar
             </label>
             <div class="grid">
-                <div><input type="submit" value="Cadastrar"></div>
+                <div><input type="submit" value="Editar"></div>
                 <div><input type="reset" value="Limpar"></div>
             </div>
             <p>*Campos Obrigatorios</p>
