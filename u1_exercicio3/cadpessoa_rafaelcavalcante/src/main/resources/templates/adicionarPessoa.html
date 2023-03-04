@@ -2,42 +2,47 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta codigoSecreto="1612965411">
-    <link rel="icon" type="image/x-icon" href="assets/python.ico">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta codigoSecreto="1612965411" />
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/python.ico}" />
+    <link rel="stylesheet" th:href="@{/assets/w3.css}" />
+    <link rel="stylesheet" th:href="@{/assets/pico.min.css}" />
     <title>PyEduc</title>
-</head>
+  </head>
 
 <body>
     <div class="w3-bar w3-blue w3-xlarge">
-        <a href="index.html" class="w3-bar-item w3-button w3-mobile">Início</a>
-        <a href="index.html" class="w3-bar-item w3-button w3-mobile">Adicionar Pessoa</a>
-        <a href="index.html" class="w3-bar-item w3-button w3-mobile">Listar Pessoas</a>
-        <a href="index.html" class="w3-bar-item w3-button w3-mobile w3-right w3-green">Notícias</a>
-        <a href="index.html" class="w3-bar-item w3-button w3-mobile w3-right">Sobre o Site</a>
-        <a href="index.html" class="w3-bar-item w3-button w3-mobile w3-right">Contato</a>
+        <a href="/" class="w3-bar-item w3-button w3-mobile">Início</a>
+        <a href="/adicionarPessoa" class="w3-bar-item w3-button w3-mobile w3-red">Adicionar Pessoa</a>
+        <a href="/listarPessoas" class="w3-bar-item w3-button w3-mobile">Listar Pessoas</a>
+        <a href="/public/noticias.html" class="w3-bar-item w3-button w3-mobile w3-right w3-green">Notícias</a>
+        <a href="/public/sobre.html" class="w3-bar-item w3-button w3-mobile w3-right">Sobre o Site</a>
+        <a href="/public/contato.html" class="w3-bar-item w3-button w3-mobile w3-right">Contato</a>
     </div>
-    <form method="post" action="adicionadaComSucesso.html" style="padding: 0 20px 0 20px;">
+
+    <form th:action="@{/adicionarPessoa}" method="POST" th:object="${pessoa}" style="padding: 0 20px 0 20px;">
         <p>Cadastrar nova Pessoa</p>
         <div class="grid">
-            <div>Nome*: <input type="text" name="nome" required></div>
-            <div>E-mail*: <input type="email" name="email" required></div>
-            <div>Data Nascimento*: <input type="date" name="dataNascimento" required></div>
+            <div>Nome*: <input type="text" id="nome" name="nome" placeholder="Nome Completo" th:field="*{nome}"
+                    required></div>
+            <div>E-mail*: <input type="email" id="email" name="email" placeholder="E-mail" th:field="*{email}" required>
+            </div>
+            <div>Data Nascimento*: <input type="date" id="dataNascimento" name="dataNascimento"
+                    placeholder="Data Nascimento" th:field="*{dataNascimento}" required></div>
         </div>
         <fieldset></fieldset>
-        <p style="margin: 0;">Informe o sexo:</p>
-        <label for="masculino">
-            <input type="radio" name="sexo" id="masculino"> Masculino
+        <p style="margin: 0;">Informe o Gênero*:</p>
+        <label for="Masculino">
+            <input type="radio" id="Masculino" name="genero" value="Masculino" th:field="*{genero}" required> Masculino
         </label>
-        <label for="feminino">
-            <input type="radio" name="sexo" id="feminino"> Feminino
+        <label for="Feminino">
+            <input type="radio" id="Feminino" name="genero" value="Feminino" th:field="*{genero}" required> Feminino
         </label>
-        <label for="naoDesejoInformar">
-            <input type="radio" name="sexo" id="naoDesejoInformar"> Não desejo informar
+        <label for="Não Desejo Informar">
+            <input type="radio" id="Não Desejo Informar" name="genero" value="Não Desejo Informar" th:field="*{genero}"
+                required> Não desejo informar
         </label>
         <div class="grid">
             <div><input type="submit" value="Cadastrar"></div>
