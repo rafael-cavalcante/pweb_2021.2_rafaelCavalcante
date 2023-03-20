@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
+    <link rel="stylesheet" th:href="@{/assets/w3.css}" />
+    <link rel="stylesheet" th:href="@{/assets/pico.min.css}" />
+    <title>BiritaShop</title>
+</head>
+
+<body>
+    <div class="w3-bar w3-blue w3-xlarge">
+        <a href="/produto/listar" class="w3-bar-item w3-button w3-mobile w3-red">Listar Produtos</a>
+        <a href="/produto/adicionar" class="w3-bar-item w3-button w3-mobile">Adicionar Produto</a>
+    </div>
+
+    <div style="padding: 0 20px 0 20px;">
+        <form th:action="@{/produto/adicionar}" method="POST" th:object="${produto}">
+            <p>Formulário do Cliente</p>
+            <div class="grid">
+                <div>Nome*: <input type="text" id="nome" name="nome" placeholder="nome" th:field="*{nome}" required>
+                </div>
+                <div>Marca*: <input type="text" id="marca" name="marca" placeholder="marca" th:field="*{marca}"
+                        required>
+                </div>
+                <div>Volume*: <input type="number" id="volume" name="volume" placeholder="volume" th:field="*{volume}"
+                        required></div>
+            </div>
+            <div class="grid">
+                <div>Preço de Compra*: <input type="number" id="precoCompra" name="precoCompra"
+                        placeholder="precoCompra" th:field="*{precoCompra}" required></div>
+                <div>Preço de Venda*: <input type="number" id="precoVenda" name="precoVenda" placeholder="precoVenda"
+                        th:field="*{precoVenda}" required></div>
+                <div>Data de Cadastro*: <input type="date" id="dataCadastro" name="dataCadastro"
+                        placeholder="dataCadastro" th:field="*{dataCadastro}" required></div>
+            </div>
+            <fieldset></fieldset>
+            <p style="margin: 0;">Tipe de Embalagem*:</p>
+            <label for="Platico">
+                <input type="radio" id="Platico" name="tipoEmbalagem" value="Platico" th:field="*{tipoEmbalagem}"
+                    required>
+                Platico
+            </label>
+            <label for="Mestal">
+                <input type="radio" id="Metal" name="tipoEmbalagem" value="Metal" th:field="*{tipoEmbalagem}" required>
+                Metal
+            </label>
+            <label for="Vidro">
+                <input type="radio" id="Vidro" name="tipoEmbalagem" value="Vidro" th:field="*{tipoEmbalagem}" required>
+                Vidro
+            </label>
+            <div class="grid">
+                <div><input type="submit" value="Adicionar"></div>
+                <div><input type="reset" value="Limpar Campos"></div>
+            </div>
+            <p>*Campos Obrigatorios</p>
+        </form>
+    </div>
+</body>
+
+</html>

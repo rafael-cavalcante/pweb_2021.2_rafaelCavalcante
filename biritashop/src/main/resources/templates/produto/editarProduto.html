@@ -13,12 +13,12 @@
 
 <body>
     <div class="w3-bar w3-blue w3-xlarge">
-        <a href="/produto/listar" class="w3-bar-item w3-button w3-mobile w3-red">Listar Produtos</a>
-        <a href="/produto/adicionar" class="w3-bar-item w3-button w3-mobile">Adicionar Produto</a>
+        <a href="/cliente/listar" class="w3-bar-item w3-button w3-mobile">Listar Clientes</a>
+        <a href="/cliente/adicionar" class="w3-bar-item w3-button w3-mobile">Adicionar Cliente</a>
     </div>
 
     <div style="padding: 0 20px 0 20px;">
-        <form th:action="@{/cliente/adicionar}" method="POST" th:object="${cliente}">
+        <form th:action="@{/cliente/editar/{id}(id=${cliente.id})}" method="POST" th:object="${cliente}">
             <p>Formulário do Cliente</p>
             <div class="grid">
                 <div>Nome*: <input type="text" id="nomeCompleto" name="nomeCompleto" placeholder="Nome Completo"
@@ -44,8 +44,7 @@
                     required> Não Informado
             </label>
             <div class="grid">
-                <div><input type="submit" value="Adicionar"></div>
-                <div><input type="reset" value="Limpar Campos"></div>
+                <div><input type="submit" value="Editar"></div>
             </div>
             <p>*Campos Obrigatorios</p>
         </form>
