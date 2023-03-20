@@ -5,7 +5,6 @@ import br.com.rafaelcavalcante.biritashop.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,8 +24,21 @@ public class ClienteController {
     @GetMapping("/listar")
     public ModelAndView listarClientes() {
         List<Cliente> clientes = this.clienteRepository.findAll();
-        ModelAndView mav = new ModelAndView("listarClientes");
+        ModelAndView mav = new ModelAndView("/cliente/listarClientes");
         mav.addObject("clientes", clientes);
         return mav;
+    }
+
+    @GetMapping("/adicionar")
+    public ModelAndView formAdicionarCliente() {
+        ModelAndView mav = new ModelAndView("/cliente/adicionarCliente");
+        mav.addObject(new Cliente());
+        return mav;
+    }
+
+    @PostMapping("/adicionar")
+    public String adicionarCliente(Cliente cliente) {
+        this.clienteRepository.save(cliente);
+        return "redirect:/cliente/listar";
     }
 }

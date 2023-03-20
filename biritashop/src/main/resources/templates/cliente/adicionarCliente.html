@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
+    <link rel="stylesheet" th:href="@{/assets/w3.css}" />
+    <link rel="stylesheet" th:href="@{/assets/pico.min.css}" />
+    <title>BiritaShop</title>
+</head>
+
+<body>
+    <div class="w3-bar w3-blue w3-xlarge">
+        <a href="/cliente/listar" class="w3-bar-item w3-button w3-mobile">Listar Clientes</a>
+        <a href="/cliente/adicionar" class="w3-bar-item w3-button w3-mobile w3-red">Adicionar Cliente</a>
+    </div>
+
+    <div style="padding: 0 20px 0 20px;">
+        <form th:action="@{/cliente/adicionar}" method="POST" th:object="${cliente}">
+            <p>Formulário do Cliente</p>
+            <div class="grid">
+                <div>Nome*: <input type="text" id="nomeCompleto" name="nomeCompleto" placeholder="Nome Completo"
+                        th:field="*{nomeCompleto}" required></div>
+                <div>Telefone*: <input type="tel" id="telefone" name="telefone" placeholder="telefone"
+                        th:field="*{telefone}" required>
+                </div>
+                <div>Cidade*: <input type="text" id="cidade" name="cidade" placeholder="cidade" th:field="*{cidade}"
+                        required></div>
+                <div>CEP*: <input type="text" id="CEP" name="CEP" placeholder="CEP" th:field="*{CEP}" required></div>
+            </div>
+            <fieldset></fieldset>
+            <p style="margin: 0;">Informe o Gênero*:</p>
+            <label for="Masculino">
+                <input type="radio" id="Masculino" name="genero" value="Masculino" th:field="*{genero}" required>
+                Masculino
+            </label>
+            <label for="Feminino">
+                <input type="radio" id="Feminino" name="genero" value="Feminino" th:field="*{genero}" required> Feminino
+            </label>
+            <label for="Não Informado">
+                <input type="radio" id="Não Informado" name="genero" value="Não Informado" th:field="*{genero}"
+                    required> Não Informado
+            </label>
+            <div class="grid">
+                <div><input type="submit" value="Adicionar"></div>
+                <div><input type="reset" value="Limpar Campos"></div>
+            </div>
+            <p>*Campos Obrigatorios</p>
+        </form>
+    </div>
+</body>
+
+</html>

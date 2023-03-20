@@ -8,17 +8,18 @@
   <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
   <link rel="stylesheet" th:href="@{/assets/w3.css}" />
   <link rel="stylesheet" th:href="@{/assets/pico.min.css}" />
-  <title>PyEduc</title>
+  <title>BiritaShop</title>
 </head>
 
 <body>
   <div class="w3-bar w3-blue w3-xlarge">
-    <a href="/cliente/listarClientes" class="w3-bar-item w3-button w3-mobile w3-red">Listar Clientes</a>
+    <a href="/cliente/listar" class="w3-bar-item w3-button w3-mobile w3-red">Listar Clientes</a>
+    <a href="/cliente/adicionar" class="w3-bar-item w3-button w3-mobile">Adicionar Cliente</a>
   </div>
 
   <div style="padding: 0 16px">
     <div style="text-align: center">
-      <h1>Lista de Pessoas</h1>
+      <h1>Clientes</h1>
     </div>
     <table>
       <thead>
@@ -41,8 +42,8 @@
           <td th:text="${cliente.cidade}"></td>
           <td th:text="${cliente.CEP}"></td>
           <td th:text="${cliente.genero}"></td>
-          <td><a th:href="@{editar/{id}(id=${pessoa.id})}">Editar</a></td>
-          <td><a th:href="@{remover/{id}(id=${pessoa.id})}">Remover</a></td>
+          <td><a th:href="@{editar/{id}(id=${cliente.id})}">Editar</a></td>
+          <td><a th:href="@{remover/{id}(id=${cliente.id})}">Remover</a></td>
         </tr>
       </tbody>
     </table>
