@@ -53,8 +53,16 @@ public class ClienteController {
     }
 
     @PostMapping("/editar/{id}")
-    public String editarPessoa(@PathVariable("id") Long id, Cliente cliente) {
+    public String editarCliente(@PathVariable("id") Long id, Cliente cliente) {
         this.clienteRepository.save(cliente);
         return "redirect:/cliente/listar";
+    }
+
+    @GetMapping("/remover/{id}")
+    public ModelAndView removerCliente(@PathVariable("id") Long id) {
+        Cliente cliente = this.clienteRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + id));
+        this.clienteRepository.delete(cliente);
+        return new ModelAndView("redirect:/cliente/listar");
     }
 }

@@ -5804,3 +5804,548 @@ org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property o
 2023-03-20 09:59:24.570 DEBUG 13268 --- [http-nio-8080-exec-6] o.h.engine.internal.TwoPhaseLoad         : Attribute (`telefone`)  - enhanced for lazy-loading? - false
 2023-03-20 09:59:24.572 DEBUG 13268 --- [http-nio-8080-exec-6] o.h.engine.internal.TwoPhaseLoad         : Done materializing entity [br.com.rafaelcavalcante.biritashop.model.Cliente#1]
 2023-03-20 09:59:24.573 DEBUG 13268 --- [http-nio-8080-exec-6] o.h.e.t.internal.TransactionImpl         : committing
+2023-03-20 10:02:12.570  INFO 13268 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2023-03-20 10:02:13.450  INFO 13268 --- [Thread-6] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-03-20 10:02:13.469  INFO 13268 --- [Thread-6] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-03-20 10:02:13.517  INFO 13268 --- [Thread-6] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-20 10:02:13.519 DEBUG 13268 --- [Thread-6] o.hibernate.internal.SessionFactoryImpl  : HHH000031: Closing
+2023-03-20 10:02:13.521 DEBUG 13268 --- [Thread-6] o.h.type.spi.TypeConfiguration$Scope     : Un-scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration$Scope@5eda1b8e] from SessionFactory [org.hibernate.internal.SessionFactoryImpl@64c77b5]
+2023-03-20 10:02:13.525 DEBUG 13268 --- [Thread-6] o.h.s.i.AbstractServiceRegistryImpl      : Implicitly destroying ServiceRegistry on de-registration of all child ServiceRegistries
+2023-03-20 10:02:13.540 DEBUG 13268 --- [Thread-6] o.h.b.r.i.BootstrapServiceRegistryImpl   : Implicitly destroying Boot-strap registry on de-registration of all child ServiceRegistries
+2023-03-20 10:02:13.551  INFO 13268 --- [Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-03-20 10:02:13.588  INFO 13268 --- [Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-03-20 10:02:14.110  INFO 13268 --- [restartedMain] b.c.r.biritashop.BiritashopApplication   : Starting BiritashopApplication using Java 1.8.0_362 on DESKTOP-E1TCM0S with PID 13268 (C:\Users\Rafael\Documents\GitHub\pweb_2021.2_rafaelCavalcante\biritashop\target\classes started by Rafael in C:\Users\Rafael\Documents\GitHub\pweb_2021.2_rafaelCavalcante\biritashop)
+2023-03-20 10:02:14.114  INFO 13268 --- [restartedMain] b.c.r.biritashop.BiritashopApplication   : No active profile set, falling back to 1 default profile: "default"
+2023-03-20 10:02:14.568  INFO 13268 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-20 10:02:14.607  INFO 13268 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 25 ms. Found 1 JPA repository interfaces.
+2023-03-20 10:02:14.881  INFO 13268 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-20 10:02:14.892  INFO 13268 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-20 10:02:14.899  INFO 13268 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-03-20 10:02:14.927  INFO 13268 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-20 10:02:14.930  INFO 13268 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 800 ms
+2023-03-20 10:02:15.033 DEBUG 13268 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : PersistenceUnitInfo [
+	name: default
+	persistence provider classname: null
+	classloader: org.springframework.boot.devtools.restart.classloader.RestartClassLoader@e807b0d
+	excludeUnlistedClasses: true
+	JTA datasource: null
+	Non JTA datasource: HikariDataSource (null)
+	Transaction type: RESOURCE_LOCAL
+	PU root URL: file:/C:/Users/Rafael/Documents/GitHub/pweb_2021.2_rafaelCavalcante/biritashop/target/classes/
+	Shared Cache Mode: UNSPECIFIED
+	Validation Mode: AUTO
+	Jar files URLs []
+	Managed classes names [
+		br.com.rafaelcavalcante.biritashop.model.Cliente]
+	Mapping files names []
+	Properties []
+2023-03-20 10:02:15.049 DEBUG 13268 --- [restartedMain] o.h.i.internal.IntegratorServiceImpl     : Adding Integrator [org.hibernate.cfg.beanvalidation.BeanValidationIntegrator].
+2023-03-20 10:02:15.052 DEBUG 13268 --- [restartedMain] o.h.i.internal.IntegratorServiceImpl     : Adding Integrator [org.hibernate.secure.spi.JaccIntegrator].
+2023-03-20 10:02:15.057 DEBUG 13268 --- [restartedMain] o.h.i.internal.IntegratorServiceImpl     : Adding Integrator [org.hibernate.cache.internal.CollectionCacheInvalidator].
+2023-03-20 10:02:15.070 DEBUG 13268 --- [restartedMain] o.hibernate.service.spi.ServiceBinding   : Overriding existing service binding [org.hibernate.secure.spi.JaccService]
+2023-03-20 10:02:15.073 DEBUG 13268 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+2023-03-20 10:02:15.075 DEBUG 13268 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : Cache region factory : org.hibernate.cache.internal.NoCachingRegionFactory
+2023-03-20 10:02:15.089 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration boolean -> org.hibernate.type.BooleanType@4d4b34fb
+2023-03-20 10:02:15.091 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration boolean -> org.hibernate.type.BooleanType@4d4b34fb
+2023-03-20 10:02:15.092 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.lang.Boolean -> org.hibernate.type.BooleanType@4d4b34fb
+2023-03-20 10:02:15.095 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration numeric_boolean -> org.hibernate.type.NumericBooleanType@7a1f0ef2
+2023-03-20 10:02:15.096 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration true_false -> org.hibernate.type.TrueFalseType@311c6568
+2023-03-20 10:02:15.103 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration yes_no -> org.hibernate.type.YesNoType@13eca5ca
+2023-03-20 10:02:15.106 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration byte -> org.hibernate.type.ByteType@b74991b
+2023-03-20 10:02:15.109 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration byte -> org.hibernate.type.ByteType@b74991b
+2023-03-20 10:02:15.113 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.lang.Byte -> org.hibernate.type.ByteType@b74991b
+2023-03-20 10:02:15.117 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration character -> org.hibernate.type.CharacterType@634315b5
+2023-03-20 10:02:15.120 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration char -> org.hibernate.type.CharacterType@634315b5
+2023-03-20 10:02:15.123 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.lang.Character -> org.hibernate.type.CharacterType@634315b5
+2023-03-20 10:02:15.129 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration short -> org.hibernate.type.ShortType@61c0edfc
+2023-03-20 10:02:15.131 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration short -> org.hibernate.type.ShortType@61c0edfc
+2023-03-20 10:02:15.135 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.lang.Short -> org.hibernate.type.ShortType@61c0edfc
+2023-03-20 10:02:15.137 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration integer -> org.hibernate.type.IntegerType@49d401f4
+2023-03-20 10:02:15.140 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration int -> org.hibernate.type.IntegerType@49d401f4
+2023-03-20 10:02:15.144 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.lang.Integer -> org.hibernate.type.IntegerType@49d401f4
+2023-03-20 10:02:15.148 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration long -> org.hibernate.type.LongType@2c831c85
+2023-03-20 10:02:15.150 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration long -> org.hibernate.type.LongType@2c831c85
+2023-03-20 10:02:15.153 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.lang.Long -> org.hibernate.type.LongType@2c831c85
+2023-03-20 10:02:15.155 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration float -> org.hibernate.type.FloatType@7756ae9d
+2023-03-20 10:02:15.157 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration float -> org.hibernate.type.FloatType@7756ae9d
+2023-03-20 10:02:15.160 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.lang.Float -> org.hibernate.type.FloatType@7756ae9d
+2023-03-20 10:02:15.165 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration double -> org.hibernate.type.DoubleType@7c540c3b
+2023-03-20 10:02:15.168 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration double -> org.hibernate.type.DoubleType@7c540c3b
+2023-03-20 10:02:15.171 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.lang.Double -> org.hibernate.type.DoubleType@7c540c3b
+2023-03-20 10:02:15.173 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration big_decimal -> org.hibernate.type.BigDecimalType@682dbc3c
+2023-03-20 10:02:15.178 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.math.BigDecimal -> org.hibernate.type.BigDecimalType@682dbc3c
+2023-03-20 10:02:15.180 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration big_integer -> org.hibernate.type.BigIntegerType@29e38dcc
+2023-03-20 10:02:15.182 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.math.BigInteger -> org.hibernate.type.BigIntegerType@29e38dcc
+2023-03-20 10:02:15.185 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration string -> org.hibernate.type.StringType@587b2807
+2023-03-20 10:02:15.187 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.lang.String -> org.hibernate.type.StringType@587b2807
+2023-03-20 10:02:15.189 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration nstring -> org.hibernate.type.StringNVarcharType@be7b900
+2023-03-20 10:02:15.192 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration ncharacter -> org.hibernate.type.CharacterNCharType@6207ca4
+2023-03-20 10:02:15.194 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration url -> org.hibernate.type.UrlType@68ab0f4f
+2023-03-20 10:02:15.196 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.net.URL -> org.hibernate.type.UrlType@68ab0f4f
+2023-03-20 10:02:15.203 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration Duration -> org.hibernate.type.DurationType@11a59614
+2023-03-20 10:02:15.205 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.time.Duration -> org.hibernate.type.DurationType@11a59614
+2023-03-20 10:02:15.208 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration Instant -> org.hibernate.type.InstantType@132c4453
+2023-03-20 10:02:15.210 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.time.Instant -> org.hibernate.type.InstantType@132c4453
+2023-03-20 10:02:15.212 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration LocalDateTime -> org.hibernate.type.LocalDateTimeType@610c9b4f
+2023-03-20 10:02:15.218 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.time.LocalDateTime -> org.hibernate.type.LocalDateTimeType@610c9b4f
+2023-03-20 10:02:15.220 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration LocalDate -> org.hibernate.type.LocalDateType@71f3ef8
+2023-03-20 10:02:15.223 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.time.LocalDate -> org.hibernate.type.LocalDateType@71f3ef8
+2023-03-20 10:02:15.225 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration LocalTime -> org.hibernate.type.LocalTimeType@70a3f874
+2023-03-20 10:02:15.227 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.time.LocalTime -> org.hibernate.type.LocalTimeType@70a3f874
+2023-03-20 10:02:15.229 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@21d42f5c
+2023-03-20 10:02:15.232 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.time.OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@21d42f5c
+2023-03-20 10:02:15.239 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration OffsetTime -> org.hibernate.type.OffsetTimeType@49e41369
+2023-03-20 10:02:15.243 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.time.OffsetTime -> org.hibernate.type.OffsetTimeType@49e41369
+2023-03-20 10:02:15.246 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@409ffcfc
+2023-03-20 10:02:15.249 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.time.ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@409ffcfc
+2023-03-20 10:02:15.256 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration date -> org.hibernate.type.DateType@76710f53
+2023-03-20 10:02:15.258 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.sql.Date -> org.hibernate.type.DateType@76710f53
+2023-03-20 10:02:15.260 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration time -> org.hibernate.type.TimeType@268de7b2
+2023-03-20 10:02:15.265 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.sql.Time -> org.hibernate.type.TimeType@268de7b2
+2023-03-20 10:02:15.338 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration timestamp -> org.hibernate.type.TimestampType@7c3ff
+2023-03-20 10:02:15.382 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@7c3ff
+2023-03-20 10:02:15.457 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.util.Date -> org.hibernate.type.TimestampType@7c3ff
+2023-03-20 10:02:15.486 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration dbtimestamp -> org.hibernate.type.DbTimestampType@1b9d5ee1
+2023-03-20 10:02:15.492 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration calendar -> org.hibernate.type.CalendarType@30a8ac61
+2023-03-20 10:02:15.495 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.util.Calendar -> org.hibernate.type.CalendarType@30a8ac61
+2023-03-20 10:02:15.498 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.util.GregorianCalendar -> org.hibernate.type.CalendarType@30a8ac61
+2023-03-20 10:02:15.502 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration calendar_date -> org.hibernate.type.CalendarDateType@2a597b60
+2023-03-20 10:02:15.560 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration calendar_time -> org.hibernate.type.CalendarTimeType@6397a59e
+2023-03-20 10:02:15.569 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration locale -> org.hibernate.type.LocaleType@64500e6a
+2023-03-20 10:02:15.586 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.util.Locale -> org.hibernate.type.LocaleType@64500e6a
+2023-03-20 10:02:15.593 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration currency -> org.hibernate.type.CurrencyType@1bf97427
+2023-03-20 10:02:15.595 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.util.Currency -> org.hibernate.type.CurrencyType@1bf97427
+2023-03-20 10:02:15.598 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration timezone -> org.hibernate.type.TimeZoneType@5b45fdb
+2023-03-20 10:02:15.620 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.util.TimeZone -> org.hibernate.type.TimeZoneType@5b45fdb
+2023-03-20 10:02:15.628 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration class -> org.hibernate.type.ClassType@7117bb81
+2023-03-20 10:02:15.636 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.lang.Class -> org.hibernate.type.ClassType@7117bb81
+2023-03-20 10:02:15.658 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration uuid-binary -> org.hibernate.type.UUIDBinaryType@7ecfbd04
+2023-03-20 10:02:15.674 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.util.UUID -> org.hibernate.type.UUIDBinaryType@7ecfbd04
+2023-03-20 10:02:15.693 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration uuid-char -> org.hibernate.type.UUIDCharType@25b80d3d
+2023-03-20 10:02:15.706 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration binary -> org.hibernate.type.BinaryType@6294edef
+2023-03-20 10:02:15.713 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration byte[] -> org.hibernate.type.BinaryType@6294edef
+2023-03-20 10:02:15.736 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration [B -> org.hibernate.type.BinaryType@6294edef
+2023-03-20 10:02:15.745 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration wrapper-binary -> org.hibernate.type.WrapperBinaryType@32274cd4
+2023-03-20 10:02:15.774 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration Byte[] -> org.hibernate.type.WrapperBinaryType@32274cd4
+2023-03-20 10:02:15.780 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration [Ljava.lang.Byte; -> org.hibernate.type.WrapperBinaryType@32274cd4
+2023-03-20 10:02:15.872 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration row_version -> org.hibernate.type.RowVersionType@50d83536
+2023-03-20 10:02:15.974 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration image -> org.hibernate.type.ImageType@f212904
+2023-03-20 10:02:16.053 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration characters -> org.hibernate.type.CharArrayType@3ab3800
+2023-03-20 10:02:16.075 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration char[] -> org.hibernate.type.CharArrayType@3ab3800
+2023-03-20 10:02:16.089 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration [C -> org.hibernate.type.CharArrayType@3ab3800
+2023-03-20 10:02:16.096 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration wrapper-characters -> org.hibernate.type.CharacterArrayType@55bb80c7
+2023-03-20 10:02:16.127 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration [Ljava.lang.Character; -> org.hibernate.type.CharacterArrayType@55bb80c7
+2023-03-20 10:02:16.137 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration Character[] -> org.hibernate.type.CharacterArrayType@55bb80c7
+2023-03-20 10:02:16.145 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration text -> org.hibernate.type.TextType@f0e0edf
+2023-03-20 10:02:16.160 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration ntext -> org.hibernate.type.NTextType@13b6192e
+2023-03-20 10:02:16.163 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration blob -> org.hibernate.type.BlobType@5c685cb0
+2023-03-20 10:02:16.172 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.sql.Blob -> org.hibernate.type.BlobType@5c685cb0
+2023-03-20 10:02:16.188 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration materialized_blob -> org.hibernate.type.MaterializedBlobType@3fdbcdf2
+2023-03-20 10:02:16.206 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration clob -> org.hibernate.type.ClobType@7a610493
+2023-03-20 10:02:16.220 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.sql.Clob -> org.hibernate.type.ClobType@7a610493
+2023-03-20 10:02:16.223 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration nclob -> org.hibernate.type.NClobType@65485bfc
+2023-03-20 10:02:16.227 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.sql.NClob -> org.hibernate.type.NClobType@65485bfc
+2023-03-20 10:02:16.230 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration materialized_clob -> org.hibernate.type.MaterializedClobType@4011949
+2023-03-20 10:02:16.237 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration materialized_nclob -> org.hibernate.type.MaterializedNClobType@eefedce
+2023-03-20 10:02:16.243 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration serializable -> org.hibernate.type.SerializableType@791b9926
+2023-03-20 10:02:16.246 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration object -> org.hibernate.type.ObjectType@7367d139
+2023-03-20 10:02:16.249 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.lang.Object -> org.hibernate.type.ObjectType@7367d139
+2023-03-20 10:02:16.254 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration imm_date -> org.hibernate.type.AdaptedImmutableType@5757e30f
+2023-03-20 10:02:16.273 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration imm_time -> org.hibernate.type.AdaptedImmutableType@13314f8a
+2023-03-20 10:02:16.276 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration imm_timestamp -> org.hibernate.type.AdaptedImmutableType@dfeb0af
+2023-03-20 10:02:16.279 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration imm_dbtimestamp -> org.hibernate.type.AdaptedImmutableType@76a859d2
+2023-03-20 10:02:16.294 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration imm_calendar -> org.hibernate.type.AdaptedImmutableType@1e0f8393
+2023-03-20 10:02:16.308 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration imm_calendar_date -> org.hibernate.type.AdaptedImmutableType@75bc2c7
+2023-03-20 10:02:16.313 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration imm_binary -> org.hibernate.type.AdaptedImmutableType@7f58614b
+2023-03-20 10:02:16.340 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration imm_serializable -> org.hibernate.type.AdaptedImmutableType@4b0ad1bb
+2023-03-20 10:02:16.375 DEBUG 13268 --- [restartedMain] o.h.boot.internal.BootstrapContextImpl   : Injecting JPA temp ClassLoader [org.springframework.instrument.classloading.SimpleThrowawayClassLoader@29fbc052] into BootstrapContext; was [null]
+2023-03-20 10:02:16.379 DEBUG 13268 --- [restartedMain] o.h.boot.internal.ClassLoaderAccessImpl  : ClassLoaderAccessImpl#injectTempClassLoader(org.springframework.instrument.classloading.SimpleThrowawayClassLoader@29fbc052) [was null]
+2023-03-20 10:02:16.388 DEBUG 13268 --- [restartedMain] o.h.boot.internal.BootstrapContextImpl   : Injecting ScanEnvironment [org.hibernate.jpa.boot.internal.StandardJpaScanEnvironmentImpl@70ef7250] into BootstrapContext; was [null]
+2023-03-20 10:02:16.390 DEBUG 13268 --- [restartedMain] o.h.boot.internal.BootstrapContextImpl   : Injecting ScanOptions [org.hibernate.boot.archive.scan.internal.StandardScanOptions@4c81173f] into BootstrapContext; was [org.hibernate.boot.archive.scan.internal.StandardScanOptions@519b901d]
+2023-03-20 10:02:16.425 DEBUG 13268 --- [restartedMain] o.h.boot.internal.BootstrapContextImpl   : Injecting JPA temp ClassLoader [null] into BootstrapContext; was [org.springframework.instrument.classloading.SimpleThrowawayClassLoader@29fbc052]
+2023-03-20 10:02:16.440 DEBUG 13268 --- [restartedMain] o.h.boot.internal.ClassLoaderAccessImpl  : ClassLoaderAccessImpl#injectTempClassLoader(null) [was org.springframework.instrument.classloading.SimpleThrowawayClassLoader@29fbc052]
+2023-03-20 10:02:16.449 DEBUG 13268 --- [restartedMain] .i.f.i.DefaultIdentifierGeneratorFactory : Registering IdentifierGenerator strategy [uuid2] -> [org.hibernate.id.UUIDGenerator]
+2023-03-20 10:02:16.452 DEBUG 13268 --- [restartedMain] .i.f.i.DefaultIdentifierGeneratorFactory : Registering IdentifierGenerator strategy [guid] -> [org.hibernate.id.GUIDGenerator]
+2023-03-20 10:02:16.454 DEBUG 13268 --- [restartedMain] .i.f.i.DefaultIdentifierGeneratorFactory : Registering IdentifierGenerator strategy [uuid] -> [org.hibernate.id.UUIDHexGenerator]
+2023-03-20 10:02:16.456 DEBUG 13268 --- [restartedMain] .i.f.i.DefaultIdentifierGeneratorFactory : Registering IdentifierGenerator strategy [uuid.hex] -> [org.hibernate.id.UUIDHexGenerator]
+2023-03-20 10:02:16.459 DEBUG 13268 --- [restartedMain] .i.f.i.DefaultIdentifierGeneratorFactory : Registering IdentifierGenerator strategy [assigned] -> [org.hibernate.id.Assigned]
+2023-03-20 10:02:16.461 DEBUG 13268 --- [restartedMain] .i.f.i.DefaultIdentifierGeneratorFactory : Registering IdentifierGenerator strategy [identity] -> [org.hibernate.id.IdentityGenerator]
+2023-03-20 10:02:16.464 DEBUG 13268 --- [restartedMain] .i.f.i.DefaultIdentifierGeneratorFactory : Registering IdentifierGenerator strategy [select] -> [org.hibernate.id.SelectGenerator]
+2023-03-20 10:02:16.467 DEBUG 13268 --- [restartedMain] .i.f.i.DefaultIdentifierGeneratorFactory : Registering IdentifierGenerator strategy [sequence] -> [org.hibernate.id.enhanced.SequenceStyleGenerator]
+2023-03-20 10:02:16.470 DEBUG 13268 --- [restartedMain] .i.f.i.DefaultIdentifierGeneratorFactory : Registering IdentifierGenerator strategy [seqhilo] -> [org.hibernate.id.SequenceHiLoGenerator]
+2023-03-20 10:02:16.473 DEBUG 13268 --- [restartedMain] .i.f.i.DefaultIdentifierGeneratorFactory : Registering IdentifierGenerator strategy [increment] -> [org.hibernate.id.IncrementGenerator]
+2023-03-20 10:02:16.492 DEBUG 13268 --- [restartedMain] .i.f.i.DefaultIdentifierGeneratorFactory : Registering IdentifierGenerator strategy [foreign] -> [org.hibernate.id.ForeignGenerator]
+2023-03-20 10:02:16.497 DEBUG 13268 --- [restartedMain] .i.f.i.DefaultIdentifierGeneratorFactory : Registering IdentifierGenerator strategy [sequence-identity] -> [org.hibernate.id.SequenceIdentityGenerator]
+2023-03-20 10:02:16.509 DEBUG 13268 --- [restartedMain] .i.f.i.DefaultIdentifierGeneratorFactory : Registering IdentifierGenerator strategy [enhanced-sequence] -> [org.hibernate.id.enhanced.SequenceStyleGenerator]
+2023-03-20 10:02:16.513 DEBUG 13268 --- [restartedMain] .i.f.i.DefaultIdentifierGeneratorFactory : Registering IdentifierGenerator strategy [enhanced-table] -> [org.hibernate.id.enhanced.TableGenerator]
+2023-03-20 10:02:16.525  INFO 13268 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2023-03-20 10:02:16.666  INFO 13268 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2023-03-20 10:02:16.666 DEBUG 13268 --- [restartedMain] o.h.e.j.e.i.JdbcEnvironmentInitiator     : Database ->
+       name : PostgreSQL
+    version : 15.2
+      major : 15
+      minor : 2
+2023-03-20 10:02:16.666 DEBUG 13268 --- [restartedMain] o.h.e.j.e.i.JdbcEnvironmentInitiator     : Driver ->
+       name : PostgreSQL JDBC Driver
+    version : 42.3.8
+      major : 42
+      minor : 3
+2023-03-20 10:02:16.666 DEBUG 13268 --- [restartedMain] o.h.e.j.e.i.JdbcEnvironmentInitiator     : JDBC version : 4.2
+2023-03-20 10:02:16.666  INFO 13268 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2023-03-20 10:02:16.682 DEBUG 13268 --- [restartedMain] o.h.e.j.env.spi.IdentifierHelperBuilder  : JDBC driver metadata reported database stores quoted identifiers in neither upper, lower nor mixed case
+2023-03-20 10:02:16.682 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration pg-uuid -> org.hibernate.type.PostgresUUIDType@5c2cd668
+2023-03-20 10:02:16.682 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : Adding type registration java.util.UUID -> org.hibernate.type.PostgresUUIDType@5c2cd668
+2023-03-20 10:02:16.682 DEBUG 13268 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@7ecfbd04
+2023-03-20 10:02:16.682 DEBUG 13268 --- [restartedMain] o.h.type.spi.TypeConfiguration$Scope     : Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@2de3a85c] to MetadataBuildingContext [org.hibernate.boot.internal.MetadataBuildingContextRootImpl@699f7a30]
+2023-03-20 10:02:16.682 DEBUG 13268 --- [restartedMain] o.h.boot.model.relational.Namespace      : Created database namespace [logicalName=Name{catalog=null, schema=null}, physicalName=Name{catalog=null, schema=null}]
+2023-03-20 10:02:16.682 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.AnnotationBinder       : Binding entity from annotated class: br.com.rafaelcavalcante.biritashop.model.Cliente
+2023-03-20 10:02:16.682 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Ejb3Column             : Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
+2023-03-20 10:02:16.682 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.EntityBinder         : Import with entity name Cliente
+2023-03-20 10:02:16.697 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.EntityBinder         : Bind entity br.com.rafaelcavalcante.biritashop.model.Cliente on table cliente
+2023-03-20 10:02:16.713 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Ejb3Column             : Binding column: Ejb3Column{table=org.hibernate.mapping.Table(cliente), mappingColumn=id, insertable=true, updatable=true, unique=false}
+2023-03-20 10:02:16.719 DEBUG 13268 --- [restartedMain] o.h.boot.internal.ClassLoaderAccessImpl  : Not known whether passed class name [br.com.rafaelcavalcante.biritashop.model.Cliente] is safe
+2023-03-20 10:02:16.721 DEBUG 13268 --- [restartedMain] o.h.boot.internal.ClassLoaderAccessImpl  : No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : br.com.rafaelcavalcante.biritashop.model.Cliente
+2023-03-20 10:02:16.726 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.PropertyBinder       : MetadataSourceProcessor property id with lazy=false
+2023-03-20 10:02:16.736 DEBUG 13268 --- [restartedMain] o.hibernate.cfg.AbstractPropertyHolder   : Attempting to locate auto-apply AttributeConverter for property [br.com.rafaelcavalcante.biritashop.model.Cliente:id]
+2023-03-20 10:02:16.741 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.SimpleValueBinder    : building SimpleValue for id
+2023-03-20 10:02:16.745 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.PropertyBinder       : Building property id
+2023-03-20 10:02:16.748 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.BinderHelper           : #makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(id)]), id, identity, , ...)
+2023-03-20 10:02:16.759 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Ejb3Column             : Binding column: Ejb3Column{table=org.hibernate.mapping.Table(cliente), mappingColumn=cep, insertable=true, updatable=true, unique=false}
+2023-03-20 10:02:16.763 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.PropertyBinder       : MetadataSourceProcessor property CEP with lazy=false
+2023-03-20 10:02:16.768 DEBUG 13268 --- [restartedMain] o.hibernate.cfg.AbstractPropertyHolder   : Attempting to locate auto-apply AttributeConverter for property [br.com.rafaelcavalcante.biritashop.model.Cliente:CEP]
+2023-03-20 10:02:16.773 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.SimpleValueBinder    : building SimpleValue for CEP
+2023-03-20 10:02:16.779 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.PropertyBinder       : Building property CEP
+2023-03-20 10:02:16.784 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Ejb3Column             : Binding column: Ejb3Column{table=org.hibernate.mapping.Table(cliente), mappingColumn=cidade, insertable=true, updatable=true, unique=false}
+2023-03-20 10:02:16.797 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.PropertyBinder       : MetadataSourceProcessor property cidade with lazy=false
+2023-03-20 10:02:16.823 DEBUG 13268 --- [restartedMain] o.hibernate.cfg.AbstractPropertyHolder   : Attempting to locate auto-apply AttributeConverter for property [br.com.rafaelcavalcante.biritashop.model.Cliente:cidade]
+2023-03-20 10:02:16.831 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.SimpleValueBinder    : building SimpleValue for cidade
+2023-03-20 10:02:16.841 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.PropertyBinder       : Building property cidade
+2023-03-20 10:02:16.861 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Ejb3Column             : Binding column: Ejb3Column{table=org.hibernate.mapping.Table(cliente), mappingColumn=genero, insertable=true, updatable=true, unique=false}
+2023-03-20 10:02:16.892 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.PropertyBinder       : MetadataSourceProcessor property genero with lazy=false
+2023-03-20 10:02:16.901 DEBUG 13268 --- [restartedMain] o.hibernate.cfg.AbstractPropertyHolder   : Attempting to locate auto-apply AttributeConverter for property [br.com.rafaelcavalcante.biritashop.model.Cliente:genero]
+2023-03-20 10:02:16.906 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.SimpleValueBinder    : building SimpleValue for genero
+2023-03-20 10:02:16.910 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.PropertyBinder       : Building property genero
+2023-03-20 10:02:16.923 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Ejb3Column             : Binding column: Ejb3Column{table=org.hibernate.mapping.Table(cliente), mappingColumn=nome_completo, insertable=true, updatable=true, unique=false}
+2023-03-20 10:02:16.928 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.PropertyBinder       : MetadataSourceProcessor property nomeCompleto with lazy=false
+2023-03-20 10:02:16.938 DEBUG 13268 --- [restartedMain] o.hibernate.cfg.AbstractPropertyHolder   : Attempting to locate auto-apply AttributeConverter for property [br.com.rafaelcavalcante.biritashop.model.Cliente:nomeCompleto]
+2023-03-20 10:02:16.941 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.SimpleValueBinder    : building SimpleValue for nomeCompleto
+2023-03-20 10:02:16.944 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.PropertyBinder       : Building property nomeCompleto
+2023-03-20 10:02:16.947 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Ejb3Column             : Binding column: Ejb3Column{table=org.hibernate.mapping.Table(cliente), mappingColumn=telefone, insertable=true, updatable=true, unique=false}
+2023-03-20 10:02:16.949 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.PropertyBinder       : MetadataSourceProcessor property telefone with lazy=false
+2023-03-20 10:02:16.955 DEBUG 13268 --- [restartedMain] o.hibernate.cfg.AbstractPropertyHolder   : Attempting to locate auto-apply AttributeConverter for property [br.com.rafaelcavalcante.biritashop.model.Cliente:telefone]
+2023-03-20 10:02:16.958 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.SimpleValueBinder    : building SimpleValue for telefone
+2023-03-20 10:02:16.961 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.PropertyBinder       : Building property telefone
+2023-03-20 10:02:16.969 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.SimpleValueBinder    : Starting fillSimpleValue for id
+2023-03-20 10:02:16.972 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.SimpleValueBinder    : Starting fillSimpleValue for CEP
+2023-03-20 10:02:16.974 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.SimpleValueBinder    : Starting fillSimpleValue for cidade
+2023-03-20 10:02:16.977 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.SimpleValueBinder    : Starting fillSimpleValue for genero
+2023-03-20 10:02:16.979 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.SimpleValueBinder    : Starting fillSimpleValue for nomeCompleto
+2023-03-20 10:02:16.981 DEBUG 13268 --- [restartedMain] o.h.cfg.annotations.SimpleValueBinder    : Starting fillSimpleValue for telefone
+2023-03-20 10:02:16.984 DEBUG 13268 --- [restartedMain] org.hibernate.mapping.PrimaryKey         : Forcing column [id] to be non-null as it is part of the primary key for table [cliente]
+2023-03-20 10:02:16.990 DEBUG 13268 --- [restartedMain] o.hibernate.internal.SessionFactoryImpl  : Building session factory
+2023-03-20 10:02:16.993 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : SessionFactory name : null
+2023-03-20 10:02:16.994 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Automatic flush during beforeCompletion(): enabled
+2023-03-20 10:02:16.996 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Automatic session close at end of transaction: disabled
+2023-03-20 10:02:16.997 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Statistics: disabled
+2023-03-20 10:02:16.998 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Deleted entity synthetic identifier rollback: disabled
+2023-03-20 10:02:17.007 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Default entity-mode: pojo
+2023-03-20 10:02:17.009 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+2023-03-20 10:02:17.011 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Allow initialization of lazy state outside session : disabled
+2023-03-20 10:02:17.014 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Using BatchFetchStyle : LEGACY
+2023-03-20 10:02:17.017 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Default batch fetch size: -1
+2023-03-20 10:02:17.020 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Maximum outer join fetch depth: null
+2023-03-20 10:02:17.022 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Default null ordering: NONE
+2023-03-20 10:02:17.025 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Order SQL updates by primary key: disabled
+2023-03-20 10:02:17.027 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Order SQL inserts for batching: disabled
+2023-03-20 10:02:17.029 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : multi-tenancy strategy : NONE
+2023-03-20 10:02:17.043 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : JTA Track by Thread: enabled
+2023-03-20 10:02:17.059 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Query language substitutions: {}
+2023-03-20 10:02:17.062 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Named query checking : enabled
+2023-03-20 10:02:17.065 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Second-level cache: disabled
+2023-03-20 10:02:17.074 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Second-level query cache: disabled
+2023-03-20 10:02:17.077 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Second-level query cache factory: null
+2023-03-20 10:02:17.081 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Second-level cache region prefix: null
+2023-03-20 10:02:17.089 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Optimize second-level cache for minimal puts: disabled
+2023-03-20 10:02:17.092 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Structured second-level cache entries: disabled
+2023-03-20 10:02:17.094 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Second-level cache direct-reference entries: disabled
+2023-03-20 10:02:17.103 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Automatic eviction of collection cache: disabled
+2023-03-20 10:02:17.123 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : JDBC batch size: 15
+2023-03-20 10:02:17.137 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : JDBC batch updates for versioned data: enabled
+2023-03-20 10:02:17.139 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Scrollable result sets: enabled
+2023-03-20 10:02:17.142 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Wrap result sets: disabled
+2023-03-20 10:02:17.143 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : JDBC3 getGeneratedKeys(): enabled
+2023-03-20 10:02:17.147 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : JDBC result set fetch size: null
+2023-03-20 10:02:17.160 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Connection release mode: ON_CLOSE
+2023-03-20 10:02:17.171 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : Generate SQL with comments: disabled
+2023-03-20 10:02:17.174 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : JPA compliance - query : disabled
+2023-03-20 10:02:17.178 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : JPA compliance - closed-handling : disabled
+2023-03-20 10:02:17.181 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : JPA compliance - lists : disabled
+2023-03-20 10:02:17.187 DEBUG 13268 --- [restartedMain] org.hibernate.cfg.Settings               : JPA compliance - transactions : disabled
+2023-03-20 10:02:17.193 DEBUG 13268 --- [restartedMain] .h.s.i.SessionFactoryServiceRegistryImpl : EventListenerRegistry access via ServiceRegistry is deprecated.  Use `sessionFactory.getEventEngine().getListenerRegistry()` instead
+2023-03-20 10:02:17.196 DEBUG 13268 --- [restartedMain] .h.s.i.SessionFactoryServiceRegistryImpl : EventListenerRegistry access via ServiceRegistry is deprecated.  Use `sessionFactory.getEventEngine().getListenerRegistry()` instead
+2023-03-20 10:02:17.198 DEBUG 13268 --- [restartedMain] o.hibernate.internal.SessionFactoryImpl  : Session factory constructed with filter configurations : {}
+2023-03-20 10:02:17.202 DEBUG 13268 --- [restartedMain] o.hibernate.internal.SessionFactoryImpl  : Instantiating session factory with properties: {sun.desktop=windows, awt.toolkit=sun.awt.windows.WToolkit, hibernate.id.new_generator_mappings=true, java.specification.version=1.8, file.encoding.pkg=sun.io, sun.cpu.isalist=amd64, hibernate.resource.beans.container=org.springframework.orm.hibernate5.SpringBeanContainer@6b8ad798, hibernate.connection.handling_mode=DELAYED_ACQUISITION_AND_HOLD, sun.jnu.encoding=Cp1252, hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect, hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy, java.class.path=C:\Users\Rafael\AppData\Local\Temp\cp_68ijagrjdyexvxlwxuidchj7x.jar, java.vm.vendor=Temurin, sun.arch.data.model=64, user.variant=, java.vendor.url=https://adoptium.net/, catalina.useNaming=false, user.timezone=America/Sao_Paulo, jakarta.persistence.sharedCache.mode=UNSPECIFIED, os.name=Windows 10, java.vm.specification.version=1.8, javax.persistence.validation.mode=AUTO, jakarta.persistence.nonJtaDataSource=HikariDataSource (HikariPool-2), user.country=BR, sun.java.launcher=SUN_STANDARD, sun.boot.library.path=C:\Program Files\Eclipse Adoptium\jdk-8.0.362.9-hotspot\jre\bin, sun.java.command=br.com.rafaelcavalcante.biritashop.BiritashopApplication, javax.persistence.nonJtaDataSource=HikariDataSource (HikariPool-2), hibernate.transaction.jta.platform=org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform@5b1b23fd, javax.persistence.sharedCache.mode=UNSPECIFIED, sun.cpu.endian=little, user.home=C:\Users\Rafael, user.language=pt, sun.stderr.encoding=cp850, java.specification.vendor=Oracle Corporation, java.home=C:\Program Files\Eclipse Adoptium\jdk-8.0.362.9-hotspot\jre, file.separator=\, line.separator=
+, sun.stdout.encoding=cp850, hibernate.persistenceUnitName=default, java.vm.specification.vendor=Oracle Corporation, java.specification.name=Java Platform API Specification, FILE_LOG_CHARSET=windows-1252, hibernate.transaction.coordinator_class=class org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorBuilderImpl, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, java.awt.headless=true, jakarta.persistence.validation.mode=AUTO, sun.boot.class.path=C:\Program Files\Eclipse Adoptium\jdk-8.0.362.9-hotspot\jre\lib\resources.jar;C:\Program Files\Eclipse Adoptium\jdk-8.0.362.9-hotspot\jre\lib\rt.jar;C:\Program Files\Eclipse Adoptium\jdk-8.0.362.9-hotspot\jre\lib\sunrsasign.jar;C:\Program Files\Eclipse Adoptium\jdk-8.0.362.9-hotspot\jre\lib\jsse.jar;C:\Program Files\Eclipse Adoptium\jdk-8.0.362.9-hotspot\jre\lib\jce.jar;C:\Program Files\Eclipse Adoptium\jdk-8.0.362.9-hotspot\jre\lib\charsets.jar;C:\Program Files\Eclipse Adoptium\jdk-8.0.362.9-hotspot\jre\lib\jfr.jar;C:\Program Files\Eclipse Adoptium\jdk-8.0.362.9-hotspot\jre\classes, hibernate.hbm2ddl.auto=update, user.script=, sun.management.compiler=HotSpot 64-Bit Tiered Compilers, java.runtime.version=1.8.0_362-b09, user.name=Rafael, path.separator=;, os.version=10.0, java.endorsed.dirs=C:\Program Files\Eclipse Adoptium\jdk-8.0.362.9-hotspot\jre\lib\endorsed, java.runtime.name=OpenJDK Runtime Environment, file.encoding=Cp1252, hibernate.ejb.persistenceUnitName=default, spring.beaninfo.ignore=true, java.vm.name=OpenJDK 64-Bit Server VM, hibernate.show_sql=true, LOG_FILE=log/biritashop_rafaelcavalcante.log, java.vendor.url.bug=https://github.com/adoptium/adoptium-support/issues, java.io.tmpdir=C:\Users\Rafael\AppData\Local\Temp\, catalina.home=C:\Users\Rafael\AppData\Local\Temp\tomcat.8080.3127889744491443082, java.version=1.8.0_362, hibernate.physical_naming_strategy=org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy, user.dir=C:\Users\Rafael\Documents\GitHub\pweb_2021.2_rafaelCavalcante\biritashop, os.arch=amd64, java.vm.specification.name=Java Virtual Machine Specification, PID=13268, java.awt.printerjob=sun.awt.windows.WPrinterJob, sun.os.patch.level=, CONSOLE_LOG_CHARSET=windows-1252, catalina.base=C:\Users\Rafael\AppData\Local\Temp\tomcat.8080.3127889744491443082, hibernate.boot.CfgXmlAccessService.key=org.hibernate.boot.registry.StandardServiceRegistryBuilder$1@49c78c54, java.library.path=C:\Program Files\Eclipse Adoptium\jdk-8.0.362.9-hotspot\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Eclipse Adoptium\jdk-8.0.362.9-hotspot\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\Rafael\AppData\Local\Microsoft\WindowsApps;C:\Users\Rafael\AppData\Local\GitHubDesktop\bin;., java.vendor=Temurin, java.vm.info=mixed mode, java.vm.version=25.362-b09, java.specification.maintenance.version=4, hibernate.bytecode.use_reflection_optimizer=false, sun.io.unicode.encoding=UnicodeLittle, hibernate.archive.scanner=org.hibernate.boot.archive.scan.internal.DisabledScanner, java.ext.dirs=C:\Program Files\Eclipse Adoptium\jdk-8.0.362.9-hotspot\jre\lib\ext;C:\Windows\Sun\Java\lib\ext, hibernate.connection.datasource=HikariDataSource (HikariPool-2), java.class.version=52.0}
+2023-03-20 10:02:17.247 DEBUG 13268 --- [restartedMain] org.hibernate.secure.spi.JaccIntegrator  : Skipping JACC integration as it was not enabled
+2023-03-20 10:02:17.256 DEBUG 13268 --- [restartedMain] o.hibernate.internal.SessionFactoryImpl  : Instantiated session factory
+2023-03-20 10:02:17.260 DEBUG 13268 --- [restartedMain] o.h.type.spi.TypeConfiguration$Scope     : Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@2de3a85c] to SessionFactoryImpl [org.hibernate.internal.SessionFactoryImpl@65c18b2e]
+2023-03-20 10:02:17.263 DEBUG 13268 --- [restartedMain] o.h.boot.internal.ClassLoaderAccessImpl  : Not known whether passed class name [br.com.rafaelcavalcante.biritashop.model.Cliente] is safe
+2023-03-20 10:02:17.265 DEBUG 13268 --- [restartedMain] o.h.boot.internal.ClassLoaderAccessImpl  : No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : br.com.rafaelcavalcante.biritashop.model.Cliente
+2023-03-20 10:02:17.321 DEBUG 13268 --- [restartedMain] o.h.p.entity.AbstractEntityPersister     : Static SQL for entity: br.com.rafaelcavalcante.biritashop.model.Cliente
+2023-03-20 10:02:17.322 DEBUG 13268 --- [restartedMain] o.h.p.entity.AbstractEntityPersister     :  Version select: select id from cliente where id =?
+2023-03-20 10:02:17.323 DEBUG 13268 --- [restartedMain] o.h.p.entity.AbstractEntityPersister     :  Snapshot select: select cliente_.id, cliente_.cep as cep2_0_, cliente_.cidade as cidade3_0_, cliente_.genero as genero4_0_, cliente_.nome_completo as nome_com5_0_, cliente_.telefone as telefone6_0_ from cliente cliente_ where cliente_.id=?
+2023-03-20 10:02:17.325 DEBUG 13268 --- [restartedMain] o.h.p.entity.AbstractEntityPersister     :  Insert 0: insert into cliente (cep, cidade, genero, nome_completo, telefone, id) values (?, ?, ?, ?, ?, ?)
+2023-03-20 10:02:17.326 DEBUG 13268 --- [restartedMain] o.h.p.entity.AbstractEntityPersister     :  Update 0: update cliente set cep=?, cidade=?, genero=?, nome_completo=?, telefone=? where id=?
+2023-03-20 10:02:17.328 DEBUG 13268 --- [restartedMain] o.h.p.entity.AbstractEntityPersister     :  Delete 0: delete from cliente where id=?
+2023-03-20 10:02:17.330 DEBUG 13268 --- [restartedMain] o.h.p.entity.AbstractEntityPersister     :  Identity insert: insert into cliente (cep, cidade, genero, nome_completo, telefone) values (?, ?, ?, ?, ?)
+2023-03-20 10:02:17.332 DEBUG 13268 --- [restartedMain] o.h.l.p.b.i.spaces.QuerySpacesImpl       : Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@68fb91a7]
+2023-03-20 10:02:17.334 DEBUG 13268 --- [restartedMain] o.h.p.walking.spi.MetamodelGraphWalker   : Visiting attribute path : CEP
+2023-03-20 10:02:17.337 DEBUG 13268 --- [restartedMain] o.h.p.walking.spi.MetamodelGraphWalker   : Visiting attribute path : cidade
+2023-03-20 10:02:17.338 DEBUG 13268 --- [restartedMain] o.h.p.walking.spi.MetamodelGraphWalker   : Visiting attribute path : genero
+2023-03-20 10:02:17.341 DEBUG 13268 --- [restartedMain] o.h.p.walking.spi.MetamodelGraphWalker   : Visiting attribute path : nomeCompleto
+2023-03-20 10:02:17.347 DEBUG 13268 --- [restartedMain] o.h.p.walking.spi.MetamodelGraphWalker   : Visiting attribute path : telefone
+2023-03-20 10:02:17.362 DEBUG 13268 --- [restartedMain] lanBuildingAssociationVisitationStrategy : Building LoadPlan...
+2023-03-20 10:02:17.364 DEBUG 13268 --- [restartedMain] h.l.p.e.i.LoadQueryJoinAndFetchProcessor : processing queryspace <gen:0>
+2023-03-20 10:02:17.369 DEBUG 13268 --- [restartedMain] o.h.l.p.build.spi.LoadPlanTreePrinter    : LoadPlan(entity=br.com.rafaelcavalcante.biritashop.model.Cliente)
+    - Returns
+       - EntityReturnImpl(entity=br.com.rafaelcavalcante.biritashop.model.Cliente, querySpaceUid=<gen:0>, path=br.com.rafaelcavalcante.biritashop.model.Cliente)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=br.com.rafaelcavalcante.biritashop.model.Cliente)
+          - SQL table alias mapping - cliente0_
+          - alias suffix - 0_
+          - suffixed key columns - {id1_0_0_}
+
+2023-03-20 10:02:17.374 DEBUG 13268 --- [restartedMain] o.h.loader.entity.plan.EntityLoader      : Static select for entity br.com.rafaelcavalcante.biritashop.model.Cliente [NONE]: select cliente0_.id as id1_0_0_, cliente0_.cep as cep2_0_0_, cliente0_.cidade as cidade3_0_0_, cliente0_.genero as genero4_0_0_, cliente0_.nome_completo as nome_com5_0_0_, cliente0_.telefone as telefone6_0_0_ from cliente cliente0_ where cliente0_.id=?
+2023-03-20 10:02:17.431 DEBUG 13268 --- [restartedMain] org.hibernate.mapping.Table              : No alter strings for table : cliente
+2023-03-20 10:02:17.432  INFO 13268 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-20 10:02:17.434 DEBUG 13268 --- [restartedMain] .h.s.i.SessionFactoryServiceRegistryImpl : EventListenerRegistry access via ServiceRegistry is deprecated.  Use `sessionFactory.getEventEngine().getListenerRegistry()` instead
+2023-03-20 10:02:17.435 DEBUG 13268 --- [restartedMain] o.h.h.i.QueryTranslatorFactoryInitiator  : QueryTranslatorFactory: org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory@7d069d5
+2023-03-20 10:02:17.436 DEBUG 13268 --- [restartedMain] o.h.query.spi.NamedQueryRepository       : Checking 0 named HQL queries
+2023-03-20 10:02:17.438 DEBUG 13268 --- [restartedMain] o.h.query.spi.NamedQueryRepository       : Checking 0 named SQL queries
+2023-03-20 10:02:17.439 DEBUG 13268 --- [restartedMain] o.h.internal.SessionFactoryRegistry      : Registering SessionFactory: 647ec2bc-9fb0-4af7-b2cd-ca610ffc29cc (<unnamed>)
+2023-03-20 10:02:17.440 DEBUG 13268 --- [restartedMain] o.h.internal.SessionFactoryRegistry      : Not binding SessionFactory to JNDI, no JNDI name configured
+2023-03-20 10:02:17.441  INFO 13268 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-20 10:02:17.524 DEBUG 13268 --- [restartedMain] o.h.stat.internal.StatisticsInitiator    : Statistics initialized [enabled=false]
+2023-03-20 10:02:17.997  INFO 13268 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-03-20 10:02:18.084  INFO 13268 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-20 10:02:18.093  INFO 13268 --- [restartedMain] b.c.r.biritashop.BiritashopApplication   : Started BiritashopApplication in 4.106 seconds (JVM running for 293.228)
+2023-03-20 10:02:18.097  INFO 13268 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2023-03-20 10:02:41.770  INFO 13268 --- [http-nio-8080-exec-10] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-20 10:02:41.772  INFO 13268 --- [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-20 10:02:41.777  INFO 13268 --- [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2023-03-20 10:02:41.789 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.e.t.internal.TransactionImpl         : On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2023-03-20 10:02:41.796 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.e.t.internal.TransactionImpl         : begin
+2023-03-20 10:02:41.801 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.q.c.internal.CriteriaQueryImpl       : Rendered criteria query -> select generatedAlias0 from Cliente as generatedAlias0
+2023-03-20 10:02:41.806 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.h.internal.ast.QueryTranslatorImpl   : parse() - HQL: select generatedAlias0 from br.com.rafaelcavalcante.biritashop.model.Cliente as generatedAlias0
+2023-03-20 10:02:41.814 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.hql.internal.ast.ErrorTracker        : throwQueryException() : no errors
+2023-03-20 10:02:41.819 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.h.internal.ast.QueryTranslatorImpl   : --- HQL AST ---
+ \-[QUERY] Node: 'query'
+    \-[SELECT_FROM] Node: 'SELECT_FROM'
+       +-[FROM] Node: 'from'
+       |  \-[RANGE] Node: 'RANGE'
+       |     +-[DOT] Node: '.'
+       |     |  +-[DOT] Node: '.'
+       |     |  |  +-[DOT] Node: '.'
+       |     |  |  |  +-[DOT] Node: '.'
+       |     |  |  |  |  +-[DOT] Node: '.'
+       |     |  |  |  |  |  +-[IDENT] Node: 'br'
+       |     |  |  |  |  |  \-[IDENT] Node: 'com'
+       |     |  |  |  |  \-[IDENT] Node: 'rafaelcavalcante'
+       |     |  |  |  \-[IDENT] Node: 'biritashop'
+       |     |  |  \-[IDENT] Node: 'model'
+       |     |  \-[IDENT] Node: 'Cliente'
+       |     \-[ALIAS] Node: 'generatedAlias0'
+       \-[SELECT] Node: 'select'
+          \-[IDENT] Node: 'generatedAlias0'
+
+2023-03-20 10:02:41.844 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.hql.internal.antlr.HqlSqlBaseWalker  : select << begin [level=1, statement=select]
+2023-03-20 10:02:41.848 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.hql.internal.ast.tree.FromElement    : FromClause{level=1} : br.com.rafaelcavalcante.biritashop.model.Cliente (generatedAlias0) -> cliente0_
+2023-03-20 10:02:41.853 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.h.i.ast.tree.FromReferenceNode       : Resolved : generatedAlias0 -> cliente0_.id
+2023-03-20 10:02:41.857 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.hql.internal.antlr.HqlSqlBaseWalker  : select : finishing up [level=1, statement=select]
+2023-03-20 10:02:41.860 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.hql.internal.ast.HqlSqlWalker        : processQuery() :  ( SELECT ( {select clause} cliente0_.id ) ( FromClause{level=1} cliente cliente0_ ) )
+2023-03-20 10:02:41.877 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.hql.internal.ast.util.JoinProcessor  : Tables referenced from query nodes:
+ \-QueryNode
+    +-SelectClause
+    | referencedTables(entity Cliente): [cliente]
+    |  +-IdentNode
+    |  | persister: SingleTableEntityPersister(br.com.rafaelcavalcante.biritashop.model.Cliente)
+    |  | originalText: generatedAlias0
+    |  \-SqlFragment
+    \-FromClause
+       \-FromElement
+
+2023-03-20 10:02:41.888 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.hql.internal.ast.util.JoinProcessor  : Using FROM fragment [cliente cliente0_]
+2023-03-20 10:02:41.892 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.hql.internal.antlr.HqlSqlBaseWalker  : select >> end [level=1, statement=select]
+2023-03-20 10:02:41.895 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.h.internal.ast.QueryTranslatorImpl   : --- SQL AST ---
+ \-[SELECT] QueryNode: 'SELECT'  querySpaces (cliente)
+    +-[SELECT_CLAUSE] SelectClause: '{select clause}'
+    |  +-[ALIAS_REF] IdentNode: 'cliente0_.id as id1_0_' {alias=generatedAlias0, className=br.com.rafaelcavalcante.biritashop.model.Cliente, tableAlias=cliente0_}
+    |  \-[SQL_TOKEN] SqlFragment: 'cliente0_.cep as cep2_0_, cliente0_.cidade as cidade3_0_, cliente0_.genero as genero4_0_, cliente0_.nome_completo as nome_com5_0_, cliente0_.telefone as telefone6_0_'
+    \-[FROM] FromClause: 'from' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[generatedAlias0], fromElementByTableAlias=[cliente0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+       \-[FROM_FRAGMENT] FromElement: 'cliente cliente0_' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=generatedAlias0,role=null,tableName=cliente,tableAlias=cliente0_,origin=null,columns={,className=br.com.rafaelcavalcante.biritashop.model.Cliente}}
+
+2023-03-20 10:02:41.904 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.hql.internal.ast.ErrorTracker        : throwQueryException() : no errors
+2023-03-20 10:02:41.908 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.h.internal.ast.QueryTranslatorImpl   : HQL: select generatedAlias0 from br.com.rafaelcavalcante.biritashop.model.Cliente as generatedAlias0
+2023-03-20 10:02:41.913 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.h.internal.ast.QueryTranslatorImpl   : SQL: select cliente0_.id as id1_0_, cliente0_.cep as cep2_0_, cliente0_.cidade as cidade3_0_, cliente0_.genero as genero4_0_, cliente0_.nome_completo as nome_com5_0_, cliente0_.telefone as telefone6_0_ from cliente cliente0_
+2023-03-20 10:02:41.920 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.hql.internal.ast.ErrorTracker        : throwQueryException() : no errors
+2023-03-20 10:02:41.926 DEBUG 13268 --- [http-nio-8080-exec-10] org.hibernate.SQL                        : select cliente0_.id as id1_0_, cliente0_.cep as cep2_0_, cliente0_.cidade as cidade3_0_, cliente0_.genero as genero4_0_, cliente0_.nome_completo as nome_com5_0_, cliente0_.telefone as telefone6_0_ from cliente cliente0_
+2023-03-20 10:02:41.934 DEBUG 13268 --- [http-nio-8080-exec-10] org.hibernate.loader.Loader              : Result set row: 0
+2023-03-20 10:02:41.935 DEBUG 13268 --- [http-nio-8080-exec-10] org.hibernate.loader.Loader              : Result row: EntityKey[br.com.rafaelcavalcante.biritashop.model.Cliente#2]
+2023-03-20 10:02:41.937 DEBUG 13268 --- [http-nio-8080-exec-10] org.hibernate.loader.Loader              : Result set row: 1
+2023-03-20 10:02:41.938 DEBUG 13268 --- [http-nio-8080-exec-10] org.hibernate.loader.Loader              : Result row: EntityKey[br.com.rafaelcavalcante.biritashop.model.Cliente#1]
+2023-03-20 10:02:41.940 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Resolving attributes for [br.com.rafaelcavalcante.biritashop.model.Cliente#2]
+2023-03-20 10:02:41.943 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `CEP` : value = 59200000
+2023-03-20 10:02:41.945 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Attribute (`CEP`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:41.946 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `cidade` : value = Santa Cruz
+2023-03-20 10:02:41.947 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Attribute (`cidade`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:41.948 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `genero` : value = Masculino
+2023-03-20 10:02:41.949 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Attribute (`genero`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:41.952 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `nomeCompleto` : value = JOSE CONFESSOR DE ONLIVEIRA JUNIOR
+2023-03-20 10:02:41.954 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Attribute (`nomeCompleto`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:41.955 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `telefone` : value = 558487230587
+2023-03-20 10:02:41.956 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Attribute (`telefone`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:41.961 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Done materializing entity [br.com.rafaelcavalcante.biritashop.model.Cliente#2]
+2023-03-20 10:02:41.963 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Resolving attributes for [br.com.rafaelcavalcante.biritashop.model.Cliente#1]
+2023-03-20 10:02:41.971 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `CEP` : value = 59230000
+2023-03-20 10:02:41.973 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Attribute (`CEP`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:41.975 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `cidade` : value = Campo Redondo
+2023-03-20 10:02:41.978 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Attribute (`cidade`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:41.981 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `genero` : value = Não Informado
+2023-03-20 10:02:41.983 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Attribute (`genero`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:41.991 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `nomeCompleto` : value = RAFAEL CAVALCANTE DOS SANTOS
+2023-03-20 10:02:41.993 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Attribute (`nomeCompleto`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:41.994 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `telefone` : value = 84986230135
+2023-03-20 10:02:41.995 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Attribute (`telefone`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:41.997 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.engine.internal.TwoPhaseLoad         : Done materializing entity [br.com.rafaelcavalcante.biritashop.model.Cliente#1]
+2023-03-20 10:02:42.000 DEBUG 13268 --- [http-nio-8080-exec-10] o.h.e.t.internal.TransactionImpl         : committing
+2023-03-20 10:02:51.793 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.e.t.internal.TransactionImpl         : On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2023-03-20 10:02:51.794 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.e.t.internal.TransactionImpl         : begin
+2023-03-20 10:02:51.796 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.q.c.internal.CriteriaQueryImpl       : Rendered criteria query -> select generatedAlias0 from Cliente as generatedAlias0
+2023-03-20 10:02:51.797 DEBUG 13268 --- [http-nio-8080-exec-7] org.hibernate.SQL                        : select cliente0_.id as id1_0_, cliente0_.cep as cep2_0_, cliente0_.cidade as cidade3_0_, cliente0_.genero as genero4_0_, cliente0_.nome_completo as nome_com5_0_, cliente0_.telefone as telefone6_0_ from cliente cliente0_
+2023-03-20 10:02:51.801 DEBUG 13268 --- [http-nio-8080-exec-7] org.hibernate.loader.Loader              : Result set row: 0
+2023-03-20 10:02:51.803 DEBUG 13268 --- [http-nio-8080-exec-7] org.hibernate.loader.Loader              : Result row: EntityKey[br.com.rafaelcavalcante.biritashop.model.Cliente#2]
+2023-03-20 10:02:51.804 DEBUG 13268 --- [http-nio-8080-exec-7] org.hibernate.loader.Loader              : Result set row: 1
+2023-03-20 10:02:51.805 DEBUG 13268 --- [http-nio-8080-exec-7] org.hibernate.loader.Loader              : Result row: EntityKey[br.com.rafaelcavalcante.biritashop.model.Cliente#1]
+2023-03-20 10:02:51.807 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Resolving attributes for [br.com.rafaelcavalcante.biritashop.model.Cliente#2]
+2023-03-20 10:02:51.808 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `CEP` : value = 59200000
+2023-03-20 10:02:51.809 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Attribute (`CEP`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:51.811 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `cidade` : value = Santa Cruz
+2023-03-20 10:02:51.815 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Attribute (`cidade`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:51.817 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `genero` : value = Masculino
+2023-03-20 10:02:51.819 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Attribute (`genero`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:51.822 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `nomeCompleto` : value = JOSE CONFESSOR DE ONLIVEIRA JUNIOR
+2023-03-20 10:02:51.823 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Attribute (`nomeCompleto`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:51.824 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `telefone` : value = 558487230587
+2023-03-20 10:02:51.825 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Attribute (`telefone`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:51.827 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Done materializing entity [br.com.rafaelcavalcante.biritashop.model.Cliente#2]
+2023-03-20 10:02:51.828 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Resolving attributes for [br.com.rafaelcavalcante.biritashop.model.Cliente#1]
+2023-03-20 10:02:51.829 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `CEP` : value = 59230000
+2023-03-20 10:02:51.830 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Attribute (`CEP`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:51.832 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `cidade` : value = Campo Redondo
+2023-03-20 10:02:51.833 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Attribute (`cidade`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:51.834 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `genero` : value = Não Informado
+2023-03-20 10:02:51.836 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Attribute (`genero`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:51.837 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `nomeCompleto` : value = RAFAEL CAVALCANTE DOS SANTOS
+2023-03-20 10:02:51.838 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Attribute (`nomeCompleto`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:51.839 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `telefone` : value = 84986230135
+2023-03-20 10:02:51.841 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Attribute (`telefone`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:51.842 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Done materializing entity [br.com.rafaelcavalcante.biritashop.model.Cliente#1]
+2023-03-20 10:02:51.843 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.e.t.internal.TransactionImpl         : committing
+2023-03-20 10:02:57.109 DEBUG 13268 --- [http-nio-8080-exec-2] o.h.e.t.internal.TransactionImpl         : On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2023-03-20 10:02:57.111 DEBUG 13268 --- [http-nio-8080-exec-2] o.h.e.t.internal.TransactionImpl         : begin
+2023-03-20 10:02:57.114 DEBUG 13268 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : select cliente0_.id as id1_0_0_, cliente0_.cep as cep2_0_0_, cliente0_.cidade as cidade3_0_0_, cliente0_.genero as genero4_0_0_, cliente0_.nome_completo as nome_com5_0_0_, cliente0_.telefone as telefone6_0_0_ from cliente cliente0_ where cliente0_.id=?
+2023-03-20 10:02:57.127 DEBUG 13268 --- [http-nio-8080-exec-2] l.p.e.p.i.EntityReferenceInitializerImpl : On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+2023-03-20 10:02:57.130 DEBUG 13268 --- [http-nio-8080-exec-2] o.h.engine.internal.TwoPhaseLoad         : Resolving attributes for [br.com.rafaelcavalcante.biritashop.model.Cliente#1]
+2023-03-20 10:02:57.131 DEBUG 13268 --- [http-nio-8080-exec-2] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `CEP` : value = 59230000
+2023-03-20 10:02:57.132 DEBUG 13268 --- [http-nio-8080-exec-2] o.h.engine.internal.TwoPhaseLoad         : Attribute (`CEP`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:57.134 DEBUG 13268 --- [http-nio-8080-exec-2] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `cidade` : value = Campo Redondo
+2023-03-20 10:02:57.136 DEBUG 13268 --- [http-nio-8080-exec-2] o.h.engine.internal.TwoPhaseLoad         : Attribute (`cidade`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:57.138 DEBUG 13268 --- [http-nio-8080-exec-2] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `genero` : value = Não Informado
+2023-03-20 10:02:57.139 DEBUG 13268 --- [http-nio-8080-exec-2] o.h.engine.internal.TwoPhaseLoad         : Attribute (`genero`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:57.140 DEBUG 13268 --- [http-nio-8080-exec-2] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `nomeCompleto` : value = RAFAEL CAVALCANTE DOS SANTOS
+2023-03-20 10:02:57.141 DEBUG 13268 --- [http-nio-8080-exec-2] o.h.engine.internal.TwoPhaseLoad         : Attribute (`nomeCompleto`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:57.143 DEBUG 13268 --- [http-nio-8080-exec-2] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `telefone` : value = 84986230135
+2023-03-20 10:02:57.144 DEBUG 13268 --- [http-nio-8080-exec-2] o.h.engine.internal.TwoPhaseLoad         : Attribute (`telefone`)  - enhanced for lazy-loading? - false
+2023-03-20 10:02:57.145 DEBUG 13268 --- [http-nio-8080-exec-2] o.h.engine.internal.TwoPhaseLoad         : Done materializing entity [br.com.rafaelcavalcante.biritashop.model.Cliente#1]
+2023-03-20 10:02:57.146 DEBUG 13268 --- [http-nio-8080-exec-2] .l.e.p.AbstractLoadPlanBasedEntityLoader : Done entity load : br.com.rafaelcavalcante.biritashop.model.Cliente#1
+2023-03-20 10:02:57.148 DEBUG 13268 --- [http-nio-8080-exec-2] o.h.e.t.internal.TransactionImpl         : committing
+2023-03-20 10:03:04.001 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.e.t.internal.TransactionImpl         : On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2023-03-20 10:03:04.003 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.e.t.internal.TransactionImpl         : begin
+2023-03-20 10:03:04.007 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.q.c.internal.CriteriaQueryImpl       : Rendered criteria query -> select generatedAlias0 from Cliente as generatedAlias0
+2023-03-20 10:03:04.009 DEBUG 13268 --- [http-nio-8080-exec-9] org.hibernate.SQL                        : select cliente0_.id as id1_0_, cliente0_.cep as cep2_0_, cliente0_.cidade as cidade3_0_, cliente0_.genero as genero4_0_, cliente0_.nome_completo as nome_com5_0_, cliente0_.telefone as telefone6_0_ from cliente cliente0_
+2023-03-20 10:03:04.014 DEBUG 13268 --- [http-nio-8080-exec-9] org.hibernate.loader.Loader              : Result set row: 0
+2023-03-20 10:03:04.016 DEBUG 13268 --- [http-nio-8080-exec-9] org.hibernate.loader.Loader              : Result row: EntityKey[br.com.rafaelcavalcante.biritashop.model.Cliente#2]
+2023-03-20 10:03:04.020 DEBUG 13268 --- [http-nio-8080-exec-9] org.hibernate.loader.Loader              : Result set row: 1
+2023-03-20 10:03:04.023 DEBUG 13268 --- [http-nio-8080-exec-9] org.hibernate.loader.Loader              : Result row: EntityKey[br.com.rafaelcavalcante.biritashop.model.Cliente#1]
+2023-03-20 10:03:04.024 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Resolving attributes for [br.com.rafaelcavalcante.biritashop.model.Cliente#2]
+2023-03-20 10:03:04.026 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `CEP` : value = 59200000
+2023-03-20 10:03:04.027 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Attribute (`CEP`)  - enhanced for lazy-loading? - false
+2023-03-20 10:03:04.028 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `cidade` : value = Santa Cruz
+2023-03-20 10:03:04.030 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Attribute (`cidade`)  - enhanced for lazy-loading? - false
+2023-03-20 10:03:04.031 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `genero` : value = Masculino
+2023-03-20 10:03:04.032 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Attribute (`genero`)  - enhanced for lazy-loading? - false
+2023-03-20 10:03:04.033 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `nomeCompleto` : value = JOSE CONFESSOR DE ONLIVEIRA JUNIOR
+2023-03-20 10:03:04.036 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Attribute (`nomeCompleto`)  - enhanced for lazy-loading? - false
+2023-03-20 10:03:04.038 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `telefone` : value = 558487230587
+2023-03-20 10:03:04.039 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Attribute (`telefone`)  - enhanced for lazy-loading? - false
+2023-03-20 10:03:04.040 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Done materializing entity [br.com.rafaelcavalcante.biritashop.model.Cliente#2]
+2023-03-20 10:03:04.042 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Resolving attributes for [br.com.rafaelcavalcante.biritashop.model.Cliente#1]
+2023-03-20 10:03:04.043 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `CEP` : value = 59230000
+2023-03-20 10:03:04.044 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Attribute (`CEP`)  - enhanced for lazy-loading? - false
+2023-03-20 10:03:04.045 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `cidade` : value = Campo Redondo
+2023-03-20 10:03:04.047 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Attribute (`cidade`)  - enhanced for lazy-loading? - false
+2023-03-20 10:03:04.048 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `genero` : value = Não Informado
+2023-03-20 10:03:04.049 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Attribute (`genero`)  - enhanced for lazy-loading? - false
+2023-03-20 10:03:04.050 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `nomeCompleto` : value = RAFAEL CAVALCANTE DOS SANTOS
+2023-03-20 10:03:04.053 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Attribute (`nomeCompleto`)  - enhanced for lazy-loading? - false
+2023-03-20 10:03:04.055 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `telefone` : value = 84986230135
+2023-03-20 10:03:04.056 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Attribute (`telefone`)  - enhanced for lazy-loading? - false
+2023-03-20 10:03:04.057 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.engine.internal.TwoPhaseLoad         : Done materializing entity [br.com.rafaelcavalcante.biritashop.model.Cliente#1]
+2023-03-20 10:03:04.059 DEBUG 13268 --- [http-nio-8080-exec-9] o.h.e.t.internal.TransactionImpl         : committing
+2023-03-20 10:03:12.574 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.e.t.internal.TransactionImpl         : On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2023-03-20 10:03:12.575 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.e.t.internal.TransactionImpl         : begin
+2023-03-20 10:03:12.577 DEBUG 13268 --- [http-nio-8080-exec-5] org.hibernate.SQL                        : select cliente0_.id as id1_0_0_, cliente0_.cep as cep2_0_0_, cliente0_.cidade as cidade3_0_0_, cliente0_.genero as genero4_0_0_, cliente0_.nome_completo as nome_com5_0_0_, cliente0_.telefone as telefone6_0_0_ from cliente cliente0_ where cliente0_.id=?
+2023-03-20 10:03:12.580 DEBUG 13268 --- [http-nio-8080-exec-5] l.p.e.p.i.EntityReferenceInitializerImpl : On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+2023-03-20 10:03:12.582 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.engine.internal.TwoPhaseLoad         : Resolving attributes for [br.com.rafaelcavalcante.biritashop.model.Cliente#1]
+2023-03-20 10:03:12.583 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `CEP` : value = 59230000
+2023-03-20 10:03:12.586 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.engine.internal.TwoPhaseLoad         : Attribute (`CEP`)  - enhanced for lazy-loading? - false
+2023-03-20 10:03:12.587 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `cidade` : value = Campo Redondo
+2023-03-20 10:03:12.588 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.engine.internal.TwoPhaseLoad         : Attribute (`cidade`)  - enhanced for lazy-loading? - false
+2023-03-20 10:03:12.590 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `genero` : value = Não Informado
+2023-03-20 10:03:12.592 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.engine.internal.TwoPhaseLoad         : Attribute (`genero`)  - enhanced for lazy-loading? - false
+2023-03-20 10:03:12.595 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `nomeCompleto` : value = RAFAEL CAVALCANTE DOS SANTOS
+2023-03-20 10:03:12.596 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.engine.internal.TwoPhaseLoad         : Attribute (`nomeCompleto`)  - enhanced for lazy-loading? - false
+2023-03-20 10:03:12.597 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `telefone` : value = 84986230135
+2023-03-20 10:03:12.599 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.engine.internal.TwoPhaseLoad         : Attribute (`telefone`)  - enhanced for lazy-loading? - false
+2023-03-20 10:03:12.600 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.engine.internal.TwoPhaseLoad         : Done materializing entity [br.com.rafaelcavalcante.biritashop.model.Cliente#1]
+2023-03-20 10:03:12.603 DEBUG 13268 --- [http-nio-8080-exec-5] .l.e.p.AbstractLoadPlanBasedEntityLoader : Done entity load : br.com.rafaelcavalcante.biritashop.model.Cliente#1
+2023-03-20 10:03:12.605 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.e.t.internal.TransactionImpl         : committing
+2023-03-20 10:03:12.607 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.e.t.internal.TransactionImpl         : begin
+2023-03-20 10:03:12.616 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.e.t.internal.TransactionImpl         : committing
+2023-03-20 10:03:12.618 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.e.i.AbstractFlushingEventListener    : Processing flush-time cascades
+2023-03-20 10:03:12.620 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.e.i.AbstractFlushingEventListener    : Dirty checking collections
+2023-03-20 10:03:12.622 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.e.i.AbstractFlushingEventListener    : Flushed: 0 insertions, 0 updates, 1 deletions to 1 objects
+2023-03-20 10:03:12.624 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.e.i.AbstractFlushingEventListener    : Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+2023-03-20 10:03:12.625 DEBUG 13268 --- [http-nio-8080-exec-5] o.hibernate.internal.util.EntityPrinter  : Listing entities:
+2023-03-20 10:03:12.626 DEBUG 13268 --- [http-nio-8080-exec-5] o.hibernate.internal.util.EntityPrinter  : br.com.rafaelcavalcante.biritashop.model.Cliente{cidade=Campo Redondo, telefone=84986230135, genero=Não Informado, id=1, CEP=59230000, nomeCompleto=RAFAEL CAVALCANTE DOS SANTOS}
+2023-03-20 10:03:12.628 DEBUG 13268 --- [http-nio-8080-exec-5] org.hibernate.SQL                        : delete from cliente where id=?
+2023-03-20 10:03:12.643 DEBUG 13268 --- [http-nio-8080-exec-5] o.h.e.jdbc.internal.JdbcCoordinatorImpl  : HHH000420: Closing un-released batch
+2023-03-20 10:03:12.749 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.e.t.internal.TransactionImpl         : On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2023-03-20 10:03:12.752 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.e.t.internal.TransactionImpl         : begin
+2023-03-20 10:03:12.754 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.q.c.internal.CriteriaQueryImpl       : Rendered criteria query -> select generatedAlias0 from Cliente as generatedAlias0
+2023-03-20 10:03:12.756 DEBUG 13268 --- [http-nio-8080-exec-7] org.hibernate.SQL                        : select cliente0_.id as id1_0_, cliente0_.cep as cep2_0_, cliente0_.cidade as cidade3_0_, cliente0_.genero as genero4_0_, cliente0_.nome_completo as nome_com5_0_, cliente0_.telefone as telefone6_0_ from cliente cliente0_
+2023-03-20 10:03:12.764 DEBUG 13268 --- [http-nio-8080-exec-7] org.hibernate.loader.Loader              : Result set row: 0
+2023-03-20 10:03:12.765 DEBUG 13268 --- [http-nio-8080-exec-7] org.hibernate.loader.Loader              : Result row: EntityKey[br.com.rafaelcavalcante.biritashop.model.Cliente#2]
+2023-03-20 10:03:12.767 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Resolving attributes for [br.com.rafaelcavalcante.biritashop.model.Cliente#2]
+2023-03-20 10:03:12.769 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `CEP` : value = 59200000
+2023-03-20 10:03:12.771 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Attribute (`CEP`)  - enhanced for lazy-loading? - false
+2023-03-20 10:03:12.772 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `cidade` : value = Santa Cruz
+2023-03-20 10:03:12.773 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Attribute (`cidade`)  - enhanced for lazy-loading? - false
+2023-03-20 10:03:12.774 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `genero` : value = Masculino
+2023-03-20 10:03:12.776 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Attribute (`genero`)  - enhanced for lazy-loading? - false
+2023-03-20 10:03:12.778 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `nomeCompleto` : value = JOSE CONFESSOR DE ONLIVEIRA JUNIOR
+2023-03-20 10:03:12.779 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Attribute (`nomeCompleto`)  - enhanced for lazy-loading? - false
+2023-03-20 10:03:12.780 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Processing attribute `telefone` : value = 558487230587
+2023-03-20 10:03:12.781 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Attribute (`telefone`)  - enhanced for lazy-loading? - false
+2023-03-20 10:03:12.783 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.engine.internal.TwoPhaseLoad         : Done materializing entity [br.com.rafaelcavalcante.biritashop.model.Cliente#2]
+2023-03-20 10:03:12.784 DEBUG 13268 --- [http-nio-8080-exec-7] o.h.e.t.internal.TransactionImpl         : committing
