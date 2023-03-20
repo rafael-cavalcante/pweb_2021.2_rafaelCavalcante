@@ -59,4 +59,12 @@ public class ProdutoController {
         this.produtoRepository.save(produto);
         return "redirect:/produto/listar";
     }
+
+    @GetMapping("/remover/{id}")
+    public ModelAndView removerProduto(@PathVariable("id") Long id) {
+        Produto produto = this.produtoRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + id));
+        this.produtoRepository.delete(produto);
+        return new ModelAndView("redirect:/produto/listar");
+    }
 }
