@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,6 +41,21 @@ public class ProdutoController {
 
     @PostMapping("/adicionar")
     public String adicionarProduto(Produto produto) {
+        this.produtoRepository.save(produto);
+        return "redirect:/produto/listar";
+    }
+
+    @GetMapping("/editar/{id}")
+    public ModelAndView formEditarProduto(@PathVariable("id") Long id) {
+        Produto produto = this.produtoRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + id));
+        ModelAndView mav = new ModelAndView("/produto/editarProduto");
+        mav.addObject(produto);
+        return mav;
+    }
+
+    @PostMapping("/editar/{id}")
+    public String editarProduto(@PathVariable("id") Long id, Produto produto) {
         this.produtoRepository.save(produto);
         return "redirect:/produto/listar";
     }

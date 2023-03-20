@@ -13,13 +13,13 @@
 
 <body>
     <div class="w3-bar w3-blue w3-xlarge">
-        <a href="/produto/listar" class="w3-bar-item w3-button w3-mobile w3-red">Listar Produtos</a>
-        <a href="/produto/adicionar" class="w3-bar-item w3-button w3-mobile">Adicionar Produto</a>
+        <a href="/produto/listar" class="w3-bar-item w3-button w3-mobile">Listar Produtos</a>
+        <a href="/produto/adicionar" class="w3-bar-item w3-button w3-mobile w3-red">Adicionar Produto</a>
     </div>
 
     <div style="padding: 0 20px 0 20px;">
         <form th:action="@{/produto/adicionar}" method="POST" th:object="${produto}">
-            <p>Formulário do Cliente</p>
+            <p>Formulário do Produto</p>
             <div class="grid">
                 <div>Nome*: <input type="text" id="nome" name="nome" placeholder="nome" th:field="*{nome}" required>
                 </div>

@@ -18,30 +18,39 @@
     </div>
 
     <div style="padding: 0 20px 0 20px;">
-        <form th:action="@{/cliente/editar/{id}(id=${cliente.id})}" method="POST" th:object="${cliente}">
-            <p>Formulário do Cliente</p>
+        <form th:action="@{/produto/editar/{id}(id=${produto.id})}" method="POST" th:object="${produto}">
+            <p>Formulário do Produto</p>
             <div class="grid">
-                <div>Nome*: <input type="text" id="nomeCompleto" name="nomeCompleto" placeholder="Nome Completo"
-                        th:field="*{nomeCompleto}" required></div>
-                <div>Telefone*: <input type="tel" id="telefone" name="telefone" placeholder="telefone"
-                        th:field="*{telefone}" required>
+                <div>Nome*: <input type="text" id="nome" name="nome" placeholder="nome" th:field="*{nome}" required>
                 </div>
-                <div>Cidade*: <input type="text" id="cidade" name="cidade" placeholder="cidade" th:field="*{cidade}"
+                <div>Marca*: <input type="text" id="marca" name="marca" placeholder="marca" th:field="*{marca}"
+                        required>
+                </div>
+                <div>Volume*: <input type="number" id="volume" name="volume" placeholder="volume" th:field="*{volume}"
                         required></div>
-                <div>CEP*: <input type="text" id="CEP" name="CEP" placeholder="CEP" th:field="*{CEP}" required></div>
+            </div>
+            <div class="grid">
+                <div>Preço de Compra*: <input type="number" id="precoCompra" name="precoCompra"
+                        placeholder="precoCompra" th:field="*{precoCompra}" required></div>
+                <div>Preço de Venda*: <input type="number" id="precoVenda" name="precoVenda" placeholder="precoVenda"
+                        th:field="*{precoVenda}" required></div>
+                <div>Data de Cadastro*: <input type="date" id="dataCadastro" name="dataCadastro"
+                        placeholder="dataCadastro" th:field="*{dataCadastro}" required></div>
             </div>
             <fieldset></fieldset>
-            <p style="margin: 0;">Informe o Gênero*:</p>
-            <label for="Masculino">
-                <input type="radio" id="Masculino" name="genero" value="Masculino" th:field="*{genero}" required>
-                Masculino
+            <p style="margin: 0;">Tipe de Embalagem*:</p>
+            <label for="Platico">
+                <input type="radio" id="Platico" name="tipoEmbalagem" value="Platico" th:field="*{tipoEmbalagem}"
+                    required>
+                Platico
             </label>
-            <label for="Feminino">
-                <input type="radio" id="Feminino" name="genero" value="Feminino" th:field="*{genero}" required> Feminino
+            <label for="Mestal">
+                <input type="radio" id="Metal" name="tipoEmbalagem" value="Metal" th:field="*{tipoEmbalagem}" required>
+                Metal
             </label>
-            <label for="Não Informado">
-                <input type="radio" id="Não Informado" name="genero" value="Não Informado" th:field="*{genero}"
-                    required> Não Informado
+            <label for="Vidro">
+                <input type="radio" id="Vidro" name="tipoEmbalagem" value="Vidro" th:field="*{tipoEmbalagem}" required>
+                Vidro
             </label>
             <div class="grid">
                 <div><input type="submit" value="Editar"></div>
