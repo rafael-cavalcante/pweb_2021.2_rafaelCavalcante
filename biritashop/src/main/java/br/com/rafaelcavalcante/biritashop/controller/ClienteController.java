@@ -5,6 +5,7 @@ import br.com.rafaelcavalcante.biritashop.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,6 +39,21 @@ public class ClienteController {
 
     @PostMapping("/adicionar")
     public String adicionarCliente(Cliente cliente) {
+        this.clienteRepository.save(cliente);
+        return "redirect:/cliente/listar";
+    }
+
+    @GetMapping("/editar/{id}")
+    public ModelAndView formEditarCliente(@PathVariable("id") Long id) {
+        Cliente cliente = this.clienteRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + id));
+        ModelAndView mav = new ModelAndView("/cliente/editarCliente");
+        mav.addObject(cliente);
+        return mav;
+    }
+
+    @PostMapping("/editar/{id}")
+    public String editarPessoa(@PathVariable("id") Long id, Cliente cliente) {
         this.clienteRepository.save(cliente);
         return "redirect:/cliente/listar";
     }

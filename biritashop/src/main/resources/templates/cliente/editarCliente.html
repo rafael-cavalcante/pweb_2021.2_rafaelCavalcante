@@ -14,25 +14,22 @@
 
 <body>
     <div class="w3-bar w3-blue w3-xlarge">
-        <a href="/" class="w3-bar-item w3-button w3-mobile">Início</a>
-        <a href="/adicionarPessoa" class="w3-bar-item w3-button w3-mobile w3-red">Adicionar Pessoa</a>
-        <a href="/listarPessoas" class="w3-bar-item w3-button w3-mobile">Listar Pessoas</a>
-        <a href="/public/noticias.html" class="w3-bar-item w3-button w3-mobile w3-right w3-green">Notícias</a>
-        <a href="/public/sobre.html" class="w3-bar-item w3-button w3-mobile w3-right">Sobre o Site</a>
-        <a href="/public/contato.html" class="w3-bar-item w3-button w3-mobile w3-right">Contato</a>
+        <a href="/cliente/listar" class="w3-bar-item w3-button w3-mobile">Listar Clientes</a>
+        <a href="/cliente/adicionar" class="w3-bar-item w3-button w3-mobile">Adicionar Cliente</a>
     </div>
 
     <div style="padding: 0 20px 0 20px;">
-        <form th:action="@{/editar/{id}(id=${pessoa.id})}" method="POST" th:object="${pessoa}">
-            <p>Formulário de Editar Pessoa</p>
+        <form th:action="@{/cliente/editar/{id}(id=${cliente.id})}" method="POST" th:object="${cliente}">
+            <p>Formulário do Cliente</p>
             <div class="grid">
-                <div>Nome*: <input type="text" id="nome" name="nome" placeholder="Nome Completo" th:field="*{nome}"
-                        required></div>
-                <div>E-mail*: <input type="email" id="email" name="email" placeholder="E-mail" th:field="*{email}"
-                        required>
+                <div>Nome*: <input type="text" id="nomeCompleto" name="nomeCompleto" placeholder="Nome Completo"
+                        th:field="*{nomeCompleto}" required></div>
+                <div>Telefone*: <input type="tel" id="telefone" name="telefone" placeholder="telefone"
+                        th:field="*{telefone}" required>
                 </div>
-                <div>Data Nascimento*: <input type="date" id="dataNascimento" name="dataNascimento"
-                        placeholder="Data Nascimento" th:field="*{dataNascimento}" required></div>
+                <div>Cidade*: <input type="text" id="cidade" name="cidade" placeholder="cidade" th:field="*{cidade}"
+                        required></div>
+                <div>CEP*: <input type="text" id="CEP" name="CEP" placeholder="CEP" th:field="*{CEP}" required></div>
             </div>
             <fieldset></fieldset>
             <p style="margin: 0;">Informe o Gênero*:</p>
@@ -43,13 +40,12 @@
             <label for="Feminino">
                 <input type="radio" id="Feminino" name="genero" value="Feminino" th:field="*{genero}" required> Feminino
             </label>
-            <label for="Não Desejo Informar">
-                <input type="radio" id="Não Desejo Informar" name="genero" value="Não Desejo Informar"
-                    th:field="*{genero}" required> Não desejo informar
+            <label for="Não Informado">
+                <input type="radio" id="Não Informado" name="genero" value="Não Informado" th:field="*{genero}"
+                    required> Não Informado
             </label>
             <div class="grid">
                 <div><input type="submit" value="Editar"></div>
-                <div><input type="reset" value="Limpar"></div>
             </div>
             <p>*Campos Obrigatorios</p>
         </form>
