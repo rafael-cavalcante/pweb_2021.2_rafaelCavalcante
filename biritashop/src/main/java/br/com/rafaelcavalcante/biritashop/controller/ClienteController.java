@@ -15,10 +15,11 @@ import java.util.List;
 @Controller
 @RequestMapping("/cliente")
 public class ClienteController {
+    
     @Autowired
     private ClienteRepository clienteRepository;
 
-    public ClienteController(ClienteRepository clienteRepository){
+    public ClienteController(ClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
 

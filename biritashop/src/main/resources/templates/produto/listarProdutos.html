@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
+  <link rel="stylesheet" th:href="@{/assets/w3.css}" />
+  <link rel="stylesheet" th:href="@{/assets/pico.min.css}" />
+  <title>BiritaShop</title>
+</head>
+
+<body>
+  <div class="w3-bar w3-blue w3-xlarge">
+    <a href="/produto/listar" class="w3-bar-item w3-button w3-mobile w3-red">Listar Produtos</a>
+    <a href="/produto/adicionar" class="w3-bar-item w3-button w3-mobile">Adicionar Produto</a>
+  </div>
+
+  <div style="padding: 0 16px">
+    <div style="text-align: center">
+      <h1>Produtos</h1>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <td>Id</td>
+          <td>Nome</td>
+          <td>Marca</td>
+          <td>Volume</td>
+          <td>Tipo Embalagem</td>
+          <td>Preço de Compra</td>
+          <td>Preço de Venda</td>
+          <td>Data Cadastro</td>
+          <td>Editar</td>
+          <td>Remover</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="produto: ${produtos}">
+          <td th:text="${produto.id}"></td>
+          <td th:text="${produto.nome}"></td>
+          <td th:text="${produto.marca}"></td>
+          <td th:text="${produto.volume} + 'mL'"></td>
+          <td th:text="${produto.tipoEmbalagem}"></td>
+          <td th:text="${produto.precoCompra} + 'R$'"></td>
+          <td th:text="${produto.precoVenda} + 'R$'"></td>
+          <td th:text="${#temporals.format(produto.dataCadastro, 'dd/MM/yyyy')}"></td>
+          <td><a th:href="@{editar/{id}(id=${produto.id})}">Editar</a></td>
+          <td><a th:href="@{remover/{id}(id=${produto.id})}">Remover</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
