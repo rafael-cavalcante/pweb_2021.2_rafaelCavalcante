@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <title>BiritaShop</title>
+</head>
+
+<body>
+    <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
+
+    <div class="container">
+        <form th:action="@{/dependente/adicionar}" method="POST" th:object="${dependente}">
+            <h1>Formulário do Cliente</h1>
+            <div class="now">
+                <select class="form-select" name="cliente">
+                    <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nomeCompleto}"
+                        th:select="${cliente.id} == ${dependente?.cliente?.id}">
+                    </option>
+                </select>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="nomeCompleto">Nome Completo*</label>
+                    <input type="text" class="form-control" id="nomeCompleto" name="nomeCompleto"
+                        placeholder="Nome Completo" th:field="*{nomeCompleto}" required>
+                </div>
+                <div class="col">
+                    <label for="dataNascimento">Data Nascimento*</label>
+                    <input type="date" class="form-control" id="dataNascimento" name="dataNascimento"
+                        placeholder="Data Nascimento xx/xx/xxxx" th:field="*{dataNascimento}" required>
+                </div>
+            </div>
+            <div class="row">
+                <legend class="col-form-label pt-0">Informe o Gênero*</legend>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="genero" id="masculino" value="Masculino"
+                            th:field="*{genero}">
+                        <label class="form-check-label" for="masculino">
+                            Masculino
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="genero" id="feminino" value="Feminino"
+                            th:field="*{genero}">
+                        <label class="form-check-label" for="feminino">
+                            Feminino
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="genero" id="naoInformado"
+                            value="Não Informado" th:field="*{genero}">
+                        <label class="form-check-label" for="naoInformado">
+                            Não Informado
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Adicionar</button>
+            <button class="btn btn-secondary" type="reset">Limpar Campos</button>
+
+            <p>*Campos Obrigatorios</p>
+        </form>
+    </div>
+</body>
+
+</html>
