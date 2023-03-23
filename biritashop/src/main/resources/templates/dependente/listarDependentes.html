@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <title>BiritaShop</title>
+</head>
+
+<body>
+    <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
+
+    <div class="container">
+        <h1 class="text-center">Dependentes</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</td>
+                    <th scope="col">Nome Completo</td>
+                    <th scope="col">Data Nascimento</td>
+                    <th scope="col">Genero</td>
+                    <th scope="col">Editar</td>
+                    <th scope="col">Remover</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="dependente : ${dependentes}">
+                    <th scope="row" th:text="${dependente.id}">
+                        </td>
+                    <td th:text="${dependente.nomeCompleto}"></td>
+                    <td th:text="${#temporals.format(dependente.dataNascimento, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${dependente.genero}"></td>
+                    <td><a th:href="@{editar/{id}(id=${dependente.id})}">Editar</a></td>
+                    <td><a th:href="@{remover/{id}(id=${dependente.id})}">Remover</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
