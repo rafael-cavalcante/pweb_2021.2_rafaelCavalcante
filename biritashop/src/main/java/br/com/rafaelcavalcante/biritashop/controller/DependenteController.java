@@ -32,7 +32,7 @@ public class DependenteController {
         mav.addObject("dependentes", dependentes);
         return mav;
     }
-    
+
     @GetMapping("/adicionar")
     public ModelAndView formAdicionarDependente() {
         List<Cliente> clientes = this.clienteRepository.findAll();

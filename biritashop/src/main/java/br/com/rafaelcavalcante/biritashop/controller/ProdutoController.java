@@ -1,5 +1,6 @@
 package br.com.rafaelcavalcante.biritashop.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,7 @@ public class ProdutoController {
 
     @PostMapping("/adicionar")
     public String adicionarProduto(Produto produto) {
+        produto.setDataCadastro(LocalDate.now());
         this.produtoRepository.save(produto);
         return "redirect:/produto/listar";
     }

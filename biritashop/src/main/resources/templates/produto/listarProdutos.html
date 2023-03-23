@@ -17,28 +17,26 @@
 <body>
   <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-  <div style="padding: 0 16px">
-    <div style="text-align: center">
-      <h1>Produtos</h1>
-    </div>
-    <table>
+  <div class="container">
+    <h1 class="text-center">Produtos</h1>
+    <table class="table">
       <thead>
         <tr>
-          <td>Id</td>
-          <td>Nome</td>
-          <td>Marca</td>
-          <td>Volume</td>
-          <td>Tipo Embalagem</td>
-          <td>Preço de Compra</td>
-          <td>Preço de Venda</td>
-          <td>Data Cadastro</td>
-          <td>Editar</td>
-          <td>Remover</td>
+          <th scope="col">Id</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Marca</th>
+          <th scope="col">Volume</th>
+          <th scope="col">Tipo Embalagem</th>
+          <th scope="col">Preço de Compra</th>
+          <th scope="col">Preço de Venda</th>
+          <th scope="col">Data Cadastro</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Remover</th>
         </tr>
       </thead>
       <tbody>
         <tr th:each="produto: ${produtos}">
-          <td th:text="${produto.id}"></td>
+          <th scope="row" th:text="${produto.id}"></th>
           <td th:text="${produto.nome}"></td>
           <td th:text="${produto.marca}"></td>
           <td th:text="${produto.volume} + 'mL'"></td>

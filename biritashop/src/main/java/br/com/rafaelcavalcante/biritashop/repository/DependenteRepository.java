@@ -9,5 +9,5 @@ import br.com.rafaelcavalcante.biritashop.model.Dependente;
 public interface DependenteRepository extends JpaRepository<Dependente, Long> {
 
     List<Dependente> findByCliente_Id(Long clienteId);
-    
+
 }
