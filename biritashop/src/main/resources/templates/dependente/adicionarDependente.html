@@ -20,10 +20,9 @@
     <div class="container">
         <form th:action="@{/dependente/adicionar}" method="POST" th:object="${dependente}">
             <h1>Formulário do Cliente</h1>
-            <div class="now">
+            <div class="row">
                 <select class="form-select" name="cliente">
-                    <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nomeCompleto}"
-                        th:select="${cliente.id} == ${dependente?.cliente?.id}">
+                    <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nomeCompleto}">
                     </option>
                 </select>
             </div>

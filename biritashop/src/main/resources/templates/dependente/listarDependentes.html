@@ -18,6 +18,22 @@
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
     <div class="container">
+        <form th:action="@{/dependente/listar}" method="GET" th:object="${cliente}">
+            <h1>Lista de Clientes</h1>
+            <div class="row">
+                <select class="form-select" name="clienteId">
+                    <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nomeCompleto}"
+                        th:selected="${cliente.id} == ${clienteId}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="row mt-1">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+
+        </form>
+
         <h1 class="text-center">Dependentes</h1>
         <table class="table">
             <thead>
