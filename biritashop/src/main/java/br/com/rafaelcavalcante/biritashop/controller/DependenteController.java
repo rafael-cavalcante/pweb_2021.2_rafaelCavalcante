@@ -27,13 +27,15 @@ public class DependenteController {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    /*@GetMapping("/listar")
-    public ModelAndView listarDependentes() {
-        List<Cliente> clientes = this.clienteRepository.findAll();
-        ModelAndView mav = new ModelAndView("/dependente/listarDependentes");
-        mav.addObject("clientes", clientes);
-        return mav;
-    }*/
+    /*
+     * @GetMapping("/listar")
+     * public ModelAndView listarDependentes() {
+     * List<Cliente> clientes = this.clienteRepository.findAll();
+     * ModelAndView mav = new ModelAndView("/dependente/listarDependentes");
+     * mav.addObject("clientes", clientes);
+     * return mav;
+     * }
+     */
 
     @GetMapping("/listar")
     public ModelAndView listarDependentes(@RequestParam(value = "clienteId", required = false) Long clienteId) {
@@ -46,13 +48,17 @@ public class DependenteController {
         return mav;
     }
 
-    /*@GetMapping("/listar/{clienteId}")
-    public ModelAndView listarDependentesCliente(@PathVariable("clienteId") Long clienteId) {
-        List<Dependente> dependentes = this.dependenteRepository.findByCliente_Id(clienteId);
-        ModelAndView mav = new ModelAndView("/dependente/listarDependentes");
-        mav.addObject("dependentes", dependentes);
-        return mav;
-    }*/
+    /*
+     * @GetMapping("/listar/{clienteId}")
+     * public ModelAndView listarDependentesCliente(@PathVariable("clienteId") Long
+     * clienteId) {
+     * List<Dependente> dependentes =
+     * this.dependenteRepository.findByCliente_Id(clienteId);
+     * ModelAndView mav = new ModelAndView("/dependente/listarDependentes");
+     * mav.addObject("dependentes", dependentes);
+     * return mav;
+     * }
+     */
 
     @GetMapping("/adicionar")
     public ModelAndView formAdicionarDependente() {
@@ -70,10 +76,10 @@ public class DependenteController {
     }
 
     @GetMapping("/editar/{id}")
-    public ModelAndView formEditarCliente(@PathVariable("id") Long id) {
-        List<Cliente> clientes = this.clienteRepository.findAll();
+    public ModelAndView formEditarDependente(@PathVariable("id") Long id) {
         Dependente dependente = this.dependenteRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + id));
+        List<Cliente> clientes = this.clienteRepository.findAll();
         ModelAndView mav = new ModelAndView("/dependente/editarDependente");
         mav.addObject("clientes", clientes);
         mav.addObject(dependente);
@@ -81,8 +87,16 @@ public class DependenteController {
     }
 
     @PostMapping("/editar/{id}")
-    public String editarCliente(@PathVariable("id") Long id, Dependente dependente) {
+    public String editarDependente(@PathVariable("id") Long id, Dependente dependente) {
         this.dependenteRepository.save(dependente);
         return "redirect:/dependente/listar";
+    }
+
+    @GetMapping("/remover/{id}")
+    public ModelAndView removerDependente(@PathVariable("id") Long id) {
+        Dependente dependente = this.dependenteRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + id));
+        this.dependenteRepository.delete(dependente);
+        return new ModelAndView("redirect:/dependente/listar");
     }
 }
