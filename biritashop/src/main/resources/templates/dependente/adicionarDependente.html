@@ -19,14 +19,16 @@
 
     <div class="container">
         <form th:action="@{/dependente/adicionar}" method="POST" th:object="${dependente}">
-            <h1>Formulário do Cliente</h1>
+            <h1>Formulário do Dependente</h1>
             <div class="row">
+                <h2>Cliente</h2>
                 <select class="form-select" name="cliente">
                     <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nomeCompleto}">
                     </option>
                 </select>
             </div>
             <div class="row">
+                <h2>Dependente</h2>
                 <div class="col">
                     <label for="nomeCompleto">Nome Completo*</label>
                     <input type="text" class="form-control" id="nomeCompleto" name="nomeCompleto"

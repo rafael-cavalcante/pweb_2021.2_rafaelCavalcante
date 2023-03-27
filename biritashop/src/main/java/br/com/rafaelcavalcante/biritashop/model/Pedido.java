@@ -1,5 +1,6 @@
 package br.com.rafaelcavalcante.biritashop.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -27,14 +28,14 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "pedido")
-public class Pedido {
+public class Pedido implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate data;
     @OneToMany(mappedBy = "pedido")
-    private List<Iten> itens;
+    private List<ItemPedido> itens;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "cliente_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)

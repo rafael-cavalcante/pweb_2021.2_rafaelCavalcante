@@ -1,5 +1,6 @@
 package br.com.rafaelcavalcante.biritashop.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -27,7 +28,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "dependente")
-public class Dependente {
+public class Dependente implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,6 @@
 package br.com.rafaelcavalcante.biritashop.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
@@ -9,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.OnDelete;
@@ -25,16 +25,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "iten")
-public class Iten {
+@Table(name = "item_pedido")
+public class ItemPedido implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long quantidade;
     private BigDecimal valorUnitario;
-    @OneToOne
-    @JoinColumn(name = "produto_id")
+    @ManyToOne
+	@JoinColumn(name = "produto_id")
     private Produto produto;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "pedido_id", nullable = false)
