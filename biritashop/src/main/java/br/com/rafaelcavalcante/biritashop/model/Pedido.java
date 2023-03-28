@@ -34,6 +34,7 @@ public class Pedido implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate data;
+    private String formaPagamento;
     @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itens;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

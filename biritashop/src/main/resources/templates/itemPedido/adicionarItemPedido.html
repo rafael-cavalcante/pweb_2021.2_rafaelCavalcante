@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+  <title>BiritaShop</title>
+</head>
+
+<body>
+  <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
+
+  <div class="container mt-2">
+    <h1 class="text-center">Produtos</h1>
+    <form th:action="@{/itemPedido/compras/{id}(id=${cliente.id})}" method="POST" th:object="${pedidoDTO}">
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Marca</th>
+          <th>Volume</th>
+          <th>Tipo Embalagem</th>
+          <th>Preço</th>
+          <th>Quantidade</th>
+          <th>Adicionar ao carrinho</th>
+        </tr>
+        <tr th:each="produto, iStat: ${produtos}">
+          <td th:text=${produto.id}></td>
+          <td th:text=${produto.nome}></td>
+          <td th:text=${produto.marca}></td>
+          <td th:text="${produto.volume}"></td>
+          <td th:text="${produto.tipoEmbalagem}"></td>
+          <td th:text="'R$' + ${produto.precoVenda}"></td>
+          <td>
+            <input type="number" class="qnt" id="" th:field="*{itens[__${iStat.index}__].quantidade}" min="1" required
+              value=1>
+          </td>
+          <td>
+            <input type="checkbox" name="" id="" th:field="*{itens[__${iStat.index}__].id}" th:value="${produto.id}">
+          </td>
+        </tr>
+      </table>
+      <label for="formaPagamento">Forma de pagamento</label>
+      <select name="formaPagamento" id="" th:field="*{formaPagamento}">
+        <option th:value="Boleto">Boleto</option>
+        <option th:value="Credito">Crédito</option>
+        <option th:value="Debito">Debito</option>
+      </select>
+
+      <button class="btn btn-primary" type="submit">Adicionar</button>
+
+    </form>
+  </div>
+
+  <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
