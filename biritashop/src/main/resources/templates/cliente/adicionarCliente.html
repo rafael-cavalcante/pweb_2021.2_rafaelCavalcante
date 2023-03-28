@@ -7,33 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}" />
     <title>BiritaShop</title>
 </head>
 
 <body>
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-    <div class="container">
+    <div class="container mt-2">
+        <h1>Adicionar Novo Cliente</h1>
         <form th:action="@{/cliente/adicionar}" method="POST" th:object="${cliente}">
-            <h1>Formulário do Cliente</h1>
             <div class="row">
-                <div class="col">
+                <div class="col-sm-6">
                     <label for="nomeCompleto">Nome Completo*</label>
                     <input type="text" class="form-control" id="nomeCompleto" name="nomeCompleto"
-                        placeholder="Nome Completo" th:field="*{nomeCompleto}" required>
+                        th:field="*{nomeCompleto}" required>
                 </div>
-                <div class="col">
+                <div class="col-sm-6">
                     <label for="telefone">Telefone*</label>
-                    <input type="tel" class="form-control" id="telefone" name="telefone"
-                        placeholder="Telefone +xx (xx)xxxxx-xxxx" th:field="*{telefone}" required>
+                    <input type="tel" class="form-control" id="telefone" name="telefone" th:field="*{telefone}"
+                        required>
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col-sm-6">
                     <label for="cep">CEP*</label>
                     <input type="text" class="form-control" id="cep" name="CEP" th:field="*{CEP}" required>
                 </div>
-                <div class="col">
+                <div class="col-sm-6">
                     <label for="cidade">Cidade*</label>
                     <input type="text" class="form-control" id="cidade" name="cidade" th:field="*{cidade}" required>
                 </div>
@@ -43,7 +44,7 @@
                 <div class="col-sm-10">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="genero" id="masculino" value="Masculino"
-                            th:field="*{genero}">
+                            th:field="*{genero}" required>
                         <label class="form-check-label" for="masculino">
                             Masculino
                         </label>
@@ -65,10 +66,16 @@
                 </div>
             </div>
 
-            <button class="btn btn-primary" type="submit">Adicionar</button>
-            <button class="btn btn-secondary" type="reset">Limpar Campos</button>
+            <button class="btn btn-outline-success col-sm-2" type="submit">
+                <i class="bi bi-plus-square"></i>
+                Adicionar
+            </button>
+            <button class="btn btn-outline-secondary col-sm-2" type="reset">
+                <i class="bi bi-x-square"></i>
+                Limpar Campos
+            </button>
 
-            <p>*Campos Obrigatorios</p>
+            <p>*Campos Obrigatórios</p>
         </form>
     </div>
 
@@ -76,7 +83,6 @@
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/jquery.mask.min.js"></script>
     <script type="text/javascript" src="/js/masks.js"></script>
-    <!--<script type="text/javascript" src="/js/cep.js"></script>-->
 </body>
 
 </html>

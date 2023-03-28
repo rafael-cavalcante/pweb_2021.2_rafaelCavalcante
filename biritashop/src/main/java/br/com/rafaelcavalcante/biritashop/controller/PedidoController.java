@@ -28,7 +28,7 @@ public class PedidoController {
     @GetMapping("/listar")
     public ModelAndView listarPedidos(@RequestParam(value = "clienteId", required = false) Long clienteId){
         List<Cliente> clientes = this.clienteRepository.findAll();
-        List<Pedido> pedidos = this.pedidoRepository.findByCliente_Id(clienteId);
+        List<Pedido> pedidos = this.pedidoRepository.findByClienteId(clienteId);
         ModelAndView mav = new ModelAndView("/pedido/listarPedidos");
         mav.addObject("clientes", clientes);
         mav.addObject("clienteId", clienteId);

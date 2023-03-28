@@ -1,7 +1,9 @@
 $(document).ready(function () {
     //$("#cep").mask("00.000-000", {placeholder: '__.___-___'});
     $("#telefone").mask("+00 (00) 00000-0000", {placeholder: '+__ (__) _____-____'});
-    $("#valor").mask("#.##0,00", {reverse: true});
+    $("#precoCompra").mask("#0.00", {reverse: true});
+    $("#precoVenda").mask("#0.00", {reverse: true});
+    $("#volume").mask("#0.00", {reverse: true});
 
 });
 

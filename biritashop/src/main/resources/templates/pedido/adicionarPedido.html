@@ -2,36 +2,40 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}"/>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}" />
     <title>BiritaShop</title>
 </head>
 
 <body>
-<div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
+    <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-<div class="container mt-2">
-    <form th:action="@{/pedido/adicionar}" method="POST" th:object="${cliente}">
-        <h1>Formulário de Pedido</h1>
-        <h2>Cliente</h2>
-        <div class="row mb-2">
-            <div class="col">
-                <select class="form-select" name="cliente">
-                    <option th:each="cliente : ${clientes}" th:value="${cliente.id}"
+    <div class="container mt-2">
+        <h1>Adicionar Novo Pedido</h1>
+        <form th:action="@{/pedido/adicionar}" method="POST" th:object="${cliente}">
+            <h2>Clientes</h2>
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <select class="form-select" name="cliente">
+                        <option th:each="cliente : ${clientes}" th:value="${cliente.id}"
                             th:text="${cliente.nomeCompleto}"></option>
-                </select>
+                    </select>
+                </div>
             </div>
-        </div>
 
-        <button class="btn btn-primary" type="submit">Adicionar</button>
+            <button class="btn btn-outline-primary col-sm-2 mt-2 mb-2" type="submit">
+                <i class="bi bi-cart4"></i>
+                Carrinho
+            </button>
 
-    </form>
-</div>
+        </form>
+    </div>
 
-<script src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
