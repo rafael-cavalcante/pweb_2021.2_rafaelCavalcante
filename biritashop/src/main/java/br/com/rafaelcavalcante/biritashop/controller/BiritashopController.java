@@ -8,19 +8,19 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/")
 public class BiritashopController {
-    
+
     @GetMapping
-    public ModelAndView index(){
+    public ModelAndView index() {
         return new ModelAndView("index");
     }
 
     @GetMapping("/public/sobre")
-    public ModelAndView sobre(){
+    public ModelAndView sobre() {
         return new ModelAndView("/public/sobre");
     }
 
     @GetMapping("/public/contato")
-    public ModelAndView contato(){
+    public ModelAndView contato() {
         return new ModelAndView("public/contato");
     }
 }

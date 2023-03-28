@@ -46,7 +46,7 @@ public class ItemPedidoController {
         Cliente cliente = this.clienteRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + id));
         List<Produto> produtos = this.produtoRepository.findAll();
-        ModelAndView mav = new ModelAndView("/itemPedido/adicionarItemPedido");
+        ModelAndView mav = new ModelAndView("/pedido/adicionarItemPedido");
         mav.addObject("cliente", cliente);
         mav.addObject("produtos", produtos);
         mav.addObject("pedidoDTO", new PedidoDTO());
@@ -66,7 +66,7 @@ public class ItemPedidoController {
         this.pedidoRepository.save(pedido);
         this.itemPedidoRepository.saveAll(itemPedidos);
         pedido.setItens(itemPedidos);
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/pedido/listar");
     }
 
     public List<ItemPedido> converter(Pedido pedido, List<ItemPedidoDTO> itemPedidos) {
