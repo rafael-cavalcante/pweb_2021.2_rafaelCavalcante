@@ -45,7 +45,7 @@ public class ItemPedidoController {
     public ModelAndView formAdicionarItemPedido(@PathVariable("id") Long id) {
         Cliente cliente = this.clienteRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + id));
-        List<Produto> produtos = this.produtoRepository.findAll();
+        List<Produto> produtos = this.produtoRepository.findAllByOrderByNomeAsc();
         ModelAndView mav = new ModelAndView("/pedido/adicionarItemPedido");
         mav.addObject("cliente", cliente);
         mav.addObject("produtos", produtos);

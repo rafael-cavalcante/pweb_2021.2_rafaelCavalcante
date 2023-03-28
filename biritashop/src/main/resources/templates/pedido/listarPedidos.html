@@ -15,9 +15,8 @@
 
     <div class="container mt-2">
         <form th:action="@{/pedido/listar}" method="GET" th:object="${cliente}">
-
+            <h1>Clientes</h1>
             <div class="row">
-                <h1>Clientes</h1>
                 <div class="col">
                     <select class="form-select" name="clienteId">
                         <option th:each="cliente : ${clientes}" th:value="${cliente.id}"
@@ -30,6 +29,7 @@
             <button class="btn btn-primary mt-2 mb-2" type="submit">Listar pedidos</button>
 
         </form>
+        <h1>Pedidos</h1>
         <table class="table">
             <thead class="table-dark">
                 <tr>
@@ -44,9 +44,9 @@
                 <tr th:each="pedido : ${pedidos}">
                     <th scope="row" th:text="${pedido.id}"></th>
                     <td th:text="${pedido.formaPagamento}"></td>
-                    <td th:text="${pedido.data}"></td>
-                    <td><a th:href="@{editar/{id}(id=${pedido.id})}">Editar</a></td>
-                    <td><a th:href="@{remover/{id}(id=${pedido.id})}">Remover</a></td>
+                    <td th:text="${#temporals.format(pedido.data, 'dd/MM/yyyy')}"></td>
+                    <td class="text-center"><a th:href="@{editar/{id}(id=${pedido.id})}" class="btn btn-warning">Editar</a></td>
+                    <td class="text-center"><a th:href="@{remover/{id}(id=${pedido.id})}" class="btn btn-danger">Remover</a></td>
                 </tr>
             </tbody>
         </table>

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
     <title>BiritaShop</title>
 </head>
 
@@ -30,14 +30,12 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <label for="cidade">Cidade*</label>
-                    <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade"
-                        th:field="*{cidade}" required>
+                    <label for="cep">CEP*</label>
+                    <input type="text" class="form-control" id="cep" name="CEP" th:field="*{CEP}" required>
                 </div>
                 <div class="col">
-                    <label for="cep">CEP*</label>
-                    <input type="text" class="form-control" id="cep" name="CEP" placeholder="CEP" th:field="*{CEP}"
-                        required>
+                    <label for="cidade">Cidade*</label>
+                    <input type="text" class="form-control" id="cidade" name="cidade" th:field="*{cidade}" required>
                 </div>
             </div>
             <div class="row">
@@ -74,7 +72,11 @@
         </form>
     </div>
 
-  <script src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.mask.min.js"></script>
+    <script type="text/javascript" src="/js/masks.js"></script>
+    <!--<script type="text/javascript" src="/js/cep.js"></script>-->
 </body>
 
 </html>
