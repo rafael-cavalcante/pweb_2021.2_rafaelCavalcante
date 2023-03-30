@@ -23,4 +23,5 @@ public class BiritashopController {
     public ModelAndView contato() {
         return new ModelAndView("public/contato");
     }
+
 }

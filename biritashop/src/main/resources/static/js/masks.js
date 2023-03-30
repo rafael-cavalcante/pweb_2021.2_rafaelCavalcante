@@ -1,13 +1,35 @@
 $(document).ready(function () {
     //$("#cep").mask("00.000-000", {placeholder: '__.___-___'});
-    $("#telefone").mask("+00 (00) 00000-0000", {placeholder: '+__ (__) _____-____'});
-    $("#precoCompra").mask("#0.00", {reverse: true});
-    $("#precoVenda").mask("#0.00", {reverse: true});
-    $("#volume").mask("#0.00", {reverse: true});
+    $("#telefone").mask("+00 (00) 00000-0000", { placeholder: '+__ (__) _____-____' });
+    $("#precoCompra").mask("#0.00", { reverse: true });
+    $("#precoVenda").mask("#0.00", { reverse: true });
+    $("#volume").mask("#0.00", { reverse: true });
+    $(".mask-valor").mask("#0.00", { reverse: true });
 
+    $("#quantidade").keyup(function () {
+        if (this.value.length > 1) {
+            $("#quantidade").val(this.value.match(/[0-9]*/));
+        } else {
+            $("#quantidade").val(this.value.match(/[1-9]*/));
+        }
+    });
+
+    //Método de selecionar e desselecionar checkboxs da classe checkbox-item 
+    $("#selectall").click(function (event) {  //on click 
+        if (this.checked) { // check select status
+            $(".checkbox-item").each(function () { //loop through each checkbox
+                this.checked = true;  //select all checkboxes with class "checkbox1"               
+            });
+        } else {
+            $(".checkbox-item").each(function () { //loop through each checkbox
+                this.checked = false; //deselect all checkboxes with class "checkbox1"                       
+            });
+        }
+    });
 });
 
-   /*
+
+/*
 
 Creditos:
 

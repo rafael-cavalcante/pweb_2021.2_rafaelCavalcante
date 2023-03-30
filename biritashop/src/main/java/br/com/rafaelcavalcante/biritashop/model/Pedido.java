@@ -19,6 +19,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import br.com.rafaelcavalcante.biritashop.model.enums.FormaPagamento;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,7 +35,7 @@ public class Pedido implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate data;
-    private String formaPagamento;
+    private FormaPagamento formaPagamento;
     @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itens;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

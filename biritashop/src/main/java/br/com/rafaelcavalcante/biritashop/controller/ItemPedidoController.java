@@ -20,6 +20,7 @@ import br.com.rafaelcavalcante.biritashop.model.Pedido;
 import br.com.rafaelcavalcante.biritashop.model.Produto;
 import br.com.rafaelcavalcante.biritashop.model.dto.ItemPedidoDTO;
 import br.com.rafaelcavalcante.biritashop.model.dto.PedidoDTO;
+import br.com.rafaelcavalcante.biritashop.model.enums.FormaPagamento;
 import br.com.rafaelcavalcante.biritashop.repository.ClienteRepository;
 import br.com.rafaelcavalcante.biritashop.repository.ItemPedidoRepository;
 import br.com.rafaelcavalcante.biritashop.repository.PedidoRepository;
@@ -50,6 +51,7 @@ public class ItemPedidoController {
         mav.addObject("cliente", cliente);
         mav.addObject("produtos", produtos);
         mav.addObject("pedidoDTO", new PedidoDTO());
+        mav.addObject("tipos", FormaPagamento.values());
         return mav;
     }
 
