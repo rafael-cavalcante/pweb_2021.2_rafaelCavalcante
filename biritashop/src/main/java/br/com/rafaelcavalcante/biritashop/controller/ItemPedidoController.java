@@ -44,11 +44,15 @@ public class ItemPedidoController {
 
     @GetMapping("/adicionar/{id}")
     public ModelAndView formAdicionarItemPedido(@PathVariable("id") Long id) {
-        Cliente cliente = this.clienteRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + id));
+        /*
+         * Cliente cliente = this.clienteRepository.findById(id)
+         * .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + id));
+         */
+        List<Cliente> clientes = this.clienteRepository.findAll();
         List<Produto> produtos = this.produtoRepository.findAllByOrderByNomeAsc();
         ModelAndView mav = new ModelAndView("/pedido/adicionarItemPedido");
-        mav.addObject("cliente", cliente);
+        // mav.addObject("cliente", cliente);
+        mav.addObject("clientes", clientes);
         mav.addObject("produtos", produtos);
         mav.addObject("pedidoDTO", new PedidoDTO());
         mav.addObject("tipos", FormaPagamento.values());
@@ -56,19 +60,18 @@ public class ItemPedidoController {
     }
 
     @Transactional
-    @PostMapping("/compras/{id}")
-    public ModelAndView compras(@PathVariable("id") Long id, PedidoDTO pedidoDTO) {
-        Cliente cliente = this.clienteRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + id));
+    @PostMapping("/compras")
+    public ModelAndView compras(PedidoDTO pedidoDTO) {
+        Cliente cliente = this.clienteRepository.findById(pedidoDTO.getCliente().getId())
+                .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + pedidoDTO.getCliente().getId()));
         Pedido pedido = new Pedido();
         pedido.setCliente(cliente);
         pedido.setData(LocalDate.now());
         pedido.setFormaPagamento(pedidoDTO.getFormaPagamento());
-        List<ItemPedido> itemPedidos = converter(pedido, pedidoDTO.getItens());
+        List<ItemPedido> itemsPedido = converter(pedido, pedidoDTO.getItens());
         this.pedidoRepository.save(pedido);
-        this.itemPedidoRepository.saveAll(itemPedidos);
-        pedido.setItens(itemPedidos);
-        return new ModelAndView("redirect:/pedido/listar");
+        this.itemPedidoRepository.saveAll(itemsPedido);
+        return new ModelAndView("redirect:/pedido/listar?clienteId=" + cliente.getId());
     }
 
     public List<ItemPedido> converter(Pedido pedido, List<ItemPedidoDTO> itemPedidos) {

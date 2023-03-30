@@ -15,8 +15,16 @@
   <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
   <div class="container mt-2">
-    <h1 class="text-center">Produtos</h1>
-    <form th:action="@{/itemPedido/compras/{id}(id=${cliente.id})}" method="POST" th:object="${pedidoDTO}">
+    <form th:action="@{/itemPedido/compras}" method="POST" th:object="${pedidoDTO}">
+      <h2>Clientes</h2>
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <select class="form-select" name="cliente">
+            <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nomeCompleto}"></option>
+          </select>
+        </div>
+      </div>
+      <h1 class="text-center">Produtos</h1>
       <table class="table">
         <thead class="table-dark">
           <tr>
@@ -44,7 +52,7 @@
             <td th:text="${produto.tipoEmbalagem}"></td>
             <td th:text="'R$' + ${produto.precoVenda}"></td>
             <td>
-              <input type="number" class="form-control" id="quantidade"
+              <input class="form-control" type="number" id="quantidade"
                 th:field="*{itens[__${iStat.index}__].quantidade}" placeholder="1" min="1" value="1">
             </td>
             <td>

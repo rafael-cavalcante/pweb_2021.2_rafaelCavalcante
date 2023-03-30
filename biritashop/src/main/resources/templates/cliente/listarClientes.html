@@ -25,9 +25,7 @@
           <th scope="col">Cidade</th>
           <th scope="col">CEP</th>
           <th scope="col">Genero</th>
-          <th></th>
-          <th></th>
-          <th></th>
+          <th>Opções</th>
         </tr>
       </thead>
       <tbody>
@@ -38,21 +36,26 @@
           <td th:text="${cliente.cidade}"></td>
           <td th:text="${cliente.CEP}"></td>
           <td th:text="${cliente.genero}"></td>
-          <td><a th:href="@{editar/{id}(id=${cliente.id})}" class="btn btn-outline-warning">
+          <td>
+            <a th:href="@{editar/{id}(id=${cliente.id})}" class="btn btn-outline-warning">
               <i class="bi bi-pencil-square"></i>
-            </a></td>
-          <td><a th:href="@{remover/{id}(id=${cliente.id})}" class="btn btn-outline-danger">
+            </a>
+            <a th:href="@{remover/{id}(id=${cliente.id})}" class="btn btn-outline-danger">
               <i class="bi bi-trash"></i>
-            </a></td>
-          <td><a th:href="@{/dependente/listar?clienteId={id}(id=${cliente.id})}" class="btn btn-outline-info">
+            </a>
+            <a th:href="@{/dependente/listar?clienteId={id}(id=${cliente.id})}" class="btn btn-outline-info">
               <i class="bi bi-view-list"></i>
-            </a></td>
+            </a>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/jquery.mask.min.js"></script>
+  <script type="text/javascript" src="/js/masks.js"></script>
 </body>
 
 </html>

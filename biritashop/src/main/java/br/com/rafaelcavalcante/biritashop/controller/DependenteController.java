@@ -26,16 +26,6 @@ public class DependenteController {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    /*
-     * @GetMapping("/listar")
-     * public ModelAndView listarDependentes() {
-     * List<Cliente> clientes = this.clienteRepository.findAll();
-     * ModelAndView mav = new ModelAndView("/dependente/listarDependentes");
-     * mav.addObject("clientes", clientes);
-     * return mav;
-     * }
-     */
-
     @GetMapping("/listar")
     public ModelAndView listarDependentes(@RequestParam(value = "clienteId", required = false) Long clienteId) {
         List<Cliente> clientes = this.clienteRepository.findAll();
@@ -46,18 +36,6 @@ public class DependenteController {
         mav.addObject("dependentes", dependentes);
         return mav;
     }
-
-    /*
-     * @GetMapping("/listar/{clienteId}")
-     * public ModelAndView listarDependentesCliente(@PathVariable("clienteId") Long
-     * clienteId) {
-     * List<Dependente> dependentes =
-     * this.dependenteRepository.findByCliente_Id(clienteId);
-     * ModelAndView mav = new ModelAndView("/dependente/listarDependentes");
-     * mav.addObject("dependentes", dependentes);
-     * return mav;
-     * }
-     */
 
     @GetMapping("/adicionar")
     public ModelAndView formAdicionarDependente() {

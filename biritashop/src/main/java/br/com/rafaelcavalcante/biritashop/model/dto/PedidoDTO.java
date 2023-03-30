@@ -2,6 +2,7 @@ package br.com.rafaelcavalcante.biritashop.model.dto;
 
 import java.util.List;
 
+import br.com.rafaelcavalcante.biritashop.model.Cliente;
 import br.com.rafaelcavalcante.biritashop.model.enums.FormaPagamento;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,6 +15,7 @@ import lombok.ToString;
 @ToString
 public class PedidoDTO {
     
+    private Cliente cliente;
     private List<ItemPedidoDTO> itens;
     private FormaPagamento formaPagamento;
 }

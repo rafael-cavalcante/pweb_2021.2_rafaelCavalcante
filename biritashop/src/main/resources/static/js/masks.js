@@ -1,11 +1,12 @@
 $(document).ready(function () {
-    //$("#cep").mask("00.000-000", {placeholder: '__.___-___'});
+    $(".mask-cep").mask("00.000-000", {placeholder: '__.___-___'});
     $("#telefone").mask("+00 (00) 00000-0000", { placeholder: '+__ (__) _____-____' });
     $("#precoCompra").mask("#0.00", { reverse: true });
     $("#precoVenda").mask("#0.00", { reverse: true });
     $("#volume").mask("#0.00", { reverse: true });
     $(".mask-valor").mask("#0.00", { reverse: true });
 
+    //Função limitar input a numeros inteiros com apenas zero a direita
     $("#quantidade").keyup(function () {
         if (this.value.length > 1) {
             $("#quantidade").val(this.value.match(/[0-9]*/));
@@ -14,7 +15,7 @@ $(document).ready(function () {
         }
     });
 
-    //Método de selecionar e desselecionar checkboxs da classe checkbox-item 
+    //Função de selecionar e desselecionar checkboxs da classe checkbox-item 
     $("#selectall").click(function (event) {  //on click 
         if (this.checked) { // check select status
             $(".checkbox-item").each(function () { //loop through each checkbox
@@ -43,7 +44,7 @@ https://blog.andersonmamede.com.br/autocomplete-de-endereco-pelo-CEP/
 // quando o usuário sair do campo "cep"
 $("#cep").blur(function () {
     // Remove tudo o que não é número para fazer a pesquisa
-    var cep = this.value.replace(/[^0-9]/, "");
+    var cep = this.value.replace(/[^0-9]/g, "");
 
     // Validação do CEP; caso o CEP não possua 8 números, então cancela
     // a consulta
