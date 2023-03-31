@@ -5,25 +5,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta codigoSecreto="1612965411">
-    <link rel="icon" type="image/x-icon" href="/assets/python.ico">
-    <link rel="stylesheet" href="/assets/w3.css">
-    <link rel="stylesheet" href="/assets/pico.mim.css">
-    <title>PyEduc</title>
+    <link rel="icon" type="image/x-icon" href="/assets/icone.ico">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <title>BiritaShop</title>
 </head>
 
 <body>
-    <div class="w3-bar w3-blue w3-xlarge">
-        <a href="/" class="w3-bar-item w3-button w3-mobile">Início</a>
-        <a href="/adicionarPessoa" class="w3-bar-item w3-button w3-mobile">Adicionar Pessoa</a>
-        <a href="/listarPessoas" class="w3-bar-item w3-button w3-mobile">Listar Pessoas</a>
-        <a href="/public/noticias.html" class="w3-bar-item w3-button w3-mobile w3-right w3-green">Notícias</a>
-        <a href="/public/sobre.html" class="w3-bar-item w3-button w3-mobile w3-right">Sobre o Site</a>
-        <a href="/public/contato.html" class="w3-bar-item w3-button w3-mobile w3-right">Contato</a>
+
+    <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
+
+    <div class="container">
+        <header>
+            <h1>Projeto de Programação WEB</h1>
+        </header>
     </div>
 
-    <h1>Esse site é meu primeiro projeto de Programação WEB</h1>
-
+    <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

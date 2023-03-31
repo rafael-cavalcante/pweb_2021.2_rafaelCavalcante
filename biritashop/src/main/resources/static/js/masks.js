@@ -1,9 +1,6 @@
 $(document).ready(function () {
     $(".mask-cep").mask("00.000-000", {placeholder: '__.___-___'});
-    $("#telefone").mask("+00 (00) 00000-0000", { placeholder: '+__ (__) _____-____' });
-    $("#precoCompra").mask("#0.00", { reverse: true });
-    $("#precoVenda").mask("#0.00", { reverse: true });
-    $("#volume").mask("#0.00", { reverse: true });
+    $(".mask-telefone").mask("+00 (00) 00000-0000", { placeholder: '+__ (__) _____-____' });
     $(".mask-valor").mask("#0.00", { reverse: true });
 
     //Função limitar input a numeros inteiros com apenas zero a direita

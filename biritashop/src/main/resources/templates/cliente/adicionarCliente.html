@@ -14,32 +14,34 @@
 <body>
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-    <div class="container mt-2">
-        <h1>Adicionar Novo Cliente</h1>
+    <div class="container mt-2 d-flex justify-content-center">
         <form th:action="@{/cliente/adicionar}" method="POST" th:object="${cliente}">
-            <div class="row">
-                <div class="col-sm-6">
-                    <label for="nomeCompleto" class="form-label">Nome Completo*</label>
-                    <input type="text" class="form-control" id="nomeCompleto" name="nomeCompleto"
+            <h1>Adicionar Novo Cliente</h1>
+            <div class="row g-2 mb-3">
+                <div class="col-auto">
+                    <label class="form-label" for="nomeCompleto">Nome Completo*</label>
+                    <input class="form-control" type="text" id="nomeCompleto" name="nomeCompleto"
                         th:field="*{nomeCompleto}" required>
                 </div>
-                <div class="col-sm-6">
-                    <label for="telefone">Telefone*</label>
-                    <input type="tel" class="form-control" id="telefone" name="telefone" th:field="*{telefone}"
-                        required>
+                <div class="col-auto">
+                    <label class="form-label" for="telefone">Telefone*</label>
+                    <input class="form-control mask-telefone" type="tel" id="telefone" name="telefone"
+                        th:field="*{telefone}" required>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <label for="cep">CEP*</label>
-                    <input type="text" class="form-control mask-cep" id="cep" name="CEP" th:field="*{CEP}" required>
+
+            <div class="row g-2 mb-3">
+                <div class="col-auto">
+                    <label class="form-label" for="cep">CEP*</label>
+                    <input class="form-control mask-cep" type="text" id="cep" name="CEP" th:field="*{CEP}" required>
                 </div>
-                <div class="col-sm-6">
-                    <label for="cidade">Cidade*</label>
-                    <input type="text" class="form-control" id="cidade" name="cidade" th:field="*{cidade}" required>
+                <div class="col-auto">
+                    <label class="form-label" for="cidade">Cidade*</label>
+                    <input class="form-control" type="text" id="cidade" name="cidade" th:field="*{cidade}" required>
                 </div>
             </div>
-            <div class="row">
+
+            <div class="row mb-3">
                 <legend class="col-form-label pt-0">Informe o Gênero*</legend>
                 <div class="col-sm-10">
                     <div class="form-check">
@@ -66,18 +68,22 @@
                 </div>
             </div>
 
-            <button class="btn btn-outline-success col-sm-2" type="submit">
-                <i class="bi bi-plus-square"></i>
-                Adicionar
-            </button>
-            <button class="btn btn-outline-secondary col-sm-2" type="reset">
-                <i class="bi bi-x-square"></i>
-                Limpar Campos
-            </button>
+            <div class="row g-1">
+                <button class="btn btn-outline-success" type="submit">
+                    <i class="bi bi-plus-square"></i>
+                    Adicionar
+                </button>
+                <button class="btn btn-outline-secondary" type="reset">
+                    <i class="bi bi-x-square"></i>
+                    Limpar Campos
+                </button>
+            </div>
 
             <p>*Campos Obrigatórios</p>
         </form>
     </div>
+
+    <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
 
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="/js/jquery.min.js"></script>
