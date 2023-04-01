@@ -56,8 +56,8 @@
                         <td th:text="${produto.tipoEmbalagem}"></td>
                         <td th:text="'R$' + ${produto.precoVenda}"></td>
                         <td>
-                            <input class="form-control quantidade" type="number" th:field="*{itens[__${iStat.index}__].quantidade}"
-                                value="1" min="1">
+                            <input class="form-control quantidade" type="number"
+                                th:field="*{itens[__${iStat.index}__].quantidade}" value="1" min="1">
                         </td>
                     </tr>
                 </tbody>
@@ -68,20 +68,13 @@
                     <label class="input-group-text" for="formaPagamento">Forma de Pagamento</label>
                     <select class="form-select" id="formaPagamento" name="formaPagamento" th:field="*{formaPagamento}"
                         required>
-                        <option th:each="tipo : ${tipos}" th:text="${tipo}" th:value="${tipo}"></option>
+                        <option th:each="formaPagamento : ${formasPagamento}" th:text="${formaPagamento.tipo}"
+                            th:value="${formaPagamento}"></option>
                     </select>
                 </div>
             </div>
 
-            <div class="col-sm-4">
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="valorPago">R$</label>
-                    <input class="form-control mask-valor" type="text" id="valorPago">
-                </div>
-            </div>
-
-
-            <button class="btn btn-outline-success col-sm-2 botao-adicionar" type="submit">
+            <button class="btn btn-outline-success col-sm-2" type="submit">
                 <i class="bi bi-plus-square"></i>
                 Proximo
             </button>

@@ -5,13 +5,13 @@ public enum FormaPagamento {
     CREDITO ("Crédito"),
     PIX ("Pix");
     
-    private final String tipos;
+    private final String tipo;
 
-    FormaPagamento(String tipos){
-        this.tipos = tipos;
+    FormaPagamento(String tipo){
+        this.tipo = tipo;
     }
 
-    public String getTipos(){
-        return this.tipos;
+    public String getTipo(){
+        return this.tipo;
     }
 }

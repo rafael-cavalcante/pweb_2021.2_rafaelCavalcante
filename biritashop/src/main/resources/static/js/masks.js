@@ -2,15 +2,8 @@ $(document).ready(function () {
     $(".mask-cep").mask("00.000-000", { placeholder: '__.___-___' });
     $(".mask-telefone").mask("+00 (00) 00000-0000", { placeholder: '+__ (__) _____-____' });
     $(".mask-valor").mask("#0.00", { reverse: true });
-
-    //Função limitar input a numeros inteiros com apenas zero a direita
-    //$(".quantidade").keyup(function () {
-    //    if (this.value.length > 1) {
-    //        $("#quantidade").val(this.value.match(/[0-9]*/));
-    //   } else {
-    //        $("#quantidade").val(this.value.match(/[1-9]*/));
-    //    }
-    //});
+    $(".mask-cartao").mask("0000 0000 0000 0000", {placeholder: '____ ____ ____ ____'});
+    
 });
 
 

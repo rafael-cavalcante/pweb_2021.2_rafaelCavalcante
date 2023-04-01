@@ -22,8 +22,9 @@
             <i class="bi bi-person"></i>
             Cliente
           </span>
-          <select class="form-select" name="cliente">
-            <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nomeCompleto}">
+          <select class="form-select" name="cliente" required disabled>
+            <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nomeCompleto}"
+              th:selected="${cliente.id} == ${pedido.cliente.id}">
             </option>
           </select>
         </div>
@@ -32,24 +33,18 @@
       <table class="table">
         <thead class="table-dark">
           <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Marca</th>
-            <th>Volume</th>
-            <th>Tipo Embalagem</th>
-            <th>Preço R$</th>
-            <th>Quantidade</th>
+            <th class="scope">ID</th>
+            <th class="scope">Nome</th>
+            <th class="scope">Quantidade</th>
+            <th class="scope">Valor Unitario</th>
           </tr>
         </thead>
         <tbody>
-          <tr th:each="produto : ${produtos}">
-            <th class="scope" th:text=${produto.id}></th>
-            <td th:text=${produto.nome}></td>
-            <td th:text=${produto.marca}></td>
-            <td th:text="${produto.volume}"></td>
-            <td th:text="${produto.tipoEmbalagem}"></td>
-            <td th:text="'R$' + ${produto.precoVenda}"></td>
-            <td th:text=""></td>
+          <tr th:each="item : ${pedido.itens}">
+            <th class="scope" th:text=${item.produto.id}></th>
+            <td th:text=${item.produto.nome}></td>
+            <td th:text=${item.quantidade}></td>
+            <td th:text=${item.valorUnitario}></td>
           </tr>
         </tbody>
       </table>
@@ -57,21 +52,29 @@
       <div class="col-sm-4">
         <div class="input-group mb-3">
           <label class="input-group-text" for="formaPagamento">Forma de Pagamento</label>
-          <select class="form-select" id="formaPagamento" name="formaPagamento" th:field="*{formaPagamento}" required>
-            <option th:each="tipo : ${tipos}" th:text="${tipo}" th:value="${tipo}"></option>
+          <select class="form-select" id="formaPagamento" name="formaPagamento" th:field="*{formaPagamento}" required
+            disabled>
+            <option th:each="formaPagamento : ${formasPagamento}" th:text="${formaPagamento.tipo}"
+              th:value="${formaPagamento}"></option>
           </select>
         </div>
       </div>
 
-      <div class="col-sm-4">
+      <div th:if="${pedido.formaPagamento.tipo != 'Crédito'}" class="col-sm-4">
         <div class="input-group mb-3">
-          <label class="input-group-text" for="valorPago">R$</label>
-          <input class="form-control mask-valor" type="text" id="valorPago">
+          <label class="input-group-text" for="valorPagamento">R$</label>
+          <input class="form-control mask-valor" type="text" id="valorPagamento" name="valorPagamento">
         </div>
       </div>
 
+      <div th:if="${pedido.formaPagamento.tipo == 'Crédito'}"  class="col-sm-4">
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="numeroCartao">Número Cartão</label>
+          <input class="form-control mask-cartao" type="text" id="numeroCartao" name="numeroCartao">
+        </div>
+      </div>
 
-      <button class="btn btn-outline-success col-sm-2 botao-adicionar" type="submit">
+      <button class="btn btn-outline-success col-sm-2" type="submit">
         <i class="bi bi-plus-square"></i>
         Adicionar
       </button>

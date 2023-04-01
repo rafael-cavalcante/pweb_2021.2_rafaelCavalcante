@@ -1,6 +1,7 @@
 package br.com.rafaelcavalcante.biritashop.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -36,6 +37,8 @@ public class Pedido implements Serializable {
     private Long id;
     private LocalDate data;
     private FormaPagamento formaPagamento;
+    private String numeroCartao;
+    private BigDecimal valorPagamento;
     @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itens;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
