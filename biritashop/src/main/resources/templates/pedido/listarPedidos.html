@@ -40,8 +40,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Forma Pagamento</th>
                     <th scope="col">Data</th>
-                    <th></th>
-                    <th></th>
+                    <th scope="col">Opções</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,14 +48,14 @@
                     <th scope="row" th:text="${pedido.id}"></th>
                     <td th:text="${pedido.formaPagamento}"></td>
                     <td th:text="${#temporals.format(pedido.data, 'dd/MM/yyyy')}"></td>
-                    <td class="text-center"><a th:href="@{editar/{id}(id=${pedido.id})}"
-                            class="btn btn-outline-warning">
+                    <td>
+                        <a th:href="@{editar/{id}(id=${pedido.id})}" class="btn btn-outline-warning">
                             <i class="bi bi-pencil-square"></i>
-                        </a></td>
-                    <td class="text-center"><a th:href="@{remover/{id}(id=${pedido.id})}"
-                            class="btn btn-outline-danger">
+                        </a>
+                        <a th:href="@{remover/{id}(id=${pedido.id})}" class="btn btn-outline-danger">
                             <i class="bi bi-trash"></i>
-                        </a></td>
+                        </a>
+                    </td>
                 </tr>
             </tbody>
         </table>

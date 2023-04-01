@@ -1,29 +1,16 @@
 $(document).ready(function () {
-    $(".mask-cep").mask("00.000-000", {placeholder: '__.___-___'});
+    $(".mask-cep").mask("00.000-000", { placeholder: '__.___-___' });
     $(".mask-telefone").mask("+00 (00) 00000-0000", { placeholder: '+__ (__) _____-____' });
     $(".mask-valor").mask("#0.00", { reverse: true });
 
     //Função limitar input a numeros inteiros com apenas zero a direita
-    $("#quantidade").keyup(function () {
-        if (this.value.length > 1) {
-            $("#quantidade").val(this.value.match(/[0-9]*/));
-        } else {
-            $("#quantidade").val(this.value.match(/[1-9]*/));
-        }
-    });
-
-    //Função de selecionar e desselecionar checkboxs da classe checkbox-item 
-    $("#selectall").click(function (event) {  //on click 
-        if (this.checked) { // check select status
-            $(".checkbox-item").each(function () { //loop through each checkbox
-                this.checked = true;  //select all checkboxes with class "checkbox1"               
-            });
-        } else {
-            $(".checkbox-item").each(function () { //loop through each checkbox
-                this.checked = false; //deselect all checkboxes with class "checkbox1"                       
-            });
-        }
-    });
+    //$(".quantidade").keyup(function () {
+    //    if (this.value.length > 1) {
+    //        $("#quantidade").val(this.value.match(/[0-9]*/));
+    //   } else {
+    //        $("#quantidade").val(this.value.match(/[1-9]*/));
+    //    }
+    //});
 });
 
 

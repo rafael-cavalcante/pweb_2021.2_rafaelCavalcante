@@ -15,20 +15,23 @@
   <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
   <div class="container mt-2">
-    <form th:action="@{/itemPedido/compras}" method="POST" th:object="${pedidoDTO}">
-      <h2>Clientes</h2>
-      <div class="row mb-2">
-        <div class="col-sm-6">
+    <form th:action="@{/pedido/finalizar}" method="POST" th:object="${pedido}">
+      <div class="row col-sm-6">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">
+            <i class="bi bi-person"></i>
+            Cliente
+          </span>
           <select class="form-select" name="cliente">
-            <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nomeCompleto}"></option>
+            <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nomeCompleto}">
+            </option>
           </select>
         </div>
       </div>
-      <h1 class="text-center">Produtos</h1>
+      <h1>Produtos</h1>
       <table class="table">
         <thead class="table-dark">
           <tr>
-            <th><input class="form-check-input" type="checkbox" id="selectall"></th>
             <th>ID</th>
             <th>Nome</th>
             <th>Marca</th>
@@ -36,27 +39,17 @@
             <th>Tipo Embalagem</th>
             <th>Preço R$</th>
             <th>Quantidade</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr th:each="produto, iStat: ${produtos}">
-            <td>
-              <input class="form-check-input checkbox-item" type="checkbox" id="selecionado"
-                th:field="*{itens[__${iStat.index}__].id}" th:value="${produto.id}">
-            </td>
+          <tr th:each="produto : ${produtos}">
             <th class="scope" th:text=${produto.id}></th>
             <td th:text=${produto.nome}></td>
             <td th:text=${produto.marca}></td>
             <td th:text="${produto.volume}"></td>
             <td th:text="${produto.tipoEmbalagem}"></td>
             <td th:text="'R$' + ${produto.precoVenda}"></td>
-            <td>
-              <input class="form-control" type="number" id="quantidade"
-                th:field="*{itens[__${iStat.index}__].quantidade}" placeholder="1" min="1" value="1">
-            </td>
-            <td>
-            </td>
+            <td th:text=""></td>
           </tr>
         </tbody>
       </table>
@@ -65,8 +58,7 @@
         <div class="input-group mb-3">
           <label class="input-group-text" for="formaPagamento">Forma de Pagamento</label>
           <select class="form-select" id="formaPagamento" name="formaPagamento" th:field="*{formaPagamento}" required>
-            <option th:each="tipo : ${tipos}" th:text="${tipo}" th:value="${tipo}">
-            </option>
+            <option th:each="tipo : ${tipos}" th:text="${tipo}" th:value="${tipo}"></option>
           </select>
         </div>
       </div>
@@ -79,7 +71,7 @@
       </div>
 
 
-      <button class="btn btn-outline-success col-sm-2" type="submit">
+      <button class="btn btn-outline-success col-sm-2 botao-adicionar" type="submit">
         <i class="bi bi-plus-square"></i>
         Adicionar
       </button>
@@ -95,6 +87,8 @@
   <script type="text/javascript" src="/js/jquery.min.js"></script>
   <script type="text/javascript" src="/js/jquery.mask.min.js"></script>
   <script type="text/javascript" src="/js/masks.js"></script>
+  <script type="text/javascript" src="/js/checkbox.js"></script>
+  <script type="text/javascript" src="/js/input.js"></script>
 </body>
 
 </html>
