@@ -54,7 +54,7 @@
                         <td th:text=${produto.marca}></td>
                         <td th:text="${produto.volume}"></td>
                         <td th:text="${produto.tipoEmbalagem}"></td>
-                        <td th:text="'R$' + ${produto.precoVenda}"></td>
+                        <td th:text="'R$' + ${produto.precoVenda}" th:field="*{itens[__${iStat.index}__].valorUnitario}"></td>
                         <td>
                             <input class="form-control quantidade" type="number"
                                 th:field="*{itens[__${iStat.index}__].quantidade}" value="1" min="1">
