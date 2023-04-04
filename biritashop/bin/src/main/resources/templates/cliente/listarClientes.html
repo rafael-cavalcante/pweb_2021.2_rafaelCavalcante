@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}" />
+  <title>BiritaShop</title>
+</head>
+
+<body>
+  <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
+
+  <div class="container mt-2">
+    <h1 class="text-center">Clientes</h1>
+    <table class="table">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nome Completo</th>
+          <th scope="col">Telefone</th>
+          <th scope="col">Cidade</th>
+          <th scope="col">CEP</th>
+          <th scope="col">Genero</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="cliente : ${clientes}">
+          <th scope="row" th:text="${cliente.id}"></th>
+          <td th:text="${cliente.nomeCompleto}"></td>
+          <td th:text="${cliente.telefone}"></td>
+          <td th:text="${cliente.cidade}"></td>
+          <td th:text="${cliente.CEP}"></td>
+          <td th:text="${cliente.genero}"></td>
+          <td>
+            <a th:href="@{editar/{id}(id=${cliente.id})}" class="btn btn-outline-warning">
+              <i class="bi bi-pencil-square"></i>
+            </a>
+            <a th:href="@{remover/{id}(id=${cliente.id})}" class="btn btn-outline-danger">
+              <i class="bi bi-trash"></i>
+            </a>
+            <a th:href="@{/dependente/listar?clienteId={id}(id=${cliente.id})}" class="btn btn-outline-info">
+              <i class="bi bi-view-list"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
+
+  <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/jquery.mask.min.js"></script>
+  <script type="text/javascript" src="/js/masks.js"></script>
+</body>
+
+</html>

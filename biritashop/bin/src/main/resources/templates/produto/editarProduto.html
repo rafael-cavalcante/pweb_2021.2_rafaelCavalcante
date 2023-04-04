@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}" />
+    <title>BiritaShop</title>
+</head>
+
+<body>
+    <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
+
+    <div class="container mt-2">
+        <h1>Editar Produto</h1>
+        <form th:action="@{/produto/editar/{id}(id=${produto.id})}" method="POST" th:object="${produto}">
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="nome">Nome*</label>
+                    <input type="text" class="form-control" id="nome" name="nome" th:field="*{nome}" required>
+                </div>
+                <div class="col-sm-4">
+                    <label for="marca">Marca*</label>
+                    <input type="text" class="form-control" id="marca" name="marca" th:field="*{marca}" required>
+                </div>
+                <div class="col-sm-4">
+                    <label for="volume">Volume(mL)*</label>
+                    <input type="number" class="form-control" id="volume" name="volume" th:field="*{volume}" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="precoCompra">Preço de Compra(R$)*</label>
+                    <input type="number" class="form-control" id="precoCompra" name="precoCompra"
+                        th:field="*{precoCompra}" required>
+                </div>
+                <div class="col-sm-4">
+                    <label for="precoVenda">Preço de Venda(R$)*</label>
+                    <input type="number" class="form-control" id="precoVenda" name="precoVenda" th:field="*{precoVenda}"
+                        required>
+                </div>
+                <div class="col-sm-4">
+                    <label for="dataCadastro">Data de Cadastro*</label>
+                    <input type="date" class="form-control" id="dataCadastro" name="dataCadastro"
+                        th:field="*{dataCadastro}" required>
+                </div>
+            </div>
+            <div class="row">
+                <legend class="col-form-label pt-0">Tipe de Embalagem*</legend>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="tipoEmbalagem" id="platico" value="Platico"
+                            th:field="*{tipoEmbalagem}" required>
+                        <label class="form-check-label" for="platico">
+                            Platico
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="tipoEmbalagem" id="metal" value="Metal"
+                            th:field="*{tipoEmbalagem}">
+                        <label class="form-check-label" for="metal">
+                            Metal
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="tipoEmbalagem" id="vidro" value="Vidro"
+                            th:field="*{tipoEmbalagem}">
+                        <label class="form-check-label" for="vidro">
+                            Vidro
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-outline-warning col-sm-2" type="submit">
+                <i class="bi bi-pencil-square"></i>
+                Editar
+            </button>
+
+            <p>*Campos Obrigatorios</p>
+        </form>
+    </div>
+
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.mask.min.js"></script>
+    <script type="text/javascript" src="/js/masks.js"></script>
+</body>
+
+</html>

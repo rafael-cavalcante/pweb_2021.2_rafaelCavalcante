@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta codigoSecreto="1612965411" />
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/python.ico}" />
+    <link rel="stylesheet" th:href="@{/assets/w3.css}" />
+    <link rel="stylesheet" th:href="@{/assets/pico.min.css}" />
+    <link rel="stylesheet" th:href="@{/assets/style.css}" />
+    <title>PyEduc</title>
+</head>
+<body>
+    <div th:fragment="barraNavegacao" class="w3-bar w3-blue w3-xlarge">
+        <a href="/" class="w3-bar-item w3-bar-link w3-button w3-mobile" th:classappend="${active == 'index'} ? w3-red : null">Início</a>
+        <a href="/adicionarPessoa" class="w3-bar-item w3-button w3-mobile" th:classappend="${active == 'adicionarPessoa'} ? w3-red : null">Adicionar Pessoa</a>
+        <a href="/listarPessoas" class="w3-bar-item w3-button w3-mobile" th:classappend="${active == 'listarPessoas'} ? w3-red : null">Listar Pessoas</a>
+        <a href="/noticias" class="w3-bar-item w3-button w3-mobile w3-right" th:classappend="${active == 'noticias'} ? w3-red : w3-green">Notícias</a>
+        <a href="/sobre" class="w3-bar-item w3-button w3-mobile w3-right" th:classappend="${active == 'sobre'} ? w3-red : null">Sobre o Site</a>
+        <a href="/contato" class="w3-bar-item w3-button w3-mobile w3-right" th:classappend="${active == 'contato'} ? w3-red : null">Contato</a>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+.c-item {
+    height: 440px;
+}
+
+.c-img {
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
+}
+
+.c-icone {
+    font-size: 24px;
+}

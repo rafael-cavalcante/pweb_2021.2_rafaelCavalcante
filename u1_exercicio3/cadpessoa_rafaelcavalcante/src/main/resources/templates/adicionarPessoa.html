@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta codigoSecreto="1612965411" />
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/python.ico}" />
+    <link rel="stylesheet" th:href="@{/assets/w3.css}" />
+    <link rel="stylesheet" th:href="@{/assets/pico.min.css}" />
+    <title>PyEduc</title>
+</head>
+
+<body>
+    <div th:replace="~{fragments/barraNavegacao :: barraNavegacao}"></div>
+
+    <div style="padding: 0 20px 0 20px;">
+        <form th:action="@{/adicionarPessoa}" method="POST" th:object="${pessoa}">
+            <p>Formulário de Adicionar Pessoa</p>
+            <div class="grid">
+                <div>Nome*: <input type="text" id="nome" name="nome" placeholder="Nome Completo" th:field="*{nome}"
+                        required></div>
+                <div>E-mail*: <input type="email" id="email" name="email" placeholder="E-mail" th:field="*{email}"
+                        required>
+                </div>
+                <div>Data Nascimento*: <input type="date" id="dataNascimento" name="dataNascimento"
+                        placeholder="Data Nascimento" th:field="*{dataNascimento}" required></div>
+            </div>
+            <fieldset></fieldset>
+            <p style="margin: 0;">Informe o Gênero*:</p>
+            <label for="Masculino">
+                <input type="radio" id="Masculino" name="genero" value="Masculino" th:field="*{genero}" required>
+                Masculino
+            </label>
+            <label for="Feminino">
+                <input type="radio" id="Feminino" name="genero" value="Feminino" th:field="*{genero}" required> Feminino
+            </label>
+            <label for="Não Desejo Informar">
+                <input type="radio" id="Não Desejo Informar" name="genero" value="Não Desejo Informar"
+                    th:field="*{genero}" required> Não desejo informar
+            </label>
+            <div class="grid">
+                <div><input type="submit" value="Cadastrar"></div>
+                <div><input type="reset" value="Limpar"></div>
+            </div>
+            <p>*Campos Obrigatorios</p>
+        </form>
+    </div>
+</body>
+
+</html>
