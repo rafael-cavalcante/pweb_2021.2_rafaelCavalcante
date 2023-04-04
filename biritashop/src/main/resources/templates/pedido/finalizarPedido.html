@@ -15,19 +15,20 @@
   <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
   <div class="container mt-2">
-    <form th:action="@{/pedido/finalizar}" method="POST" th:object="${pedido}">
+    <form th:action="@{/pedido/finalizar/{id}(id=${pedido.id})}" method="POST" th:object="${pedido}">
       <div class="row col-sm-6">
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon1">
             <i class="bi bi-person"></i>
             Cliente
           </span>
-          <select class="form-select" required disabled>
-            <option th:text="${pedido.cliente.nomeCompleto}">
+          <select class="form-select" name="cliente" disable>
+            <option th:value="${pedido.cliente.id}" th:text="${pedido.cliente.nomeCompleto}">
             </option>
           </select>
         </div>
       </div>
+    
       <h1>Produtos</h1>
       <table class="table">
         <thead class="table-dark">
@@ -41,12 +42,17 @@
         <tbody>
           <tr th:each="item : ${pedido.itens}">
             <th class="scope" th:text=${item.id}></th>
-            <td th:text=${item.nome}></td>
+            <td th:text=${item.produto.nome}></td>
             <td th:text=${item.quantidade}></td>
             <td th:text=${item.valorUnitario}></td>
           </tr>
         </tbody>
       </table>
+
+      <div class="input-group mb-1 col-sm-6">
+        <span class="input-group-text" id="basic-addon1">Quantidade Itens</span>
+        <input type="text" class="form-control" th:value="${pedido.id}" disabled>
+      </div>
 
       <div class="input-group mb-1 col-sm-6">
         <span class="input-group-text" id="basic-addon1">Quantidade Itens</span>
@@ -62,7 +68,7 @@
         <div class="input-group mb-3">
           <label class="input-group-text" for="formaPagamento">Forma de Pagamento</label>
           <select class="form-select" id="formaPagamento" required disabled>
-            <option th:text="${pedido.formaPagamento.tipo}"></option>
+            <option th:text="${pedido.formaPagamento.tipo}" th:value="${formaPagamento}"></option>
           </select>
         </div>
       </div>
@@ -70,14 +76,16 @@
       <div th:if="${pedido.formaPagamento.tipo != 'Crédito'}" class="col-sm-4">
         <div class="input-group mb-3">
           <label class="input-group-text" for="valorPagamento">R$</label>
-          <input class="form-control mask-valor" type="text" id="valorPagamento" name="valorPagamento">
+          <input class="form-control mask-valor" type="text" id="valorPagamento" name="valorPagamento"
+            th:field="*{valorPagamento}">
         </div>
       </div>
 
       <div th:if="${pedido.formaPagamento.tipo == 'Crédito'}" class="col-sm-4">
         <div class="input-group mb-3">
           <label class="input-group-text" for="numeroCartao">Número Cartão</label>
-          <input class="form-control mask-cartao" type="text" id="numeroCartao" name="numeroCartao">
+          <input class="form-control mask-cartao" type="text" id="numeroCartao" name="numeroCartao"
+            th:field="*{numeroCartao}">
         </div>
       </div>
 

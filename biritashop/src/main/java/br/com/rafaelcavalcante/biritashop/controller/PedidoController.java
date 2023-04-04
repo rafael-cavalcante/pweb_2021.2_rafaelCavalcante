@@ -67,48 +67,36 @@ public class PedidoController {
         return mav;
     }
 
-    /*
-     * @PostMapping("/adicionar")
-     * public ModelAndView adicionarPedido(PedidoDTO pedidoDTO) {
-     * Cliente cliente =
-     * this.clienteRepository.findById(pedidoDTO.getCliente().getId())
-     * .orElseThrow(() -> new IllegalArgumentException("ID Inválido " +
-     * pedidoDTO.getCliente().getId()));
-     * Pedido pedido = new Pedido();
-     * pedido.setCliente(cliente);
-     * pedido.setData(LocalDate.now());
-     * pedido.setFormaPagamento(pedidoDTO.getFormaPagamento());
-     * List<ItemPedido> itensPedido = validarQuantidade(converter(pedido,
-     * pedidoDTO.getItens()));
-     * this.pedidoRepository.save(pedido);
-     * this.itemPedidoRepository.saveAll(itensPedido);
-     * return new ModelAndView("redirect:/pedido/listar?clienteId=" +
-     * cliente.getId());
-     * }
-     */
-
+    @Transactional
     @PostMapping("/adicionar")
     public ModelAndView adicionarPedido(PedidoDTO pedidoDTO) {
-        ModelAndView mav = new ModelAndView("/pedido/finalizarPedido");
-        mav.addObject("pedido", pedidoDTO);
-        return mav;
-
-    }
-
-    @Transactional
-    @PostMapping("/finalizar")
-    public ModelAndView finalizarPedido(PedidoDTO pedidoDTO) {
         Cliente cliente = this.clienteRepository.findById(pedidoDTO.getCliente().getId())
-                .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + pedidoDTO.getCliente().getId()));
+                .orElseThrow(() -> new IllegalArgumentException("ID Inválido " +
+                        pedidoDTO.getCliente().getId()));
+        ModelAndView mav = new ModelAndView("/pedido/finalizarPedido");
+
         Pedido pedido = new Pedido();
         pedido.setCliente(cliente);
         pedido.setData(LocalDate.now());
         pedido.setFormaPagamento(pedidoDTO.getFormaPagamento());
-        List<ItemPedido> itensPedido = validarQuantidade(converter(pedido, pedidoDTO.getItens()));
+        List<ItemPedido> itensPedido = validarQuantidade(converter(pedido,
+                pedidoDTO.getItens()));
+        Pedido pedidoSalvo = this.pedidoRepository.save(pedido);
+        this.itemPedidoRepository.saveAll(itensPedido);
         pedido.setItens(itensPedido);
-        this.pedidoRepository.save(pedido);
-        //this.itemPedidoRepository.saveAll(pedido.getItens());
-        return new ModelAndView("redirect:/pedido/listar?clienteId=" + pedido.getCliente().getId());
+        mav.addObject("pedido", pedidoSalvo);
+        return mav;
+
+    }
+
+    @PostMapping("/finalizar/{id}")
+    public String finalizarPedido(@PathVariable("id") Long pedidoId, Pedido pedido) {
+        Pedido pedidoFinalizado = this.pedidoRepository.findById(pedidoId)
+        .orElseThrow(() -> new IllegalArgumentException("Pedido Id " + pedidoId + " Não Encontrado!"));
+        pedidoFinalizado.setValorPagamento(pedido.getValorPagamento());
+        pedidoFinalizado.setNumeroCartao(pedido.getNumeroCartao());
+        this.pedidoRepository.save(pedidoFinalizado);
+        return "redirect:/pedido/listar?clienteId=" + pedidoFinalizado.getCliente().getId();
     }
 
     @GetMapping("/remover/{id}")
