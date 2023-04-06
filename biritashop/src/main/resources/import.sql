@@ -1,5 +1,5 @@
-INSERT INTO produto (nome, marca, preco_compra, preco_venda, tipo_embalagem, volume, data_cadastro) VALUES ('Caixa de Chocolate', 'Lacta', 12.00, 15.00, 'Platico', 250.00, parseDateTime('04/04/2023','dd/MM/yyyy'));
-INSERT INTO produto (nome, marca, preco_compra, preco_venda, tipo_embalagem, volume, data_cadastro) VALUES ('Arroz', 'São Joaquim', 10.00, 12.00, 'Platico', 1000.00, parseDateTime('03/04/2023','dd/MM/yyyy'));
-INSERT INTO produto (nome, marca, preco_compra, preco_venda, tipo_embalagem, volume, data_cadastro) VALUES ('Pipoca', 'Bokus', 0.50, 1.00, 'Platico', 45.00, parseDateTime('02/04/2023','dd/MM/yyyy'));
-INSERT INTO produto (nome, marca, preco_compra, preco_venda, tipo_embalagem, volume, data_cadastro) VALUES ('Leite em Pó', 'Nestle', 12.00, 15.00, 'Platico', 250.00, parseDateTime('01/04/2023','dd/MM/yyyy'));
+INSERT INTO produto (nome, marca, preco_compra, preco_venda, tipo_embalagem, volume, data_cadastro) VALUES ('Caixa de Chocolate', 'Lacta', 12.00, 15.00, 'Platico', 250.00, '04/04/2023');
+INSERT INTO produto (nome, marca, preco_compra, preco_venda, tipo_embalagem, volume, data_cadastro) VALUES ('Arroz', 'São Joaquim', 10.00, 12.00, 'Platico', 1000.00, '03/04/2023');
+INSERT INTO produto (nome, marca, preco_compra, preco_venda, tipo_embalagem, volume, data_cadastro) VALUES ('Pipoca', 'Bokus', 0.50, 1.00, 'Platico', 45.00, '02/04/2023');
+INSERT INTO produto (nome, marca, preco_compra, preco_venda, tipo_embalagem, volume, data_cadastro) VALUES ('Leite em Pó', 'Nestle', 12.00, 15.00, 'Platico', 250.00, '01/04/2023');
 INSERT INTO cliente (nome_completo, cep, cidade, genero, telefone) VALUES ('Rafael Cavalcante', '59.230-000', 'Campo Redondo', 'Masculino', '+55 (84) 98623-0135');
