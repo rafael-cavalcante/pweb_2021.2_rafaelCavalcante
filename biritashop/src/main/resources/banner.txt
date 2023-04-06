@@ -7,5 +7,6 @@
  |____/|_|_|  |_|\__\__,_|_____/|_| |_|\___/| .__/ 
                                             | |    
                                             |_|    
-${application.title} ${application.version}
-Powered by Spring Boot ${spring-boot.version}
+Application: ${application.title} - Version ${application.version}
+${AnsiColor.YELLOW} :: Spring Boot${spring-boot.formatted-version} :: ${AnsiColor.YELLOW}
+${AnsiColor.DEFAULT}

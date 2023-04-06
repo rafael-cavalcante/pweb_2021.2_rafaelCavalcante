@@ -27,14 +27,20 @@ public class Produto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "nome")
     private String nome;
+    @Column(name = "marca")
     private String marca;
+    @Column(name = "volume")
     private BigDecimal volume;
+    @Column(name = "tipo_embalagem")
     private String tipoEmbalagem;
+    @Column(name = "preco_compra")
     private BigDecimal precoCompra;
+    @Column(name = "preco_venda")
     private BigDecimal precoVenda;
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataCadastro;
 
 }
