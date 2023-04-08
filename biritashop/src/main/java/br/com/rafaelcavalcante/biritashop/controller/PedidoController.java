@@ -2,15 +2,14 @@ package br.com.rafaelcavalcante.biritashop.controller;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import br.com.rafaelcavalcante.biritashop.model.Pedido;
 import br.com.rafaelcavalcante.biritashop.model.Produto;
-import br.com.rafaelcavalcante.biritashop.model.dto.ItemPedidoDTO;
 import br.com.rafaelcavalcante.biritashop.model.dto.PedidoDTO;
 import br.com.rafaelcavalcante.biritashop.model.enums.FormaPagamento;
 import br.com.rafaelcavalcante.biritashop.repository.PedidoRepository;
 import br.com.rafaelcavalcante.biritashop.repository.ProdutoRepository;
+import br.com.rafaelcavalcante.biritashop.services.PedidoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,6 +42,9 @@ public class PedidoController {
     @Autowired
     private ItemPedidoRepository itemPedidoRepository;
 
+    @Autowired
+    private PedidoService pedidoService;
+
     @GetMapping("/listar")
     public ModelAndView listarPedidos(@RequestParam(value = "clienteId", required = false) Long clienteId) {
         List<Cliente> clientes = this.clienteRepository.findAll();
@@ -73,17 +75,15 @@ public class PedidoController {
                 .orElseThrow(() -> new IllegalArgumentException("ID Inválido " +
                         pedidoDTO.getCliente().getId()));
         ModelAndView mav = new ModelAndView("/pedido/finalizarPedido");
-
         Pedido pedido = new Pedido();
         pedido.setCliente(cliente);
         pedido.setData(LocalDate.now());
         pedido.setFormaPagamento(pedidoDTO.getFormaPagamento());
-        List<ItemPedido> itensPedido = validarQuantidade(converter(pedido,
-                pedidoDTO.getItens()));
-        Pedido pedidoSalvo = this.pedidoRepository.save(pedido);
+        List<ItemPedido> itensPedido = this.pedidoService.converterItensPedido(pedido, pedidoDTO.getItens());
+        this.pedidoRepository.save(pedido);
         this.itemPedidoRepository.saveAll(itensPedido);
         pedido.setItens(itensPedido);
-        mav.addObject("pedido", pedidoSalvo);
+        mav.addObject("pedido", pedido);
         return mav;
 
     }
@@ -91,7 +91,7 @@ public class PedidoController {
     @PostMapping("/finalizar/{id}")
     public String finalizarPedido(@PathVariable("id") Long pedidoId, Pedido pedido) {
         Pedido pedidoFinalizado = this.pedidoRepository.findById(pedidoId)
-        .orElseThrow(() -> new IllegalArgumentException("Pedido Id " + pedidoId + " Não Encontrado!"));
+                .orElseThrow(() -> new IllegalArgumentException("Pedido Id " + pedidoId + " Não Encontrado!"));
         pedidoFinalizado.setValorPagamento(pedido.getValorPagamento());
         pedidoFinalizado.setNumeroCartao(pedido.getNumeroCartao());
         this.pedidoRepository.save(pedidoFinalizado);
@@ -106,35 +106,13 @@ public class PedidoController {
         return new ModelAndView("redirect:/pedido/listar?clienteId=" + pedido.getCliente().getId());
     }
 
-    public List<ItemPedido> converter(Pedido pedido, List<ItemPedidoDTO> itemPedidos) {
-        List<ItemPedidoDTO> filtrado = itemPedidos.stream().filter(c -> c.getId() != null).collect(Collectors.toList());
-        return filtrado.stream().map(dto -> {
-            Produto temp = this.produtoRepository.findById(dto.getId())
-                    .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + dto.getId()));
-            ItemPedido itemPedido = ItemPedido.builder()
-                    .quantidade(dto.getQuantidade())
-                    .valorUnitario(temp.getPrecoVenda())
-                    .produto(temp)
-                    .pedido(pedido)
-                    .build();
-            return itemPedido;
-        }).collect(Collectors.toList());
-    }
-
-    public List<ItemPedido> validarQuantidade(List<ItemPedido> itensPedido) {
-        for (ItemPedido item : itensPedido) {
-            if (item.getQuantidade() == null) {
-                item.setQuantidade(1L);
-            }
-        }
-        return itensPedido;
-    }
-
-    public Double calcularValorTotal(List<ItemPedido> itensPedido) {
-        Double valorTotal = 0.0;
-        for (ItemPedido itemPedido : itensPedido) {
-            valorTotal = valorTotal + (itemPedido.getQuantidade() * itemPedido.getValorUnitario().doubleValue());
-        }
-        return valorTotal;
+    @GetMapping("/item/listar/{id}")
+    public ModelAndView listarItens(@PathVariable("id") Long id) {
+        Pedido pedido = this.pedidoRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Pedido Não Encontrado " + id));
+        ModelAndView mav = new ModelAndView("/pedido/item/listarItens");
+        mav.addObject("pedido", pedido);
+        mav.addObject("valorTotal", this.pedidoService.calcularValorTotal(pedido.getItens()));
+        return mav;
     }
 }

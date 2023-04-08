@@ -59,6 +59,9 @@
                         <a th:href="@{remover/{id}(id=${pedido.id})}" class="btn btn-outline-danger">
                             <i class="bi bi-trash"></i>
                         </a>
+                        <a th:href="@{item/listar/{id}(id=${pedido.id})}" class="btn btn-outline-info">
+                            <i class="bi bi-view-list"></i>
+                          </a>
                     </td>
                 </tr>
             </tbody>
