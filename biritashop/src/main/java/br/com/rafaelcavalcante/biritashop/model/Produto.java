@@ -40,7 +40,7 @@ public class Produto implements Serializable {
     @Column(name = "preco_venda")
     private BigDecimal precoVenda;
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataCadastro;
 
 }

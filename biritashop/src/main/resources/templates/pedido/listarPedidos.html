@@ -39,6 +39,8 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Forma Pagamento</th>
+                    <th scope="col">Número do Cartão</th>
+                    <th scope="col">Valor Pagamento</th>
                     <th scope="col">Data</th>
                     <th scope="col">Opções</th>
                 </tr>
@@ -47,6 +49,8 @@
                 <tr th:each="pedido : ${pedidos}">
                     <th scope="row" th:text="${pedido.id}"></th>
                     <td th:text="${pedido.formaPagamento}"></td>
+                    <td th:text="${pedido.numeroCartao}"></td>
+                    <td th:text="${pedido.valorPagamento}"></td>
                     <td th:text="${#temporals.format(pedido.data, 'dd/MM/yyyy')}"></td>
                     <td>
                         <a th:href="@{editar/{id}(id=${pedido.id})}" class="btn btn-outline-warning">
@@ -60,6 +64,8 @@
             </tbody>
         </table>
     </div>
+    
+    <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
 
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
 </body>

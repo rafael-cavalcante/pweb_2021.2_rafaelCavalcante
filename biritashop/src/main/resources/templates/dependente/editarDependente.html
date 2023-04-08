@@ -35,8 +35,8 @@
                 </div>
                 <div class="col-sm-6">
                     <label for="dataNascimento">Data Nascimento*</label>
-                    <input type="date" class="form-control" id="dataNascimento" name="dataNascimento"
-                        placeholder="Data Nascimento xx/xx/xxxx" th:field="*{dataNascimento}" required>
+                    <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" 
+                    th:field="*{dataNascimento}" required>
                 </div>
             </div>
             <div class="row">
@@ -74,6 +74,8 @@
             <p>*Campos Obrigatorios</p>
         </form>
     </div>
+
+    <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
 
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
 </body>

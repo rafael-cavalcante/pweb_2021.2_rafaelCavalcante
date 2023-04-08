@@ -52,10 +52,10 @@
                 <legend class="col-form-label pt-0">Tipe de Embalagem*</legend>
                 <div class="col-sm-10">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="tipoEmbalagem" id="platico" value="Platico"
+                        <input class="form-check-input" type="radio" name="tipoEmbalagem" id="plastico" value="Plastico"
                             th:field="*{tipoEmbalagem}" required>
-                        <label class="form-check-label" for="platico">
-                            Platico
+                        <label class="form-check-label" for="plastico">
+                            Plastico
                         </label>
                     </div>
                     <div class="form-check">
@@ -83,6 +83,8 @@
             <p>*Campos Obrigatorios</p>
         </form>
     </div>
+
+    <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
 
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="/js/jquery.min.js"></script>

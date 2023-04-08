@@ -17,7 +17,7 @@
     <div class="container mt-2 d-flex justify-content-center">
         <form th:action="@{/cliente/adicionar}" method="POST" th:object="${cliente}">
             <h1>Adicionar Novo Cliente</h1>
-            <div class="row g-2 mb-3">
+            <div class="row g-2 mb-2">
                 <div class="col-auto">
                     <label class="form-label" for="nomeCompleto">Nome Completo*</label>
                     <input class="form-control" type="text" id="nomeCompleto" name="nomeCompleto"
@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            <div class="row g-2 mb-3">
+            <div class="row g-2 mb-2">
                 <div class="col-auto">
                     <label class="form-label" for="cep">CEP*</label>
                     <input class="form-control mask-cep" type="text" id="cep" name="CEP" th:field="*{CEP}" required>
@@ -41,7 +41,7 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-2">
                 <legend class="col-form-label pt-0">Informe o Gênero*</legend>
                 <div class="col-sm-10">
                     <div class="form-check">

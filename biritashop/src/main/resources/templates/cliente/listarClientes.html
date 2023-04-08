@@ -32,9 +32,9 @@
         <tr th:each="cliente : ${clientes}">
           <th scope="row" th:text="${cliente.id}"></th>
           <td th:text="${cliente.nomeCompleto}"></td>
-          <td th:text="${cliente.telefone}"></td>
+          <td class="mask-telefone" th:text="${cliente.telefone}"></td>
           <td th:text="${cliente.cidade}"></td>
-          <td th:text="${cliente.CEP}"></td>
+          <td class="mask-cep" th:text="${cliente.CEP}"></td>
           <td th:text="${cliente.genero}"></td>
           <td>
             <a th:href="@{editar/{id}(id=${cliente.id})}" class="btn btn-outline-warning">
