@@ -34,7 +34,7 @@ public class Pedido implements Serializable {
     private FormaPagamento formaPagamento;
     private String numeroCartao;
     private BigDecimal valorPagamento;
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.REMOVE)
     private List<ItemPedido> itens;
     @ManyToOne
     @JoinColumn(name = "cliente_id")

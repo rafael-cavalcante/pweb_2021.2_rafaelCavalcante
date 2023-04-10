@@ -29,8 +29,8 @@ public class Cliente implements Serializable {
     private String cidade;
     @Column(name = "cep")
     private String CEP;
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE)
     private List<Dependente> dependentes;
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE)
     private List<Pedido> pedidos;
 }

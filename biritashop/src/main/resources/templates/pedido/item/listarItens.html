@@ -1,66 +1,59 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      th:href="@{/css/bootstrap.min.css}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      th:href="@{/css/bootstrap-icons.css}"
-    />
-    <title>BiritaShop</title>
-  </head>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:java="java.lang">
 
-  <body>
-    <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+  <title>BiritaShop</title>
+</head>
 
-    <div class="container mt-2">
-      <a
-        class="btn btn-outline-secondary"
-        th:href="@{/pedido/listar/{id}(id=${pedido.cliente.id})}"
-      >
-        <i class="bi bi-arrow-left-square"></i>
-        Voltar
-      </a>
-      <h1>Produtos</h1>
-      <table class="table">
-        <thead class="table-dark">
-          <tr>
-            <th class="scope">ID</th>
-            <th class="scope">Nome</th>
-            <th class="scope">Quantidade</th>
-            <th class="scope">Valor Unitario</th>
-            <th class="scope">Valor</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="item : ${pedido.itens}">
-            <th class="scope" th:text="${item.id}"></th>
-            <td th:text="${item.produto.nome}"></td>
-            <td th:text="${item.quantidade}"></td>
-            <td th:text="${item.valorUnitario}"></td>
-            <td th:text="${item.quantidade} * ${item.valorUnitario}"></td>
-          </tr>
-        </tbody>
-      </table>
+<body>
+  <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-      <div class="input-group mb-3 col-sm-6">
-        <span class="input-group-text" id="basic-addon1">Valor Total R$</span>
-        <input
-          type="text"
-          class="form-control"
-          th:value="${valorTotal}"
-          disabled
-        />
-      </div>
-    </div>
+  <div class="container content">
+    <a class="btn btn-outline-secondary" th:href="@{/pedido/listar/{id}(id=${pedido.cliente.id})}">
+      <i class="bi bi-arrow-left-square"></i>
+      Voltar
+    </a>
+    <h1>Produtos</h1>
+    <table class="table">
+      <thead class="table-dark">
+        <tr>
+          <th class="scope">ID</th>
+          <th class="scope">Nome</th>
+          <th class="scope">Valor</th>
+          <th class="scope">Valor Unitario</th>
+          <th class="scope">Quantidade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="item : ${pedido.itens}">
+          <th class="scope" th:text="${item.id}"></th>
+          <td th:text="${item.produto.nome}"></td>
+          <td th:text="${item.valorUnitario}"></td>
+          <td th:text="${item.quantidade} * ${item.valorUnitario}"></td>
+          <td th:text="${item.quantidade}"></td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-end"><strong>Quantidade Total:</strong></td>
+          <td class="text-end" th:text="${pedido.itens.size()}"></td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-end"><strong>Sub-Total:</strong></td>
+          <td class="text-end" th:text="${valorTotal.setScale(2)} + 'R$'"></td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-end"><strong>Imposto 13.75%</strong></td>
+          <td class="text-end"><strong>[[${valorTotal.multiply(new java.math.BigDecimal("0.1375")).setScale(2)}]]
+              R$</strong></td>
+        </tr>
+      </tbody>
+    </table>
 
     <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
 
@@ -70,5 +63,6 @@
     <script type="text/javascript" src="/js/masks.js"></script>
     <script type="text/javascript" src="/js/checkbox.js"></script>
     <script type="text/javascript" src="/js/input.js"></script>
-  </body>
+</body>
+
 </html>

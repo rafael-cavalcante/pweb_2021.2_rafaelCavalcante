@@ -11,7 +11,6 @@ import br.com.rafaelcavalcante.biritashop.repository.PedidoRepository;
 import br.com.rafaelcavalcante.biritashop.repository.ProdutoRepository;
 import br.com.rafaelcavalcante.biritashop.services.PedidoService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,25 +29,42 @@ import br.com.rafaelcavalcante.biritashop.repository.ItemPedidoRepository;
 @RequestMapping("/pedido")
 public class PedidoController {
 
-    @Autowired
-    private ClienteRepository clienteRepository;
+    private ClienteRepository clienteRepo;
 
-    @Autowired
-    private PedidoRepository pedidoRepository;
+    private PedidoRepository pedidoRepo;
 
-    @Autowired
-    private ProdutoRepository produtoRepository;
+    private ProdutoRepository produtoRepo;
 
-    @Autowired
-    private ItemPedidoRepository itemPedidoRepository;
+    private ItemPedidoRepository itemPedidoRepo;
 
-    @Autowired
     private PedidoService pedidoService;
+
+    public PedidoController(
+            ClienteRepository clienteRepo, PedidoRepository pedidoRepo,
+            ProdutoRepository produtoRepo, ItemPedidoRepository itemPedidoRepo,
+            PedidoService pedidoService) {
+        this.clienteRepo = clienteRepo;
+        this.pedidoRepo = pedidoRepo;
+        this.produtoRepo = produtoRepo;
+        this.itemPedidoRepo = itemPedidoRepo;
+        this.pedidoService = pedidoService;
+    }
 
     @GetMapping("/listar")
     public ModelAndView listarPedidos(@RequestParam(value = "clienteId", required = false) Long clienteId) {
-        List<Cliente> clientes = this.clienteRepository.findAll();
-        List<Pedido> pedidos = this.pedidoRepository.findByClienteId(clienteId);
+        List<Cliente> clientes = this.clienteRepo.findAll();
+        List<Pedido> pedidos = this.pedidoRepo.findByClienteId(clienteId);
+        ModelAndView mav = new ModelAndView("/pedido/listarPedidos");
+        mav.addObject("clientes", clientes);
+        mav.addObject("clienteId", clienteId);
+        mav.addObject("pedidos", pedidos);
+        return mav;
+    }
+
+    @GetMapping("/listar/{clienteId}")
+    public ModelAndView listarPedidosId(@PathVariable("clienteId") Long clienteId) {
+        List<Cliente> clientes = this.clienteRepo.findAll();
+        List<Pedido> pedidos = this.pedidoRepo.findByClienteId(clienteId);
         ModelAndView mav = new ModelAndView("/pedido/listarPedidos");
         mav.addObject("clientes", clientes);
         mav.addObject("clienteId", clienteId);
@@ -58,8 +74,8 @@ public class PedidoController {
 
     @GetMapping("/adicionar")
     public ModelAndView formAdicionarPedido() {
-        List<Cliente> clientes = this.clienteRepository.findAll();
-        List<Produto> produtos = this.produtoRepository.findAllByOrderByNomeAsc();
+        List<Cliente> clientes = this.clienteRepo.findAll();
+        List<Produto> produtos = this.produtoRepo.findAllByOrderByNomeAsc();
         ModelAndView mav = new ModelAndView("/pedido/adicionarPedido");
         mav.addObject("clientes", clientes);
         mav.addObject("produtos", produtos);
@@ -71,17 +87,16 @@ public class PedidoController {
     @Transactional
     @PostMapping("/adicionar")
     public ModelAndView adicionarPedido(PedidoDTO pedidoDTO) {
-        Cliente cliente = this.clienteRepository.findById(pedidoDTO.getCliente().getId())
-                .orElseThrow(() -> new IllegalArgumentException("ID Inválido " +
-                        pedidoDTO.getCliente().getId()));
+        Cliente cliente = this.clienteRepo.findById(pedidoDTO.getCliente().getId())
+                .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + pedidoDTO.getCliente().getId()));
         ModelAndView mav = new ModelAndView("/pedido/finalizarPedido");
         Pedido pedido = new Pedido();
         pedido.setCliente(cliente);
         pedido.setData(LocalDate.now());
         pedido.setFormaPagamento(pedidoDTO.getFormaPagamento());
         List<ItemPedido> itensPedido = this.pedidoService.converterItensPedido(pedido, pedidoDTO.getItens());
-        this.pedidoRepository.save(pedido);
-        this.itemPedidoRepository.saveAll(itensPedido);
+        this.pedidoRepo.save(pedido);
+        this.itemPedidoRepo.saveAll(itensPedido);
         pedido.setItens(itensPedido);
         mav.addObject("pedido", pedido);
         return mav;
@@ -90,25 +105,25 @@ public class PedidoController {
 
     @PostMapping("/finalizar/{id}")
     public String finalizarPedido(@PathVariable("id") Long pedidoId, Pedido pedido) {
-        Pedido pedidoFinalizado = this.pedidoRepository.findById(pedidoId)
+        Pedido pedidoFinalizado = this.pedidoRepo.findById(pedidoId)
                 .orElseThrow(() -> new IllegalArgumentException("Pedido Id " + pedidoId + " Não Encontrado!"));
         pedidoFinalizado.setValorPagamento(pedido.getValorPagamento());
         pedidoFinalizado.setNumeroCartao(pedido.getNumeroCartao());
-        this.pedidoRepository.save(pedidoFinalizado);
+        this.pedidoRepo.save(pedidoFinalizado);
         return "redirect:/pedido/listar?clienteId=" + pedidoFinalizado.getCliente().getId();
     }
 
     @GetMapping("/remover/{id}")
     public ModelAndView removerPedido(@PathVariable("id") Long id) {
-        Pedido pedido = this.pedidoRepository.findById(id)
+        Pedido pedido = this.pedidoRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + id));
-        this.pedidoRepository.delete(pedido);
+        this.pedidoRepo.delete(pedido);
         return new ModelAndView("redirect:/pedido/listar?clienteId=" + pedido.getCliente().getId());
     }
 
     @GetMapping("/item/listar/{id}")
     public ModelAndView listarItens(@PathVariable("id") Long id) {
-        Pedido pedido = this.pedidoRepository.findById(id)
+        Pedido pedido = this.pedidoRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Pedido Não Encontrado " + id));
         ModelAndView mav = new ModelAndView("/pedido/item/listarItens");
         mav.addObject("pedido", pedido);

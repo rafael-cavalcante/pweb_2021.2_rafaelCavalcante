@@ -8,13 +8,14 @@
     <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <title>BiritaShop</title>
 </head>
 
 <body>
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-    <div class="container mt-2">
+    <div class="container content">
         <h1>Editar Produto</h1>
         <form th:action="@{/produto/editar/{id}(id=${produto.id})}" method="POST" th:object="${produto}">
             <div class="row">

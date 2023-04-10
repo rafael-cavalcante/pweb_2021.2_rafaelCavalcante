@@ -8,13 +8,14 @@
     <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <title>BiritaShop</title>
 </head>
 
 <body>
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-    <div class="container mt-2 d-flex justify-content-center">
+    <div class="container d-flex justify-content-center content">
         <form th:action="@{/cliente/adicionar}" method="POST" th:object="${cliente}">
             <h1>Adicionar Novo Cliente</h1>
             <div class="row g-2 mb-2">

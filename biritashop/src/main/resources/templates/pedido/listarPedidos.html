@@ -8,18 +8,19 @@
     <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <title>BiritaShop</title>
 </head>
 
 <body>
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-    <div class="container mt-2">
+    <div class="container content">
         <h1>Clientes</h1>
         <form th:action="@{/pedido/listar}" method="GET" th:object="${cliente}">
             <div class="row">
                 <div class="col-sm-6">
-                    <select class="form-select" name="clienteId">
+                    <select class="form-select" id="buscar" onchange="buscarPedidos()">
                         <option th:each="cliente : ${clientes}" th:value="${cliente.id}"
                             th:text="${cliente.nomeCompleto}" th:selected="${cliente.id} == ${clienteId}"></option>
                         </option>
@@ -59,18 +60,19 @@
                         <a th:href="@{remover/{id}(id=${pedido.id})}" class="btn btn-outline-danger">
                             <i class="bi bi-trash"></i>
                         </a>
-                        <a th:href="@{item/listar/{id}(id=${pedido.id})}" class="btn btn-outline-info">
+                        <a th:href="@{/pedido/item/listar/{id}(id = ${pedido.id})}" class="btn btn-outline-info">
                             <i class="bi bi-view-list"></i>
-                          </a>
+                        </a>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    
+
     <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
 
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/search.js"></script>
 </body>
 
 </html>
