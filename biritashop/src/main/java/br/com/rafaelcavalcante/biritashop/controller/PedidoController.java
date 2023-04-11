@@ -1,5 +1,7 @@
 package br.com.rafaelcavalcante.biritashop.controller;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -128,8 +130,13 @@ public class PedidoController {
         Pedido pedido = this.pedidoRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Pedido Não Encontrado " + id));
         ModelAndView mav = new ModelAndView("/pedido/item/listarItens");
+        BigDecimal subTotal = this.pedidoService.calcularValorTotal(pedido.getItens());
+        BigDecimal valorImposto = subTotal.multiply(new BigDecimal("0.1375"));
+        BigDecimal valorTotal = subTotal.add(valorImposto);
         mav.addObject("pedido", pedido);
-        mav.addObject("valorTotal", this.pedidoService.calcularValorTotal(pedido.getItens()));
+        mav.addObject("subTotal", subTotal.setScale(2, RoundingMode.HALF_UP));
+        mav.addObject("valorImposto", valorImposto.setScale(2, RoundingMode.HALF_UP));
+        mav.addObject("valorTotal", valorTotal.setScale(2, RoundingMode.HALF_UP));
         return mav;
     }
 }

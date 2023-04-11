@@ -55,10 +55,10 @@
             <td th:text="${pedido.valorPagamento}"></td>
             <td th:text="${#temporals.format(pedido.data, 'dd/MM/yyyy')}"></td>
             <td>
-                <a th:href="@{editar/{id}(id=${pedido.id})}" class="btn btn-outline-warning">
+                <a th:href="@{/pedido/editar/{id}(id = ${pedido.id})}" class="btn btn-outline-warning">
                     <i class="bi bi-pencil-square"></i>
                 </a>
-                <a th:href="@{remover/{id}(id=${pedido.id})}" class="btn btn-outline-danger">
+                <a th:href="@{/pedido/remover/{id}(id = ${pedido.id})}" class="btn btn-outline-danger">
                     <i class="bi bi-trash"></i>
                 </a>
                 <a th:href="@{/pedido/item/listar/{id}(id = ${pedido.id})}" class="btn btn-outline-info">
