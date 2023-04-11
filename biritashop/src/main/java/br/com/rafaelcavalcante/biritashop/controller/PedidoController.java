@@ -50,26 +50,28 @@ public class PedidoController {
         this.pedidoService = pedidoService;
     }
 
-    @GetMapping("/listar")
-    public ModelAndView listarPedidos(@RequestParam(value = "clienteId", required = false) Long clienteId) {
-        List<Cliente> clientes = this.clienteRepo.findAll();
-        List<Pedido> pedidos = this.pedidoRepo.findByClienteId(clienteId);
-        ModelAndView mav = new ModelAndView("/pedido/listarPedidos");
-        mav.addObject("clientes", clientes);
-        mav.addObject("clienteId", clienteId);
-        mav.addObject("pedidos", pedidos);
-        return mav;
-    }
+    /*
+     * @GetMapping("/listar")
+     * public ModelAndView listarPedidos(@RequestParam(value = "clienteId", required
+     * = false) Long clienteId) {
+     * List<Cliente> clientes = this.clienteRepo.findAll();
+     * List<Pedido> pedidos = this.pedidoRepo.findByClienteId(clienteId);
+     * ModelAndView mav = new ModelAndView("/pedido/listarPedidos");
+     * mav.addObject("clientes", clientes);
+     * mav.addObject("clienteId", clienteId);
+     * mav.addObject("pedidos", pedidos);
+     * return mav;
+     * }
+     */
 
-    @GetMapping("/listar/{clienteId}")
-    public ModelAndView listarPedidosId(@PathVariable("clienteId") Long clienteId) {
+    @GetMapping("/listar")
+    public ModelAndView listarPedidosId(@RequestParam(value = "clienteId", required = false) Long clienteId) {
         List<Cliente> clientes = this.clienteRepo.findAll();
         List<Pedido> pedidos = this.pedidoRepo.findByClienteId(clienteId);
-        ModelAndView mav = new ModelAndView("/pedido/listarPedidos");
-        mav.addObject("clientes", clientes);
-        mav.addObject("clienteId", clienteId);
-        mav.addObject("pedidos", pedidos);
-        return mav;
+        return new ModelAndView("/pedido/listarPedidos")
+                .addObject("clientes", clientes)
+                .addObject("clienteId", clienteId)
+                .addObject("pedidos", pedidos);
     }
 
     @GetMapping("/adicionar")

@@ -2,87 +2,96 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     <title>BiritaShop</title>
 </head>
 
 <body>
-    <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
+<div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-    <div class="container content">
-        <h1>Clientes</h1>
-        <form th:action="@{/dependente/adicionar}" method="POST" th:object="${dependente}">
-            <div class="row">
-                <div class="col-sm-6">
-                    <select class="form-select" name="cliente">
-                        <option th:each="cliente : ${clientes}" th:value="${cliente.id}"
+<div class="container d-flex justify-content-center content">
+    <form th:action="@{/dependente/adicionar}" method="POST" th:object="${dependente}">
+
+        <h2 class="border-bottom">Adicionar Novo Dependente</h2>
+
+        <div class="row g-1">
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="cliente">
+                    <i class="bi bi-person"></i>
+                    Cliente
+                </label>
+                <select class="form-select" id="cliente" name="cliente">
+                    <option th:each="cliente : ${clientes}" th:value="${cliente.id}"
                             th:text="${cliente.nomeCompleto}">
-                        </option>
-                    </select>
-                </div>
+                    </option>
+                </select>
             </div>
-            <h1>Adicionar Novo Dependente</h1>
-            <div class="row">
-                <div class="col-sm-6">
-                    <label for="nomeCompleto">Nome Completo*</label>
-                    <input type="text" class="form-control" id="nomeCompleto" name="nomeCompleto"
-                        th:field="*{nomeCompleto}" required>
-                </div>
-                <div class="col-sm-6">
-                    <label for="dataNascimento">Data Nascimento*</label>
-                    <input type="date" class="form-control" id="dataNascimento" name="dataNascimento"
-                        th:field="*{dataNascimento}" required>
-                </div>
-            </div>
-            <div class="row">
-                <legend class="col-form-label pt-0">Informe o Gênero*</legend>
-                <div class="col-sm-10">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="genero" id="masculino" value="Masculino"
-                            th:field="*{genero}" required>
-                        <label class="form-check-label" for="masculino">
-                            Masculino
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="genero" id="feminino" value="Feminino"
-                            th:field="*{genero}">
-                        <label class="form-check-label" for="feminino">
-                            Feminino
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="genero" id="naoInformado"
-                            value="Não Informado" th:field="*{genero}">
-                        <label class="form-check-label" for="naoInformado">
-                            Não Informado
-                        </label>
-                    </div>
-                </div>
-            </div>
+        </div>
 
-            <button class="btn btn-outline-success col-sm-2" type="submit">
+        <div class="row g-2 mb-2">
+            <div class="col">
+                <label for="nomeCompleto">Nome Completo*</label>
+                <input type="text" class="form-control" id="nomeCompleto" name="nomeCompleto"
+                       th:field="*{nomeCompleto}" required>
+            </div>
+            <div class="col">
+                <label for="dataNascimento">Data Nascimento*</label>
+                <input type="date" class="form-control" id="dataNascimento" name="dataNascimento"
+                       th:field="*{dataNascimento}" required>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <legend class="col-form-label pt-0">Informe o Gênero*</legend>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="genero" id="masculino" value="Masculino"
+                           th:field="*{genero}" required>
+                    <label class="form-check-label" for="masculino">
+                        Masculino
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="genero" id="feminino" value="Feminino"
+                           th:field="*{genero}">
+                    <label class="form-check-label" for="feminino">
+                        Feminino
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="genero" id="naoInformado"
+                           value="Não Informado" th:field="*{genero}">
+                    <label class="form-check-label" for="naoInformado">
+                        Não Informado
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-1">
+            <button class="btn btn-success" type="submit">
                 <i class="bi bi-plus-square"></i>
                 Adicionar
             </button>
-            <button class="btn btn-outline-secondary col-sm-2" type="reset">
+            <button class="btn btn-outline-secondary" type="reset">
                 <i class="bi bi-x-square"></i>
                 Limpar Campos
             </button>
+        </div>
 
-            <p>*Campos Obrigatórios</p>
-        </form>
-    </div>
+        <p>*Campos Obrigatórios</p>
+    </form>
+</div>
 
-    <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
+<div th:replace="fragments/barraInformacao :: barraInformacao"></div>
 
-    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

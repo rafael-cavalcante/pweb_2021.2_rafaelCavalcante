@@ -2,70 +2,73 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     <title>BiritaShop</title>
 </head>
 
 <body>
-    <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
+<div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-    <div class="container content">
-        <h1>Clientes</h1>
-        <form th:action="@{/dependente/listar}" method="GET" th:object="${cliente}">
-            <div class="row">
-                <div class="col-sm-6">
-                    <select class="form-select" name="clienteId">
-                        <option th:each="cliente : ${clientes}" th:value="${cliente.id}"
-                            th:text="${cliente.nomeCompleto}" th:selected="${cliente.id} == ${clienteId}">
-                        </option>
-                    </select>
-                </div>
-            </div>
-
-            <button class="btn btn-outline-primary col-sm-2 mt-2 mb-2" type="submit">
+<div class="container content">
+    <div class="row col-sm-6">
+        <div class="input-group mb-2">
+            <label class="input-group-text" for="search">
+                <i class="bi bi-person"></i>
+                Cliente
+            </label>
+            <select class="form-select" id="search" onchange="buscarDependentes()" aria-label="Default select example">
+                <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nomeCompleto}"
+                        th:selected="${cliente.id} == ${clienteId}">
+                </option>
+            </select>
+            <button class="btn btn-outline-primary" type="button" onclick="buscarDependentes()">
                 <i class="bi bi-search"></i>
-                Listar Dependentes
+                Buscar
             </button>
-
-        </form>
-        <h1 class="text-center">Dependentes</h1>
-        <table class="table">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nome Completo</th>
-                    <th scope="col">Data Nascimento</th>
-                    <th scope="col">Genero</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="dependente : ${dependentes}">
-                    <th scope="row" th:text="${dependente.id}"></th>
-                    <td th:text="${dependente.nomeCompleto}"></td>
-                    <td th:text="${#temporals.format(dependente.dataNascimento, 'dd/MM/yyyy')}"></td>
-                    <td th:text="${dependente.genero}"></td>
-                    <td><a th:href="@{editar/{id}(id=${dependente.id})}" class="btn btn-outline-warning">
-                            <i class="bi bi-pencil-square"></i>
-                        </a></td>
-                    <td><a th:href="@{remover/{id}(id=${dependente.id})}" class="btn btn-outline-danger">
-                            <i class="bi bi-trash"></i>
-                        </a></td>
-                </tr>
-            </tbody>
-        </table>
+        </div>
     </div>
 
-    <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
+    <h2 class="border-bottom">Dependentes</h2>
 
-    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <table class="table">
+        <thead class="table-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Data Nascimento</th>
+            <th scope="col">Gênero</th>
+            <th scope="col">Opções</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="dependente : ${dependentes}">
+            <th scope="row" th:text="${dependente.id}"></th>
+            <td th:text="${dependente.nomeCompleto}"></td>
+            <td th:text="${#temporals.format(dependente.dataNascimento, 'dd/MM/yyyy')}"></td>
+            <td th:text="${dependente.genero}"></td>
+            <td>
+                <a th:href="@{/dependente/editar/{id}(id = ${dependente.id})}" class="btn btn-outline-warning">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+                <a th:href="@{/dependente/remover/{id}(id = ${dependente.id})}" class="btn btn-outline-danger">
+                    <i class="bi bi-trash"></i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:replace="fragments/barraInformacao :: barraInformacao"></div>
+
+<script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/js/search.js"></script>
 </body>
 
 </html>

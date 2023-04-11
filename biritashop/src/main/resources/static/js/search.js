@@ -1,6 +1,11 @@
 function buscarPedidos() {
-    var select = document.getElementById("buscar");
-    var idSelecionado = select.options[select.selectedIndex].value;
-    var novaUrl = "/pedido/listar/" + idSelecionado;
-    window.location.href = novaUrl;
+    var select = document.getElementById("search");
+    var clienteId = select.options[select.selectedIndex].value;
+    window.location.href = "/pedido/listar/?clienteId=" + clienteId;
+}
+
+function buscarDependentes() {
+    var select = document.getElementById("search");
+    var clienteId = select.options[select.selectedIndex].value;
+    window.location.href = "/dependente/listar/?clienteId=" + clienteId;
 }

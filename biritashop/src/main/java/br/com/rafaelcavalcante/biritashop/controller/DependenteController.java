@@ -49,7 +49,7 @@ public class DependenteController {
     @PostMapping("/adicionar")
     public String adicionarDependente(Dependente dependente) {
         this.dependenteRepository.save(dependente);
-        return "redirect:/cliente/listar";
+        return "redirect:/dependente/listar/?clienteId=" + dependente.getCliente().getId();
     }
 
     @GetMapping("/editar/{id}")
