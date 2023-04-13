@@ -15,7 +15,7 @@
 <body>
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-    <div class="container d-flex justify-content-center content">
+    <div class="container my-5 pt-4 d-flex justify-content-center">
         <form class="needs-validation" th:action="@{/cliente/editar/{id}(id = ${cliente.id})}" method="POST"
             th:object="${cliente}" novalidate>
 

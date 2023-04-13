@@ -15,7 +15,7 @@
 <body>
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-    <div class="container content">
+    <div class="container my-5 pt-4">
         <form th:action="@{/pedido/adicionar}" method="POST" th:object="${pedidoDTO}"
             onsubmit="return verificarCheckBox()">
 

@@ -32,20 +32,20 @@ public class DependenteController {
     public ModelAndView listarDependentes(@RequestParam(value = "clienteId", required = false) Long clienteId) {
         List<Cliente> clientes = this.clienteRepo.findAll();
         List<Dependente> dependentes = this.dependenteRepo.findByCliente_Id(clienteId);
-        ModelAndView mav = new ModelAndView("/dependente/listarDependentes");
-        mav.addObject("clientes", clientes);
-        mav.addObject("clienteId", clienteId);
-        mav.addObject("dependentes", dependentes);
-        return mav;
+        return new ModelAndView("/dependente/listarDependentes")
+                .addObject("pagDependente", true)
+                .addObject("clientes", clientes)
+                .addObject("clienteId", clienteId)
+                .addObject("dependentes", dependentes);
     }
 
     @GetMapping("/adicionar")
     public ModelAndView formAdicionarDependente() {
         List<Cliente> clientes = this.clienteRepo.findAll();
-        ModelAndView mav = new ModelAndView("/dependente/adicionarDependente");
-        mav.addObject("clientes", clientes);
-        mav.addObject(new Dependente());
-        return mav;
+        return new ModelAndView("/dependente/adicionarDependente")
+                .addObject("pagDependente", true)
+                .addObject("clientes", clientes)
+                .addObject(new Dependente());
     }
 
     @PostMapping("/adicionar")
@@ -59,10 +59,10 @@ public class DependenteController {
         Dependente dependente = this.dependenteRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + id));
         List<Cliente> clientes = this.clienteRepo.findAll();
-        ModelAndView mav = new ModelAndView("/dependente/editarDependente");
-        mav.addObject("clientes", clientes);
-        mav.addObject(dependente);
-        return mav;
+        return new ModelAndView("/dependente/editarDependente")
+                .addObject("pagDependente", true)
+                .addObject("clientes", clientes)
+                .addObject(dependente);
     }
 
     @PostMapping("/editar/{id}")

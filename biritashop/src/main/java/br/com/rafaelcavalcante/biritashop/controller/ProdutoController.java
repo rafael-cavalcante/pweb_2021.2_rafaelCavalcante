@@ -19,23 +19,23 @@ public class ProdutoController {
 
     private ProdutoRepository produtoRepo;
 
-    public ProdutoController(ProdutoRepository produtoRepo){
+    public ProdutoController(ProdutoRepository produtoRepo) {
         this.produtoRepo = produtoRepo;
     }
-    
+
     @GetMapping("/listar")
     public ModelAndView listarProdutos() {
         List<Produto> produtos = this.produtoRepo.findAll();
-        ModelAndView mav = new ModelAndView("/produto/listarProdutos");
-        mav.addObject("produtos", produtos);
-        return mav;
+        return new ModelAndView("/produto/listarProdutos")
+                .addObject("pagProduto", true)
+                .addObject("produtos", produtos);
     }
 
     @GetMapping("/adicionar")
     public ModelAndView formAdicionarProduto() {
-        ModelAndView mav = new ModelAndView("/produto/adicionarProduto");
-        mav.addObject(new Produto());
-        return mav;
+        return new ModelAndView("/produto/adicionarProduto")
+                .addObject("pagProduto", true)
+                .addObject(new Produto());
     }
 
     @PostMapping("/adicionar")
@@ -49,9 +49,9 @@ public class ProdutoController {
     public ModelAndView formEditarProduto(@PathVariable("id") Long id) {
         Produto produto = this.produtoRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + id));
-        ModelAndView mav = new ModelAndView("/produto/editarProduto");
-        mav.addObject(produto);
-        return mav;
+        return new ModelAndView("/produto/editarProduto")
+                .addObject("pagProduto", true)
+                .addObject(produto);
     }
 
     @PostMapping("/editar/{id}")

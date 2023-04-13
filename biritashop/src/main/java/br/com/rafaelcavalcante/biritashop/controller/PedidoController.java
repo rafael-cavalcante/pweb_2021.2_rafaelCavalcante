@@ -52,25 +52,12 @@ public class PedidoController {
         this.pedidoService = pedidoService;
     }
 
-    /*
-     * @GetMapping("/listar")
-     * public ModelAndView listarPedidos(@RequestParam(value = "clienteId", required
-     * = false) Long clienteId) {
-     * List<Cliente> clientes = this.clienteRepo.findAll();
-     * List<Pedido> pedidos = this.pedidoRepo.findByClienteId(clienteId);
-     * ModelAndView mav = new ModelAndView("/pedido/listarPedidos");
-     * mav.addObject("clientes", clientes);
-     * mav.addObject("clienteId", clienteId);
-     * mav.addObject("pedidos", pedidos);
-     * return mav;
-     * }
-     */
-
     @GetMapping("/listar")
     public ModelAndView listarPedidosId(@RequestParam(value = "clienteId", required = false) Long clienteId) {
         List<Cliente> clientes = this.clienteRepo.findAll();
         List<Pedido> pedidos = this.pedidoRepo.findByClienteId(clienteId);
         return new ModelAndView("/pedido/listarPedidos")
+                .addObject("pagPedido", true)
                 .addObject("clientes", clientes)
                 .addObject("clienteId", clienteId)
                 .addObject("pedidos", pedidos);
@@ -80,44 +67,14 @@ public class PedidoController {
     public ModelAndView formAdicionarPedido() {
         List<Cliente> clientes = this.clienteRepo.findAll();
         List<Produto> produtos = this.produtoRepo.findAllByOrderByNomeAsc();
-        ModelAndView mav = new ModelAndView("/pedido/adicionarPedido");
-        mav.addObject("clientes", clientes);
-        mav.addObject("produtos", produtos);
-        mav.addObject("formasPagamento", FormaPagamento.values());
-        mav.addObject(new PedidoDTO());
-        return mav;
+        return new ModelAndView("/pedido/adicionarPedido")
+                .addObject("pagPedido", true)
+                .addObject("clientes", clientes)
+                .addObject("produtos", produtos)
+                .addObject("formasPagamento", FormaPagamento.values())
+                .addObject(new PedidoDTO());
     }
 
-    /*@Transactional
-    @PostMapping("/adicionar")
-    public ModelAndView adicionarPedido(PedidoDTO pedidoDTO) {
-        Cliente cliente = this.clienteRepo.findById(pedidoDTO.getCliente().getId())
-                .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + pedidoDTO.getCliente().getId()));
-        ModelAndView mav = new ModelAndView("/pedido/finalizarPedido");
-        Pedido pedido = new Pedido();
-        pedido.setCliente(cliente);
-        pedido.setData(LocalDate.now());
-        pedido.setFormaPagamento(pedidoDTO.getFormaPagamento());
-        List<ItemPedido> itensPedido = this.pedidoService.converterItensPedido(pedido, pedidoDTO.getItens());
-        this.pedidoRepo.save(pedido);
-        this.itemPedidoRepo.saveAll(itensPedido);
-        pedido.setItens(itensPedido);
-        mav.addObject("pedido", pedido);
-        return mav;
-
-    }
-    
-    @PostMapping("/finalizar/{id}")
-    public String finalizarPedido(@PathVariable("id") Long pedidoId, Pedido pedido) {
-        Pedido pedidoFinalizado = this.pedidoRepo.findById(pedidoId)
-                .orElseThrow(() -> new IllegalArgumentException("Pedido Id " + pedidoId + " Não Encontrado!"));
-        pedidoFinalizado.setValorPagamento(pedido.getValorPagamento());
-        pedidoFinalizado.setNumeroCartao(pedido.getNumeroCartao());
-        this.pedidoRepo.save(pedidoFinalizado);
-        return "redirect:/pedido/listar?clienteId=" + pedidoFinalizado.getCliente().getId();
-    }
-    */
-    
     @PostMapping("/adicionar")
     public ModelAndView adicionarPedido(PedidoDTO pedidoDTO) {
         ModelAndView mav = new ModelAndView("/pedido/finalizarPedidoTeste");
@@ -131,7 +88,7 @@ public class PedidoController {
     @PostMapping("/finalizar")
     public String finalizarPedido(PedidoDTO pedidoDTO) {
         Cliente cliente = this.clienteRepo.findById(pedidoDTO.getCliente().getId())
-        .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + pedidoDTO.getCliente().getId()));
+                .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + pedidoDTO.getCliente().getId()));
         Pedido pedido = new Pedido();
         pedido.setCliente(cliente);
         pedido.setData(LocalDate.now());
@@ -156,14 +113,14 @@ public class PedidoController {
     public ModelAndView listarItens(@PathVariable("id") Long id) {
         Pedido pedido = this.pedidoRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Pedido Não Encontrado " + id));
-        ModelAndView mav = new ModelAndView("/pedido/item/listarItens");
         BigDecimal subTotal = this.pedidoService.calcularValorTotal(pedido.getItens());
         BigDecimal valorImposto = subTotal.multiply(new BigDecimal("0.1375"));
         BigDecimal valorTotal = subTotal.add(valorImposto);
-        mav.addObject("pedido", pedido);
-        mav.addObject("subTotal", subTotal.setScale(2, RoundingMode.HALF_UP));
-        mav.addObject("valorImposto", valorImposto.setScale(2, RoundingMode.HALF_UP));
-        mav.addObject("valorTotal", valorTotal.setScale(2, RoundingMode.HALF_UP));
-        return mav;
+        return new ModelAndView("/pedido/item/listarItensPedido")
+                .addObject("pagPedido", true)
+                .addObject("pedido", pedido)
+                .addObject("subTotal", subTotal.setScale(2, RoundingMode.HALF_UP))
+                .addObject("valorImposto", valorImposto.setScale(2, RoundingMode.HALF_UP))
+                .addObject("valorTotal", valorTotal.setScale(2, RoundingMode.HALF_UP));
     }
 }

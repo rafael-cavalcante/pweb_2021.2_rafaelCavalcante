@@ -2,78 +2,78 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <title>BiritaShop</title>
 </head>
 
 <body>
-<div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
+    <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-<div class="container content">
-    <div class="row col-sm-6">
-        <div class="input-group mb-2">
-            <label class="input-group-text" for="search">
-                <i class="bi bi-person"></i>
-                Cliente
-            </label>
-            <select class="form-select" id="search" onchange="buscarPedidos()">
-                <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nomeCompleto}"
+    <div class="container my-5 pt-4">
+        <div class="row col-sm-6">
+            <div class="input-group mb-2">
+                <label class="input-group-text" for="search">
+                    <i class="bi bi-person"></i>
+                    Cliente
+                </label>
+                <select class="form-select" id="search" onchange="buscarPedidos()">
+                    <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nomeCompleto}"
                         th:selected="${cliente.id} == ${clienteId}">
-                </option>
-            </select>
-            <button class="btn btn-outline-primary" type="button" onclick="buscarPedidos()">
-                <i class="bi bi-search"></i>
-                Buscar
-            </button>
+                    </option>
+                </select>
+                <button class="btn btn-outline-primary" type="button" onclick="buscarPedidos()">
+                    <i class="bi bi-search"></i>
+                    Buscar
+                </button>
+            </div>
         </div>
+
+        <h2 class="border-bottom">Pedidos</h2>
+
+        <table class="table overflow-scroll mb-5">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Forma Pagamento</th>
+                    <th scope="col">Número do Cartão</th>
+                    <th scope="col">Valor Pagamento</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="pedido : ${pedidos}">
+                    <th scope="row" th:text="${pedido.id}"></th>
+                    <td th:text="${pedido.formaPagamento}"></td>
+                    <td th:text="${pedido.numeroCartao}"></td>
+                    <td th:text="${pedido.valorPagamento}"></td>
+                    <td th:text="${#temporals.format(pedido.data, 'dd/MM/yyyy')}"></td>
+                    <td>
+                        <a th:href="@{/pedido/editar/{id}(id = ${pedido.id})}" class="btn btn-outline-warning">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a th:href="@{/pedido/remover/{id}(id = ${pedido.id})}" class="btn btn-outline-danger">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                        <a th:href="@{/pedido/item/listar/{id}(id = ${pedido.id})}" class="btn btn-outline-info">
+                            <i class="bi bi-view-list"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-    <h2 class="border-bottom">Pedidos</h2>
+    <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
 
-    <table class="table overflow-scroll mb-5">
-        <thead class="table-dark">
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Forma Pagamento</th>
-            <th scope="col">Número do Cartão</th>
-            <th scope="col">Valor Pagamento</th>
-            <th scope="col">Data</th>
-            <th scope="col">Opções</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="pedido : ${pedidos}">
-            <th scope="row" th:text="${pedido.id}"></th>
-            <td th:text="${pedido.formaPagamento}"></td>
-            <td th:text="${pedido.numeroCartao}"></td>
-            <td th:text="${pedido.valorPagamento.valor}"></td>
-            <td th:text="${#temporals.format(pedido.data, 'dd/MM/yyyy')}"></td>
-            <td>
-                <a th:href="@{/pedido/editar/{id}(id = ${pedido.id})}" class="btn btn-outline-warning">
-                    <i class="bi bi-pencil-square"></i>
-                </a>
-                <a th:href="@{/pedido/remover/{id}(id = ${pedido.id})}" class="btn btn-outline-danger">
-                    <i class="bi bi-trash"></i>
-                </a>
-                <a th:href="@{/pedido/item/listar/{id}(id = ${pedido.id})}" class="btn btn-outline-info">
-                    <i class="bi bi-view-list"></i>
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<div th:replace="fragments/barraInformacao :: barraInformacao"></div>
-
-<script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/search.js"></script>
 </body>
 
 </html>

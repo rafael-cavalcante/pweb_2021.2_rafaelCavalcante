@@ -15,7 +15,7 @@
 <body>
 <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-<div class="container d-flex justify-content-center content">
+<div class="container my-5 pt-4 d-flex justify-content-center">
     <form th:action="@{/produto/editar/{id}(id = ${produto.id})}" method="POST" th:object="${produto}">
         <h2 class="border-bottom">Editar Produto</h2>
         <div class="row g1 mb-2">

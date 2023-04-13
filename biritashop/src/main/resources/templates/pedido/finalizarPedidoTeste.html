@@ -15,7 +15,7 @@
 <body>
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-    <div class="container content">
+    <div class="container my-5 pt-4">
         <form th:action="@{/pedido/finalizar}" method="POST" th:object="${pedidoDTO}">
             <div class="row col-sm-6">
                 <div class="input-group mb-3">
