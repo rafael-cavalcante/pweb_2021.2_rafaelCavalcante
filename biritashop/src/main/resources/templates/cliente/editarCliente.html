@@ -16,7 +16,8 @@
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
     <div class="container d-flex justify-content-center content">
-        <form th:action="@{/cliente/editar/{id}(id = ${cliente.id})}" method="POST" th:object="${cliente}">
+        <form class="needs-validation" th:action="@{/cliente/editar/{id}(id = ${cliente.id})}" method="POST"
+            th:object="${cliente}" novalidate>
 
             <h2 class="border-bottom">Editar Cliente</h2>
 
@@ -31,8 +32,8 @@
             <div class="row g-2 mb-3">
                 <div class="col-auto">
                     <label class="form-label" for="email">E-Mail*</label>
-                    <input class="form-control mask-email" type="text" id="email" name="email"
-                        th:field="*{email}" required>
+                    <input class="form-control mask-email" type="text" id="email" name="email" th:field="*{email}"
+                        required>
                 </div>
                 <div class="col-auto">
                     <label class="form-label" for="telefone">Telefone*</label>
@@ -55,26 +56,10 @@
             <div class="row mb-2">
                 <legend class="col-form-label pt-0">Informe o Gênero*</legend>
                 <div class="col-sm-10">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="genero" id="masculino" value="Masculino"
-                            th:field="*{genero}" required>
-                        <label class="form-check-label" for="masculino">
-                            Masculino
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="genero" id="feminino" value="Feminino"
-                            th:field="*{genero}">
-                        <label class="form-check-label" for="feminino">
-                            Feminino
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="genero" id="naoInformado"
-                            value="Não Informado" th:field="*{genero}">
-                        <label class="form-check-label" for="naoInformado">
-                            Não Informado
-                        </label>
+                    <div class="form-check" th:each="genero : ${generos}">
+                        <input class="form-check-input" type="radio" name="genero" th:id="${genero.valor}"
+                            th:value="${genero}" th:field="*{genero}" required>
+                        <label class="form-check-label" th:for="${genero.valor}" th:text="${genero.valor}"></label>
                     </div>
                 </div>
             </div>
@@ -96,6 +81,7 @@
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/jquery.mask.min.js"></script>
     <script type="text/javascript" src="/js/masks.js"></script>
+    <script type="text/javascript" src="/js/validacao.js"></script>
 </body>
 
 </html>

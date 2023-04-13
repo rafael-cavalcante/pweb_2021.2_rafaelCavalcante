@@ -3,7 +3,7 @@ package br.com.rafaelcavalcante.biritashop.model.enums;
 public enum Genero {
     MASCULINO("Masculino"),
     FEMININO("Feminino"),
-    NAOINFORMADO("Não Informado");
+    NAO_INFORMADO("Não Informado");
 
     private String valor;
 

@@ -12,12 +12,12 @@
                 if (!form.checkValidity()) {
                     event.preventDefault()
                     event.stopPropagation()
+                } else {
+                    //Removendo Mascaras dos inputs
+                    $(".mask-cep").val($(".mask-cep").cleanVal());
+                    $(".mask-telefone").val($(".mask-telefone").cleanVal());
+                    $(".mask-cartao").val($(".mask-cartao").cleanVal());
                 }
-
-                //Removendo Mascaras dos inputs
-                $(".mask-cep").val($(".mask-cep").cleanVal());
-                $(".mask-telefone").val($(".mask-telefone").cleanVal());
-                $(".mask-cartao").val($(".mask-cartao").cleanVal());
 
                 form.classList.add('was-validated');
             }, false)

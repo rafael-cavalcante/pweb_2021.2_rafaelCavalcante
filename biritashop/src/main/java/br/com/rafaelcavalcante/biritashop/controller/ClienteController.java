@@ -43,12 +43,12 @@ public class ClienteController {
     public ModelAndView formEditarCliente(@PathVariable("id") Long id) {
         Cliente cliente = this.clienteRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Cliente Não Encontrado " + id));
-        ModelAndView mav = new ModelAndView("/cliente/editarCliente");
-        mav.addObject(cliente);
-        return mav;
+        return new ModelAndView("/cliente/editarCliente")
+                .addObject("generos", Genero.values())
+                .addObject(cliente);
     }
 
-    @PostMapping ("/editar/{id}")
+    @PostMapping("/editar/{id}")
     public String editarCliente(@PathVariable("id") Long id, Cliente cliente) {
         this.clienteRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Cliente Não Encontrado " + id));

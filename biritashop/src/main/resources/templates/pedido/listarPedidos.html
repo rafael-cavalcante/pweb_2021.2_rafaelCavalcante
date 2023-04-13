@@ -52,7 +52,7 @@
             <th scope="row" th:text="${pedido.id}"></th>
             <td th:text="${pedido.formaPagamento}"></td>
             <td th:text="${pedido.numeroCartao}"></td>
-            <td th:text="${pedido.valorPagamento}"></td>
+            <td th:text="${pedido.valorPagamento.valor}"></td>
             <td th:text="${#temporals.format(pedido.data, 'dd/MM/yyyy')}"></td>
             <td>
                 <a th:href="@{/pedido/editar/{id}(id = ${pedido.id})}" class="btn btn-outline-warning">

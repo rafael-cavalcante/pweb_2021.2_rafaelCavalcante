@@ -55,25 +55,8 @@
                 <div class="col-sm-10">
                     <div class="form-check" th:each="genero : ${generos}">
                         <input class="form-check-input" type="radio" name="genero" th:id="${genero.valor}" th:value="${genero}" required>
-                        <label class="form-check-label" th:for="${genero.valor}" th:text="${genero}"></label>
-                        <!--<input class="form-check-input" type="radio" name="genero" id="masculino" value="Masculino" required>
-                        <label class="form-check-label" for="masculino">
-                            Masculino
-                        </label>-->
+                        <label class="form-check-label" th:for="${genero.valor}" th:text="${genero.valor}"></label>
                     </div>
-                    <!--<div class="form-check">
-                        <input class="form-check-input" type="radio" name="genero" id="feminino" value="Feminino" >
-                        <label class="form-check-label" for="feminino">
-                            Feminino
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="genero" id="naoInformado"
-                            value="Não Informado" th:field="*{genero}">
-                        <label class="form-check-label" for="naoInformado">
-                            Não Informado
-                        </label>
-                    </div>-->
                 </div>
             </div>
 
