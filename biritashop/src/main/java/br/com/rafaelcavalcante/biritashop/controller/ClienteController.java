@@ -1,6 +1,7 @@
 package br.com.rafaelcavalcante.biritashop.controller;
 
 import br.com.rafaelcavalcante.biritashop.model.Cliente;
+import br.com.rafaelcavalcante.biritashop.model.enums.Genero;
 import br.com.rafaelcavalcante.biritashop.repository.ClienteRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,7 @@ public class ClienteController {
     @GetMapping("/adicionar")
     public ModelAndView formAdicionarCliente() {
         return new ModelAndView("/cliente/adicionarCliente")
+                .addObject("generos", Genero.values())
                 .addObject(new Cliente());
     }
 

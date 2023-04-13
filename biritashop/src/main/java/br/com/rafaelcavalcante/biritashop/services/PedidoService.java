@@ -39,6 +39,24 @@ public class PedidoService {
         }).collect(Collectors.toList());
     }
 
+    public List<ItemPedido> converterItensPedido(List<ItemPedidoDTO> itensPedidoDTO) {
+        List<ItemPedidoDTO> filtrado = itensPedidoDTO.stream()
+                .filter(Objects::nonNull)
+                .filter(item -> Objects.nonNull(item.getId()))
+                .peek(item -> item.setQuantidade(item.getQuantidade() != null ? item.getQuantidade() : 1L))
+                .collect(Collectors.toList());
+        return filtrado.stream().map(itemPedidoDTO -> {
+            Produto produto = this.produtoRepository.findById(itemPedidoDTO.getId())
+                    .orElseThrow(() -> new IllegalArgumentException("Produto Não Encontrado " + itemPedidoDTO.getId()));
+            ItemPedido itemPedido = ItemPedido.builder()
+                    .quantidade(itemPedidoDTO.getQuantidade())
+                    .valorUnitario(produto.getPrecoVenda())
+                    .produto(produto)
+                    .build();
+            return itemPedido;
+        }).collect(Collectors.toList());
+    }
+
     public BigDecimal calcularValorTotal(ItemPedido itemPedido) {
         return itemPedido.getValorUnitario()
                 .multiply(BigDecimal.valueOf(itemPedido.getQuantidade()));

@@ -88,7 +88,7 @@ public class PedidoController {
         return mav;
     }
 
-    @Transactional
+    /*@Transactional
     @PostMapping("/adicionar")
     public ModelAndView adicionarPedido(PedidoDTO pedidoDTO) {
         Cliente cliente = this.clienteRepo.findById(pedidoDTO.getCliente().getId())
@@ -106,7 +106,7 @@ public class PedidoController {
         return mav;
 
     }
-
+    
     @PostMapping("/finalizar/{id}")
     public String finalizarPedido(@PathVariable("id") Long pedidoId, Pedido pedido) {
         Pedido pedidoFinalizado = this.pedidoRepo.findById(pedidoId)
@@ -115,6 +115,33 @@ public class PedidoController {
         pedidoFinalizado.setNumeroCartao(pedido.getNumeroCartao());
         this.pedidoRepo.save(pedidoFinalizado);
         return "redirect:/pedido/listar?clienteId=" + pedidoFinalizado.getCliente().getId();
+    }
+    */
+    
+    @PostMapping("/adicionar")
+    public ModelAndView adicionarPedido(PedidoDTO pedidoDTO) {
+        ModelAndView mav = new ModelAndView("/pedido/finalizarPedidoTeste");
+        List<ItemPedido> itensPedido = this.pedidoService.converterItensPedido(pedidoDTO.getItens());
+        mav.addObject("itensPedido", itensPedido);
+        mav.addObject(pedidoDTO);
+        return mav;
+    }
+
+    @Transactional
+    @PostMapping("/finalizar")
+    public String finalizarPedido(PedidoDTO pedidoDTO) {
+        Cliente cliente = this.clienteRepo.findById(pedidoDTO.getCliente().getId())
+        .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + pedidoDTO.getCliente().getId()));
+        Pedido pedido = new Pedido();
+        pedido.setCliente(cliente);
+        pedido.setData(LocalDate.now());
+        pedido.setFormaPagamento(pedidoDTO.getFormaPagamento());
+        pedido.setValorPagamento(pedidoDTO.getValorPagamento());
+        pedido.setNumeroCartao(pedidoDTO.getNumeroCartao());
+        this.pedidoRepo.save(pedido);
+        List<ItemPedido> itensPedido = this.pedidoService.converterItensPedido(pedido, pedidoDTO.getItens());
+        this.itemPedidoRepo.saveAll(itensPedido);
+        return "redirect:/pedido/listar?clienteId=" + pedido.getCliente().getId();
     }
 
     @GetMapping("/remover/{id}")

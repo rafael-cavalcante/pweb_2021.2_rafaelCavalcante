@@ -2,90 +2,100 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <title>BiritaShop</title>
 </head>
 
 <body>
-<div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
+    <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-<div class="container d-flex justify-content-center content">
-    <form th:action="@{/cliente/editar/{id}(id = ${cliente.id})}" method="POST" th:object="${cliente}">
-        <h2 class="border-bottom">Editar Cliente</h2>
-        <div class="row g-2 mb-3">
-            <div class="col-auto">
-                <label class="form-label" for="nomeCompleto">Nome Completo*</label>
-                <input class="form-control" type="text" id="nomeCompleto" name="nomeCompleto"
-                       th:field="*{nomeCompleto}" required>
-            </div>
-            <div class="col-auto">
-                <label class="form-label" for="telefone">Telefone*</label>
-                <input class="form-control mask-telefone" type="text" id="telefone" name="telefone"
-                       th:field="*{telefone}" required>
-            </div>
-        </div>
+    <div class="container d-flex justify-content-center content">
+        <form th:action="@{/cliente/editar/{id}(id = ${cliente.id})}" method="POST" th:object="${cliente}">
 
-        <div class="row g-2 mb-3">
-            <div class="col-auto">
-                <label class="form-label" for="cep">CEP*</label>
-                <input class="form-control mask-cep" type="text" id="cep" name="CEP" th:field="*{CEP}" required>
-            </div>
-            <div class="col-auto">
-                <label class="form-label" for="cidade">Cidade*</label>
-                <input class="form-control" type="text" id="cidade" name="cidade" th:field="*{cidade}" required>
-            </div>
-        </div>
+            <h2 class="border-bottom">Editar Cliente</h2>
 
-        <div class="row mb-2">
-            <legend class="col-form-label pt-0">Informe o Gênero*</legend>
-            <div class="col-sm-10">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="genero" id="masculino" value="Masculino"
-                           th:field="*{genero}" required>
-                    <label class="form-check-label" for="masculino">
-                        Masculino
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="genero" id="feminino" value="Feminino"
-                           th:field="*{genero}">
-                    <label class="form-check-label" for="feminino">
-                        Feminino
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="genero" id="naoInformado"
-                           value="Não Informado" th:field="*{genero}">
-                    <label class="form-check-label" for="naoInformado">
-                        Não Informado
-                    </label>
+            <div class="row g-2 mb-3">
+                <div>
+                    <label class="form-label" for="nomeCompleto">Nome Completo*</label>
+                    <input class="form-control" type="text" id="nomeCompleto" name="nomeCompleto"
+                        th:field="*{nomeCompleto}" required>
                 </div>
             </div>
-        </div>
 
-        <div class="row g-1">
-            <button class="btn btn-warning" type="submit">
-                <i class="bi bi-pencil-square"></i>
-                Editar
-            </button>
-        </div>
+            <div class="row g-2 mb-3">
+                <div class="col-auto">
+                    <label class="form-label" for="email">E-Mail*</label>
+                    <input class="form-control mask-email" type="text" id="email" name="email"
+                        th:field="*{email}" required>
+                </div>
+                <div class="col-auto">
+                    <label class="form-label" for="telefone">Telefone*</label>
+                    <input class="form-control mask-telefone" type="text" id="telefone" name="telefone"
+                        th:field="*{telefone}" required>
+                </div>
+            </div>
 
-        <p>*Campos Obrigatórios</p>
-    </form>
-</div>
+            <div class="row g-2 mb-3">
+                <div class="col-auto">
+                    <label class="form-label" for="cep">CEP*</label>
+                    <input class="form-control mask-cep" type="text" id="cep" name="CEP" th:field="*{CEP}" required>
+                </div>
+                <div class="col-auto">
+                    <label class="form-label" for="cidade">Cidade*</label>
+                    <input class="form-control" type="text" id="cidade" name="cidade" th:field="*{cidade}" required>
+                </div>
+            </div>
 
-<div th:replace="fragments/barraInformacao :: barraInformacao"></div>
+            <div class="row mb-2">
+                <legend class="col-form-label pt-0">Informe o Gênero*</legend>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="genero" id="masculino" value="Masculino"
+                            th:field="*{genero}" required>
+                        <label class="form-check-label" for="masculino">
+                            Masculino
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="genero" id="feminino" value="Feminino"
+                            th:field="*{genero}">
+                        <label class="form-check-label" for="feminino">
+                            Feminino
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="genero" id="naoInformado"
+                            value="Não Informado" th:field="*{genero}">
+                        <label class="form-check-label" for="naoInformado">
+                            Não Informado
+                        </label>
+                    </div>
+                </div>
+            </div>
 
-<script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="/js/jquery.min.js"></script>
-<script type="text/javascript" src="/js/jquery.mask.min.js"></script>
-<script type="text/javascript" src="/js/masks.js"></script>
+            <div class="row g-1">
+                <button class="btn btn-warning" type="submit">
+                    <i class="bi bi-pencil-square"></i>
+                    Editar
+                </button>
+            </div>
+
+            <p>*Campos Obrigatórios</p>
+        </form>
+    </div>
+
+    <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
+
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.mask.min.js"></script>
+    <script type="text/javascript" src="/js/masks.js"></script>
 </body>
 
 </html>

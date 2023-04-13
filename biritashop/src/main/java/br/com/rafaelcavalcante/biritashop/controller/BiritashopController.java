@@ -21,6 +21,11 @@ public class BiritashopController {
 
     @GetMapping("/public/contato")
     public ModelAndView contato() {
-        return new ModelAndView("public/contato");
+        return new ModelAndView("/public/contato");
+    }
+
+    @GetMapping("/public/layout")
+    public ModelAndView layout(){
+        return new ModelAndView("/public/layout");
     }
 }

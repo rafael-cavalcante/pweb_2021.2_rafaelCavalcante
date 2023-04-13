@@ -1,19 +1,9 @@
 $(document).ready(function () {
-    $(".mask-cep").mask("00.000-000", {placeholder: "__.___-___"});
-    $(".mask-telefone").mask("+00 (00) 00000-0000", {
-        placeholder: "+__ (__) _____-____",
-    });
-    $(".mask-valor").mask("#0.00", {reverse: true});
-    $(".mask-cartao").mask("0000 0000 0000 0000", {
-        placeholder: "____ ____ ____ ____",
-    });
-
-    $("form").submit(function () {
-        $(".mask-cep").val($(".mask-cep").cleanVal());
-        $(".mask-telefone").val($(".mask-telefone").cleanVal());
-
-        return true;
-    });
+    $(".mask-cep").mask("00.000-000", { placeholder: "__.___-___" });
+    $(".mask-telefone").mask("+00 (00) 00000-0000", { placeholder: "+__ (__) _____-____", });
+    $(".mask-valor").mask("#0.00", { reverse: true });
+    $(".mask-cartao").mask("0000 0000 0000 0000", { placeholder: "____ ____ ____ ____", });
+    $('.mask-email').mask("A", { translation: { "A": { pattern: /[\w@\-.+]/, recursive: true } } });
 });
 
 /*

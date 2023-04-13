@@ -68,7 +68,7 @@
             <div class="input-group mb-3">
                 <label class="input-group-text" for="valorPagamento">R$</label>
                 <input class="form-control mask-valor" type="text" id="valorPagamento" name="valorPagamento"
-                       th:field="*{valorPagamento}">
+                       th:field="*{valorPagamento}" required>
             </div>
         </div>
 
@@ -76,17 +76,13 @@
             <div class="input-group mb-3">
                 <label class="input-group-text" for="numeroCartao">Número Cartão</label>
                 <input class="form-control mask-cartao" type="text" id="numeroCartao" name="numeroCartao"
-                       th:field="*{numeroCartao}">
+                       th:field="*{numeroCartao}" required>
             </div>
         </div>
 
         <button class="btn btn-outline-success col-sm-2" type="submit">
             <i class="bi bi-plus-square"></i>
             Adicionar
-        </button>
-        <button class="btn btn-outline-secondary col-sm-2" type="reset">
-            <i class="bi bi-x-square"></i>
-            Limpar Campos
         </button>
 
     </form>

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import br.com.rafaelcavalcante.biritashop.model.enums.Genero;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,13 +23,15 @@ public class Cliente implements Serializable {
     @Column(name = "nome_completo")
     private String nomeCompleto;
     @Column(name = "genero")
-    private String genero;
-    @Column(name = "telefone")
-    private String telefone;
+    private Genero genero;
     @Column(name = "cidade")
     private String cidade;
     @Column(name = "cep")
     private String CEP;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "telefone")
+    private String telefone;
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE)
     private List<Dependente> dependentes;
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE)
