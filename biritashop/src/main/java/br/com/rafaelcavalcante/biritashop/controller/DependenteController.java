@@ -2,7 +2,6 @@ package br.com.rafaelcavalcante.biritashop.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,16 +19,19 @@ import br.com.rafaelcavalcante.biritashop.repository.DependenteRepository;
 @RequestMapping("/dependente")
 public class DependenteController {
 
-    @Autowired
-    private DependenteRepository dependenteRepository;
+    private DependenteRepository dependenteRepo;
 
-    @Autowired
-    private ClienteRepository clienteRepository;
+    private ClienteRepository clienteRepo;
+
+    public DependenteController(DependenteRepository dependenteRepo, ClienteRepository clienteRepo) {
+        this.dependenteRepo = dependenteRepo;
+        this.clienteRepo = clienteRepo;
+    }
 
     @GetMapping("/listar")
     public ModelAndView listarDependentes(@RequestParam(value = "clienteId", required = false) Long clienteId) {
-        List<Cliente> clientes = this.clienteRepository.findAll();
-        List<Dependente> dependentes = this.dependenteRepository.findByCliente_Id(clienteId);
+        List<Cliente> clientes = this.clienteRepo.findAll();
+        List<Dependente> dependentes = this.dependenteRepo.findByCliente_Id(clienteId);
         ModelAndView mav = new ModelAndView("/dependente/listarDependentes");
         mav.addObject("clientes", clientes);
         mav.addObject("clienteId", clienteId);
@@ -39,7 +41,7 @@ public class DependenteController {
 
     @GetMapping("/adicionar")
     public ModelAndView formAdicionarDependente() {
-        List<Cliente> clientes = this.clienteRepository.findAll();
+        List<Cliente> clientes = this.clienteRepo.findAll();
         ModelAndView mav = new ModelAndView("/dependente/adicionarDependente");
         mav.addObject("clientes", clientes);
         mav.addObject(new Dependente());
@@ -48,15 +50,15 @@ public class DependenteController {
 
     @PostMapping("/adicionar")
     public String adicionarDependente(Dependente dependente) {
-        this.dependenteRepository.save(dependente);
+        this.dependenteRepo.save(dependente);
         return "redirect:/dependente/listar/?clienteId=" + dependente.getCliente().getId();
     }
 
     @GetMapping("/editar/{id}")
     public ModelAndView formEditarDependente(@PathVariable("id") Long id) {
-        Dependente dependente = this.dependenteRepository.findById(id)
+        Dependente dependente = this.dependenteRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + id));
-        List<Cliente> clientes = this.clienteRepository.findAll();
+        List<Cliente> clientes = this.clienteRepo.findAll();
         ModelAndView mav = new ModelAndView("/dependente/editarDependente");
         mav.addObject("clientes", clientes);
         mav.addObject(dependente);
@@ -65,15 +67,15 @@ public class DependenteController {
 
     @PostMapping("/editar/{id}")
     public String editarDependente(@PathVariable("id") Long id, Dependente dependente) {
-        this.dependenteRepository.save(dependente);
+        this.dependenteRepo.save(dependente);
         return "redirect:/dependente/listar";
     }
 
     @GetMapping("/remover/{id}")
     public ModelAndView removerDependente(@PathVariable("id") Long id) {
-        Dependente dependente = this.dependenteRepository.findById(id)
+        Dependente dependente = this.dependenteRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + id));
-        this.dependenteRepository.delete(dependente);
+        this.dependenteRepo.delete(dependente);
         return new ModelAndView("redirect:/dependente/listar");
     }
 }

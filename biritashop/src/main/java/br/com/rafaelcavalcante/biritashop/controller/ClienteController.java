@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/cliente")
 public class ClienteController {
 
-    private final ClienteRepository clienteRepo;
+    private ClienteRepository clienteRepo;
 
     public ClienteController(ClienteRepository clienteRepo) {
         this.clienteRepo = clienteRepo;
