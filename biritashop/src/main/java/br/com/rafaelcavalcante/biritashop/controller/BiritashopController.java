@@ -16,14 +16,12 @@ public class BiritashopController {
 
     @GetMapping("/public/sobre")
     public ModelAndView sobre() {
-        return new ModelAndView("/public/sobre")
-                .addObject("pagSobre", true);
+        return new ModelAndView("/public/sobre");
     }
 
     @GetMapping("/public/contato")
     public ModelAndView contato() {
-        return new ModelAndView("/public/contato")
-                .addObject("pagContato", true);
+        return new ModelAndView("/public/contato");
     }
 
     @GetMapping("/public/layout")

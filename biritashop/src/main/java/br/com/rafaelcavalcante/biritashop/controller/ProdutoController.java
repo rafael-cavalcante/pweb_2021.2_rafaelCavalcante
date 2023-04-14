@@ -27,14 +27,12 @@ public class ProdutoController {
     public ModelAndView listarProdutos() {
         List<Produto> produtos = this.produtoRepo.findAll();
         return new ModelAndView("/produto/listarProdutos")
-                .addObject("pagProduto", true)
                 .addObject("produtos", produtos);
     }
 
     @GetMapping("/adicionar")
     public ModelAndView formAdicionarProduto() {
         return new ModelAndView("/produto/adicionarProduto")
-                .addObject("pagProduto", true)
                 .addObject(new Produto());
     }
 
@@ -50,7 +48,6 @@ public class ProdutoController {
         Produto produto = this.produtoRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + id));
         return new ModelAndView("/produto/editarProduto")
-                .addObject("pagProduto", true)
                 .addObject(produto);
     }
 

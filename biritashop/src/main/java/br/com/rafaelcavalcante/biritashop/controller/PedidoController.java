@@ -57,7 +57,6 @@ public class PedidoController {
         List<Cliente> clientes = this.clienteRepo.findAll();
         List<Pedido> pedidos = this.pedidoRepo.findByClienteId(clienteId);
         return new ModelAndView("/pedido/listarPedidos")
-                .addObject("pagPedido", true)
                 .addObject("clientes", clientes)
                 .addObject("clienteId", clienteId)
                 .addObject("pedidos", pedidos);
@@ -68,7 +67,6 @@ public class PedidoController {
         List<Cliente> clientes = this.clienteRepo.findAll();
         List<Produto> produtos = this.produtoRepo.findAllByOrderByNomeAsc();
         return new ModelAndView("/pedido/adicionarPedido")
-                .addObject("pagPedido", true)
                 .addObject("clientes", clientes)
                 .addObject("produtos", produtos)
                 .addObject("formasPagamento", FormaPagamento.values())
@@ -117,7 +115,6 @@ public class PedidoController {
         BigDecimal valorImposto = subTotal.multiply(new BigDecimal("0.1375"));
         BigDecimal valorTotal = subTotal.add(valorImposto);
         return new ModelAndView("/pedido/item/listarItensPedido")
-                .addObject("pagPedido", true)
                 .addObject("pedido", pedido)
                 .addObject("subTotal", subTotal.setScale(2, RoundingMode.HALF_UP))
                 .addObject("valorImposto", valorImposto.setScale(2, RoundingMode.HALF_UP))

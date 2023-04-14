@@ -33,7 +33,6 @@ public class DependenteController {
         List<Cliente> clientes = this.clienteRepo.findAll();
         List<Dependente> dependentes = this.dependenteRepo.findByCliente_Id(clienteId);
         return new ModelAndView("/dependente/listarDependentes")
-                .addObject("pagDependente", true)
                 .addObject("clientes", clientes)
                 .addObject("clienteId", clienteId)
                 .addObject("dependentes", dependentes);
@@ -43,7 +42,6 @@ public class DependenteController {
     public ModelAndView formAdicionarDependente() {
         List<Cliente> clientes = this.clienteRepo.findAll();
         return new ModelAndView("/dependente/adicionarDependente")
-                .addObject("pagDependente", true)
                 .addObject("clientes", clientes)
                 .addObject(new Dependente());
     }
@@ -60,7 +58,6 @@ public class DependenteController {
                 .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + id));
         List<Cliente> clientes = this.clienteRepo.findAll();
         return new ModelAndView("/dependente/editarDependente")
-                .addObject("pagDependente", true)
                 .addObject("clientes", clientes)
                 .addObject(dependente);
     }

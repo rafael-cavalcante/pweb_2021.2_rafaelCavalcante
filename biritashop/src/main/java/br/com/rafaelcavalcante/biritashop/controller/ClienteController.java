@@ -23,14 +23,12 @@ public class ClienteController {
     public ModelAndView listarClientes() {
         List<Cliente> clientes = this.clienteRepo.findAll();
         return new ModelAndView("/cliente/listarClientes")
-                .addObject("pagCliente", true)
                 .addObject("clientes", clientes);
     }
 
     @GetMapping("/adicionar")
     public ModelAndView formAdicionarCliente() {
         return new ModelAndView("/cliente/adicionarCliente")
-                .addObject("pagCliente", true)
                 .addObject("generos", Genero.values())
                 .addObject(new Cliente());
     }
@@ -46,7 +44,6 @@ public class ClienteController {
         Cliente cliente = this.clienteRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Cliente Não Encontrado " + id));
         return new ModelAndView("/cliente/editarCliente")
-                .addObject("pagCliente", true)
                 .addObject("generos", Genero.values())
                 .addObject(cliente);
     }
