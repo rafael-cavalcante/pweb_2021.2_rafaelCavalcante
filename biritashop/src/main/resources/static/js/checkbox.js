@@ -1,5 +1,5 @@
 function verificarCheckBox() {
-    const checkboxes = document.querySelectorAll("input[type=checkbox]");
+    const checkboxes = document.querySelectorAll(".child-checkbox");
     var selecionado = false;
 
     for (var i = 0; i < checkboxes.length; i++) {

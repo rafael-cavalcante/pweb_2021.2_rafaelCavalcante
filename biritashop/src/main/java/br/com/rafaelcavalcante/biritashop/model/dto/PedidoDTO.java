@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import br.com.rafaelcavalcante.biritashop.model.Cliente;
+import br.com.rafaelcavalcante.biritashop.model.Pedido;
 import br.com.rafaelcavalcante.biritashop.model.enums.FormaPagamento;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -16,15 +16,15 @@
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
     <div class="container my-5 pt-4">
-        <form th:action="@{/pedido/finalizar}" method="POST" th:object="${pedidoDTO}">
+        <form th:action="@{/pedido/editar/{id}(id = ${pedido.id})}" method="POST" th:object="${pedido}">
             <div class="row col-sm-6">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">
                         <i class="bi bi-person"></i>
                         Cliente
                     </span>
-                    <select class="form-select" name="cliente" disable>
-                        <option th:value="${pedidoDTO.cliente.id}" th:text="${pedidoDTO.cliente.nomeCompleto}"></option>
+                    <select class="form-select" name="cliente">
+                        <option th:value="${pedido.cliente.id}" th:text="${pedido.cliente.nomeCompleto}"></option>
                     </select>
                 </div>
             </div>
@@ -48,24 +48,11 @@
                     <tr th:each="item, iStat : ${itensPedido}">
                         <td>
                             <input class="form-check-input child-checkbox" type="checkbox" id="selecionado"
-                                th:field="*{itens[__${iStat.index}__].id}" th:value="${item.produto.id}">
+                                th:field="*{itens[__${iStat.index}__].id}" th:value="${item.id}">
                         </td>
                         <th scope="row" th:text="${item.produto.id}"></th>
                         <td th:text="${item.produto.nome}"></td>
                         <td th:text="${item.valorUnitario}"></td>
-                        <td>
-                            <input class="form-control input-unit" type="number"
-                                th:field="*{itens[__${iStat.index}__].quantidade}" value="1" min="1" readonly>
-                        </td>
-                    </tr>
-                    <tr th:each="produto, iStat: ${produtos}">
-                        <td>
-                            <input class="form-check-input child-checkbox" type="checkbox"
-                                th:field="*{itens[__${iStat.index}__].id}" th:value="${produto.id}">
-                        </td>
-                        <th scope="row" th:text="${produto.id}"></th>
-                        <td th:text="${produto.nome}"></td>
-                        <td th:text="${produto.precoVenda}"></td>
                         <td>
                             <input class="form-control input-unit" type="number"
                                 th:field="*{itens[__${iStat.index}__].quantidade}" value="1" min="1">
@@ -82,30 +69,31 @@
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="formaPagamento">Forma de Pagamento</label>
                     <select class="form-select" id="formaPagamento" name="formaPagamento" required>
-                        <option th:text="${pedidoDTO.formaPagamento.tipo}" th:value="${pedidoDTO.formaPagamento}">
+                        <option th:text="${pedido.formaPagamento.tipo}" th:value="${pedido.formaPagamento}">
                         </option>
                     </select>
                 </div>
             </div>
 
-            <div th:if="${pedidoDTO.formaPagamento.tipo != 'Crédito'}" class="col-sm-4">
+            <div th:if="${pedido.formaPagamento.tipo != 'Crédito'}" class="col-sm-4">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="valorPagamento">R$</label>
                     <input class="form-control mask-valor" type="text" id="valorPagamento" name="valorPagamento"
-                        required>
+                        th:field="*{valorPagamento}" required>
                 </div>
             </div>
 
-            <div th:if="${pedidoDTO.formaPagamento.tipo == 'Crédito'}" class="col-sm-4">
+            <div th:if="${pedido.formaPagamento.tipo == 'Crédito'}" class="col-sm-4">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="numeroCartao">Número Cartão</label>
-                    <input class="form-control mask-cartao" type="text" id="numeroCartao" name="numeroCartao" required>
+                    <input class="form-control mask-cartao" type="text" id="numeroCartao" name="numeroCartao" 
+                    th:field="*{numeroCartao}" required>
                 </div>
             </div>
 
             <button class="btn btn-outline-success col-sm-2" type="submit">
                 <i class="bi bi-plus-square"></i>
-                Adicionar
+                Editar
             </button>
 
         </form>

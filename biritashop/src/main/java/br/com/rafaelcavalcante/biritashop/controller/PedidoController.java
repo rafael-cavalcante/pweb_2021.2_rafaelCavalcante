@@ -41,10 +41,9 @@ public class PedidoController {
 
     private PedidoService pedidoService;
 
-    public PedidoController(
-            ClienteRepository clienteRepo, PedidoRepository pedidoRepo,
-            ProdutoRepository produtoRepo, ItemPedidoRepository itemPedidoRepo,
-            PedidoService pedidoService) {
+    public PedidoController(ClienteRepository clienteRepo,
+            PedidoRepository pedidoRepo, ProdutoRepository produtoRepo,
+            ItemPedidoRepository itemPedidoRepo, PedidoService pedidoService) {
         this.clienteRepo = clienteRepo;
         this.pedidoRepo = pedidoRepo;
         this.produtoRepo = produtoRepo;
@@ -75,7 +74,7 @@ public class PedidoController {
 
     @PostMapping("/adicionar")
     public ModelAndView adicionarPedido(PedidoDTO pedidoDTO) {
-        ModelAndView mav = new ModelAndView("/pedido/finalizarPedidoTeste");
+        ModelAndView mav = new ModelAndView("/pedido/finalizarPedido");
         List<ItemPedido> itensPedido = this.pedidoService.converterItensPedido(pedidoDTO.getItens());
         mav.addObject("itensPedido", itensPedido);
         mav.addObject(pedidoDTO);
@@ -96,6 +95,25 @@ public class PedidoController {
         this.pedidoRepo.save(pedido);
         List<ItemPedido> itensPedido = this.pedidoService.converterItensPedido(pedido, pedidoDTO.getItens());
         this.itemPedidoRepo.saveAll(itensPedido);
+        return "redirect:/pedido/listar?clienteId=" + pedido.getCliente().getId();
+    }
+
+    @GetMapping("/editar/{id}")
+    public ModelAndView formEditarPedido(@PathVariable("id") Long id) {
+        Pedido pedido = this.pedidoRepo.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Pedido do ID[" + id + "] Não Encontrado!"));
+        List<ItemPedido> itensPedido = this.itemPedidoRepo.findByPedido_Id(id);
+        return new ModelAndView("/pedido/editarPedido")
+                .addObject("itensPedido", itensPedido)
+                .addObject(pedido);
+    }
+
+    @PostMapping("/editar/{id}")
+    public String editarPedido(@PathVariable("id") Long id, Pedido pedido){
+        this.pedidoRepo.save(pedido);
+        List<ItemPedido> itensPedido = this.pedidoService.editarItensPedido(pedido, pedido.getItens());
+        this.itemPedidoRepo.saveAll(itensPedido);
+        
         return "redirect:/pedido/listar?clienteId=" + pedido.getCliente().getId();
     }
 
