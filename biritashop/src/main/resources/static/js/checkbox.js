@@ -3,7 +3,7 @@ function verificarCheckBox() {
     var selecionado = false;
 
     for (var i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].checked){
+        if (checkboxes[i].checked) {
             selecionado = true;
             break;
         }
@@ -25,17 +25,25 @@ function check() {
 
     checkboxes.forEach(c => {
         c.addEventListener("click", function () {
-            var allChecked = true;
-
-            for (var j = 0; j < checkboxes.length; j++) {
-                if (!checkboxes[j].checked) {
-                    allChecked = false;
-                    break;
-                }
-            }
-            masterCheckbox.checked = allChecked;
+            ative();
         });
     });
 }
 
+function ative() {
+    const checkboxes = document.querySelectorAll(".child-checkbox");
+    const masterCheckbox = document.getElementById("master-checkbox");
+
+    var allChecked = true;
+
+    for (let checkbox of checkboxes) {
+        if (!checkbox.checked) {
+            allChecked = false;
+            break;
+        }
+    }
+    masterCheckbox.checked = allChecked;
+}
+
 check();
+ative();

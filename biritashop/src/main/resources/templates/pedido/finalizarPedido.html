@@ -17,15 +17,18 @@
 
     <div class="container my-5 pt-4">
         <form th:action="@{/pedido/finalizar}" method="POST" th:object="${pedidoDTO}">
-            <div class="row col-sm-6">
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">
-                        <i class="bi bi-person"></i>
-                        Cliente
-                    </span>
-                    <select class="form-select" name="cliente" disable>
-                        <option th:value="${pedidoDTO.cliente.id}" th:text="${pedidoDTO.cliente.nomeCompleto}"></option>
-                    </select>
+            <div class="row">
+                <div class="col col-lg-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">
+                            <i class="bi bi-person"></i>
+                            Cliente
+                        </span>
+                        <select class="form-select" name="cliente" disable>
+                            <option th:value="${pedidoDTO.cliente.id}" th:text="${pedidoDTO.cliente.nomeCompleto}">
+                            </option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
@@ -55,46 +58,54 @@
                         <td th:text="${item.valorUnitario}"></td>
                         <td>
                             <input class="form-control input-unit" type="number"
-                                th:field="*{itens[__${iStat.index}__].quantidade}" value="1" min="1" readonly>
+                                th:field="*{itens[__${iStat.index}__].quantidade}" value="1" min="1" aria-label="Quantidade de Produtos" readonly>
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-end" colspan="4"><strong>QUANTIDADE DE ITENS:</strong></td>
-                        <td th:text="${itensPedido.size}"></td>
+                        <th class="text-end" colspan="4">QUANTIDADE DE ITENS:</th>
+                        <td class="text-end" th:text="${itensPedido.size}"></td>
                     </tr>
                 </tbody>
             </table>
 
-            <div class="col-sm-4">
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="formaPagamento">Forma de Pagamento</label>
-                    <select class="form-select" id="formaPagamento" name="formaPagamento" required>
-                        <option th:text="${pedidoDTO.formaPagamento.tipo}" th:value="${pedidoDTO.formaPagamento}">
-                        </option>
-                    </select>
+            <div class="row justify-content-md-end">
+                <div class="col col-lg-6">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="formaPagamento">Forma de Pagamento</label>
+                        <select class="form-select" id="formaPagamento" name="formaPagamento" required>
+                            <option th:text="${pedidoDTO.formaPagamento.tipo}" th:value="${pedidoDTO.formaPagamento}">
+                            </option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
-            <div th:if="${pedidoDTO.formaPagamento.tipo != 'Crédito'}" class="col-sm-4">
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="valorPagamento">R$</label>
-                    <input class="form-control mask-valor" type="text" id="valorPagamento" name="valorPagamento"
-                        required>
+            <div th:if="${pedidoDTO.formaPagamento.tipo != 'Crédito'}" class="row justify-content-md-end">
+                <div class="col col-lg-6">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="valorPagamento">R$</label>
+                        <input class="form-control mask-valor" type="text" id="valorPagamento" name="valorPagamento"
+                            required>
+                    </div>
                 </div>
             </div>
 
-            <div th:if="${pedidoDTO.formaPagamento.tipo == 'Crédito'}" class="col-sm-4">
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="numeroCartao">Número Cartão</label>
-                    <input class="form-control mask-cartao" type="text" id="numeroCartao" name="numeroCartao" required>
+            <div th:if="${pedidoDTO.formaPagamento.tipo == 'Crédito'}" class="row justify-content-md-end">
+                <div class="col col-lg-6">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="numeroCartao">Número Cartão</label>
+                        <input class="form-control mask-cartao" type="text" id="numeroCartao" name="numeroCartao"
+                            required>
+                    </div>
                 </div>
             </div>
 
-            <button class="btn btn-outline-success col-sm-2" type="submit">
-                <i class="bi bi-plus-square"></i>
-                Adicionar
-            </button>
-
+            <div class="row g-1">
+                <button class="btn btn-outline-success" type="submit">
+                    <i class="bi bi-cart-check"></i>
+                    Finalizar
+                </button>
+            </div>
         </form>
     </div>
 

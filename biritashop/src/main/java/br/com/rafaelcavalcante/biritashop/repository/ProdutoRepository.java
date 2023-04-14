@@ -9,5 +9,5 @@ import br.com.rafaelcavalcante.biritashop.model.Produto;
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
     List<Produto> findAllByOrderByNomeAsc();
-    
+
 }
