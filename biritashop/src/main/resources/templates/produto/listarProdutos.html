@@ -23,6 +23,7 @@
         <thead class="table-dark">
         <tr>
             <th scope="col">ID</th>
+            <th scope="col">Imagem</th>
             <th scope="col">Nome</th>
             <th scope="col">Marca</th>
             <th scope="col">Volume</th>
@@ -36,6 +37,9 @@
         <tbody>
         <tr th:each="produto: ${produtos}">
             <th scope="row" th:text="${produto.id}"></th>
+            <td>
+                <img th:id="'Produto' + ${produto.id}" th:src="@{${produto.getFoto} ? ('data:image/jpeg;base64,' + ${produto.getFotoBase64()}) : @{/image/imagem.png}}" th:alt="'Foto de' + ${produto.nome}" width="30" height="30">
+            </td>
             <td th:text="${produto.nome}"></td>
             <td th:text="${produto.marca}"></td>
             <td th:text="${produto.volume} + 'mL'"></td>

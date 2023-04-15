@@ -9,6 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 @Controller
 @RequestMapping("/cliente")
 public class ClienteController {
@@ -34,6 +36,7 @@ public class ClienteController {
     }
 
     @PostMapping("/adicionar")
+    @Transactional
     public String adicionarCliente(Cliente cliente) {
         this.clienteRepo.save(cliente);
         return "redirect:/cliente/listar";

@@ -69,13 +69,17 @@ public class PedidoController {
                 .addObject("clientes", clientes)
                 .addObject("produtos", produtos)
                 .addObject("formasPagamento", FormaPagamento.values())
-                .addObject(new PedidoDTO());
+                .addObject("pedidoDTO", new PedidoDTO());
     }
 
     @PostMapping("/adicionar")
     public ModelAndView adicionarPedido(PedidoDTO pedidoDTO) {
         ModelAndView mav = new ModelAndView("/pedido/finalizarPedido");
         List<ItemPedido> itensPedido = this.pedidoService.converterItensPedido(pedidoDTO.getItens());
+        BigDecimal subTotal = this.pedidoService.calcularValorTotal(itensPedido);
+        BigDecimal valorImposto = subTotal.multiply(new BigDecimal("0.1375"));
+        BigDecimal valorTotal = subTotal.add(valorImposto);
+        pedidoDTO.setValorPagamento(valorTotal.setScale(2, RoundingMode.HALF_UP));
         mav.addObject("itensPedido", itensPedido);
         mav.addObject(pedidoDTO);
         return mav;
@@ -110,7 +114,10 @@ public class PedidoController {
 
     @PostMapping("/editar/{id}")
     public String editarPedido(@PathVariable("id") Long id, Pedido pedido){
-        this.pedidoRepo.save(pedido);
+        Pedido pedidoEditado = this.pedidoRepo.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Pedido do ID[" + id + "] Não Encontrado!"));
+        pedidoEditado.setNumeroCartao(pedido.getNumeroCartao());
+        this.pedidoRepo.save(pedidoEditado);
         List<ItemPedido> itensPedido = this.pedidoService.editarItensPedido(pedido, pedido.getItens());
         this.itemPedidoRepo.saveAll(itensPedido);
         
@@ -131,11 +138,10 @@ public class PedidoController {
                 .orElseThrow(() -> new IllegalArgumentException("Pedido Não Encontrado " + id));
         BigDecimal subTotal = this.pedidoService.calcularValorTotal(pedido.getItens());
         BigDecimal valorImposto = subTotal.multiply(new BigDecimal("0.1375"));
-        BigDecimal valorTotal = subTotal.add(valorImposto);
         return new ModelAndView("/pedido/item/listarItensPedido")
                 .addObject("pedido", pedido)
                 .addObject("subTotal", subTotal.setScale(2, RoundingMode.HALF_UP))
                 .addObject("valorImposto", valorImposto.setScale(2, RoundingMode.HALF_UP))
-                .addObject("valorTotal", valorTotal.setScale(2, RoundingMode.HALF_UP));
+                .addObject("valorTotal", pedido.getValorPagamento().setScale(2, RoundingMode.HALF_UP));
     }
 }

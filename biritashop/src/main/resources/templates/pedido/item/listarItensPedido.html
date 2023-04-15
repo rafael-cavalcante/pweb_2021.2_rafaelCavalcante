@@ -2,75 +2,63 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <title>BiritaShop</title>
 </head>
 
 <body>
-<div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
+    <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-<div class="container my-5 pt-4">
+    <div class="container-fluid my-5 pt-4">
+        <h2 class="border-bottom">Produtos</h2>
+        <table class="table overflow-scroll mb-5">
+            <thead class="table-dark">
+                <tr>
+                    <th class="scope">ID</th>
+                    <th class="scope">Nome</th>
+                    <th class="scope">Valor R$</th>
+                    <th class="scope">Valor Unitário R$</th>
+                    <th class="scope">Quantidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${pedido.itens}">
+                    <th class="scope" th:text="${item.id}"></th>
+                    <td th:text="${item.produto.nome}"></td>
+                    <td th:text="${item.valorUnitario}"></td>
+                    <td th:text="${item.quantidade} * ${item.valorUnitario}"></td>
+                    <td th:text="${item.quantidade}"></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="text-end"><strong>Quantidade Total:</strong></td>
+                    <td class="text-end" th:text="${pedido.itens.size()}"></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="text-end"><strong>Sub - Total R$:</strong></td>
+                    <td class="text-end" th:text="${subTotal}"></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="text-end"><strong>Imposto 13.75% R$:</strong></td>
+                    <td class="text-end" th:text="${valorImposto}"></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="text-end"><strong>Total R$:</strong></td>
+                    <td class="text-end" th:text="${valorTotal}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-    <a class="btn btn-outline-secondary" th:href="@{/pedido/listar/(clienteId = ${pedido.cliente.id})}">
-        <i class="bi bi-arrow-left-square"></i>
-        Voltar
-    </a>
+    <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
 
-    <h2 class="border-bottom">Produtos</h2>
-
-    <table class="table overflow-scroll mb-5">
-        <thead class="table-dark">
-        <tr>
-            <th class="scope">ID</th>
-            <th class="scope">Nome</th>
-            <th class="scope">Valor</th>
-            <th class="scope">Valor Unitario</th>
-            <th class="scope">Quantidade</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="item : ${pedido.itens}">
-            <th class="scope" th:text="${item.id}"></th>
-            <td th:text="${item.produto.nome}"></td>
-            <td th:text="${item.valorUnitario}"></td>
-            <td th:text="${item.quantidade} * ${item.valorUnitario}"></td>
-            <td th:text="${item.quantidade}"></td>
-        </tr>
-        <tr>
-            <td colspan="4" class="text-end"><strong>Quantidade Total:</strong></td>
-            <td class="text-end" th:text="${pedido.itens.size()}"></td>
-        </tr>
-        <tr>
-            <td colspan="4" class="text-end"><strong>Sub-Total R$:</strong></td>
-            <td class="text-end" th:text="${subTotal}"></td>
-        </tr>
-        <tr>
-            <td colspan="4" class="text-end"><strong>Imposto 13.75%:</strong></td>
-            <td class="text-end" th:text="${valorImposto}"></td>
-        </tr>
-        <tr>
-            <td colspan="4" class="text-end"><strong>Total R$:</strong></td>
-            <td class="text-end" th:text="${valorTotal}"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<div th:replace="fragments/barraInformacao :: barraInformacao"></div>
-
-<script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="/js/jquery.min.js"></script>
-<script type="text/javascript" src="/js/jquery.mask.min.js"></script>
-<script type="text/javascript" src="/js/masks.js"></script>
-<script type="text/javascript" src="/js/checkbox.js"></script>
-<script type="text/javascript" src="/js/input.js"></script>
-<script type="text/javascript" src="/js/activePage.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/activePage.js"></script>
 </body>
 
 </html>
