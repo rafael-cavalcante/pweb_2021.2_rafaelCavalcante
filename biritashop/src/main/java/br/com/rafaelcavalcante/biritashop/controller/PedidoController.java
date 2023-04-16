@@ -62,6 +62,7 @@ public class PedidoController {
     }
 
     @GetMapping("/adicionar")
+    @Transactional
     public ModelAndView formAdicionarPedido() {
         List<Cliente> clientes = this.clienteRepo.findAll();
         List<Produto> produtos = this.produtoRepo.findAllByOrderByNomeAsc();
@@ -73,6 +74,7 @@ public class PedidoController {
     }
 
     @PostMapping("/adicionar")
+    @Transactional
     public ModelAndView adicionarPedido(PedidoDTO pedidoDTO) {
         ModelAndView mav = new ModelAndView("/pedido/finalizarPedido");
         List<ItemPedido> itensPedido = this.pedidoService.converterItensPedido(pedidoDTO.getItens());
@@ -85,8 +87,8 @@ public class PedidoController {
         return mav;
     }
 
-    @Transactional
     @PostMapping("/finalizar")
+    @Transactional
     public String finalizarPedido(PedidoDTO pedidoDTO) {
         Cliente cliente = this.clienteRepo.findById(pedidoDTO.getCliente().getId())
                 .orElseThrow(() -> new IllegalArgumentException("ID Inválido " + pedidoDTO.getCliente().getId()));
@@ -103,6 +105,7 @@ public class PedidoController {
     }
 
     @GetMapping("/editar/{id}")
+    @Transactional
     public ModelAndView formEditarPedido(@PathVariable("id") Long id) {
         Pedido pedido = this.pedidoRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Pedido do ID[" + id + "] Não Encontrado!"));
@@ -113,14 +116,15 @@ public class PedidoController {
     }
 
     @PostMapping("/editar/{id}")
-    public String editarPedido(@PathVariable("id") Long id, Pedido pedido){
+    @Transactional
+    public String editarPedido(@PathVariable("id") Long id, Pedido pedido) {
         Pedido pedidoEditado = this.pedidoRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Pedido do ID[" + id + "] Não Encontrado!"));
         pedidoEditado.setNumeroCartao(pedido.getNumeroCartao());
         this.pedidoRepo.save(pedidoEditado);
         List<ItemPedido> itensPedido = this.pedidoService.editarItensPedido(pedido, pedido.getItens());
         this.itemPedidoRepo.saveAll(itensPedido);
-        
+
         return "redirect:/pedido/listar?clienteId=" + pedido.getCliente().getId();
     }
 
@@ -133,6 +137,7 @@ public class PedidoController {
     }
 
     @GetMapping("/item/listar/{id}")
+    @Transactional
     public ModelAndView listarItens(@PathVariable("id") Long id) {
         Pedido pedido = this.pedidoRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Pedido Não Encontrado " + id));

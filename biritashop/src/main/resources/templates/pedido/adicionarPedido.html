@@ -16,31 +16,31 @@
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
     <div class="container my-5 pt-4">
-        <form th:action="@{/pedido/adicionar}" method="POST" th:object="${pedidoDTO}"
-            onsubmit="return verificarCheckBox()">
-
-            <div class="row col-sm-6">
-                <div class="input-group mb-2">
-                    <label class="input-group-text" for="select">
-                        <i class="bi bi-person"></i>
-                        Cliente
-                    </label>
-                    <select class="form-select" id="select" name="cliente">
-                        <option th:each="cliente : ${clientes}" th:value="${cliente.id}"
-                            th:text="${cliente.nomeCompleto}">
-                        </option>
-                    </select>
+        <form class="needs-validation" th:action="@{/pedido/adicionar}" method="POST" th:object="${pedidoDTO}"
+            novalidate>
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <label class="input-group-text" for="search">
+                            <i class="bi bi-person"></i>
+                            Cliente
+                        </label>
+                        <select class="form-select form-select-lg" id="cliente" name="cliente" required>
+                            <option selected disabled value="">Selecionar Cliente</option>
+                            <option th:each="cliente : ${clientes}" th:value="${cliente.id}"
+                                th:text="${cliente.nomeCompleto}"></option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
             <h2 class="border-bottom">Produtos</h2>
-
-            <table class="table">
+            <table class="table overflow-scroll mb-5">
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">
-                            <input class="form-check-input" type="checkbox" id="master-checkbox"
-                                onclick="checkAll(this)">
+                            <input class="form-check-input checkbox" type="checkbox" id="master-checkbox"
+                                onclick="checkAll(this)" required>
                         </th>
                         <th scope="col">ID</th>
                         <th scope="col">Imagem</th>
@@ -55,41 +55,46 @@
                 <tbody>
                     <tr th:each="produto, iStat: ${produtos}">
                         <td>
-                            <input class="form-check-input child-checkbox" type="checkbox" id="selecionado"
-                                th:field="*{itens[__${iStat.index}__].id}" th:value="${produto.id}">
+                            <input class="form-check-input checkbox child-checkbox" type="checkbox"
+                                th:value="${produto.id}" th:field="*{itens[__${iStat.index}__].id}" required>
                         </td>
                         <th scope="row" th:text="${produto.id}"></th>
                         <td>
-                            <img th:id="'Produto' + ${produto.id}" th:src="@{${produto.getFoto} ? ('data:image/jpeg;base64,' + ${produto.getFotoBase64()}) : @{/image/imagem.png}}" th:alt="'Foto de' + ${produto.nome}" width="30" height="30">
+                            <img th:id="'Produto' + ${produto.id}"
+                                th:src="@{${produto.getFoto} ? ('data:image/jpeg;base64,' + ${produto.getFotoBase64()}) : @{/image/imagem.png}}"
+                                th:alt="'Foto de' + ${produto.nome}" width="30" height="30">
                         </td>
                         <td th:text="${produto.nome}"></td>
                         <td th:text="${produto.marca}"></td>
                         <td th:text="${produto.volume}"></td>
-                        <td th:text="${produto.tipoEmbalagem}"></td>
+                        <td th:text="${produto.embalagem.valor}"></td>
                         <td th:text="${produto.precoVenda}"></td>
                         <td>
-                            <input class="form-control input-unit" type="number"
+                            <input class="form-control input-unidades" type="number"
                                 th:field="*{itens[__${iStat.index}__].quantidade}" value="1" min="1">
                         </td>
                     </tr>
                 </tbody>
             </table>
 
-            <div class="col-sm-6">
-                <div class="input-group mb-2">
-                    <label class="input-group-text" for="formaPagamento">
-                        <i class="bi bi-cash-coin"></i>
-                        Forma de Pagamento
-                    </label>
-                    <select class="form-select" id="formaPagamento" name="formaPagamento" required>
-                        <option th:each="formaPagamento : ${formasPagamento}" th:value="${formaPagamento}"
-                            th:text="${formaPagamento.tipo}">
-                        </option>
-                    </select>
+            <div class="row mb-2">
+                <div class="col-auto">
+                    <div class="input-group">
+                        <label class="input-group-text" for="formaPagamento">
+                            <i class="bi bi-cash-coin"></i>
+                            Forma de Pagamento
+                        </label>
+                        <select class="form-select form-select-lg" id="formaPagamento" name="formaPagamento" required>
+                            <option selected disabled value="">Selecionar Forma Pagamento</option>
+                            <option th:each="formaPagamento : ${formasPagamento}" th:value="${formaPagamento}"
+                                th:text="${formaPagamento.valor}">
+                            </option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
-            <div class="row g-1">
+            <div class="row g-2">
                 <button class="btn btn-outline-success" type="submit">
                     <i class="bi bi-plus-square"></i>
                     Proximo
@@ -106,9 +111,9 @@
 
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/jquery.mask.min.js"></script>
     <script type="text/javascript" src="/js/checkbox.js"></script>
     <script type="text/javascript" src="/js/input.js"></script>
+    <script type="text/javascript" src="/js/validation.js"></script>
     <script type="text/javascript" src="/js/activePage.js"></script>
 </body>
 

@@ -16,26 +16,23 @@
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
     <div class="container-fluid my-5 pt-4">
-        <div class="row col-sm-6">
-            <div class="input-group mb-2">
-                <label class="input-group-text" for="search">
-                    <i class="bi bi-person"></i>
-                    Cliente
-                </label>
-                <select class="form-select" id="search" onchange="buscarPedidos()">
-                    <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nomeCompleto}"
-                        th:selected="${cliente.id} == ${clienteId}">
-                    </option>
-                </select>
-                <button class="btn btn-outline-primary" type="button" onclick="buscarPedidos()">
-                    <i class="bi bi-search"></i>
-                    Buscar
-                </button>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <label class="input-group-text" for="search">
+                        <i class="bi bi-person"></i>
+                        Cliente
+                    </label>
+                    <select class="form-select form-select-lg" onchange="buscar(this, 'pedido')">
+                        <option selected disabled>Selecionar Cliente</option>
+                        <option th:each="cliente : ${clientes}" th:value="${cliente.id}"
+                            th:text="${cliente.nomeCompleto}" th:selected="${cliente.id} == ${clienteId}"></option>
+                    </select>
+                </div>
             </div>
         </div>
 
         <h2 class="border-bottom">Pedidos</h2>
-
         <table class="table overflow-scroll mb-5">
             <thead class="table-dark">
                 <tr>

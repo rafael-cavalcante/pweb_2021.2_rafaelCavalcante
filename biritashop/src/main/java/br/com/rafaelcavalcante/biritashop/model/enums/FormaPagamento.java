@@ -11,7 +11,7 @@ public enum FormaPagamento {
         this.valor = valor;
     }
 
-    public String getTipo() {
+    public String getValor() {
         return this.valor;
     }
 }

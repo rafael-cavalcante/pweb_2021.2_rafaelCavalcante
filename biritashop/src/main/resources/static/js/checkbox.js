@@ -1,18 +1,14 @@
 function verificarCheckBox() {
-    const checkboxes = document.querySelectorAll(".child-checkbox");
-    var selecionado = false;
+    const checkboxes = document.querySelectorAll('.child-checkbox:checked');
 
-    for (var i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].checked) {
-            selecionado = true;
-            break;
-        }
+    if (checkboxes.length < 1) {
+        return false;
     }
-    return selecionado;
+    return true;
 }
 
 function checkAll(checkBoxAll) {
-    const checkboxes = document.querySelectorAll(".child-checkbox");
+    const checkboxes = document.querySelectorAll(".child-checkbox:not(checked)");
 
     checkboxes.forEach(c => {
         c.checked = checkBoxAll.checked;
@@ -21,7 +17,6 @@ function checkAll(checkBoxAll) {
 
 function check() {
     const checkboxes = document.querySelectorAll(".child-checkbox");
-    const masterCheckbox = document.getElementById("master-checkbox");
 
     checkboxes.forEach(c => {
         c.addEventListener("click", function () {

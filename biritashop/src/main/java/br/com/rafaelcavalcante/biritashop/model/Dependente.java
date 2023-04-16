@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import br.com.rafaelcavalcante.biritashop.model.enums.Genero;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,7 +30,7 @@ public class Dependente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nomeCompleto;
-    private String genero;
+    private Genero genero;
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataNascimento;

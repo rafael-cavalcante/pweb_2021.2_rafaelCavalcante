@@ -21,6 +21,7 @@
             <thead class="table-dark">
                 <tr>
                     <th class="scope">ID</th>
+                    <th class="scope">Imagem</th>
                     <th class="scope">Nome</th>
                     <th class="scope">Valor R$</th>
                     <th class="scope">Valor Unitário R$</th>
@@ -30,25 +31,30 @@
             <tbody>
                 <tr th:each="item : ${pedido.itens}">
                     <th class="scope" th:text="${item.id}"></th>
+                    <td>
+                        <img th:id="'Produto' + ${item.produto.id}"
+                            th:src="@{${item.produto.getFoto} ? ('data:image/jpeg;base64,' + ${item.produto.getFotoBase64()}) : @{/image/imagem.png}}"
+                            th:alt="'Foto de' + ${item.produto.nome}" width="30" height="30">
+                    </td>
                     <td th:text="${item.produto.nome}"></td>
                     <td th:text="${item.valorUnitario}"></td>
                     <td th:text="${item.quantidade} * ${item.valorUnitario}"></td>
                     <td th:text="${item.quantidade}"></td>
                 </tr>
                 <tr>
-                    <td colspan="4" class="text-end"><strong>Quantidade Total:</strong></td>
+                    <td colspan="5" class="text-end"><strong>Quantidade Total:</strong></td>
                     <td class="text-end" th:text="${pedido.itens.size()}"></td>
                 </tr>
                 <tr>
-                    <td colspan="4" class="text-end"><strong>Sub - Total R$:</strong></td>
+                    <td colspan="5" class="text-end"><strong>Sub - Total R$:</strong></td>
                     <td class="text-end" th:text="${subTotal}"></td>
                 </tr>
                 <tr>
-                    <td colspan="4" class="text-end"><strong>Imposto 13.75% R$:</strong></td>
+                    <td colspan="5" class="text-end"><strong>Imposto 13.75% R$:</strong></td>
                     <td class="text-end" th:text="${valorImposto}"></td>
                 </tr>
                 <tr>
-                    <td colspan="4" class="text-end"><strong>Total R$:</strong></td>
+                    <td colspan="5" class="text-end"><strong>Total R$:</strong></td>
                     <td class="text-end" th:text="${valorTotal}"></td>
                 </tr>
             </tbody>

@@ -16,7 +16,8 @@
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
     <div class="container my-5 pt-4">
-        <form th:action="@{/pedido/finalizar}" method="POST" th:object="${pedidoDTO}">
+        <form class="needs-validation" th:action="@{/pedido/finalizar}" method="POST" th:object="${pedidoDTO}"
+            novalidate>
             <div class="row">
                 <div class="col col-lg-6">
                     <div class="input-group mb-3">
@@ -38,10 +39,11 @@
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">
-                            <input class="form-check-input" type="hidden" id="master-checkbox"
-                                onclick="checkAll(this)">
+                            <input class="form-check-input checkbox" type="checkbox" id="master-checkbox"
+                                onclick="checkAll(this)" required>
                         </th>
                         <th scope="col">ID</th>
+                        <th scope="col">Imagem</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Valor Unitário R$</th>
                         <th scope="col">Quantidade</th>
@@ -50,19 +52,27 @@
                 <tbody>
                     <tr th:each="item, iStat : ${itensPedido}">
                         <td>
-                            <input class="form-check-input child-checkbox" type="hidden" id="selecionado"
-                                th:field="*{itens[__${iStat.index}__].id}" th:value="${item.produto.id}">
+                            <div class="form-check">
+                                <input class="form-check-input checkbox child-checkbox" type="checkbox"
+                                    th:value="${item.produto.id}" th:field="*{itens[__${iStat.index}__].id}" required>
+                            </div>
                         </td>
                         <th scope="row" th:text="${item.produto.id}"></th>
+                        <td>
+                            <img th:id="'Produto' + ${item.produto.id}"
+                                th:src="@{${item.produto.getFoto} ? ('data:image/jpeg;base64,' + ${item.produto.getFotoBase64()}) : @{/image/imagem.png}}"
+                                th:alt="'Foto de' + ${item.produto.nome}" width="30" height="30">
+                        </td>
                         <td th:text="${item.produto.nome}"></td>
                         <td th:text="${item.valorUnitario}"></td>
                         <td>
                             <input class="form-control input-unit" type="number"
-                                th:field="*{itens[__${iStat.index}__].quantidade}" value="1" min="1" aria-label="Quantidade de Produtos" readonly>
+                                th:field="*{itens[__${iStat.index}__].quantidade}" value="1" min="1"
+                                aria-label="Quantidade de Produtos" readonly>
                         </td>
                     </tr>
                     <tr>
-                        <th class="text-end" colspan="4">QUANTIDADE DE ITENS:</th>
+                        <th class="text-end" colspan="5">QUANTIDADE DE ITENS:</th>
                         <td class="text-end" th:text="${itensPedido.size}"></td>
                     </tr>
                 </tbody>
@@ -72,30 +82,30 @@
                 <div class="col col-lg-6">
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="formaPagamento">Forma de Pagamento</label>
-                        <select class="form-select" id="formaPagamento" name="formaPagamento" required>
-                            <option th:text="${pedidoDTO.formaPagamento.tipo}" th:value="${pedidoDTO.formaPagamento}">
+                        <select class="form-select" id="formasPagamento" name="formaPagamento" required>
+                            <option th:text="${pedidoDTO.formaPagamento.valor}" th:value="${pedidoDTO.formaPagamento}">
                             </option>
                         </select>
                     </div>
                 </div>
             </div>
 
-            <div th:if="${pedidoDTO.formaPagamento.tipo != 'Crédito'}" class="row justify-content-md-end">
-                <div class="col col-lg-6">
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" for="valorPagamento">R$</label>
-                        <input class="form-control mask-valor" type="text" id="valorPagamento" name="valorPagamento"
-                            th:field="*{valorPagamento}" required>
-                    </div>
-                </div>
-            </div>
-
-            <div th:if="${pedidoDTO.formaPagamento.tipo == 'Crédito'}" class="row justify-content-md-end">
+            <div th:if="${pedidoDTO.formaPagamento.valor == 'Crédito'}" class="row justify-content-md-end">
                 <div class="col col-lg-6">
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="numeroCartao">Número Cartão</label>
                         <input class="form-control mask-cartao" type="text" id="numeroCartao" name="numeroCartao"
                             required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-md-end">
+                <div class="col col-lg-6">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="valorPagamento">R$</label>
+                        <input class="form-control mask-valor" type="text" id="valorPagamento" name="valorPagamento"
+                            th:field="*{valorPagamento}" required>
                     </div>
                 </div>
             </div>
@@ -117,6 +127,7 @@
     <script type="text/javascript" src="/js/masks.js"></script>
     <script type="text/javascript" src="/js/checkbox.js"></script>
     <script type="text/javascript" src="/js/input.js"></script>
+    <script type="text/javascript" src="/js/validation.js"></script>
     <script type="text/javascript" src="/js/activePage.js"></script>
 </body>
 

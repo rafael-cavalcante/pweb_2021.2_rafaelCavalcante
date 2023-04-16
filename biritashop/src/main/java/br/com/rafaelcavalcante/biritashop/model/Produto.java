@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -44,6 +45,7 @@ public class Produto implements Serializable {
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataCadastro;
+    @Lob
     @Column(name = "foto")
     private byte[] foto;
 
