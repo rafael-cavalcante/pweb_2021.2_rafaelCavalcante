@@ -86,6 +86,7 @@ public class ProdutoController {
         } else {
             produto.setFoto(produtoOriginal.getFoto());
         }
+        produto.setDataCadastro(produtoOriginal.getDataCadastro());
         this.produtoRepo.save(produto);
         return "redirect:/produto/listar";
     }

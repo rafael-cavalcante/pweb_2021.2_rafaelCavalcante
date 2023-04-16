@@ -20,8 +20,7 @@
             th:object="${produto}" enctype="multipart/form-data" novalidate>
             <h2 class="border-bottom">Editar Produto</h2>
             <div class="input-group mb-2">
-                <input class="form-control" type="file" id="imagem" name="imagem"
-                    accept="image/png, image/jpeg">
+                <input class="form-control" type="file" id="imagem" name="imagem" accept="image/png, image/jpeg">
                 <label class="input-group-text" for="imagem"><i class="bi bi-image"></i></label>
             </div>
 
@@ -80,15 +79,7 @@
                     </div>
                 </div>
             </div>
-
-            <div class="row g-2">
-                <div>
-                    <label for="nome">Nome*</label>
-                    <input class="form-control" type="date" id="dataCadastro" name="dataCadastro"
-                        th:field="*{dataCadastro}" hidden>
-                </div>
-            </div>
-
+            
             <div class="row g-2">
                 <button class="btn btn-warning" type="submit">
                     <i class="bi bi-pencil-square"></i>

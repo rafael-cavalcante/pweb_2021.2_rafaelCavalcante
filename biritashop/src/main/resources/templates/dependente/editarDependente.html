@@ -2,93 +2,83 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <title>BiritaShop</title>
 </head>
 
 <body>
-<div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
+    <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-<div class="container my-5 pt-4 d-flex justify-content-center">
-    <form th:action="@{/dependente/editar/{id}(id = ${dependente.id})}" method="POST" th:object="${dependente}">
-
-        <h2 class="border-bottom">Editar Dependente</h2>
-
-        <div class="row g-1">
-            <div class="input-group mb-3">
-                <label class="input-group-text" for="select">
-                    <i class="bi bi-person"></i>
-                    Cliente
-                </label>
-                <select class="form-select" id="select" name="cliente">
-                    <option th:each="cliente : ${clientes}" th:value="${cliente.id}"
-                            th:text="${cliente.nomeCompleto}"  th:selected="${cliente.id} == ${dependente.cliente.id}">
-                    </option>
-                </select>
-            </div>
-        </div>
-
-        <div class="row g-2 mb-2">
-            <div class="col">
-                <label for="nomeCompleto">Nome Completo*</label>
-                <input type="text" class="form-control" id="nomeCompleto" name="nomeCompleto"
-                       placeholder="Nome Completo" th:field="*{nomeCompleto}" required>
-            </div>
-            <div class="col">
-                <label for="dataNascimento">Data Nascimento*</label>
-                <input type="date" class="form-control" id="dataNascimento" name="dataNascimento"
-                       th:field="*{dataNascimento}" required>
-            </div>
-        </div>
-
-        <div class="row mb-2">
-            <legend class="col-form-label pt-0">Informe o Gênero*</legend>
-            <div class="col-sm-10">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="genero" id="masculino" value="Masculino"
-                           th:field="*{genero}">
-                    <label class="form-check-label" for="masculino">
-                        Masculino
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="genero" id="feminino" value="Feminino"
-                           th:field="*{genero}">
-                    <label class="form-check-label" for="feminino">
-                        Feminino
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="genero" id="naoInformado"
-                           value="Não Informado" th:field="*{genero}">
-                    <label class="form-check-label" for="naoInformado">
-                        Não Informado
-                    </label>
+    <div class="container-fluid my-5 pt-4 d-flex justify-content-center">
+        <form class="needs-validation" th:action="@{/dependente/editar/{id}(id = ${dependente.id})}" method="POST"
+            th:object="${dependente}" novalidate>
+            <h2 class="border-bottom">Editar Dependente</h2>
+            <div class="row mb-2">
+                <div class="col-md">
+                    <div class="input-group">
+                        <label class="input-group-text" for="search">
+                            <i class="bi bi-person"></i>
+                            Cliente
+                        </label>
+                        <select class="form-select form-select-lg" id="cliente" name="Cliente" required>
+                            <option selected disabled value="">Selecionar Cliente</option>
+                            <option th:each="cliente : ${clientes}" th:value="${cliente.id}"
+                                th:text="${cliente.nomeCompleto}" th:selected="${cliente.id} == ${dependente.cliente.id}"></option>
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row g-1">
-            <button class="btn btn-warning" type="submit">
-                <i class="bi bi-pencil-square"></i>
-                Editar
-            </button>
-        </div>
+            <div class="row g-2 mb-2">
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input class="form-control" type="text" id="nomeCompleto" name="nomeCompleto"
+                            th:field="*{nomeCompleto}" placeholder="nomeCompleto" required>
+                        <label for="nomeCompleto">Nome Completo*</label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input class="form-control" type="date" id="dataNascimento" name="dataNascimento"
+                            th:field="*{dataNascimento}" placeholder="dataNascimento" required>
+                        <label for="dataNascimento">Data Nascimneto*</label>
+                    </div>
+                </div>
+            </div>
 
-        <p>*Campos Obrigatorios</p>
-    </form>
-</div>
+            <div class="row mb-2">
+                <legend class="col-form-label col-form-label-lg py-0">Selecionar o Gênero*</legend>
+                <div class="col-md">
+                    <div class="form-check" th:each="genero : ${generos}">
+                        <input class="form-check-input" type="radio" name="genero" th:id="${genero.valor}"
+                            th:field="*{genero}" th:value="${genero}" required>
+                        <label class="form-check-label" th:for="${genero.valor}" th:text="${genero.valor}"></label>
+                    </div>
+                </div>
+            </div>
 
-<div th:replace="fragments/barraInformacao :: barraInformacao"></div>
+            <div class="row g-2">
+                <button class="btn btn-warning text-white" type="submit">
+                    <i class="bi bi-pencil-square"></i>
+                    Editar
+                </button>
+            </div>
 
-<script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="/js/activePage.js"></script>
+            <p>*Campos Obrigatorios</p>
+        </form>
+    </div>
+
+    <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
+
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/validation.js"></script>
+    <script type="text/javascript" src="/js/activePage.js"></script>
 </body>
 
 </html>

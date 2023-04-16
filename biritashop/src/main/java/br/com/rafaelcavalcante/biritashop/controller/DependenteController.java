@@ -2,6 +2,8 @@ package br.com.rafaelcavalcante.biritashop.controller;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.rafaelcavalcante.biritashop.model.Cliente;
 import br.com.rafaelcavalcante.biritashop.model.Dependente;
+import br.com.rafaelcavalcante.biritashop.model.enums.Genero;
 import br.com.rafaelcavalcante.biritashop.repository.ClienteRepository;
 import br.com.rafaelcavalcante.biritashop.repository.DependenteRepository;
 
@@ -43,10 +46,12 @@ public class DependenteController {
         List<Cliente> clientes = this.clienteRepo.findAll();
         return new ModelAndView("/dependente/adicionarDependente")
                 .addObject("clientes", clientes)
-                .addObject(new Dependente());
+                .addObject("generos", Genero.values())
+                .addObject("dependente", new Dependente());
     }
 
     @PostMapping("/adicionar")
+    @Transactional
     public String adicionarDependente(Dependente dependente) {
         this.dependenteRepo.save(dependente);
         return "redirect:/dependente/listar/?clienteId=" + dependente.getCliente().getId();
@@ -59,13 +64,15 @@ public class DependenteController {
         List<Cliente> clientes = this.clienteRepo.findAll();
         return new ModelAndView("/dependente/editarDependente")
                 .addObject("clientes", clientes)
-                .addObject(dependente);
+                .addObject("generos", Genero.values())
+                .addObject("dependente", dependente);
     }
 
     @PostMapping("/editar/{id}")
+    @Transactional
     public String editarDependente(@PathVariable("id") Long id, Dependente dependente) {
         this.dependenteRepo.save(dependente);
-        return "redirect:/dependente/listar";
+        return "redirect:/dependente/listar/?clienteId=" + dependente.getCliente().getId();
     }
 
     @GetMapping("/remover/{id}")
