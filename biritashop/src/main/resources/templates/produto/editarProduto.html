@@ -2,100 +2,112 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <title>BiritaShop</title>
 </head>
 
 <body>
-<div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
+    <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-<div class="container my-5 pt-4 d-flex justify-content-center">
-    <form th:action="@{/produto/editar/{id}(id = ${produto.id})}" method="POST" th:object="${produto}">
-        <h2 class="border-bottom">Editar Produto</h2>
-        <div class="row g1 mb-2">
-            <div>
-                <label for="nome">Nome*</label>
-                <input class="form-control" type="text" id="nome" name="nome" th:field="*{nome}" required>
+    <div class="container-fluid my-5 pt-4 d-flex justify-content-center">
+        <form class="needs-validation" th:action="@{/produto/editar/{id}(id = ${produto.id})}" method="POST"
+            th:object="${produto}" enctype="multipart/form-data" novalidate>
+            <h2 class="border-bottom">Editar Produto</h2>
+            <div class="input-group mb-2">
+                <input class="form-control" type="file" id="imagem" name="imagem"
+                    accept="image/png, image/jpeg">
+                <label class="input-group-text" for="imagem"><i class="bi bi-image"></i></label>
             </div>
-        </div>
 
-        <div class="row g-2 mb-2">
-            <div class="col-auto">
-                <label for="marca">Marca*</label>
-                <input class="form-control" type="text" id="marca" name="marca"
-                       th:field="*{marca}" required>
-            </div>
-            <div class="col-auto">
-                <label for="volume">Volume(mL)*</label>
-                <input class="form-control mask-valor" type="text" id="volume" name="volume"
-                       th:field="*{volume}" required>
-            </div>
-        </div>
-
-        <div class="row g-2 mb-2">
-            <div class="col-auto">
-                <label for="precoCompra">Preço de Compra(R$)*</label>
-                <input class="form-control mask-valor" type="text" id="precoCompra" name="precoCompra"
-                       th:field="*{precoCompra}" required>
-            </div>
-            <div class="col-auto">
-                <label for="precoVenda">Preço de Venda(R$)*</label>
-                <input class="form-control mask-valor" type="text" id="precoVenda" name="precoVenda"
-                       th:field="*{precoVenda}" required>
-            </div>
-        </div>
-
-        <div class="row mb-2">
-            <legend class="col-form-label pt-0">Tipe de Embalagem*</legend>
-            <div class="col-sm-10">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="tipoEmbalagem" id="plastico" value="Plastico"
-                           th:field="*{tipoEmbalagem}" required>
-                    <label class="form-check-label" for="plastico">
-                        Plastico
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="tipoEmbalagem" id="metal" value="Metal"
-                           th:field="*{tipoEmbalagem}">
-                    <label class="form-check-label" for="metal">
-                        Metal
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="tipoEmbalagem" id="vidro" value="Vidro"
-                           th:field="*{tipoEmbalagem}">
-                    <label class="form-check-label" for="vidro">
-                        Vidro
-                    </label>
+            <div class="row g-2">
+                <div class="col-md">
+                    <div class="form-floating mb-3">
+                        <input class="form-control" type="text" id="nome" name="nome" placeholder="nome"
+                            th:field="*{nome}" required>
+                        <label for="nome">Nome*</label>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row g-1">
-            <button class="btn btn-warning" type="submit">
-                <i class="bi bi-pencil-square"></i>
-                Editar
-            </button>
-        </div>
+            <div class="row g-2">
+                <div class="col-md">
+                    <div class="form-floating mb-3">
+                        <input class="form-control" type="text" id="marca" name="marca" placeholder="marca"
+                            th:field="*{marca}" required>
+                        <label for="marca">Marca*</label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input class="form-control mask-valor" type="text" id="volume" name="volume"
+                            placeholder="volume" th:field="*{volume}" required>
+                        <label for="volume">Volume (ml)*</label>
+                    </div>
+                </div>
+            </div>
 
-        <p>*Campos Obrigatorios</p>
-    </form>
-</div>
+            <div class="row g-2">
+                <div class="col-md">
+                    <div class="form-floating mb-3">
+                        <input class="form-control mask-valor" type="text" id="precoCompra" name="precoCompra"
+                            placeholder="precoCompra" th:field="*{precoCompra}" required>
+                        <label for="precoCompra">Preço de Compra R$*</label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input class="form-control mask-valor" type="text" id="precoVenda" name="precoVenda"
+                            placeholder="precoVenda" th:field="*{precoVenda}" required>
+                        <label for="precoVenda">Preço de Venda R$*</label>
+                    </div>
+                </div>
+            </div>
 
-<div th:replace="fragments/barraInformacao :: barraInformacao"></div>
+            <div class="row mb-2">
+                <legend class="col-form-label col-form-label-lg py-0">Selecionar a Embalagem*</legend>
+                <div class="col-md">
+                    <div class="form-check" th:each="embalagem : ${embalagens}">
+                        <input class="form-check-input" type="radio" th:id="${embalagem.valor}" name="embalagem"
+                            th:value="${embalagem}" th:field="*{embalagem}" required>
+                        <label class="form-check-label" th:for="${embalagem.valor}"
+                            th:text="${embalagem.valor}"></label>
+                    </div>
+                </div>
+            </div>
 
-<script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="/js/jquery.min.js"></script>
-<script type="text/javascript" src="/js/jquery.mask.min.js"></script>
-<script type="text/javascript" src="/js/masks.js"></script>
-<script type="text/javascript" src="/js/activePage.js"></script>
+            <div class="row g-2">
+                <div>
+                    <label for="nome">Nome*</label>
+                    <input class="form-control" type="date" id="dataCadastro" name="dataCadastro"
+                        th:field="*{dataCadastro}" hidden>
+                </div>
+            </div>
+
+            <div class="row g-2">
+                <button class="btn btn-warning" type="submit">
+                    <i class="bi bi-pencil-square"></i>
+                    Editar
+                </button>
+            </div>
+
+            <p>*Campos Obrigatorios</p>
+        </form>
+    </div>
+
+    <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
+
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.mask.min.js"></script>
+    <script type="text/javascript" src="/js/masks.js"></script>
+    <script type="text/javascript" src="/js/validation.js"></script>
+    <script type="text/javascript" src="/js/activePage.js"></script>
 </body>
 
 </html>

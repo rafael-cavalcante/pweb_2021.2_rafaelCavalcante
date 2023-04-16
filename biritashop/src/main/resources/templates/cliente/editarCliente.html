@@ -23,7 +23,7 @@
                 <div class="col-md">
                     <div class="form-floating mb-3">
                         <input class="form-control" type="text" id="nomeCompleto" name="nomeCompleto"
-                            th:field="*{nomeCompleto}" placeholder="Nome Completo" required>
+                            th:field="*{nomeCompleto}" placeholder="nomeCompleto" required>
                         <label for="nomeCompleto">Nome Completo*</label>
                     </div>
                 </div>
@@ -32,15 +32,15 @@
             <div class="row g-2">
                 <div class="col-md">
                     <div class="form-floating mb-3">
-                        <input class="form-control mask-email" type="text" id="email" name="email" th:field="*{email}"
-                            placeholder="name@example.com" required>
+                        <input class="form-control mask-email" type="email" id="email" name="email" th:field="*{email}"
+                            placeholder="email" required>
                         <label for="email">E-mail*</label>
                     </div>
                 </div>
                 <div class="col-md">
                     <div class="form-floating">
                         <input class="form-control mask-telefone" type="text" id="telefone" name="telefone"
-                            th:field="*{telefone}" placeholder="Telefone" required>
+                            th:field="*{telefone}" placeholder="telefone" required>
                         <label for="telefone">Telefone*</label>
                     </div>
                 </div>

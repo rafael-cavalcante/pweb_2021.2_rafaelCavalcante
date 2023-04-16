@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import br.com.rafaelcavalcante.biritashop.model.enums.Embalagem;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,7 +36,7 @@ public class Produto implements Serializable {
     @Column(name = "volume")
     private BigDecimal volume;
     @Column(name = "tipo_embalagem")
-    private String tipoEmbalagem;
+    private Embalagem embalagem;
     @Column(name = "preco_compra")
     private BigDecimal precoCompra;
     @Column(name = "preco_venda")
