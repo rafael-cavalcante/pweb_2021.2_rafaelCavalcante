@@ -32,7 +32,7 @@ public class ClienteController {
     public ModelAndView formAdicionarCliente() {
         return new ModelAndView("/cliente/adicionarCliente")
                 .addObject("generos", Genero.values())
-                .addObject(new Cliente());
+                .addObject("cliente", new Cliente());
     }
 
     @PostMapping("/adicionar")
@@ -45,16 +45,17 @@ public class ClienteController {
     @GetMapping("/editar/{id}")
     public ModelAndView formEditarCliente(@PathVariable("id") Long id) {
         Cliente cliente = this.clienteRepo.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Cliente Não Encontrado " + id));
+                .orElseThrow(() -> new IllegalArgumentException("Cliente ID " + id + " Não Encontrado"));
         return new ModelAndView("/cliente/editarCliente")
                 .addObject("generos", Genero.values())
-                .addObject(cliente);
+                .addObject("cliente", cliente);
     }
 
     @PostMapping("/editar/{id}")
+    @Transactional
     public String editarCliente(@PathVariable("id") Long id, Cliente cliente) {
         this.clienteRepo.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Cliente Não Encontrado " + id));
+                .orElseThrow(() -> new IllegalArgumentException("Cliente ID " + id + " Não Encontrado"));
         this.clienteRepo.save(cliente);
         return "redirect:/cliente/listar";
     }
@@ -62,7 +63,7 @@ public class ClienteController {
     @GetMapping("/remover/{id}")
     public ModelAndView removerCliente(@PathVariable("id") Long id) {
         Cliente cliente = this.clienteRepo.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Cliente Não Encontrado " + id));
+                .orElseThrow(() -> new IllegalArgumentException("Cliente ID " + id + " Não Encontrado"));
         this.clienteRepo.delete(cliente);
         return new ModelAndView("redirect:/cliente/listar");
     }

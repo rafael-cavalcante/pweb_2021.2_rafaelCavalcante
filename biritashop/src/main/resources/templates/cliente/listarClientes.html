@@ -35,7 +35,13 @@
                     <th scope="row" th:text="${cliente.id}"></th>
                     <td th:text="${cliente.nomeCompleto}"></td>
                     <td th:text="${cliente.email}"></td>
-                    <td class="mask-telefone" th:text="${cliente.telefone}"></td>
+                    <td>
+                        <a class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                            th:href="'https://api.whatsapp.com/send?phone=' + ${cliente.telefone}">
+                            <span class="mask-telefone" th:text="${cliente.telefone}"></span>
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                    </td>
                     <td th:text="${cliente.cidade}"></td>
                     <td class="mask-cep" th:text="${cliente.CEP}"></td>
                     <td th:text="${cliente.genero.valor}"></td>

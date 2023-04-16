@@ -15,47 +15,57 @@
 <body>
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-    <div class="container my-5 pt-4 d-flex justify-content-center">
+    <div class="container-fluid my-5 pt-4 d-flex justify-content-center">
         <form class="needs-validation" th:action="@{/cliente/editar/{id}(id = ${cliente.id})}" method="POST"
             th:object="${cliente}" novalidate>
-
             <h2 class="border-bottom">Editar Cliente</h2>
-
-            <div class="row g-2 mb-3">
-                <div>
-                    <label class="form-label" for="nomeCompleto">Nome Completo*</label>
-                    <input class="form-control" type="text" id="nomeCompleto" name="nomeCompleto"
-                        th:field="*{nomeCompleto}" required>
+            <div class="row g-2">
+                <div class="col-md">
+                    <div class="form-floating mb-3">
+                        <input class="form-control" type="text" id="nomeCompleto" name="nomeCompleto"
+                            th:field="*{nomeCompleto}" placeholder="Nome Completo" required>
+                        <label for="nomeCompleto">Nome Completo*</label>
+                    </div>
                 </div>
             </div>
 
-            <div class="row g-2 mb-3">
-                <div class="col-auto">
-                    <label class="form-label" for="email">E-Mail*</label>
-                    <input class="form-control mask-email" type="text" id="email" name="email" th:field="*{email}"
-                        required>
+            <div class="row g-2">
+                <div class="col-md">
+                    <div class="form-floating mb-3">
+                        <input class="form-control mask-email" type="text" id="email" name="email" th:field="*{email}"
+                            placeholder="name@example.com" required>
+                        <label for="email">E-mail*</label>
+                    </div>
                 </div>
-                <div class="col-auto">
-                    <label class="form-label" for="telefone">Telefone*</label>
-                    <input class="form-control mask-telefone" type="text" id="telefone" name="telefone"
-                        th:field="*{telefone}" required>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input class="form-control mask-telefone" type="text" id="telefone" name="telefone"
+                            th:field="*{telefone}" placeholder="Telefone" required>
+                        <label for="telefone">Telefone*</label>
+                    </div>
                 </div>
             </div>
 
-            <div class="row g-2 mb-3">
-                <div class="col-auto">
-                    <label class="form-label" for="cep">CEP*</label>
-                    <input class="form-control mask-cep" type="text" id="cep" name="CEP" th:field="*{CEP}" required>
+            <div class="row g-2">
+                <div class="col-md">
+                    <div class="form-floating mb-3">
+                        <input class="form-control mask-cep" type="text" id="cep" name="CEP" th:field="*{CEP}"
+                            placeholder="CEP" required>
+                        <label for="cep">CEP*</label>
+                    </div>
                 </div>
-                <div class="col-auto">
-                    <label class="form-label" for="cidade">Cidade*</label>
-                    <input class="form-control" type="text" id="cidade" name="cidade" th:field="*{cidade}" required>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input class="form-control" type="text" id="cidade" name="cidade" placeholder="Angicos"
+                            th:field="*{cidade}" required>
+                        <label for="cidade">Cidade*</label>
+                    </div>
                 </div>
             </div>
 
             <div class="row mb-2">
-                <legend class="col-form-label pt-0">Informe o Gênero*</legend>
-                <div class="col-sm-10">
+                <legend class="col-form-label col-form-label-lg py-0">Informe o Gênero*</legend>
+                <div class="col-md">
                     <div class="form-check" th:each="genero : ${generos}">
                         <input class="form-check-input" type="radio" name="genero" th:id="${genero.valor}"
                             th:value="${genero}" th:field="*{genero}" required>
@@ -64,7 +74,7 @@
                 </div>
             </div>
 
-            <div class="row g-1">
+            <div class="row g-2">
                 <button class="btn btn-warning" type="submit">
                     <i class="bi bi-pencil-square"></i>
                     Editar
