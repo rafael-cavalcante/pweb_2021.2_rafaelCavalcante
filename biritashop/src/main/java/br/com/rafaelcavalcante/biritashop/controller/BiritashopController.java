@@ -11,7 +11,7 @@ public class BiritashopController {
 
     @GetMapping
     public ModelAndView index() {
-        return new ModelAndView("index");
+        return new ModelAndView("/index");
     }
 
     @GetMapping("/public/sobre")
@@ -22,5 +22,10 @@ public class BiritashopController {
     @GetMapping("/public/contato")
     public ModelAndView contato() {
         return new ModelAndView("/public/contato");
+    }
+
+    @GetMapping("login")
+    public String login() {
+        return "login";
     }
 }
