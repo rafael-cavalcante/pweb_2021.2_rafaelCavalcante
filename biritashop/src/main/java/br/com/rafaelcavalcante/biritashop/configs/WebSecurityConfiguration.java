@@ -21,23 +21,24 @@ public class WebSecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable().authorizeRequests().antMatchers("/" ).permitAll()
+                .csrf().disable().authorizeRequests().antMatchers("/").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll()
-                //.loginPage("/login")
+                .loginPage("/login")
                 .and()
                 .logout().permitAll()
                 .logoutUrl("/logout")
-                .addLogoutHandler(new SecurityContextLogoutHandler())
-                .and()
-                .httpBasic();
+                .addLogoutHandler(new SecurityContextLogoutHandler());
+                //.and()
+                //.httpBasic();
         return http.build();
     }
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers("/static/**", "/public/**", "/resources/**", "/assets/**", "/js/**", "/css/**",
+        return (web) -> web.ignoring().antMatchers("/static/**", "/public/**", "/resources/**", "/assets/**", "/js/**",
+                "/css/**",
                 "/templates/fragments/**", "/image/**");
     }
 }

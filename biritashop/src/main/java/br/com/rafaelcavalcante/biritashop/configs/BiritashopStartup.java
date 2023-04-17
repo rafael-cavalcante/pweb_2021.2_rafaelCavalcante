@@ -42,6 +42,7 @@ public class BiritashopStartup implements CommandLineRunner {
         }
     }
 
+    @Transactional
     private void gerarAdmin() {
         if (usuarioRepo.findById(1L).isPresent()) {
             System.out.println("Usuário administrador já existe. Continuando...");

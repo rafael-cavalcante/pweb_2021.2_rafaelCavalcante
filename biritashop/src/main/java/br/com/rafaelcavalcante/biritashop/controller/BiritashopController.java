@@ -24,8 +24,8 @@ public class BiritashopController {
         return new ModelAndView("/public/contato");
     }
 
-    @GetMapping("login")
-    public String login() {
-        return "login";
+    @GetMapping("/login")
+    public ModelAndView login() {
+        return new ModelAndView("/login");
     }
 }
