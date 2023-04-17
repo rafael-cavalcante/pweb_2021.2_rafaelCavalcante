@@ -12,6 +12,7 @@ import lombok.ToString;
 public class ItemPedidoDTO {
     
     private Long id;
+    private ProdutoDTO produto;
     private Long quantidade;
 
 }

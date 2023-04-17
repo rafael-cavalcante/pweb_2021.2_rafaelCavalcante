@@ -11,6 +11,8 @@ import br.com.rafaelcavalcante.biritashop.model.ItemPedido;
 import br.com.rafaelcavalcante.biritashop.model.Pedido;
 import br.com.rafaelcavalcante.biritashop.model.Produto;
 import br.com.rafaelcavalcante.biritashop.model.dto.ItemPedidoDTO;
+import br.com.rafaelcavalcante.biritashop.model.dto.PedidoDTO;
+import br.com.rafaelcavalcante.biritashop.model.dto.ProdutoDTO;
 import br.com.rafaelcavalcante.biritashop.repository.ItemPedidoRepository;
 import br.com.rafaelcavalcante.biritashop.repository.ProdutoRepository;
 
@@ -27,23 +29,32 @@ public class PedidoService {
         this.itemPedidoRepo = itemPedidoRepo;
     }
 
-    public List<ItemPedido> editarItensPedido(Pedido pedido, List<ItemPedido> itensPedido) {
-        List<ItemPedido> filtrado = itensPedido.stream()
-                .filter(Objects::nonNull)
-                .filter(item -> Objects.nonNull(item.getId()))
-                .peek(item -> item.setQuantidade(
-                        item.getQuantidade() != null ? item.getQuantidade() : 1L))
-                .collect(Collectors.toList());
+    public PedidoDTO converterPedidoDTO(Pedido pedido) {
+        return new PedidoDTO(pedido.getId(), pedido.getCliente(), converterItensPedidoDTO(pedido.getItens()),
+                pedido.getFormaPagamento(),
+                pedido.getValorPagamento(), pedido.getNumeroCartao());
+    }
 
-        return filtrado.stream().map(itemPedidoEditado -> {
-            ItemPedido itemPedido = this.itemPedidoRepo.findById(itemPedidoEditado.getId())
+    public List<ItemPedidoDTO> converterItensPedidoDTO(List<ItemPedido> itensPedido) {
+        return itensPedido.stream().map(itemPedido -> {
+            return new ItemPedidoDTO(itemPedido.getProduto().getId(), converterProdutoDTO(itemPedido.getProduto()),
+                    itemPedido.getQuantidade());
+        }).collect(Collectors.toList());
+    }
+
+    public ProdutoDTO converterProdutoDTO(Produto produto) {
+        return new ProdutoDTO(produto.getId());
+    }
+
+    public List<ItemPedido> editarItensPedido(Pedido pedido, List<ItemPedidoDTO> itensPedidoDTO) {
+        return itensPedidoDTO.stream().map(itemPedidoDTO -> {
+            ItemPedido itemPedido = this.itemPedidoRepo.findById(itemPedidoDTO.getId())
                     .orElseThrow(() -> new IllegalArgumentException(
-                            "ItemPedido Não Encontrado " + itemPedidoEditado.getId()));
-
+                            "ItemPedido Não Encontrado " + itemPedidoDTO.getId()));
             Produto produto = this.produtoRepo.findById(itemPedido.getProduto().getId())
                     .orElseThrow(() -> new IllegalArgumentException(
                             "Produto Não Encontrado " + itemPedido.getProduto().getId()));
-            itemPedido.setQuantidade(itemPedidoEditado.getQuantidade());
+            itemPedido.setQuantidade(itemPedidoDTO.getQuantidade());
             itemPedido.setProduto(produto);
             itemPedido.setPedido(pedido);
             return itemPedido;
@@ -53,14 +64,14 @@ public class PedidoService {
     public List<ItemPedido> converterItensPedido(Pedido pedido, List<ItemPedidoDTO> itensPedido) {
         List<ItemPedidoDTO> filtrado = itensPedido.stream()
                 .filter(Objects::nonNull)
-                .filter(item -> Objects.nonNull(item.getId()))
+                .filter(item -> Objects.nonNull(item.getProduto().getId()))
                 .peek(item -> item.setQuantidade(
                         item.getQuantidade() != null ? item.getQuantidade() : 1L))
                 .collect(Collectors.toList());
         return filtrado.stream().map(itemPedidoDTO -> {
-            Produto produto = this.produtoRepo.findById(itemPedidoDTO.getId())
+            Produto produto = this.produtoRepo.findById(itemPedidoDTO.getProduto().getId())
                     .orElseThrow(() -> new IllegalArgumentException(
-                            "Produto Não Encontrado " + itemPedidoDTO.getId()));
+                            "Produto Não Encontrado " + itemPedidoDTO.getProduto().getId()));
             ItemPedido itemPedido = ItemPedido.builder()
                     .quantidade(itemPedidoDTO.getQuantidade())
                     .valorUnitario(produto.getPrecoVenda())
@@ -74,14 +85,14 @@ public class PedidoService {
     public List<ItemPedido> converterItensPedido(List<ItemPedidoDTO> itensPedido) {
         List<ItemPedidoDTO> filtrado = itensPedido.stream()
                 .filter(Objects::nonNull)
-                .filter(item -> Objects.nonNull(item.getId()))
+                .filter(item -> Objects.nonNull(item.getProduto().getId()))
                 .peek(item -> item.setQuantidade(
                         item.getQuantidade() != null ? item.getQuantidade() : 1L))
                 .collect(Collectors.toList());
         return filtrado.stream().map(itemPedidoDTO -> {
-            Produto produto = this.produtoRepo.findById(itemPedidoDTO.getId())
+            Produto produto = this.produtoRepo.findById(itemPedidoDTO.getProduto().getId())
                     .orElseThrow(() -> new IllegalArgumentException(
-                            "Produto Não Encontrado " + itemPedidoDTO.getId()));
+                            "Produto Não Encontrado " + itemPedidoDTO.getProduto().getId()));
             ItemPedido itemPedido = ItemPedido.builder()
                     .quantidade(itemPedidoDTO.getQuantidade())
                     .valorUnitario(produto.getPrecoVenda())

@@ -12,20 +12,20 @@
     <title>BiritaShop</title>
 </head>
 
-<body>
+<body onload="selectAllCheckboxs()">
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
     <div class="container my-5 pt-4">
         <form class="needs-validation" th:action="@{/pedido/finalizar}" method="POST" th:object="${pedidoDTO}"
             novalidate>
-            <div class="row">
-                <div class="col col-lg-6">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <label class="input-group-text" for="search">
                             <i class="bi bi-person"></i>
                             Cliente
-                        </span>
-                        <select class="form-select" name="cliente" disable>
+                        </label>
+                        <select class="form-select form-select-lg" id="cliente" name="cliente" required>
                             <option th:value="${pedidoDTO.cliente.id}" th:text="${pedidoDTO.cliente.nomeCompleto}">
                             </option>
                         </select>
@@ -40,7 +40,7 @@
                     <tr>
                         <th scope="col">
                             <input class="form-check-input checkbox" type="checkbox" id="master-checkbox"
-                                onclick="checkAll(this)" required>
+                                onclick="checkAll(this)">
                         </th>
                         <th scope="col">ID</th>
                         <th scope="col">Imagem</th>
@@ -54,7 +54,7 @@
                         <td>
                             <div class="form-check">
                                 <input class="form-check-input checkbox child-checkbox" type="checkbox"
-                                    th:value="${item.produto.id}" th:field="*{itens[__${iStat.index}__].id}" required>
+                                    th:value="${item.produto.id}" th:field="*{itens[__${iStat.index}__].produto.id}">
                             </div>
                         </td>
                         <th scope="row" th:text="${item.produto.id}"></th>
@@ -110,7 +110,7 @@
                 </div>
             </div>
 
-            <div class="row g-1">
+            <div class="row g-2">
                 <button class="btn btn-outline-success" type="submit">
                     <i class="bi bi-cart-check"></i>
                     Finalizar

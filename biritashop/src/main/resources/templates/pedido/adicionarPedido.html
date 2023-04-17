@@ -56,7 +56,7 @@
                     <tr th:each="produto, iStat: ${produtos}">
                         <td>
                             <input class="form-check-input checkbox child-checkbox" type="checkbox"
-                                th:value="${produto.id}" th:field="*{itens[__${iStat.index}__].id}" required>
+                                th:value="${produto.id}" th:field="*{itens[__${iStat.index}__].produto.id}" required>
                         </td>
                         <th scope="row" th:text="${produto.id}"></th>
                         <td>

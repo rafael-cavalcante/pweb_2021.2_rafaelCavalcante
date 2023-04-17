@@ -1,3 +1,11 @@
+function selectAllCheckboxs() {
+    const checkboxes = document.querySelectorAll('.checkbox');
+
+    checkboxes.forEach(checkbox => {
+        checkbox.setAttribute('checked', '');
+    });
+}
+
 function verificarCheckBox() {
     const checkboxes = document.querySelectorAll('.child-checkbox:checked');
 

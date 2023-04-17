@@ -12,33 +12,37 @@
     <title>BiritaShop</title>
 </head>
 
-<body>
+<body onload="selectAllCheckboxs()">
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-    <div class="container my-5 pt-4">
-        <form th:action="@{/pedido/editar/{id}(id = ${pedido.id})}" method="POST" th:object="${pedido}">
-            <div class="row col-sm-6">
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">
-                        <i class="bi bi-person"></i>
-                        Cliente
-                    </span>
-                    <select class="form-select" name="cliente">
-                        <option th:value="${pedido.cliente.id}" th:text="${pedido.cliente.nomeCompleto}"></option>
-                    </select>
+    <div class="container-fluid my-5 pt-4">
+        <form class="needs-validation" th:action="@{/pedido/editar/{id}(id = ${pedidoDTO.id})}" method="POST"
+            th:object="${pedidoDTO}" novalidate>
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <label class="input-group-text" for="search">
+                            <i class="bi bi-person"></i>
+                            Cliente
+                        </label>
+                        <select class="form-select form-select-lg" id="cliente" name="cliente" required>
+                            <option th:value="${pedidoDTO.cliente.id}" th:text="${pedidoDTO.cliente.nomeCompleto}">
+                            </option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
             <h2 class="border-bottom">Produtos</h2>
-
             <table class="table">
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">
-                            <input class="form-check-input" type="checkbox" id="master-checkbox"
+                            <input class="form-check-input checkbox" type="checkbox" id="master-checkbox"
                                 onclick="checkAll(this)">
                         </th>
                         <th scope="col">ID</th>
+                        <th scope="col">Imagem</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Valor Unitário R$</th>
                         <th scope="col">Quantidade</th>
@@ -47,55 +51,70 @@
                 <tbody>
                     <tr th:each="item, iStat : ${itensPedido}">
                         <td>
-                            <input class="form-check-input child-checkbox" type="checkbox" id="selecionado"
-                                th:field="*{itens[__${iStat.index}__].id}" th:value="${item.id}">
+                            <div class="form-check">
+                                <input class="form-check-input checkbox child-checkbox" type="checkbox"
+                                    th:value="${item.id}" th:field="*{itens[__${iStat.index}__].id}">
+                            </div>
                         </td>
                         <th scope="row" th:text="${item.produto.id}"></th>
+                        <td>
+                            <img th:id="'Produto' + ${item.produto.id}"
+                                th:src="@{${item.produto.getFoto} ? ('data:image/jpeg;base64,' + ${item.produto.getFotoBase64()}) : @{/image/imagem.png}}"
+                                th:alt="'Foto de' + ${item.produto.nome}" width="30" height="30">
+                        </td>
                         <td th:text="${item.produto.nome}"></td>
                         <td th:text="${item.valorUnitario}"></td>
                         <td>
-                            <input class="form-control input-unit" type="number"
-                                th:field="*{itens[__${iStat.index}__].quantidade}" value="1" min="1">
+                            <input class="form-control input-unidades" type="number"
+                                th:field="*{itens[__${iStat.index}__].quantidade}" value="1" min="1"
+                                aria-label="Quantidade de Produtos">
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-end" colspan="4"><strong>QUANTIDADE DE ITENS:</strong></td>
+                        <td class="text-end" colspan="5"><strong>QUANTIDADE DE ITENS:</strong></td>
                         <td th:text="${itensPedido.size}"></td>
                     </tr>
                 </tbody>
             </table>
 
-            <div class="col-sm-4">
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="formaPagamento">Forma de Pagamento</label>
-                    <select class="form-select" id="formaPagamento" name="formaPagamento" required>
-                        <option th:text="${pedido.formaPagamento.tipo}" th:value="${pedido.formaPagamento}">
-                        </option>
-                    </select>
+            <div class="row justify-content-md-end">
+                <div class="col col-lg-6">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="formaPagamento">Forma de Pagamento</label>
+                        <select class="form-select" id="formasPagamento" name="formaPagamento" required>
+                            <option th:text="${pedidoDTO.formaPagamento.valor}" th:value="${pedidoDTO.formaPagamento}">
+                            </option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
-            <div th:if="${pedido.formaPagamento.tipo != 'Crédito'}" class="col-sm-4">
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="valorPagamento">R$</label>
-                    <input class="form-control mask-valor" type="text" id="valorPagamento" name="valorPagamento"
-                        th:field="*{valorPagamento}" required>
+            <div th:if="${pedidoDTO.formaPagamento.valor == 'Crédito'}" class="row justify-content-md-end">
+                <div class="col col-lg-6">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="numeroCartao">Número Cartão</label>
+                        <input class="form-control mask-cartao" type="text" id="numeroCartao" name="numeroCartao"
+                            required>
+                    </div>
                 </div>
             </div>
 
-            <div th:if="${pedido.formaPagamento.tipo == 'Crédito'}" class="col-sm-4">
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="numeroCartao">Número Cartão</label>
-                    <input class="form-control mask-cartao" type="text" id="numeroCartao" name="numeroCartao" 
-                    th:field="*{numeroCartao}" required>
+            <div class="row justify-content-md-end">
+                <div class="col col-lg-6">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="valorPagamento">R$</label>
+                        <input class="form-control mask-valor" type="text" id="valorPagamento" name="valorPagamento"
+                            th:field="*{valorPagamento}" required>
+                    </div>
                 </div>
             </div>
 
-            <button class="btn btn-outline-success col-sm-2" type="submit">
-                <i class="bi bi-plus-square"></i>
-                Editar
-            </button>
-
+            <div class="row g-2">
+                <button class="btn btn-warning text-white" type="submit">
+                    <i class="bi bi-pencil-square"></i>
+                    Editar
+                </button>
+            </div>
         </form>
     </div>
 
@@ -107,6 +126,7 @@
     <script type="text/javascript" src="/js/masks.js"></script>
     <script type="text/javascript" src="/js/checkbox.js"></script>
     <script type="text/javascript" src="/js/input.js"></script>
+    <script type="text/javascript" src="/js/validation.js"></script>
     <script type="text/javascript" src="/js/activePage.js"></script>
 </body>
 
