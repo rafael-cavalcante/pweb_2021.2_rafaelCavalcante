@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("/error")
 public class CustomErrorController implements ErrorController {
 
-    @RequestMapping("/error")
+    @GetMapping()
     public ModelAndView handleError(HttpServletRequest request, Exception exception) {
         return new ModelAndView("/error")
                 .addObject("class", exception.getClass())

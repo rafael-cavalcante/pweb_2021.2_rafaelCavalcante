@@ -29,16 +29,15 @@ public class WebSecurityConfiguration {
                 .and()
                 .logout().permitAll()
                 .logoutUrl("/logout")
-                .addLogoutHandler(new SecurityContextLogoutHandler());
-                //.and()
-                //.httpBasic();
+                .addLogoutHandler(new SecurityContextLogoutHandler())
+                .and()
+                .httpBasic();
         return http.build();
     }
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring().antMatchers("/static/**", "/public/**", "/resources/**", "/assets/**", "/js/**",
-                "/css/**",
-                "/templates/fragments/**", "/image/**");
+                "/css/**", "/templates/fragments/**", "/image/**");
     }
 }
