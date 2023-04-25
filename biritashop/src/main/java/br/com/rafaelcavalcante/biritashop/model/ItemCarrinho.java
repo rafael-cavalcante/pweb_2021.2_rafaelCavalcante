@@ -1,8 +1,5 @@
 package br.com.rafaelcavalcante.biritashop.model;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,22 +18,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "item_pedido")
-public class ItemPedido implements Serializable {
-
+@Table(name = "item_carrinho")
+public class ItemCarrinho {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Long quantidade;
 
-    private BigDecimal valorUnitario;
-
     @ManyToOne
     @JoinColumn(name = "produto_id")
     private Produto produto;
-    
+
     @ManyToOne
-    @JoinColumn(name = "pedido_id")
-    private Pedido pedido;
+    @JoinColumn(name = "carrinho_id")
+    private Carrinho carrinho;
+    
 }

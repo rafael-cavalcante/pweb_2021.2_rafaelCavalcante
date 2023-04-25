@@ -31,6 +31,10 @@ public class WebSecurityConfiguration {
                 .logoutUrl("/logout")
                 .addLogoutHandler(new SecurityContextLogoutHandler())
                 .and()
+                .sessionManagement(session -> session
+                        .maximumSessions(1)
+                        .maxSessionsPreventsLogin(true)
+                        .expiredUrl("/expired"))
                 .httpBasic();
         return http.build();
     }

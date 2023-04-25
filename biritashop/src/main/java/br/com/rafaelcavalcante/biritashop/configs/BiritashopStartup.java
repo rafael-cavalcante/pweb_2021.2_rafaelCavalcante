@@ -1,28 +1,28 @@
 package br.com.rafaelcavalcante.biritashop.configs;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import br.com.rafaelcavalcante.biritashop.model.Cliente;
 import br.com.rafaelcavalcante.biritashop.model.Role;
-import br.com.rafaelcavalcante.biritashop.model.Usuario;
 import br.com.rafaelcavalcante.biritashop.model.enums.RoleName;
+import br.com.rafaelcavalcante.biritashop.repository.ClienteRepository;
 import br.com.rafaelcavalcante.biritashop.repository.RoleRepository;
-import br.com.rafaelcavalcante.biritashop.repository.UsuarioRepository;
 
 @Component
 public class BiritashopStartup implements CommandLineRunner {
 
-    private UsuarioRepository usuarioRepo;
+    @Autowired
+    private RoleRepository roleRepository;
 
-    private RoleRepository roleRepo;
-
-    public BiritashopStartup(UsuarioRepository usuarioRepo, RoleRepository roleRepo) {
-        this.usuarioRepo = usuarioRepo;
-        this.roleRepo = roleRepo;
-    }
+    @Autowired
+    private ClienteRepository clienteRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -32,28 +32,25 @@ public class BiritashopStartup implements CommandLineRunner {
 
     @Transactional
     private void gerarRoles() {
-
-        if (!this.roleRepo.findByNome(RoleName.ROLE_ADMIN).isPresent() &&
-                !this.roleRepo.findByNome(RoleName.ROLE_USER).isPresent()) {
+        if (!this.roleRepository.findByNome(RoleName.ROLE_ADMIN).isPresent() &&
+                !this.roleRepository.findByNome(RoleName.ROLE_USER).isPresent()) {
             Role admin = new Role(1L, RoleName.ROLE_ADMIN);
             Role user = new Role(2L, RoleName.ROLE_USER);
-            this.roleRepo.save(user);
-            this.roleRepo.save(admin);
+            this.roleRepository.save(user);
+            this.roleRepository.save(admin);
         }
     }
 
     @Transactional
     private void gerarAdmin() {
-        if (usuarioRepo.findById(1L).isPresent()) {
+        if (this.clienteRepository.findById(1L).isPresent()) {
             System.out.println("Usuário administrador já existe. Continuando...");
         } else {
-            Usuario Usuario = new Usuario(
-                    1L,
-                    "rafaelcavalcante",
-                    new BCryptPasswordEncoder().encode("biritashop"),
-                    roleRepo.getByNome(RoleName.ROLE_ADMIN));
+            List<Role> roles = this.roleRepository.getByNome(RoleName.ROLE_ADMIN);
 
-            usuarioRepo.save(Usuario);
+            Cliente cliente = new Cliente(1L, "biritashop", new BCryptPasswordEncoder().encode("biritashop"), roles);
+
+            this.clienteRepository.save(cliente);
         }
     }
 }

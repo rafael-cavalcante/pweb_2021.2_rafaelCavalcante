@@ -44,7 +44,7 @@
                     </td>
                     <td th:text="${cliente.cidade}"></td>
                     <td class="mask-cep" th:text="${cliente.CEP}"></td>
-                    <td th:text="${cliente.genero.valor}"></td>
+                    <td th:text="${cliente.genero}"></td>
                     <td>
                         <a th:href="@{editar/{id}(id = ${cliente.id})}" class="btn btn-outline-warning">
                             <i class="bi bi-pencil-square"></i>

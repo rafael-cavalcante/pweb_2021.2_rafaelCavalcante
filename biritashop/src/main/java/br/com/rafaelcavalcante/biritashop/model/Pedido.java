@@ -22,13 +22,19 @@ public class Pedido implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private LocalDate data;
+
     private FormaPagamento formaPagamento;
+
     private String numeroCartao;
+
     @Column(name = "valor_pagamento")
     private BigDecimal valorPagamento;
+
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.REMOVE)
     private List<ItemPedido> itens;
+
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;

@@ -12,10 +12,10 @@
     <title>BiritaShop</title>
 </head>
 
-<body>
+<body class="py-5">
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-    <div class="my-5">
+    <div>
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -60,6 +60,28 @@
             </button>
         </div>
     </div>
+
+    <div class="container py-2">
+        <div th:if="${mensagem}" th:text="${mensagem} + 'Adicionado ao Carinnho'" class="alert alert-primary"></div>
+
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col" th:each="produto: ${produtos}">
+                <div class="card card border-info mb-3 h-100">
+                    <div class="card-header" th:text="${produto.nome}"></div>
+                    <img th:src="@{${produto.getFoto} ? ('data:image/jpeg;base64,' + ${produto.getFotoBase64()}) : @{/image/imagem.png}}"
+                        class="card-img-top" alt="..." width="30" height="240">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${produto.precoVenda} + 'R$'"></h5>
+                        <a th:href="@{/carrinho/adicionar/{id}(id = ${produto.id})}" class="btn btn-primary">Adicionar
+                            ao Carrinho</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="fragments/barraPaginacao :: barraPaginacao"></div>
 
     <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
 
