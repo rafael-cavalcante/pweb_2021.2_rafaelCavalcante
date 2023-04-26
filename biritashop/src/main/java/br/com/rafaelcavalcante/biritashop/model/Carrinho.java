@@ -27,10 +27,6 @@ public class Carrinho {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
-
     @OneToMany(mappedBy = "carrinho", cascade = CascadeType.REMOVE)
     private List<ItemCarrinho> itensCarrinho;
     

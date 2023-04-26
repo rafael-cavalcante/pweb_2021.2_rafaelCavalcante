@@ -25,8 +25,6 @@ public class ItemCarrinho {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long quantidade;
-
     @ManyToOne
     @JoinColumn(name = "produto_id")
     private Produto produto;

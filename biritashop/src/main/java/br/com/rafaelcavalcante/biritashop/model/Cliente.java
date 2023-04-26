@@ -3,7 +3,18 @@ package br.com.rafaelcavalcante.biritashop.model;
 import java.util.Collection;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,6 +41,10 @@ public class Cliente implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    @ManyToMany
+    @JoinTable(name = "cliente_role", joinColumns = @JoinColumn(name = "cliente_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles;
+
     @Column(name = "nome_completo")
     private String nomeCompleto;
 
@@ -54,19 +69,9 @@ public class Cliente implements UserDetails {
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE)
     private List<Pedido> pedidos;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "carrinho_id")
     private Carrinho carrinho;
-
-    @ManyToMany
-    @JoinTable(name = "cliente_role", joinColumns = @JoinColumn(name = "cliente_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles;
-
-    public Cliente(Long id, String username, String password, List<Role> roles) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.roles = roles;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

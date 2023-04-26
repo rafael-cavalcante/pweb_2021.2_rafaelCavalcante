@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @EnableMethodSecurity
 public class WebSecurityConfiguration {
@@ -21,21 +23,18 @@ public class WebSecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable().authorizeRequests().antMatchers("/").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().permitAll()
-                .loginPage("/login")
-                .and()
-                .logout().permitAll()
-                .logoutUrl("/logout")
-                .addLogoutHandler(new SecurityContextLogoutHandler())
-                .and()
+                .csrf(withDefaults()).authorizeRequests(requests -> requests.antMatchers("/").permitAll()
+                .anyRequest().authenticated())
+                .formLogin(login -> login.permitAll()
+                        .loginPage("/login"))
+                .logout(logout -> logout.permitAll()
+                        .logoutUrl("/logout")
+                        .addLogoutHandler(new SecurityContextLogoutHandler()))
                 .sessionManagement(session -> session
                         .maximumSessions(1)
                         .maxSessionsPreventsLogin(true)
                         .expiredUrl("/expired"))
-                .httpBasic();
+                .httpBasic(withDefaults());
         return http.build();
     }
 
