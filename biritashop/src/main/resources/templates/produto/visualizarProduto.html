@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<div th:replace="fragments/head :: head"></div>
+
+<body class="my-5 pt-4">
+
+    <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
+
+    <div class="container d-flex justify-content-center">
+        <div class="row">
+            <div class="col">
+                <div class="card border-info mb-3">
+                    <div class="card-header bg-transparent border-info" th:text="${produto.nome}"></div>
+                    <div class="text-center">
+                        <img th:src="@{${produto.foto} ? |/image/${produto.foto}| : @{/image/imagem.png}}"
+                            class="img-fluid rounded-start" alt="..." width="240" height="240">
+                    </div>
+                    <div class="card-body text-info">
+                        <h5 class="card-title">Success card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-info">
+                        <a th:href="@{/carrinho/adicionar/{id}(id = ${produto.id})}" class="btn btn-success">
+                            <i class="bi bi-cart-check"></i>
+                            Adicionar ao Carrinho
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
+
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
