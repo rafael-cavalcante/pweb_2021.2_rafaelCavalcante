@@ -11,11 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.rafaelcavalcante.biritashop.model.Carrinho;
 import br.com.rafaelcavalcante.biritashop.model.Cliente;
 import br.com.rafaelcavalcante.biritashop.model.ItemCarrinho;
 import br.com.rafaelcavalcante.biritashop.model.Produto;
-import br.com.rafaelcavalcante.biritashop.repository.CarrinhoRepository;
 import br.com.rafaelcavalcante.biritashop.repository.ClienteRepository;
 import br.com.rafaelcavalcante.biritashop.repository.ItemCarrinhoRepository;
 import br.com.rafaelcavalcante.biritashop.repository.ProdutoRepository;
@@ -25,10 +23,7 @@ import br.com.rafaelcavalcante.biritashop.repository.ProdutoRepository;
 public class CarrinhoController {
 
     @Autowired
-    private CarrinhoRepository carrinhoRepository;
-
-    @Autowired
-    private ProdutoRepository produtoRepo;
+    private ProdutoRepository produtoRepository;
 
     @Autowired
     private ClienteRepository clienteRepository;
@@ -50,7 +45,7 @@ public class CarrinhoController {
     public String adicionarCarrinho(Principal auth, @PathVariable("id") Long id) {
         Cliente cliente = this.clienteRepository.findByUsername(auth.getName())
                 .orElseThrow(() -> new IllegalArgumentException("Cliente " + auth.getName() + "Não Encontrado"));
-        Produto produto = this.produtoRepo.findById(id)
+        Produto produto = this.produtoRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Produto do ID " + id + " Não Encontrado"));
 
         ItemCarrinho itemCarrinho = new ItemCarrinho();

@@ -30,14 +30,13 @@ public class BiritashopController {
     }
 
     @GetMapping
-    public ModelAndView index(
-            @PageableDefault(sort = "nome", direction = Sort.Direction.ASC, value = 1) Pageable pageable) {
+    public ModelAndView index(@PageableDefault(sort = "nome", direction = Sort.Direction.ASC, value = 1) Pageable pageable) {
         Page<Produto> produtos = this.produtoService.listarPaginaProdutos(pageable);
         List<Cliente> clientes = this.clienteRepository.findAll();
 
         return new ModelAndView("/index")
                 .addObject("clientes", clientes)
-                .addObject("produtos", produtos);
+                .addObject("produtos", produtos);       
     }
 
     @GetMapping("/public/sobre")
