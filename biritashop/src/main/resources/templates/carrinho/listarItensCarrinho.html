@@ -1,49 +1,95 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-    <title>BiritaShop</title>
-</head>
+<div th:replace="fragments/head :: head"></div>
 
-<body>
+<body class="my-5 pt-5">
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-    <div class="container-fluid my-5 pt-4">
-        <h2 class="border-bottom">Produtos</h2>
-        <table class="table overflow-scroll mb-5">
-            <thead class="table-dark">
-                <tr>
-                    <th class="scope">ID</th>
-                    <th class="scope">Imagem</th>
-                    <th class="scope">Nome</th>
-                    <th class="scope">Valor R$</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="item : ${carrinho}">
-                    <th class="scope" th:text="${item.id}"></th>
-                    <td>
-                        <img th:id="'Produto' + ${item.produto.id}"
-                            th:src="@{${item.produto.getFoto} ? ('data:image/jpeg;base64,' + ${item.produto.getFotoBase64()}) : @{/image/imagem.png}}"
-                            th:alt="'Foto de' + ${item.produto.nome}" width="30" height="30">
-                    </td>
-                    <td th:text="${item.produto.nome}"></td>
-                    <td th:text="${item.produto.precoVenda}"></td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="container">
+        <form class="needs-validation" th:action="@{/pedido/processando}" method="POST" th:object="${pedidoDTO}"
+            novalidate>
+            <h2 class="border-bottom">Itens Carrinho</h2>
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">
+                            <input class="form-check-input checkbox" type="checkbox" id="master-checkbox"
+                                onclick="checkAll(this)" required>
+                        </th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Imagem</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Valor Unitário R$</th>
+                        <th scope="col">Quantidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item, iStat : ${itensCarrinho}">
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input checkbox child-checkbox" type="checkbox"
+                                    th:value="${item.id}" th:field="*{itens[__${iStat.index}__].id}" required>
+                            </div>
+                        </td>
+                        <th scope="row" th:text="${item.produto.id}"></th>
+                        <td>
+                            <img th:id="'Produto' + ${item.produto.id}"
+                                th:src="@{${item.produto.foto} ? |/image/${item.produto.foto}| : @{/image/imagem.png}}"
+                                th:alt="'Foto de' + ${item.produto.nome}" width="30" height="30">
+                        </td>
+                        <td th:text="${item.produto.nome}"></td>
+                        <td th:text="${item.produto.precoVenda}"></td>
+                        <td>
+                            <input class="form-control input-unidades" type="number"
+                                th:field="*{itens[__${iStat.index}__].quantidade}" value="1" min="1"
+                                aria-label="Quantidade de Produtos">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-end" colspan="5"><strong>QUANTIDADE DE ITENS:</strong></td>
+                        <td th:text="${itensCarrinho.size}"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="row mb-2">
+                <div class="col-auto">
+                    <div class="input-group">
+                        <label class="input-group-text" for="formaPagamento">
+                            <i class="bi bi-cash-coin"></i>
+                            Forma de Pagamento
+                        </label>
+                        <select class="form-select form-select-lg" id="formaPagamento" name="formaPagamento" required>
+                            <option selected disabled value="">Selecionar Forma Pagamento</option>
+                            <option th:each="formaPagamento : ${formasPagamento}" th:value="${formaPagamento}"
+                                th:text="${formaPagamento.valor}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-2">
+                <button class="btn btn-outline-success" type="submit">
+                    <i class="bi bi-plus-square"></i>
+                    Proximo
+                </button>
+                <button class="btn btn-outline-secondary" type="reset">
+                    <i class="bi bi-x-square"></i>
+                    Limpar Campos
+                </button>
+            </div>
+        </form>
     </div>
 
     <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
 
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/checkbox.js"></script>
+    <script type="text/javascript" src="/js/input.js"></script>
+    <script type="text/javascript" src="/js/validation.js"></script>
     <script type="text/javascript" src="/js/activePage.js"></script>
 </body>
 

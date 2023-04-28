@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.rafaelcavalcante.biritashop.model.Cliente;
 import br.com.rafaelcavalcante.biritashop.model.ItemCarrinho;
 import br.com.rafaelcavalcante.biritashop.model.Produto;
+import br.com.rafaelcavalcante.biritashop.model.dto.PedidoDTO;
+import br.com.rafaelcavalcante.biritashop.model.enums.FormaPagamento;
 import br.com.rafaelcavalcante.biritashop.repository.ClienteRepository;
 import br.com.rafaelcavalcante.biritashop.repository.ItemCarrinhoRepository;
 import br.com.rafaelcavalcante.biritashop.repository.ProdutoRepository;
@@ -38,7 +40,9 @@ public class CarrinhoController {
                 .orElseThrow(() -> new IllegalArgumentException("Cliente "  + "Não Encontrado"));
         List<ItemCarrinho> itensCarrinho = this.itemCarrinhoRepository.findByCarrinhoId(cliente.getCarrinho().getId());
                         return new ModelAndView("/carrinho/listarItensCarrinho")
-                .addObject("carrinho", itensCarrinho);
+                .addObject("itensCarrinho", itensCarrinho)
+                .addObject("pedidoDTO", new PedidoDTO())
+                .addObject("formasPagamento", FormaPagamento.values());
     }
 
     @GetMapping("/adicionar/{id}")

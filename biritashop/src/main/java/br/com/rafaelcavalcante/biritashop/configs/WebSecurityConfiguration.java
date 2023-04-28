@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 
 @Configuration
 @EnableWebSecurity
@@ -21,31 +22,24 @@ public class WebSecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((authorize) -> authorize
-                .antMatchers("/").permitAll()
-                .anyRequest().authenticated())
-                .formLogin((form) -> form
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/", true)
-                        .failureUrl("/login-error")
+        http.authorizeHttpRequests((authorize) -> authorize.antMatchers("/").permitAll().anyRequest().authenticated())
+                .formLogin((form) -> form.loginPage("/login").defaultSuccessUrl("/", true).failureUrl("/login-error")
                         .permitAll())
-                .logout((logout) -> logout
-                        .logoutSuccessUrl("/")
-                        .deleteCookies("JSESSIONID"))
-                .exceptionHandling((ex) -> ex
-                        .accessDeniedPage("/negado"))
-                .sessionManagement(session -> session
-                        .maximumSessions(1)
-                        .maxSessionsPreventsLogin(true)
-                        .expiredUrl("/expired"));
+                .logout((logout) -> logout.logoutUrl("/logout").invalidateHttpSession(true).logoutSuccessUrl("/").deleteCookies("JSESSIONID"))
+                .exceptionHandling((ex) -> ex.accessDeniedPage("/negado")).sessionManagement(
+                        session -> session.maximumSessions(1).maxSessionsPreventsLogin(true).expiredUrl("/expired"));
 
         return http.build();
     }
 
     @Bean
+    public SpringSecurityDialect springSecurityDialect() {
+        return new SpringSecurityDialect();
+    }
+
+    @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers("/static/**", "/public/**", "/resources/**", "/assets/**",
-                "/js/**",
+        return (web) -> web.ignoring().antMatchers("/static/**", "/public/**", "/resources/**", "/assets/**", "/js/**",
                 "/css/**", "/templates/fragments/**", "/image/**");
     }
 }
