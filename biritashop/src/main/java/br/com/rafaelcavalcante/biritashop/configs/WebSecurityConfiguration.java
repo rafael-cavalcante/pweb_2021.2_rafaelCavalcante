@@ -22,12 +22,24 @@ public class WebSecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((authorize) -> authorize.antMatchers("/").permitAll().anyRequest().authenticated())
-                .formLogin((form) -> form.loginPage("/login").defaultSuccessUrl("/", true).failureUrl("/login-error")
-                        .permitAll())
-                .logout((logout) -> logout.logoutUrl("/logout").invalidateHttpSession(true).logoutSuccessUrl("/").deleteCookies("JSESSIONID"))
-                .exceptionHandling((ex) -> ex.accessDeniedPage("/negado")).sessionManagement(
-                        session -> session.maximumSessions(1).maxSessionsPreventsLogin(true).expiredUrl("/expired"));
+        http.authorizeHttpRequests((authorize) -> authorize
+            .antMatchers("/").permitAll()
+            .anyRequest().authenticated())
+                .formLogin((form) -> form
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/", true)
+                    .failureUrl("/login-error").permitAll())
+                .logout((logout) -> logout
+                    .logoutUrl("/logout")
+                    .invalidateHttpSession(true)
+                    .logoutSuccessUrl("/")
+                    .deleteCookies("JSESSIONID"))
+                .exceptionHandling((ex) -> ex
+                    .accessDeniedPage("/negado"))
+                .sessionManagement(session -> session
+                    .maximumSessions(1)
+                    .maxSessionsPreventsLogin(true)
+                    .expiredUrl("/expired"));
 
         return http.build();
     }
