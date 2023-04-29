@@ -7,7 +7,7 @@
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
     <div class="container">
-        <form class="needs-validation" th:action="@{/pedido/processando}" method="POST" th:object="${pedidoDTO}"
+        <form class="needs-validation" th:action="@{/pedido/adicionar}" method="POST" th:object="${pedidoDTO}"
             novalidate>
             <h2 class="border-bottom">Itens Carrinho</h2>
             <table class="table">
@@ -29,13 +29,13 @@
                         <td>
                             <div class="form-check">
                                 <input class="form-check-input checkbox child-checkbox" type="checkbox"
-                                    th:value="${item.id}" th:field="*{itens[__${iStat.index}__].id}" required>
+                                    th:value="${item.produto.id}" th:field="*{itens[__${iStat.index}__].produto.id}" required>
                             </div>
                         </td>
                         <th scope="row" th:text="${item.produto.id}"></th>
                         <td>
                             <img th:id="'Produto' + ${item.produto.id}"
-                                th:src="@{${item.produto.foto} ? |/image/${item.produto.foto}| : @{/image/imagem.png}}"
+                                th:src="@{${item.produto.foto} ? |/image/fotos/${item.produto.foto}| : @{/image/imagem.png}}"
                                 th:alt="'Foto de' + ${item.produto.nome}" width="30" height="30">
                         </td>
                         <td th:text="${item.produto.nome}"></td>

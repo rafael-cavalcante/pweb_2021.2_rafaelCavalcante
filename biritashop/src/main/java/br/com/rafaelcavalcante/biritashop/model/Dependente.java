@@ -26,14 +26,20 @@ import lombok.NoArgsConstructor;
 @Table(name = "dependente")
 public class Dependente implements Serializable {
 
-    @Id
+	private static final long serialVersionUID = 1L;
+	
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+	
     private String nomeCompleto;
+    
     private Genero genero;
+    
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataNascimento;
+    
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;

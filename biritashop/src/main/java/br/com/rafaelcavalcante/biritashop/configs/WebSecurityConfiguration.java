@@ -16,12 +16,12 @@ import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 public class WebSecurityConfiguration {
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
+    BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authorize) -> authorize
             .antMatchers("/").permitAll()
             .anyRequest().authenticated())
@@ -45,12 +45,12 @@ public class WebSecurityConfiguration {
     }
 
     @Bean
-    public SpringSecurityDialect springSecurityDialect() {
+    SpringSecurityDialect springSecurityDialect() {
         return new SpringSecurityDialect();
     }
 
     @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
+    WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring().antMatchers("/static/**", "/public/**", "/resources/**", "/assets/**", "/js/**",
                 "/css/**", "/templates/fragments/**", "/image/**");
     }

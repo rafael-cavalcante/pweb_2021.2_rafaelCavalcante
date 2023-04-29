@@ -3,8 +3,11 @@ package br.com.rafaelcavalcante.biritashop.controller;
 import br.com.rafaelcavalcante.biritashop.model.Cliente;
 import br.com.rafaelcavalcante.biritashop.model.enums.Genero;
 import br.com.rafaelcavalcante.biritashop.repository.ClienteRepository;
+import br.com.rafaelcavalcante.biritashop.repository.RoleRepository;
+import br.com.rafaelcavalcante.biritashop.services.CarrinhoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,6 +22,12 @@ public class ClienteController {
 
     @Autowired
     private ClienteRepository clienteRepository;
+    
+    @Autowired
+    private RoleRepository roleRepository;
+    
+    @Autowired
+    private CarrinhoService carrinhoService;
 
     @GetMapping("/listar")
     public ModelAndView listarClientes() {
@@ -31,13 +40,16 @@ public class ClienteController {
     public ModelAndView formAdicionarCliente() {
         return new ModelAndView("/cliente/adicionarCliente")
                 .addObject("generos", Genero.values())
+                .addObject("roles", this.roleRepository.findAll())
                 .addObject("cliente", new Cliente());
     }
 
     @PostMapping("/adicionar")
     @Transactional
     public String adicionarCliente(Cliente cliente) {
-        this.clienteRepository.save(cliente);
+    	cliente.setPassword(new BCryptPasswordEncoder().encode(cliente.getPassword()));
+    	cliente.setCarrinho(this.carrinhoService.criarCarrinho());
+    	this.clienteRepository.save(cliente);
         return "redirect:/cliente/listar";
     }
 

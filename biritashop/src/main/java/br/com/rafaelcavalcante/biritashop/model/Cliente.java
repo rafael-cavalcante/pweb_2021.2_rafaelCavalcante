@@ -1,5 +1,6 @@
 package br.com.rafaelcavalcante.biritashop.model;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
@@ -29,9 +30,11 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "cliente")
-public class Cliente implements UserDetails {
+public class Cliente implements UserDetails, Serializable {
 
-    @Id
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

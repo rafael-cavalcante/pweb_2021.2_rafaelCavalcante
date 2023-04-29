@@ -10,7 +10,9 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+			<div th:if="${#authorization.expression('isAuthenticated()')}">
+				<div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+					<ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="/cliente" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -36,6 +38,7 @@
                     </div>
                 </li>
             </ul>
+				</div>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="/dependente" id="navbarDropdown" role="button"
@@ -88,6 +91,7 @@
                     </div>
                 </li>
             </ul>
+            </div>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="/public/sobre">Sobre</a>

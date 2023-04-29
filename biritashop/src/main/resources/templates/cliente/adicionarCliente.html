@@ -22,6 +22,22 @@
             <div class="row g-2">
                 <div class="col-md">
                     <div class="form-floating mb-3">
+                        <input class="form-control" type="text" id="username" name="username" placeholder="username"
+                            required>
+                        <label for="username">Username*</label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input class="form-control" type="password" id="password" name="password"
+                            placeholder="password" required>
+                        <label for="password">Password*</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-md">
+                    <div class="form-floating mb-3">
                         <input class="form-control" type="text" id="nomeCompleto" name="nomeCompleto"
                             placeholder="nomeCompleto" required>
                         <label for="nomeCompleto">Nome Completo*</label>
@@ -71,6 +87,17 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="row mb-2">
+                <legend class="col-form-label col-form-label-lg py-0">Selecionar as Regras*</legend>
+                <div class="col-md">
+                    <div class="form-check" th:each="role : ${roles}">
+                        <input class="form-check-input checkbox child-checkbox" type="checkbox" id="roles" name="roles"
+                            th:value="${role.id}" required>
+                        <label class="form-check-label" th:for="${role.id}" th:text="${role.nome}"></label>
+                    </div>
+                </div>
+            </div>
 
             <div class="row g-2">
                 <button class="btn btn-success" type="submit">
@@ -92,6 +119,7 @@
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/jquery.mask.min.js"></script>
+    <script type="text/javascript" src="/js/checkbox.js"></script>
     <script type="text/javascript" src="/js/masks.js"></script>
     <script type="text/javascript" src="/js/validation.js"></script>
     <script type="text/javascript" src="/js/activePage.js"></script>

@@ -1,9 +1,10 @@
 package br.com.rafaelcavalcante.biritashop.controller;
 
-import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,8 +36,10 @@ public class CarrinhoController {
 
     @GetMapping("/listar")
     @Transactional
-    public ModelAndView listarCarrinho(Principal auth) {
-        Cliente cliente = this.clienteRepository.findById(1L)
+    public ModelAndView listarCarrinho() {
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        Cliente cliente = this.clienteRepository.findByUsername(auth.getName())
                 .orElseThrow(() -> new IllegalArgumentException("Cliente "  + "Não Encontrado"));
         List<ItemCarrinho> itensCarrinho = this.itemCarrinhoRepository.findByCarrinhoId(cliente.getCarrinho().getId());
                         return new ModelAndView("/carrinho/listarItensCarrinho")
@@ -46,7 +49,9 @@ public class CarrinhoController {
     }
 
     @GetMapping("/adicionar/{id}")
-    public String adicionarCarrinho(Principal auth, @PathVariable("id") Long id) {
+    public String adicionarCarrinho(@PathVariable("id") Long id) {
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
         Cliente cliente = this.clienteRepository.findByUsername(auth.getName())
                 .orElseThrow(() -> new IllegalArgumentException("Cliente " + auth.getName() + "Não Encontrado"));
         Produto produto = this.produtoRepository.findById(id)

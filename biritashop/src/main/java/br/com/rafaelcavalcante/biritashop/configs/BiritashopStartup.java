@@ -9,13 +9,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import br.com.rafaelcavalcante.biritashop.model.Carrinho;
 import br.com.rafaelcavalcante.biritashop.model.Cliente;
 import br.com.rafaelcavalcante.biritashop.model.Role;
 import br.com.rafaelcavalcante.biritashop.model.enums.RoleName;
-import br.com.rafaelcavalcante.biritashop.repository.CarrinhoRepository;
 import br.com.rafaelcavalcante.biritashop.repository.ClienteRepository;
 import br.com.rafaelcavalcante.biritashop.repository.RoleRepository;
+import br.com.rafaelcavalcante.biritashop.services.CarrinhoService;
 
 @Component
 public class BiritashopStartup implements CommandLineRunner {
@@ -25,9 +24,9 @@ public class BiritashopStartup implements CommandLineRunner {
 
     @Autowired
     private ClienteRepository clienteRepository;
-
+    
     @Autowired
-    private CarrinhoRepository carrinhoRepository;
+    private CarrinhoService carrinhoService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -37,24 +36,20 @@ public class BiritashopStartup implements CommandLineRunner {
 
     @Transactional
     private void gerarRoles() {
-        if (!this.roleRepository.findByNome(RoleName.ROLE_ADMIN).isPresent() &&
+        if (!this.roleRepository.findByNome(RoleName.ROLE_ADMIN).isPresent() ||
                 !this.roleRepository.findByNome(RoleName.ROLE_USER).isPresent()) {
             Role admin = new Role(1L, RoleName.ROLE_ADMIN);
             Role user = new Role(2L, RoleName.ROLE_USER);
-            this.roleRepository.save(user);
             this.roleRepository.save(admin);
+            this.roleRepository.save(user);
         }
     }
 
     @Transactional
     private void gerarAdmin() {
-        if (this.clienteRepository.findById(2L).isPresent()) {
+        if (this.clienteRepository.findById(1L).isPresent()) {
             System.out.println("Usuário administrador já existe. Continuando...");
         } else {
-
-            Carrinho carrinho = new Carrinho();
-            this.carrinhoRepository.save(carrinho);
-
             List<Role> roles = this.roleRepository.getByNome(RoleName.ROLE_ADMIN);
 
             Cliente cliente = new Cliente();
@@ -62,11 +57,9 @@ public class BiritashopStartup implements CommandLineRunner {
             cliente.setUsername("biritashop");
             cliente.setPassword(new BCryptPasswordEncoder().encode("biritashop"));
             cliente.setRoles(roles);
-            cliente.setCarrinho(carrinho);
+            cliente.setCarrinho(this.carrinhoService.criarCarrinho());
 
-            this.clienteRepository.save(cliente);
-
-            
+            this.clienteRepository.save(cliente);   
         }
     }
 }

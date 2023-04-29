@@ -16,7 +16,7 @@
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
     <div class="container my-5 pt-4">
-        <form class="needs-validation" th:action="@{/pedido/finalizar}" method="POST" th:object="${pedidoDTO}"
+        <form class="needs-validation" th:action="@{/pedido/adicionar}" method="POST" th:object="${pedidoDTO}"
             novalidate>
             <div class="row mb-2">
                 <div class="col-md-6">
@@ -60,7 +60,7 @@
                         <th scope="row" th:text="${item.produto.id}"></th>
                         <td>
                             <img th:id="'Produto' + ${item.produto.id}"
-                                th:src="@{${item.produto.getFoto} ? ('data:image/jpeg;base64,' + ${item.produto.getFotoBase64()}) : @{/image/imagem.png}}"
+                                th:src="@{${item.produto.foto} ? |/image/fotos/${item.produto.foto}| : @{/image/imagem.png}}"
                                 th:alt="'Foto de' + ${item.produto.nome}" width="30" height="30">
                         </td>
                         <td th:text="${item.produto.nome}"></td>

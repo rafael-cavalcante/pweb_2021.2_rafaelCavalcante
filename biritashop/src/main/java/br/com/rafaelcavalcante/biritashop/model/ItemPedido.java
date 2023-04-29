@@ -24,7 +24,9 @@ import lombok.NoArgsConstructor;
 @Table(name = "item_pedido")
 public class ItemPedido implements Serializable {
 
-    @Id
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

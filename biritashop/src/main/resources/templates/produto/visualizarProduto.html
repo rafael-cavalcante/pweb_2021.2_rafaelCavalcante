@@ -13,8 +13,8 @@
                 <div class="card border-info mb-3">
                     <div class="card-header bg-transparent border-info" th:text="${produto.nome}"></div>
                     <div class="text-center">
-                        <img th:src="@{${produto.foto} ? |/image/${produto.foto}| : @{/image/imagem.png}}"
-                            class="img-fluid rounded-start" alt="..." width="240" height="240">
+                        <img th:src="@{${produto.foto} ? |/image/fotos/${produto.foto}| : @{/image/imagem.png}}"
+                            class="img-fluid rounded-start" alt="..." width="30" height="240">
                     </div>
                     <div class="card-body text-info">
                         <h5 class="card-title">Success card title</h5>

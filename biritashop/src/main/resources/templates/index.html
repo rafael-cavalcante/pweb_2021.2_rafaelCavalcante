@@ -70,7 +70,7 @@
             <div class="col" th:each="produto: ${produtos}">
                 <div class="card card border-info mb-3 h-100">
                     <div class="card-header" th:text="${produto.nome}"></div>
-                    <img th:src="@{${produto.foto} ? |/image/${produto.foto}| : @{/image/imagem.png}}"
+                    <img th:src="@{${produto.foto} ? |/image/fotos/${produto.foto}| : @{/image/imagem.png}}"
                         class="card-img-top" alt="..." width="30" height="240">
                     <div class="card-body">
                         <h5 class="card-title" th:text="${produto.precoVenda} + 'R$'"></h5>
