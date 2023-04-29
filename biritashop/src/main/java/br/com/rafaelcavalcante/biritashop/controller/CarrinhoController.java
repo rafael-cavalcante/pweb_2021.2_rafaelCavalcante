@@ -41,8 +41,9 @@ public class CarrinhoController {
 
         Cliente cliente = this.clienteRepository.findByUsername(auth.getName())
                 .orElseThrow(() -> new IllegalArgumentException("Cliente "  + "Não Encontrado"));
+        
         List<ItemCarrinho> itensCarrinho = this.itemCarrinhoRepository.findByCarrinhoId(cliente.getCarrinho().getId());
-                        return new ModelAndView("/carrinho/listarItensCarrinho")
+        return new ModelAndView("/carrinho/listarItensCarrinho")
                 .addObject("itensCarrinho", itensCarrinho)
                 .addObject("pedidoDTO", new PedidoDTO())
                 .addObject("formasPagamento", FormaPagamento.values());

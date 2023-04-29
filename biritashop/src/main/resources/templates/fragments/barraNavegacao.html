@@ -10,9 +10,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<div th:if="${#authorization.expression('isAuthenticated()')}">
-				<div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-					<ul class="navbar-nav mr-auto">
+			<ul th:if="${#authorization.expression('isAuthenticated()') AND #authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="/cliente" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -25,7 +23,8 @@
                     </div>
                 </li>
             </ul>
-            <ul class="navbar-nav mr-auto">
+            
+            <ul th:if="${#authorization.expression('isAuthenticated()') AND #authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="/produto" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -38,8 +37,8 @@
                     </div>
                 </li>
             </ul>
-				</div>
-            <ul class="navbar-nav mr-auto">
+            
+            <ul th:if="${#authorization.expression('isAuthenticated()')}" class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="/dependente" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -52,7 +51,8 @@
                     </div>
                 </li>
             </ul>
-            <ul class="navbar-nav mr-auto">
+            
+            <ul th:if="${#authorization.expression('isAuthenticated()')}" class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="/pedido" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -65,7 +65,8 @@
                     </div>
                 </li>
             </ul>
-            <ul class="navbar-nav mr-auto">
+            
+            <ul th:if="${#authorization.expression('isAuthenticated()')}" class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="/carrinho" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -73,11 +74,11 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/carrinho/listar">listar</a>
-                        <a class="dropdown-item" href="/carrinho/adicionar">Adicionar</a>
                         <div class="dropdown-divider"></div>
                     </div>
                 </li>
             </ul>
+            
             <ul th:if="${#authorization.expression('isAuthenticated()')}" class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="/conta" id="navbarDropdown" role="button"
@@ -91,7 +92,7 @@
                     </div>
                 </li>
             </ul>
-            </div>
+            
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="/public/sobre">Sobre</a>

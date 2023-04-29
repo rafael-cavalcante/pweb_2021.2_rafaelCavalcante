@@ -16,7 +16,7 @@
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
     <div class="container my-5 pt-4">
-        <form class="needs-validation" th:action="@{/pedido/adicionar}" method="POST" th:object="${pedidoDTO}"
+        <form class="needs-validation" th:action="@{/pedido/finalizar}" method="POST" th:object="${pedidoDTO}"
             novalidate>
             <div class="row mb-2">
                 <div class="col-md-6">

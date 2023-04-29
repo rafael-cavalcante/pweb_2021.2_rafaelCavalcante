@@ -11,6 +11,7 @@ import br.com.rafaelcavalcante.biritashop.model.dto.PedidoDTO;
 import br.com.rafaelcavalcante.biritashop.model.enums.FormaPagamento;
 import br.com.rafaelcavalcante.biritashop.repository.PedidoRepository;
 import br.com.rafaelcavalcante.biritashop.repository.ProdutoRepository;
+import br.com.rafaelcavalcante.biritashop.services.ItemCarrinhoService;
 import br.com.rafaelcavalcante.biritashop.services.PedidoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,9 @@ public class PedidoController {
 
 	@Autowired
 	private PedidoService pedidoService;
+	
+	@Autowired
+	private ItemCarrinhoService itemCarrinhoService;
 
 	@GetMapping("/listar")
 	public ModelAndView listarPedidosId(@RequestParam(value = "clienteId", required = false) Long clienteId) {
@@ -89,9 +93,12 @@ public class PedidoController {
 	@PostMapping("/finalizar")
 	@Transactional
 	public String finalizarPedido(PedidoDTO pedidoDTO) {
-		Cliente cliente = this.clienteRepository.findById(pedidoDTO.getCliente().getId())
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		Cliente cliente = this.clienteRepository.findByUsername(auth.getName())
 				.orElseThrow(() -> new IllegalArgumentException(
 						"Cliente do ID [ " + pedidoDTO.getCliente().getId() + " ] Não Encontrado!"));
+		
 		Pedido pedido = new Pedido();
 		pedido.setCliente(cliente);
 		pedido.setData(LocalDate.now());
@@ -101,6 +108,7 @@ public class PedidoController {
 		this.pedidoRepository.save(pedido);
 		List<ItemPedido> itensPedido = this.pedidoService.converterItensPedido(pedido, pedidoDTO.getItens());
 		this.itemPedidoRepository.saveAll(itensPedido);
+		this.itemCarrinhoService.removerItensCarrinho(cliente.getCarrinho());
 		return "redirect:/pedido/listar?clienteId=" + pedido.getCliente().getId();
 	}
 
