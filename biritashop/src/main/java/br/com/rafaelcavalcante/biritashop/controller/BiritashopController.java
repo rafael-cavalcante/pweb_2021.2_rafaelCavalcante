@@ -14,6 +14,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.rafaelcavalcante.biritashop.model.Produto;
@@ -27,11 +28,18 @@ public class BiritashopController {
     private ProdutoService produtoService;
 
     @GetMapping
-    public ModelAndView index(@PageableDefault(sort = "nome", direction = Sort.Direction.ASC, value = 12) Pageable pageable) {
-        Page<Produto> produtos = this.produtoService.listarPaginaProdutos(pageable);
+    public ModelAndView index(@RequestParam(value = "nome", required = false) String nome,
+            @PageableDefault(sort = "nome", direction = Sort.Direction.ASC, value = 12) Pageable pageable) {
+        Page<Produto> produtos;
+
+        if (nome == null) {
+            produtos = this.produtoService.listarPaginaProdutos(pageable);
+        } else {
+            produtos = this.produtoService.listarPaginaProdutosNome(nome, pageable);
+        }
 
         return new ModelAndView("/index")
-            .addObject("produtos", produtos);
+                .addObject("produtos", produtos);
     }
 
     @GetMapping("/login")

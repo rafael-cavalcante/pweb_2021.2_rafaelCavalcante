@@ -10,7 +10,8 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul th:if="${#authorization.expression('isAuthenticated()') AND #authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="navbar-nav mr-auto">
+            <ul th:if="${#authorization.expression('isAuthenticated()') AND #authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="/cliente" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -23,8 +24,9 @@
                     </div>
                 </li>
             </ul>
-            
-            <ul th:if="${#authorization.expression('isAuthenticated()') AND #authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="navbar-nav mr-auto">
+
+            <ul th:if="${#authorization.expression('isAuthenticated()') AND #authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="/produto" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -37,7 +39,7 @@
                     </div>
                 </li>
             </ul>
-            
+
             <ul th:if="${#authorization.expression('isAuthenticated()')}" class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="/dependente" id="navbarDropdown" role="button"
@@ -51,7 +53,7 @@
                     </div>
                 </li>
             </ul>
-            
+
             <ul th:if="${#authorization.expression('isAuthenticated()')}" class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="/pedido" id="navbarDropdown" role="button"
@@ -65,7 +67,7 @@
                     </div>
                 </li>
             </ul>
-            
+
             <ul th:if="${#authorization.expression('isAuthenticated()')}" class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="/carrinho" id="navbarDropdown" role="button"
@@ -78,7 +80,7 @@
                     </div>
                 </li>
             </ul>
-            
+
             <ul th:if="${#authorization.expression('isAuthenticated()')}" class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="/conta" id="navbarDropdown" role="button"
@@ -87,18 +89,23 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/cliente/informacoes">Informacoes</a>
-                        <a class="dropdown-item" href="/logout">Sair</a>
                         <div class="dropdown-divider"></div>
                     </div>
                 </li>
             </ul>
-            
+
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="/public/sobre">Sobre</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/public/contato">Contato</a>
+                </li>
+                <li th:if="${!#authorization.expression('isAuthenticated()')}" class="nav-item">
+                    <a class="nav-link active" href="/login">Entrar</a>
+                </li>
+                <li th:if="${#authorization.expression('isAuthenticated()')}" class="nav-item">
+                    <a class="nav-link active" href="/logout">Sair</a>
                 </li>
             </ul>
         </div>

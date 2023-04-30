@@ -7,6 +7,7 @@ import br.com.rafaelcavalcante.biritashop.repository.RoleRepository;
 import br.com.rafaelcavalcante.biritashop.services.CarrinhoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,7 @@ public class ClienteController {
     @Autowired
     private CarrinhoService carrinhoService;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/listar")
     public ModelAndView listarClientes() {
         List<Cliente> clientes = this.clienteRepository.findAll();

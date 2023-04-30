@@ -103,6 +103,7 @@ public class ProdutoController {
         Produto produto = this.produtoRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Pedido ID " + id + " Não Encontrado"));
         this.produtoRepository.delete(produto);
+        this.fotoService.removerFoto(produto.getFoto());
         return new ModelAndView("redirect:/produto/listar");
     }
 

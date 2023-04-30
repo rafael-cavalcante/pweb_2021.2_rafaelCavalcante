@@ -55,8 +55,5 @@ public class Produto implements Serializable {
 
     @Column(name = "foto")
     private String foto;
-
-    /*public String getFotoBase64() {
-        return Base64.getEncoder().encodeToString(this.foto);
-    }*/
+    
 }

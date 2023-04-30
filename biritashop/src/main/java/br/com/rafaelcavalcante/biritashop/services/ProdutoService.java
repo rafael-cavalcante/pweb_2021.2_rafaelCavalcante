@@ -1,5 +1,6 @@
 package br.com.rafaelcavalcante.biritashop.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -10,13 +11,14 @@ import br.com.rafaelcavalcante.biritashop.repository.ProdutoRepository;
 @Service
 public class ProdutoService {
 
-    private ProdutoRepository produtoRepo;
+    @Autowired
+    private ProdutoRepository produtoRepository;
 
-    public ProdutoService(ProdutoRepository produtoRepo){
-        this.produtoRepo = produtoRepo;
+    public Page<Produto> listarPaginaProdutos(Pageable pageable) {
+        return this.produtoRepository.findAll(pageable);
     }
-    
-    public Page<Produto> listarPaginaProdutos(Pageable pageable){
-        return this.produtoRepo.findAll(pageable);
+
+    public Page<Produto> listarPaginaProdutosNome(String nome, Pageable pageable) {
+        return this.produtoRepository.findByNomeContainingIgnoreCase(nome, pageable);
     }
 }

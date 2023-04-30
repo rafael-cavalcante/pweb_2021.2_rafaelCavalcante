@@ -1,57 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-4.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <style>
-        div.border {
-            border: solid;
-            border-width: 1px 1px 0px 1px;
-            padding: 5px 20px 5px 20px;
-        }
-    </style>
+    <meta charset="UTF-8" />
+    <title>My PDF Template</title>
+    <link type="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 </head>
 
-<body style="font-family: Liberation Serif;">
-
-    <div class="border">
-        <h1 th:text="${message}">message</h1>
-    </div>
+<body>
+    <h1>My PDF Template</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae massa lectus. Donec et sem vitae est commodo
+        iaculis. Phasellus nec metus ut turpis semper sagittis ut vel lorem. Sed eget pharetra velit. </p>
 
     <h2 class="border-bottom">Clientes</h2>
-        <table class="table overflow-scroll mb-5">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">E-mail</th>
-                    <th scope="col">Telefone</th>
-                    <th scope="col">Cidade</th>
-                    <th scope="col">CEP</th>
-                    <th scope="col">Gênero</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="cliente : ${clientes}">
-                    <th scope="row" th:text="${cliente.id}"></th>
-                    <td th:text="${cliente.nomeCompleto}"></td>
-                    <td th:text="${cliente.email}"></td>
-                    <td>
-                        <a class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                            th:href="'https://api.whatsapp.com/send?phone=' + ${cliente.telefone}">
-                            <span class="mask-telefone" th:text="${cliente.telefone}"></span>
-                            <i class="bi bi-whatsapp"></i>
-                        </a>
-                    </td>
-                    <td th:text="${cliente.cidade}"></td>
-                    <td class="mask-cep" th:text="${cliente.CEP}"></td>
-                    <td th:text="${cliente.genero.valor}"></td>
-                </tr>
-            </tbody>
-        </table>
-
+    <table class="table overflow-scroll mb-5">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Cidade</th>
+                <th scope="col">CEP</th>
+                <th scope="col">Gênero</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cliente : ${clientes}">
+                <th scope="row" th:text="${cliente.id}"></th>
+                <td th:text="${cliente.nomeCompleto}"></td>
+                <td th:text="${cliente.email}"></td>
+                <td>
+                    <a class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                        th:href="'https://api.whatsapp.com/send?phone=' + ${cliente.telefone}">
+                        <span class="mask-telefone" th:text="${cliente.telefone}"></span>
+                        <i class="bi bi-whatsapp"></i>
+                    </a>
+                </td>
+                <td th:text="${cliente.cidade}"></td>
+                <td class="mask-cep" th:text="${cliente.CEP}"></td>
+                <td th:text="${cliente.genero}"></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 
 </html>

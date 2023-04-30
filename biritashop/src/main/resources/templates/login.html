@@ -1,41 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}" />
-    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />-->
-    <title>BiritaShop</title>
-
-</head>
+<div th:replace="fragments/head :: head"></div>
 
 <body class="container-fluid my-5 pt-4 d-flex justify-content-center">
     <div class="">
         <main class="form-signin w-100 m-auto text-center">
             <form th:action="@{/login}" method="post">
-                <img src="/assets/icone.ico" width="160" height="160" class="d-inline-block align-top" alt="Logo do Web Site">
+                <img src="/assets/icone.ico" width="160" height="160" class="d-inline-block align-top"
+                    alt="Logo do Web Site">
                 <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="username" placeholder="name@example.com" name="username" required>
+                    <input type="text" class="form-control" id="username" placeholder="name@example.com" name="username"
+                        required>
                     <label for="username">Username</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>>
+                    <input type="password" class="form-control" id="password" placeholder="Password" name="password"
+                        required>
                     <label for="password">Password</label>
                 </div>
 
-                <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" value="remember-me"> Remember me
-                    </label>
-                </div>
-                <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-                <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
+                <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
             </form>
         </main>
     </div>
