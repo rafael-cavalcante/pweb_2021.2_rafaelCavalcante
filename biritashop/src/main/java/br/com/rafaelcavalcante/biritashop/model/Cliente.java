@@ -18,7 +18,9 @@ import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import br.com.rafaelcavalcante.biritashop.model.dto.ClienteDTO;
 import br.com.rafaelcavalcante.biritashop.model.enums.Genero;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,9 +33,9 @@ import lombok.NoArgsConstructor;
 @Table(name = "cliente")
 public class Cliente implements UserDetails {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -74,6 +76,17 @@ public class Cliente implements UserDetails {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "carrinho_id")
     private Carrinho carrinho;
+
+    public Cliente(ClienteDTO clienteDTO) {
+        this.username = clienteDTO.getUsername();
+        this.password = new BCryptPasswordEncoder().encode(clienteDTO.getPassword());
+        this.nomeCompleto = clienteDTO.getNomeCompleto();
+        this.genero = clienteDTO.getGenero();
+        this.cidade = clienteDTO.getCidade();
+        this.CEP = clienteDTO.getCEP();
+        this.email = clienteDTO.getEmail();
+        this.telefone = clienteDTO.getTelefone();
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

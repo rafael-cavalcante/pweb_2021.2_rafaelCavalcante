@@ -95,14 +95,11 @@
             </ul>
 
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/public/sobre">Sobre</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/public/contato">Contato</a>
-                </li>
                 <li th:if="${!#authorization.expression('isAuthenticated()')}" class="nav-item">
                     <a class="nav-link active" href="/login">Entrar</a>
+                </li>
+                <li th:if="${!#authorization.expression('isAuthenticated()')}" class="nav-item">
+                    <a class="nav-link active" href="/cadastrar">Cadastrar</a>
                 </li>
                 <li th:if="${#authorization.expression('isAuthenticated()')}" class="nav-item">
                     <a class="nav-link active" href="/logout">Sair</a>

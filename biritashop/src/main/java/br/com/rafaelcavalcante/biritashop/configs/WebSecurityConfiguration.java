@@ -26,6 +26,7 @@ public class WebSecurityConfiguration {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authorize) -> authorize
             .antMatchers("/").permitAll()
+            .antMatchers("/cadastrar").permitAll()
             .anyRequest().authenticated())
                 .formLogin((form) -> form
                     .loginPage("/login")

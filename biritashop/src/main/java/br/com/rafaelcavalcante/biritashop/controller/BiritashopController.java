@@ -13,11 +13,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.rafaelcavalcante.biritashop.model.Produto;
+import br.com.rafaelcavalcante.biritashop.model.dto.ClienteDTO;
+import br.com.rafaelcavalcante.biritashop.services.ClienteService;
 import br.com.rafaelcavalcante.biritashop.services.ProdutoService;
 
 @Controller
@@ -27,19 +30,23 @@ public class BiritashopController {
     @Autowired
     private ProdutoService produtoService;
 
+    @Autowired
+    private ClienteService clienteService;
+
     @GetMapping
-    public ModelAndView index(@RequestParam(value = "nome", required = false) String nome,
+    public ModelAndView index(@RequestParam(value = "produtoInfo", required = false) String produtoInfo,
             @PageableDefault(sort = "nome", direction = Sort.Direction.ASC, value = 12) Pageable pageable) {
         Page<Produto> produtos;
 
-        if (nome == null) {
+        if (produtoInfo == null) {
             produtos = this.produtoService.listarPaginaProdutos(pageable);
         } else {
-            produtos = this.produtoService.listarPaginaProdutosNome(nome, pageable);
+            produtos = this.produtoService.listarPaginaProdutosNome(produtoInfo, pageable);
         }
 
         return new ModelAndView("/index")
-                .addObject("produtos", produtos);
+                .addObject("produtos", produtos)
+                .addObject("produtoInfo", "casa");
     }
 
     @GetMapping("/login")
@@ -56,13 +63,15 @@ public class BiritashopController {
         return "redirect:/";
     }
 
-    @GetMapping("/public/sobre")
-    public ModelAndView sobre() {
-        return new ModelAndView("/public/sobre");
+    @GetMapping("/cadastrar")
+    public ModelAndView formCadastrar() {
+        return new ModelAndView("/cadastrar")
+                .addObject("clienteDTO", new ClienteDTO());
     }
 
-    @GetMapping("/public/contato")
-    public ModelAndView contato() {
-        return new ModelAndView("/public/contato");
+    @PostMapping("/cadastrar")
+    public String cadastrar(ClienteDTO clienteDTO) {
+        this.clienteService.adicionarCliente(clienteDTO);
+        return "redirect:/login";
     }
 }
