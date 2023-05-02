@@ -2,6 +2,7 @@ package br.com.rafaelcavalcante.biritashop.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,11 +28,12 @@ public class WebSecurityConfiguration {
         http.authorizeHttpRequests((authorize) -> authorize
             .antMatchers("/").permitAll()
             .antMatchers("/cadastrar").permitAll()
+            .antMatchers(HttpMethod.GET, "/api/**").permitAll()
             .anyRequest().authenticated())
-                .formLogin((form) -> form
+                .formLogin((login) -> login
                     .loginPage("/login")
-                    .defaultSuccessUrl("/", true)
-                    .failureUrl("/login-error").permitAll())
+                    .defaultSuccessUrl("/")
+                    .failureUrl("/login?error").permitAll())
                 .logout((logout) -> logout
                     .logoutUrl("/logout")
                     .invalidateHttpSession(true)
@@ -42,7 +44,7 @@ public class WebSecurityConfiguration {
                 .sessionManagement(session -> session
                     .maximumSessions(1)
                     .maxSessionsPreventsLogin(true)
-                    .expiredUrl("/expired"));
+                    .expiredUrl("/login?invaled-session=true"));
 
         return http.build();
     }

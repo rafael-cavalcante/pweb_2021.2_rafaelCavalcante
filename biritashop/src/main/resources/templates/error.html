@@ -17,12 +17,12 @@
             <h1>BiritaShop Exception</h1>
             <p class="lead">Infelismente foi detectado um erro, mas estamos tentando solucionar.</p>
             <p>
-                <a class="btn btn-lg btn-secondary" data-bs-toggle="collapse" href="#collapseMensagem" role="button"
-                    aria-expanded="false" aria-controls="collapseMensagem">
-                    View Mensagem »
+                <a class="btn btn-lg btn-secondary" data-bs-toggle="collapse" href="#collapseClasse" role="button"
+                    aria-expanded="false" aria-controls="collapseClasse">
+                    View Classe »
                 </a>
             </p>
-            <div class="collapse" id="collapseMensagem">
+            <div class="collapse" id="collapseClasse">
                 <div class="card card-body">
                     <ul>
                         <li>[[${class}]]</li>
@@ -30,12 +30,12 @@
                 </div>
             </div>
             <p class="mt-2">
-                <a class="btn btn-lg btn-secondary" data-bs-toggle="collapse" href="#collapseLocalizacaoMensagem" role="button"
-                    aria-expanded="false" aria-controls="collapseLocalizacaoMensagem">
-                    View Localização da Mensagem »
+                <a class="btn btn-lg btn-secondary" data-bs-toggle="collapse" href="#collapseMensagem" role="button"
+                    aria-expanded="false" aria-controls="collapseMensagem">
+                    View Mensagem »
                 </a>
             </p>
-            <div class="collapse" id="collapseLocalizacaoMensagem">
+            <div class="collapse" id="collapseMensagem">
                 <div class="card card-body">
                     <ul>
                         <li>[[${message}]]</li>
@@ -49,7 +49,7 @@
                     View Exception »
                 </a>
             </p>
-            <div class="collapse" id="collapseException">
+            <div th:if="${#authorization.expression('isAuthenticated()') AND #authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="collapse" id="collapseException">
                 <div class="card card-body">
                     <ul th:each="erro : ${error}">
                         <li>[[${erro.toString()}]]</li>

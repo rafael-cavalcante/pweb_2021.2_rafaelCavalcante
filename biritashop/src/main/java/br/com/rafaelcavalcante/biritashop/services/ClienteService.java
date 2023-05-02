@@ -30,4 +30,8 @@ public class ClienteService {
 
         this.clienteRepository.save(cliente);
     }
+
+    public boolean verificarCliente(String username){
+        return this.clienteRepository.findByUsername(username).isPresent();
+    }
 }

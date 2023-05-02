@@ -45,6 +45,7 @@ $("#cep").blur(function () {
             $("#cidade").val(dadosRetorno.localidade);
             //$("#uf").val(dadosRetorno.uf);
         } catch (ex) {
+            console.log(ex);
         }
     });
 });

@@ -56,7 +56,8 @@
     <nav class="navbar navbar-expand navbar-dark bg-dark">
         <div class="container-fluid">
             <form class="navbar-nav ms-auto" role="search">
-                <input class="form-control me-2" type="text" name="produtoInfo" placeholder="Pesquisar">
+                <input class="form-control me-2" type="text" id="produtoInfo" name="produtoInfo" placeholder="Pesquisar"
+                    th:value="${param.produtoInfo}">
                 <button class="btn btn-success" type="submit">Pesquisar</button>
             </form>
         </div>
@@ -65,8 +66,8 @@
     <div th:if="${!produtos.isEmpty}" class="container my-4">
         <div class="row row-cols-1 row-cols-md-3 g-4 mb-2">
             <div class="col" th:each="produto: ${produtos}">
-                <a th:href="@{/produto/visualizar/{id}(id = ${produto.id})}"
-                    class="poppup link-underline link-underline-opacity-0">
+                <a href="#" th:onclick="produtoClick([[${produto.id}]])" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal" class="poppup link-underline link-underline-opacity-0">
                     <div class="card mb-3 h-100">
                         <div class="card-header" th:text="${produto.nome}"></div>
                         <img th:src="@{${produto.foto} ? |/image/fotos/${produto.foto}| : @{/image/imagem.png}}"
@@ -83,9 +84,47 @@
 
     </div>
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form id="formProduto" action="/carrinho/adicionar" method="GET">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="produtoNome" name="produtoNome" placeholder="produtoNome"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col border-end">
+                                    <img class="card-img-top" id="produtoFoto" th:src="@{/image/imagem.png}" alt="..."
+                                        width="200" height="200">
+                                </div>
+                                <div class="col">
+                                    <div class="card-body">
+                                        <p class="card-text" id="produtoPreco"></p>
+                                        <p class="card-text"><small class="text-muted" id="produtoEmbalagem"></small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-cart-check"></i>
+                            Adicionar ao Carrinho
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
 
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/search.js"></script>
 </body>
 
 </html>

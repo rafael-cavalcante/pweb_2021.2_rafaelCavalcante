@@ -12,10 +12,10 @@
     <title>BiritaShop</title>
 </head>
 
-<body>
+<body class="my-5">
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-    <div class="container-fluid my-5 pt-4 d-flex justify-content-center">
+    <div class="container-fluid pt-4 d-flex justify-content-center">
         <form class="needs-validation" th:action="@{/cliente/adicionar}" th:object="${cliente}" method="POST"
             novalidate>
             <h2 class="border-bottom">Adicionar Novo Cliente</h2>
@@ -29,8 +29,8 @@
                 </div>
                 <div class="col-md">
                     <div class="form-floating">
-                        <input class="form-control" type="password" id="password" name="password"
-                            placeholder="password" required>
+                        <input class="form-control" type="password" id="password" name="password" placeholder="password"
+                            required>
                         <label for="password">Password*</label>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="row mb-2">
                 <legend class="col-form-label col-form-label-lg py-0">Selecionar as Regras*</legend>
                 <div class="col-md">
