@@ -7,7 +7,7 @@ import java.util.List;
 
 import br.com.rafaelcavalcante.biritashop.model.Pedido;
 import br.com.rafaelcavalcante.biritashop.model.Produto;
-import br.com.rafaelcavalcante.biritashop.model.dto.PedidoDTO;
+import br.com.rafaelcavalcante.biritashop.model.dtos.PedidoDTO;
 import br.com.rafaelcavalcante.biritashop.model.enums.FormaPagamento;
 import br.com.rafaelcavalcante.biritashop.repository.PedidoRepository;
 import br.com.rafaelcavalcante.biritashop.repository.ProdutoRepository;

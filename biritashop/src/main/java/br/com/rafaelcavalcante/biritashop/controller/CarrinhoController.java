@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.rafaelcavalcante.biritashop.model.Cliente;
 import br.com.rafaelcavalcante.biritashop.model.ItemCarrinho;
 import br.com.rafaelcavalcante.biritashop.model.Produto;
-import br.com.rafaelcavalcante.biritashop.model.dto.PedidoDTO;
+import br.com.rafaelcavalcante.biritashop.model.dtos.PedidoDTO;
 import br.com.rafaelcavalcante.biritashop.model.enums.FormaPagamento;
 import br.com.rafaelcavalcante.biritashop.repository.ClienteRepository;
 import br.com.rafaelcavalcante.biritashop.repository.ItemCarrinhoRepository;

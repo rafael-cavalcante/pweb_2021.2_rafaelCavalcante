@@ -20,7 +20,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import br.com.rafaelcavalcante.biritashop.model.dto.ClienteDTO;
+import br.com.rafaelcavalcante.biritashop.model.dtos.ClienteDTO;
 import br.com.rafaelcavalcante.biritashop.model.enums.Genero;
 import lombok.AllArgsConstructor;
 import lombok.Data;

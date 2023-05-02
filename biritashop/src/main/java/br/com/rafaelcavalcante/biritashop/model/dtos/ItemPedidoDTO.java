@@ -1,4 +1,4 @@
-package br.com.rafaelcavalcante.biritashop.model.dto;
+package br.com.rafaelcavalcante.biritashop.model.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package br.com.rafaelcavalcante.biritashop.model.dto;
+package br.com.rafaelcavalcante.biritashop.model.dtos;
 
 import java.math.BigDecimal;
 import java.util.List;

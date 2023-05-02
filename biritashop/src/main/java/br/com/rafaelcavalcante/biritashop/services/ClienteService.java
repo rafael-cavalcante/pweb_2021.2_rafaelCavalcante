@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.rafaelcavalcante.biritashop.model.Cliente;
-import br.com.rafaelcavalcante.biritashop.model.dto.ClienteDTO;
+import br.com.rafaelcavalcante.biritashop.model.dtos.ClienteDTO;
 import br.com.rafaelcavalcante.biritashop.model.enums.RoleName;
 import br.com.rafaelcavalcante.biritashop.repository.ClienteRepository;
 

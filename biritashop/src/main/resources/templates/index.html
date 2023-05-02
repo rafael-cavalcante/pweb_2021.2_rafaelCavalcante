@@ -67,7 +67,7 @@
             <div class="col" th:each="produto: ${produtos}">
                 <a th:href="@{/produto/visualizar/{id}(id = ${produto.id})}"
                     class="poppup link-underline link-underline-opacity-0">
-                    <div class="card border-info mb-3 h-100">
+                    <div class="card mb-3 h-100">
                         <div class="card-header" th:text="${produto.nome}"></div>
                         <img th:src="@{${produto.foto} ? |/image/fotos/${produto.foto}| : @{/image/imagem.png}}"
                             class="card-img-top" alt="..." width="30" height="240">

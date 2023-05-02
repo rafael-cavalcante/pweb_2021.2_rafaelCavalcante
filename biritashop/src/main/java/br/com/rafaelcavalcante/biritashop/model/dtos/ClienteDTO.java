@@ -1,4 +1,4 @@
-package br.com.rafaelcavalcante.biritashop.model.dto;
+package br.com.rafaelcavalcante.biritashop.model.dtos;
 
 import br.com.rafaelcavalcante.biritashop.model.enums.Genero;
 import lombok.Data;

@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.rafaelcavalcante.biritashop.model.Cliente;
 import br.com.rafaelcavalcante.biritashop.model.Produto;
-import br.com.rafaelcavalcante.biritashop.model.dto.ClienteDTO;
+import br.com.rafaelcavalcante.biritashop.model.dtos.ClienteDTO;
+import br.com.rafaelcavalcante.biritashop.model.mappes.ClienteMapper;
 import br.com.rafaelcavalcante.biritashop.services.ClienteService;
 import br.com.rafaelcavalcante.biritashop.services.ProdutoService;
 
@@ -43,6 +45,11 @@ public class BiritashopController {
         } else {
             produtos = this.produtoService.listarPaginaProdutosNome(produtoInfo, pageable);
         }
+        ClienteDTO clienteDTO = new ClienteDTO();
+        clienteDTO.setUsername("Rafael");
+        clienteDTO.setPassword("SenhaRafael");
+
+        System.out.println(ClienteMapper.INSTANCE.toCliente(clienteDTO));
 
         return new ModelAndView("/index")
                 .addObject("produtos", produtos)
@@ -65,8 +72,7 @@ public class BiritashopController {
 
     @GetMapping("/cadastrar")
     public ModelAndView formCadastrar() {
-        return new ModelAndView("/cadastrar")
-                .addObject("clienteDTO", new ClienteDTO());
+        return new ModelAndView("/cadastrar");
     }
 
     @PostMapping("/cadastrar")

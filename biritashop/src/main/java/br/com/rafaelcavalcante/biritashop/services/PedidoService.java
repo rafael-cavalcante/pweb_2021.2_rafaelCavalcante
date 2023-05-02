@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 import br.com.rafaelcavalcante.biritashop.model.ItemPedido;
 import br.com.rafaelcavalcante.biritashop.model.Pedido;
 import br.com.rafaelcavalcante.biritashop.model.Produto;
-import br.com.rafaelcavalcante.biritashop.model.dto.ItemPedidoDTO;
-import br.com.rafaelcavalcante.biritashop.model.dto.PedidoDTO;
-import br.com.rafaelcavalcante.biritashop.model.dto.ProdutoDTO;
+import br.com.rafaelcavalcante.biritashop.model.dtos.ItemPedidoDTO;
+import br.com.rafaelcavalcante.biritashop.model.dtos.PedidoDTO;
+import br.com.rafaelcavalcante.biritashop.model.dtos.ProdutoDTO;
 import br.com.rafaelcavalcante.biritashop.repository.ItemPedidoRepository;
 import br.com.rafaelcavalcante.biritashop.repository.ProdutoRepository;
 
