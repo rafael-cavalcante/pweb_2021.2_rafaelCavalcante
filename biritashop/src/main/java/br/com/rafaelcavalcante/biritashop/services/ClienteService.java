@@ -12,7 +12,7 @@ import br.com.rafaelcavalcante.biritashop.repository.ClienteRepository;
 
 @Service
 public class ClienteService {
-    
+
     @Autowired
     private ClienteRepository clienteRepository;
 
@@ -23,7 +23,7 @@ public class ClienteService {
     private CarrinhoService carrinhoService;
 
     @Transactional
-    public void adicionarCliente(ClienteDTO clienteDTO){
+    public void adicionarCliente(ClienteDTO clienteDTO) {
         Cliente cliente = new Cliente(clienteDTO);
         cliente.setRoles(this.roleService.listarRole(RoleName.ROLE_USER));
         cliente.setCarrinho(this.carrinhoService.criarCarrinho());
@@ -31,7 +31,12 @@ public class ClienteService {
         this.clienteRepository.save(cliente);
     }
 
-    public boolean verificarCliente(String username){
+    public boolean verificarCliente(String username) {
         return this.clienteRepository.findByUsername(username).isPresent();
+    }
+
+    public Cliente buscarCliente(String username) {
+        return this.clienteRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("Cliente " + username + " Nao Encontrado"));
     }
 }

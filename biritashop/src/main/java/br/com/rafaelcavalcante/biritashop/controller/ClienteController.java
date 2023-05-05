@@ -5,6 +5,7 @@ import br.com.rafaelcavalcante.biritashop.model.enums.Genero;
 import br.com.rafaelcavalcante.biritashop.repository.ClienteRepository;
 import br.com.rafaelcavalcante.biritashop.repository.RoleRepository;
 import br.com.rafaelcavalcante.biritashop.services.CarrinhoService;
+import br.com.rafaelcavalcante.biritashop.services.PDFService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,8 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.lowagie.text.DocumentException;
+
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
 @Controller
@@ -29,6 +34,9 @@ public class ClienteController {
     
     @Autowired
     private CarrinhoService carrinhoService;
+
+    @Autowired
+    private PDFService pdfService;
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/listar")
@@ -79,5 +87,10 @@ public class ClienteController {
                 .orElseThrow(() -> new IllegalArgumentException("Cliente ID " + id + " Não Encontrado"));
         this.clienteRepository.delete(cliente);
         return new ModelAndView("redirect:/cliente/listar");
+    }
+
+    @GetMapping("/gerarPDF")
+    public void gerarPDF(HttpServletResponse response) throws DocumentException, IOException{
+        this.pdfService.download(this.clienteRepository.findAll(), response);
     }
 }

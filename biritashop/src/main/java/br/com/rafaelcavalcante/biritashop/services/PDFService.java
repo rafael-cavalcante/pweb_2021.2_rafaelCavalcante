@@ -17,6 +17,7 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 import com.lowagie.text.DocumentException;
 
 import br.com.rafaelcavalcante.biritashop.model.Cliente;
+import br.com.rafaelcavalcante.biritashop.model.Dependente;
 
 @Service
 public class PDFService {
@@ -69,6 +70,20 @@ public class PDFService {
 
         String html = templateEngine.process("template", context);
 
+        gerarPDF(html, response);
+    }
+
+    public void gerarTemplateDependentes(String clienteNome, List<Dependente> dependentes, HttpServletResponse response) throws DocumentException, IOException {
+        Context context = new Context();
+        context.setVariable("clienteNome", clienteNome);
+        context.setVariable("dependentes", dependentes);
+
+        String html = templateEngine.process("/pdf/templateDependentes", context);
+
+        gerarPDF(html, response);
+    }
+
+    public void gerarPDF(String html, HttpServletResponse response) throws DocumentException, IOException{
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ITextRenderer renderer = new ITextRenderer();
         renderer.setDocumentFromString(html);

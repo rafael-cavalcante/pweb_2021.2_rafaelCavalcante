@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.rafaelcavalcante.biritashop.model.Produto;
 import br.com.rafaelcavalcante.biritashop.model.dtos.ClienteDTO;
-import br.com.rafaelcavalcante.biritashop.model.mappes.ClienteMapper;
 import br.com.rafaelcavalcante.biritashop.services.ClienteService;
 import br.com.rafaelcavalcante.biritashop.services.ProdutoService;
 
@@ -35,20 +34,21 @@ public class BiritashopController {
     private ClienteService clienteService;
 
     @GetMapping
-    public ModelAndView index(@RequestParam(value = "produtoInfo", required = false) String produtoInfo,
-            @PageableDefault(sort = "nome", direction = Sort.Direction.ASC, value = 12) Pageable pageable) {
+    public ModelAndView index(@RequestParam(value = "produtoInfo", required = false) String produtoInfo, @PageableDefault(sort = "nome", direction = Sort.Direction.ASC, value = 12) Pageable pageable) {
         Page<Produto> produtos;
+
 
         if (produtoInfo == null) {
             produtos = this.produtoService.listarPaginaProdutos(pageable);
         } else {
             produtos = this.produtoService.listarPaginaProdutosNome(produtoInfo, pageable);
+
         }
-        ClienteDTO clienteDTO = new ClienteDTO();
+        /*ClienteDTO clienteDTO = new ClienteDTO();
         clienteDTO.setUsername("Rafael");
         clienteDTO.setPassword("SenhaRafael");
 
-        System.out.println(ClienteMapper.INSTANCE.toCliente(clienteDTO));
+        System.out.println(ClienteMapper.INSTANCE.toCliente(clienteDTO));*/
 
         return new ModelAndView("/index")
                 .addObject("produtos", produtos);

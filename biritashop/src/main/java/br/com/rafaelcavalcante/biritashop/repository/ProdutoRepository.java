@@ -12,6 +12,6 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
     List<Produto> findAllByOrderByNomeAsc();
 
-    Page<Produto> findByNomeContainingIgnoreCase(String nome, Pageable pageable);
+    Page<Produto> findByNomeContainingIgnoreCaseOrMarcaContainingIgnoreCase(String nome, String marca,Pageable pageable);
 
 }

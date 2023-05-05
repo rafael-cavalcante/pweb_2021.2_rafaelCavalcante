@@ -16,4 +16,13 @@
 .fixed-size {
     width: 300px;
     height: 200px;
-  }
+}
+
+.card-img-top {
+    width: auto;
+    height: 300px;
+  }  
+
+.card:hover {
+    cursor: pointer;
+}

@@ -3,7 +3,7 @@
 
 <div th:replace="fragments/head :: head"></div>
 
-<body class="py-5">
+<body>
 
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
@@ -53,30 +53,37 @@
         </div>
     </div>
 
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
-        <div class="container-fluid">
-            <form class="navbar-nav ms-auto" role="search">
-                <input class="form-control me-2" type="text" id="produtoInfo" name="produtoInfo" placeholder="Pesquisar"
-                    th:value="${param.produtoInfo}">
-                <button class="btn btn-success" type="submit">Pesquisar</button>
-            </form>
+    <nav class="navbar bg-dark">
+        <div class="container justify-content-end">
+            <div class="d-flex">
+                <div class="input-group">
+                    <input class="form-control" type="text" id="searchProdutos" placeholder="Nome ou Marca"
+                        aria-label="Nome ou Marca" aria-describedby="button-addon2" th:value="${param.produtoInfo}">
+                    <button class="btn btn-success" type="button" id="button-addon2"
+                        onclick="searchProdutos()">
+                        <i class="bi bi-search"></i>
+                        Pesquisar
+                    </button>
+                </div>
+            </div>
+
         </div>
     </nav>
 
-    <div th:if="${!produtos.isEmpty}" class="container my-4">
-        <div class="row row-cols-1 row-cols-md-3 g-4 mb-2">
-            <div class="col" th:each="produto: ${produtos}">
-                <a href="#" th:onclick="produtoClick([[${produto.id}]])" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal" class="poppup link-underline link-underline-opacity-0">
-                    <div class="card mb-3 h-100">
-                        <div class="card-header" th:text="${produto.nome}"></div>
-                        <img th:src="@{${produto.foto} ? |/image/fotos/${produto.foto}| : @{/image/imagem.png}}"
-                            class="card-img-top" alt="..." width="30" height="240">
-                        <div class="card-body">
-                            <h5 class="card-title" th:text="${produto.precoVenda} + 'R$'"></h5>
-                        </div>
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col-12 col-md-6 col-lg-4 mt-2" th:each="produto: ${produtos}">
+                <div class="card" th:onclick="produtoClick([[${produto.id}]])" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    <div class="card-header text-center">
+                        <img class="card-img-top"
+                            th:src="@{${produto.foto} ? |/image/fotos/${produto.foto}| : @{/image/imagem.png}}" alt="">
                     </div>
-                </a>
+                    <div class="card-body">
+                        <h5 th:text="${produto.nome}"></h5>
+                    </div>
+                    <div class="card-footer text-muted" th:text="|R$ ${produto.precoVenda}|"></div>
+                </div>
             </div>
         </div>
 

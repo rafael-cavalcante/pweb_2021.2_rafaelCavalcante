@@ -19,6 +19,6 @@ public class ProdutoService {
     }
 
     public Page<Produto> listarPaginaProdutosNome(String nome, Pageable pageable) {
-        return this.produtoRepository.findByNomeContainingIgnoreCase(nome, pageable);
+        return this.produtoRepository.findByNomeContainingIgnoreCaseOrMarcaContainingIgnoreCase(nome, nome, pageable);
     }
 }

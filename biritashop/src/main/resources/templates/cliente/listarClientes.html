@@ -16,7 +16,13 @@
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
     <div class="container-fluid my-5 pt-4">
-        <h2 class="border-bottom">Clientes</h2>
+
+        <h2 class="border-bottom">Clientes
+            <a class="btn btn-outline-info m-2" th:href="@{gerarPDF}">
+                <i class="bi bi-filetype-pdf"></i>
+                Gerar PDF
+            </a>
+        </h2>
         <table class="table overflow-scroll mb-5">
             <thead class="table-dark">
                 <tr>
@@ -49,7 +55,8 @@
                         <a th:href="@{editar/{id}(id = ${cliente.id})}" class="btn btn-outline-warning">
                             <i class="bi bi-pencil-square"></i>
                         </a>
-                        <a th:href="@{remover/{id}(id = ${cliente.id})}" class="btn btn-outline-danger">
+                        <a class="btn btn-outline-danger" href="#" th:onclick="confirmarCliente([[${cliente.id}]])"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <i class="bi bi-trash"></i>
                         </a>
                         <a th:href="@{/dependente/listar/(clienteId = ${cliente.id})}" class="btn btn-outline-info">
@@ -61,12 +68,30 @@
         </table>
     </div>
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmação</h1>
+                </div>
+                <div class="modal-body">
+                    Tem certeza que deseja remover esse cliente?
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-outline-danger" id="botaoRemover">Remover</a>
+                    <a class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
 
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/jquery.mask.min.js"></script>
     <script type="text/javascript" src="/js/masks.js"></script>
+    <script type="text/javascript" src="/js/poppup.js"></script>
     <script type="text/javascript" src="/js/activePage.js"></script>
 </body>
 
