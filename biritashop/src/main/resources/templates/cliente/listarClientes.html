@@ -1,29 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-    <title>BiritaShop</title>
-</head>
+<div th:replace="fragments/head :: head"></div>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
+
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-    <div class="container-fluid my-5 pt-4">
-
-        <h2 class="border-bottom">Clientes
-            <a class="btn btn-outline-info m-2" th:href="@{gerarPDF}">
-                <i class="bi bi-filetype-pdf"></i>
-                Gerar PDF
-            </a>
-        </h2>
-        <table class="table overflow-scroll mb-5">
+    <div class="container pt-4">
+        <h2 class="border-bottom">Clientes</h2>
+        <table class="table mb-5">
             <thead class="table-dark">
                 <tr>
                     <th scope="col">ID</th>
@@ -52,10 +38,10 @@
                     <td class="mask-cep" th:text="${cliente.CEP}"></td>
                     <td th:text="${cliente.genero}"></td>
                     <td>
-                        <a th:href="@{editar/{id}(id = ${cliente.id})}" class="btn btn-outline-warning">
+                        <a class="btn btn-outline-warning" th:href="@{/cliente/editar/{id}(id = ${cliente.id})}">
                             <i class="bi bi-pencil-square"></i>
                         </a>
-                        <a class="btn btn-outline-danger" href="#" th:onclick="confirmarCliente([[${cliente.id}]])"
+                        <a class="btn btn-outline-danger" th:onclick="confirmarCliente([[${cliente.id}]])"
                             data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <i class="bi bi-trash"></i>
                         </a>
@@ -66,6 +52,13 @@
                 </tr>
             </tbody>
         </table>
+
+        <div class="d-flex justify-content-end">
+            <a class="btn btn-info text-white" th:href="@{pdf}">
+                <i class="bi bi-download"></i>
+                Baixar PDF
+            </a>
+        </div>
     </div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

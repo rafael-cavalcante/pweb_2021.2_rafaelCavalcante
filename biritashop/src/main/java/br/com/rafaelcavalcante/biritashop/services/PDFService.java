@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -51,6 +52,7 @@ public class PDFService {
         String processorHTML = templateEngine.process("template", context);
 
         ByteArrayOutputStream pdfBuffer = new ByteArrayOutputStream();
+
         ITextRenderer renderer = new ITextRenderer();
         renderer.setDocumentFromString(processorHTML);
         renderer.layout();
@@ -73,20 +75,34 @@ public class PDFService {
         gerarPDF(html, response);
     }
 
-    public void gerarTemplateDependentes(String clienteNome, List<Dependente> dependentes, HttpServletResponse response) throws DocumentException, IOException {
+    public void gerarTemplateDependentes(Cliente cliente, List<Dependente> dependentes, HttpServletResponse response)
+            throws DocumentException, IOException {
         Context context = new Context();
-        context.setVariable("clienteNome", clienteNome);
+        context.setVariable("cliente", cliente);
         context.setVariable("dependentes", dependentes);
 
-        String html = templateEngine.process("/pdf/templateDependentes", context);
+        String processedHtml = templateEngine.process("pdf/templateDependentes", context);
 
-        gerarPDF(html, response);
+        gerarPDF(processedHtml, response);
     }
 
-    public void gerarPDF(String html, HttpServletResponse response) throws DocumentException, IOException{
+    public void gerarTemplateClientes(List<Cliente> clientes, HttpServletResponse response)
+            throws DocumentException, IOException {
+        Context context = new Context();
+        context.setVariable("path", "src/main/resources/static");
+        context.setVariable("clientes", clientes);
+        context.setVariable("dataAtual", LocalDate.now());
+
+        String processedHtml = templateEngine.process("pdf/templateClientes", context);
+
+        gerarPDF(processedHtml, response);
+    }
+
+    public void gerarPDF(String processedHtml, HttpServletResponse response) throws DocumentException, IOException {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ITextRenderer renderer = new ITextRenderer();
-        renderer.setDocumentFromString(html);
+
+        renderer.setDocumentFromString(processedHtml);
         renderer.layout();
         renderer.createPDF(outputStream);
 

@@ -8,9 +8,25 @@
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
     <div class="container py-2">
-        <form class="needs-validation" th:action="@{/cliente/editar/{id}(id = ${cliente.id})}" method="POST"
-            th:object="${cliente}" novalidate>
+        <form class="needs-validation" th:action="${submit_path}" th:object="${cliente}" method="POST" novalidate>
             <h2 class="border-bottom">Editar Cliente</h2>
+            <div class="row g-2">
+                <div class="col-md">
+                    <div class="form-floating mb-3">
+                        <input class="form-control" type="text" id="username" name="username" placeholder="username"
+                            th:field="*{username}" required>
+                        <label for="username">Username*</label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input class="form-control" type="password" id="password" name="password" placeholder="password"
+                            th:field="*{password}" required>
+                        <label for="password">Password*</label>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-12">
                     <div class="form-floating mb-2">
@@ -39,14 +55,14 @@
             </div>
 
             <div class="row g-2">
-                <div class="col-md">
+                <div class="col-12 col-md-6">
                     <div class="form-floating mb-3">
                         <input class="form-control mask-cep" type="text" id="cep" name="CEP" th:field="*{CEP}"
                             placeholder="CEP" required>
                         <label for="cep">CEP*</label>
                     </div>
                 </div>
-                <div class="col-md">
+                <div class="col-md col-12 col-md-6">
                     <div class="form-floating">
                         <input class="form-control" type="text" id="cidade" name="cidade" placeholder="Angicos"
                             th:field="*{cidade}" required>
@@ -58,7 +74,8 @@
             <div class="row mb-2">
                 <legend class="col-form-label col-form-label-lg py-0">Informe o Gênero*</legend>
                 <div class="col-md">
-                    <div class="form-check" th:each="genero : ${T(br.com.rafaelcavalcante.biritashop.model.enums.Genero).values()}">
+                    <div class="form-check"
+                        th:each="genero : ${T(br.com.rafaelcavalcante.biritashop.model.enums.Genero).values()}">
                         <input class="form-check-input" type="radio" name="genero" th:id="${genero.valor}"
                             th:value="${genero}" th:field="*{genero}" required>
                         <label class="form-check-label" th:for="${genero.valor}" th:text="${genero.valor}"></label>
@@ -66,10 +83,21 @@
                 </div>
             </div>
 
+            <div class="row mb-2">
+                <legend class="col-form-label col-form-label-lg py-0">Selecionar as Regras*</legend>
+                <div class="col-md">
+                    <div class="form-check" th:each="role : ${allRoles}">
+                        <input class="form-check-input checkbox child-checkbox" type="checkbox" id="roles" name="roles"
+                            th:value="${role.id}" th:checked="${#lists.contains(cliente.roles, role)}">
+                        <label class="form-check-label" th:for="${role.id}" th:text="${role.nome}"></label>
+                    </div>
+                </div>
+            </div>
+
             <div class="row g-2">
                 <button class="btn btn-warning text-white" type="submit">
                     <i class="bi bi-pencil-square"></i>
-                    Editar
+                    Salvar
                 </button>
             </div>
         </form>
@@ -81,7 +109,8 @@
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/jquery.mask.min.js"></script>
     <script type="text/javascript" src="/js/masks.js"></script>
-    <script type="text/javascript" src="/js/validacao.js"></script>
+    <script type="text/javascript" src="/js/checkbox.js"></script>
+    <script type="text/javascript" src="/js/validation.js"></script>
     <script type="text/javascript" src="/js/activePage.js"></script>
 </body>
 

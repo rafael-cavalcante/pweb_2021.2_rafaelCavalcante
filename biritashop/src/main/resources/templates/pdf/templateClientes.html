@@ -10,8 +10,6 @@
         }
 
         .header {
-            border-top: 2px solid #212529;
-            border-bottom: 2px solid #212529;
             text-align: center;
             padding: 10px 0;
             margin-bottom: 20px;
@@ -30,7 +28,6 @@
 
         .table-container {
             margin-bottom: 20px;
-            padding: 0 20px 0 20px;
         }
 
         table {
@@ -41,7 +38,7 @@
         th,
         td {
             border: 1px solid #333;
-            padding: 8px;
+            padding: 4px;
             text-align: left;
         }
 
@@ -50,62 +47,67 @@
         }
 
         body {
-            border-top: 20px solid #333;
-            border-bottom: 2px solid #333;
+            border-top: 10px solid #212529;
+            border-bottom: 10px solid #212529;
             margin: 0;
             padding: 0;
         }
 
         .container {
-            padding: 0 20px 0 20px;
+            padding: 0 10px 0 10px;
         }
     </style>
 </head>
 
 <body>
     <div class="header">
-        <img src="src/main/resources/static/image/icone.jpg" width="120" height="120" alt="Logo del sistema" class="logo" />
-        <h1>Nombre del Sistema</h1>
+        <img th:src="|${path}/image/icone.jpg|" width="120" height="120" alt="Logo del sistema" class="logo" />
+        <h1>BiritaShop</h1>
     </div>
 
-    <h2 th:text="${cliente.nomeCompleto}"></h2>
-
     <div class="table-container">
-        <h2>Título del Documento</h2>
+        <h2>Relatório dos Clientes</h2>
         <table>
             <tr>
-                <th>Descripción</th>
-            </tr>
-            <tr>
-                <td>Lorem ipsum dolor sit amet</td>
+                <th>Lista de todos os clientes do sistema.</th>
             </tr>
         </table>
     </div>
 
     <div class="table-container">
-        <h2>Datos del Cliente</h2>
+        <h2>Dados dos Clientes</h2>
         <table>
             <thead>
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Nome</th>
-                    <th scope="col">Data Nascimento</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">Cidade</th>
+                    <th scope="col">CEP</th>
                     <th scope="col">Gênero</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="dependente : ${dependentes}">
-                    <th scope="row" th:text="${dependente.id}"></th>
-                    <td th:text="${dependente.nomeCompleto}"></td>
-                    <td th:text="${#temporals.format(dependente.dataNascimento, 'dd/MM/yyyy')}"></td>
-                    <td th:text="${dependente.genero}"></td>
+                <tr th:each="cliente : ${clientes}">
+                    <th scope="row" th:text="${cliente.id}"></th>
+                    <td th:text="${cliente.nomeCompleto}"></td>
+                    <td th:text="${cliente.email}"></td>
+                    <td>
+                        <a th:href="'https://api.whatsapp.com/send?phone=' + ${cliente.telefone}">
+                            <span class="mask-telefone" th:text="${cliente.telefone}"></span>
+                        </a>
+                    </td>
+                    <td th:text="${cliente.cidade}"></td>
+                    <td th:text="${cliente.CEP}"></td>
+                    <td th:text="${cliente.genero}"></td>
                 </tr>
             </tbody>
         </table>
     </div>
 
     <div class="footer">
-        <p>Fecha y Hora: 06 de mayo de 2023, 10:30 AM</p>
+        <p th:text="${dataAtual}"></p>
     </div>
 </body>
 

@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.rafaelcavalcante.biritashop.model.Produto;
 import br.com.rafaelcavalcante.biritashop.model.dtos.ClienteDTO;
+import br.com.rafaelcavalcante.biritashop.model.enums.Genero;
 import br.com.rafaelcavalcante.biritashop.services.ClienteService;
 import br.com.rafaelcavalcante.biritashop.services.ProdutoService;
 
@@ -34,9 +35,9 @@ public class BiritashopController {
     private ClienteService clienteService;
 
     @GetMapping
-    public ModelAndView index(@RequestParam(value = "produtoInfo", required = false) String produtoInfo, @PageableDefault(sort = "nome", direction = Sort.Direction.ASC, value = 12) Pageable pageable) {
+    public ModelAndView index(@RequestParam(value = "produtoInfo", required = false) String produtoInfo,
+            @PageableDefault(sort = "nome", direction = Sort.Direction.ASC, value = 12) Pageable pageable) {
         Page<Produto> produtos;
-
 
         if (produtoInfo == null) {
             produtos = this.produtoService.listarPaginaProdutos(pageable);
@@ -44,11 +45,13 @@ public class BiritashopController {
             produtos = this.produtoService.listarPaginaProdutosNome(produtoInfo, pageable);
 
         }
-        /*ClienteDTO clienteDTO = new ClienteDTO();
-        clienteDTO.setUsername("Rafael");
-        clienteDTO.setPassword("SenhaRafael");
-
-        System.out.println(ClienteMapper.INSTANCE.toCliente(clienteDTO));*/
+        /*
+         * ClienteDTO clienteDTO = new ClienteDTO();
+         * clienteDTO.setUsername("Rafael");
+         * clienteDTO.setPassword("SenhaRafael");
+         * 
+         * System.out.println(ClienteMapper.INSTANCE.toCliente(clienteDTO));
+         */
 
         return new ModelAndView("/index")
                 .addObject("produtos", produtos);
@@ -61,16 +64,17 @@ public class BiritashopController {
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null) {
-            new SecurityContextLogoutHandler().logout(request, response, authentication);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null) {
+            new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     @GetMapping("/cadastrar")
     public ModelAndView formCadastrar() {
-        return new ModelAndView("/cadastrar");
+        return new ModelAndView("/cadastrar")
+                .addObject("allGeneros", Genero.values());
     }
 
     @PostMapping("/cadastrar")

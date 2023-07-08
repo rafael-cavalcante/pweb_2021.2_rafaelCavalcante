@@ -39,6 +39,8 @@ public class PDFController {
         
         List<Dependente> dependentes = this.dependenteService.listarDependentes(cliente.getId());
 
-        this.pdfService.gerarTemplateDependentes(cliente.getNomeCompleto(), dependentes, response);
+        this.pdfService.gerarTemplateDependentes(cliente, dependentes, response);
     }
+
+    
 }

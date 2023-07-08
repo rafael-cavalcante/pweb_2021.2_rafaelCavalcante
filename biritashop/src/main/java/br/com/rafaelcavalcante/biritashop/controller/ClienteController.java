@@ -28,10 +28,10 @@ public class ClienteController {
 
     @Autowired
     private ClienteRepository clienteRepository;
-    
+
     @Autowired
     private RoleRepository roleRepository;
-    
+
     @Autowired
     private CarrinhoService carrinhoService;
 
@@ -42,10 +42,12 @@ public class ClienteController {
     @GetMapping("/listar")
     public ModelAndView listarClientes() {
         List<Cliente> clientes = this.clienteRepository.findAll();
+
         return new ModelAndView("/cliente/listarClientes")
                 .addObject("clientes", clientes);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/adicionar")
     public ModelAndView formAdicionarCliente() {
         return new ModelAndView("/cliente/adicionarCliente")
@@ -54,43 +56,53 @@ public class ClienteController {
                 .addObject("cliente", new Cliente());
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/adicionar")
     @Transactional
     public String adicionarCliente(Cliente cliente) {
-    	cliente.setPassword(new BCryptPasswordEncoder().encode(cliente.getPassword()));
-    	cliente.setCarrinho(this.carrinhoService.criarCarrinho());
-    	this.clienteRepository.save(cliente);
+        cliente.setPassword(new BCryptPasswordEncoder().encode(cliente.getPassword()));
+        cliente.setCarrinho(this.carrinhoService.criarCarrinho());
+        this.clienteRepository.save(cliente);
         return "redirect:/cliente/listar";
     }
 
     @GetMapping("/editar/{id}")
     public ModelAndView formEditarCliente(@PathVariable("id") Long id) {
         Cliente cliente = this.clienteRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Cliente ID " + id + " Não Encontrado"));
-        return new ModelAndView("/cliente/editarCliente")
-                .addObject("generos", Genero.values())
-                .addObject("cliente", cliente);
+                .orElseThrow(() -> new IllegalArgumentException("Cliente ID " + id + " Nao Encontrado!"));
+
+        return new ModelAndView("/cliente/formCliente")
+                .addObject("cliente", cliente)
+                .addObject("allGeneros", Genero.values())
+                .addObject("allRoles", this.roleRepository.findAll());
     }
 
     @PostMapping("/editar/{id}")
     @Transactional
     public String editarCliente(@PathVariable("id") Long id, Cliente cliente) {
-        this.clienteRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Cliente ID " + id + " Não Encontrado"));
-        this.clienteRepository.save(cliente);
+        if (this.clienteRepository.existsById(id)) {
+            cliente.setPassword(new BCryptPasswordEncoder().encode(cliente.getPassword()));
+            this.clienteRepository.save(cliente);
+        }
         return "redirect:/cliente/listar";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/remover/{id}")
     public ModelAndView removerCliente(@PathVariable("id") Long id) {
         Cliente cliente = this.clienteRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Cliente ID " + id + " Não Encontrado"));
+
         this.clienteRepository.delete(cliente);
         return new ModelAndView("redirect:/cliente/listar");
     }
 
-    @GetMapping("/gerarPDF")
-    public void gerarPDF(HttpServletResponse response) throws DocumentException, IOException{
-        this.pdfService.download(this.clienteRepository.findAll(), response);
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/pdf")
+    public void gerarPdfDependentes(HttpServletResponse response)
+            throws DocumentException, IOException {
+        List<Cliente> clientes = this.clienteRepository.findAll();
+
+        this.pdfService.gerarTemplateClientes(clientes, response);
     }
 }

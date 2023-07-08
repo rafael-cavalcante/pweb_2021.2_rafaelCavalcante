@@ -4,77 +4,105 @@
 <div th:replace="fragments/head :: head"></div>
 
 <body>
-    <div class="d-flex justify-content-center mt-3">
-        <div class="card">
+    <div class="d-flex justify-content-center align-items-center min-vh-100">
+        <div class="card text-center">
+            <div class="card-header">
+                <img src="/assets/icone.ico" width="72" height="56" alt="Logo BiritaShop">
+                <h4>BiritaShop</h4>
+            </div>
             <div class="card-body">
-                <h5 class="card-title h1">Cadastrar-se</h5>
+                <div th:if="${param.error}" class="alert alert-warning" role="alert">
+                    Error ao realizar cadastro!
+                </div>
+                <h3>Cadastrar-se</h3>
                 <form class="needs-validation" th:action="@{/cadastrar}" th:object="${clienteDTO}" method="POST"
                     novalidate>
-                    <div class="row g-2">
-                        <div class="col-md">
-                            <div class="form-floating mb-3">
+                    <div class="row g-2 mb-2">
+                        <div class="col">
+                            <div class="input-group">
+                                <label class="input-group-text" for="username">Username</label>
                                 <input class="form-control" type="text" id="username" name="username"
                                     placeholder="username" required>
-                                <label for="username">Username*</label>
+                                <span class="input-group-text" id="inputGroup-sizing-default">
+                                    <i class="bi bi-person"></i>
+                                </span>
                             </div>
                         </div>
-                        <div class="col-md">
-                            <div class="form-floating">
+                        <div class="col">
+                            <div class="input-group">
+                                <label class="input-group-text" for="password">Password</label>
                                 <input class="form-control" type="password" id="password" name="password"
                                     placeholder="password" required>
-                                <label for="password">Password*</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-2">
-                        <div class="col-md">
-                            <div class="form-floating mb-3">
-                                <input class="form-control" type="text" id="nomeCompleto" name="nomeCompleto"
-                                    placeholder="nomeCompleto" required>
-                                <label for="nomeCompleto">Nome Completo*</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row g-2">
-                        <div class="col-md">
-                            <div class="form-floating mb-3">
-                                <input class="form-control mask-email" type="email" id="email" name="email"
-                                    placeholder="email" required>
-                                <label for="email">E-mail*</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input class="form-control mask-telefone" type="text" id="telefone" name="telefone"
-                                    placeholder="telefone" required>
-                                <label for="telefone">Telefone*</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row g-2">
-                        <div class="col-md">
-                            <div class="form-floating mb-3">
-                                <input class="form-control mask-cep" type="text" id="cep" name="CEP" placeholder="CEP"
-                                    required>
-                                <label for="cep">CEP*</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input class="form-control" type="text" id="cidade" name="cidade" placeholder="cidade"
-                                    required>
-                                <label for="cidade">Cidade*</label>
+                                <button class="btn btn-outline-secondary" type="button" id="visualizarPassword">
+                                    <i class="bi bi-eye"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
 
                     <div class="row mb-2">
-                        <legend class="col-form-label col-form-label-lg py-0">Selecionar o Gênero*</legend>
-                        <div class="col-md">
-                            <div class="form-check"
-                                th:each="genero : ${T(br.com.rafaelcavalcante.biritashop.model.enums.Genero).values()}">
+                        <div class="col">
+                            <div class="input-group">
+                                <label class="input-group-text" for="nomeCompleto">Nome Completo</label>
+                                <input class="form-control" type="text" id="nomeCompleto" name="nomeCompleto"
+                                    placeholder="nome completo" required>
+                                <span class="input-group-text" id="inputGroup-sizing-default">
+                                    <i class="bi bi-cursor-text"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-2 mb-2">
+                        <div class="col">
+                            <div class="input-group">
+                                <label class="input-group-text" for="email">Email</label>
+                                <input class="form-control mask-email" type="text" id="email" name="email"
+                                    placeholder="email" required>
+                                <span class="input-group-text" id="inputGroup-sizing-default">
+                                    <i class="bi bi-envelope"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="input-group">
+                                <label class="input-group-text" for="telefone">Telefone</label>
+                                <input class="form-control mask-telefone" type="text" id="telefone" name="telefone"
+                                    placeholder="telefone" required>
+                                <span class="input-group-text" id="inputGroup-sizing-default">
+                                    <i class="bi bi-telephone"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-2 mb-2">
+                        <div class="col">
+                            <div class="input-group">
+                                <label class="input-group-text" for="cep">CEP</label>
+                                <input class="form-control mask-cep" type="text" id="cep" name="CEP" placeholder="cep"
+                                    required>
+                                <span class="input-group-text" id="inputGroup-sizing-default">
+                                    <i class="bi bi-geo-alt"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="input-group">
+                                <label class="input-group-text" for="cidade">Cidade</label>
+                                <input class="form-control" type="text" id="cidade" name="cidade" placeholder="cidade"
+                                    required>
+                                <span class="input-group-text" id="inputGroup-sizing-default">
+                                    <i class="bi bi-houses"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col">
+                            <legend class="col-form-label col-form-label-lg py-0">Gênero</legend>
+                            <div class="form-check form-check-inline" th:each="genero : ${allGeneros}">
                                 <input class="form-check-input" type="radio" name="genero" th:id="${genero.valor}"
                                     th:value="${genero}" required>
                                 <label class="form-check-label" th:for="${genero.valor}"
@@ -83,14 +111,10 @@
                         </div>
                     </div>
 
-                    <div class="row g-2">
+                    <div class="row g-1">
                         <button class="btn btn-success" type="submit">
                             <i class="bi bi-plus-square"></i>
-                            Cadastrar
-                        </button>
-                        <button class="btn btn-outline-secondary" type="reset">
-                            <i class="bi bi-x-square"></i>
-                            Limpar Campos
+                            Cadastrar-se
                         </button>
                     </div>
                 </form>

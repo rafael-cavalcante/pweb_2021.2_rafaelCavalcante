@@ -26,25 +26,24 @@ public class WebSecurityConfiguration {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authorize) -> authorize
-            .antMatchers("/").permitAll()
-            .antMatchers("/cadastrar").permitAll()
-            .antMatchers(HttpMethod.GET, "/api/**").permitAll()
-            .anyRequest().authenticated())
-                .formLogin((login) -> login
-                    .loginPage("/login")
-                    .defaultSuccessUrl("/")
-                    .failureUrl("/login?error").permitAll())
-                .logout((logout) -> logout
-                    .logoutUrl("/logout")
-                    .invalidateHttpSession(true)
-                    .logoutSuccessUrl("/")
-                    .deleteCookies("JSESSIONID"))
-                .exceptionHandling((ex) -> ex
-                    .accessDeniedPage("/negado"))
+                .antMatchers("/").permitAll()
+                .antMatchers("/cadastrar").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/**").permitAll()
+                .anyRequest().authenticated())
+                .formLogin(login -> login
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/")
+                        .failureUrl("/login?error").permitAll())
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID"))
+                .exceptionHandling(ex -> ex
+                        .accessDeniedPage("/negado"))
                 .sessionManagement(session -> session
-                    .maximumSessions(1)
-                    .maxSessionsPreventsLogin(true)
-                    .expiredUrl("/login?invaled-session=true"));
+                        .maximumSessions(1)
+                        .expiredUrl("/login?invaled-session=true"));
 
         return http.build();
     }

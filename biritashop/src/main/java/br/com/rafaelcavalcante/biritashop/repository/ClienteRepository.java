@@ -10,4 +10,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
     Optional<Cliente> findByUsername(String username);
 
+    boolean existsById(Long id);
+    
 }

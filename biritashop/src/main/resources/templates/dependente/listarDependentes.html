@@ -13,9 +13,8 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-    <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-    
+    <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
     <main class="flex-grow-1 mt-4">
         <div class="container">
@@ -79,9 +78,9 @@
             </table>
 
             <div class="d-flex justify-content-end">
-                <a class="btn btn-outline-info" href="/pdf/dependentes">
+                <a class="btn btn-outline-info" onclick="window.print()">
                     <i class="bi bi-download"></i>
-                    Adicionar
+                    Baixar PDF
                 </a>
             </div>
         </div>

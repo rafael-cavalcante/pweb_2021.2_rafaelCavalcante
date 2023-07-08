@@ -3,50 +3,62 @@
 
 <div th:replace="fragments/head :: head"></div>
 
-<body class="my-5">
+<body>
+    <div class="d-flex justify-content-center align-items-center min-vh-100">
+        <div class="card text-center">
+            <div class="card-header">
+                <img src="/assets/icone.ico" width="72" height="56" alt="Logo BiritaShop">
+                <h4>BiritaShop</h4>
+            </div>
+            <div class="card-body">
+                <div th:if="${param.error}" class="alert alert-warning" role="alert">
+                    Error ao realizar login!
+                </div>
+                <h3>Login</h3>
+                <form class="needs-validation" th:action="@{/login}" method="POST" novalidate>
+                    <div class="row mb-2">
+                        <div class="col">
+                            <div class="input-group">
+                                <label class="input-group-text" for="username">Username</label>
+                                <input class="form-control" type="text" id="username" name="username"
+                                    placeholder="username" required>
+                                <span class="input-group-text" id="inputGroup-sizing-default">
+                                    <i class="bi bi-person"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
 
-    <div class="d-flex justify-content-center">
-        <div th:if="${param.error}" class="alert alert-warning w-50 text-center" role="alert">
-            Error ao realizar login!
+                    <div class="row mb-2">
+                        <div class="col">
+                            <div class="input-group">
+                                <label class="input-group-text" for="password">Password</label>
+                                <input class="form-control" type="password" id="password" name="password"
+                                    placeholder="password" required>
+                                <button class="btn btn-outline-secondary" type="button" id="visualizarPassword">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-1">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="bi bi-box-arrow-in-right"></i>
+                            Login
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-muted">
+                © 2023
+            </div>
         </div>
     </div>
 
-
-    <div class="d-flex justify-content-center text-center">
-        <form class="needs-validation" th:action="@{/login}" method="POST" novalidate>
-            <div class="row">
-                <div class="col">
-                    <img class="mb-4" src="/assets/icone.ico" alt="" width="72" height="57">
-                    <h1 class="h3 mb-3 fw-normal">Realizar Login</h1>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <div class="form-floating mb-3">
-                        <input class="form-control" type="text" id="username" name="username" placeholder="username"
-                            required>
-                        <label class="form-label" for="username">Username</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <div class="form-floating mb-3">
-                        <input class="form-control" type="password" id="password" name="password" placeholder="password"
-                            required>
-                        <label for="password">Password</label>
-                    </div>
-                </div>
-            </div>
-
-            <button class="btn btn-lg btn-primary w-100" type="submit">Login</button>
-            <p class="mt-5 mb-3 text-muted">© 2023</p>
-        </form>
-    </div>
-
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/password.js"></script>
     <script type="text/javascript" src="/js/validation.js"></script>
 </body>
 
