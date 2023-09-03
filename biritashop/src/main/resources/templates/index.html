@@ -5,9 +5,9 @@
 
 <body>
 
-    <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
+    <div th:replace="fragments/nav :: nav"></div>
 
-    <div>
+    <main>
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -17,29 +17,31 @@
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
                     aria-label="Slide 3"></button>
             </div>
+
             <div class="carousel-inner">
-                <div class="carousel-item active c-item" data-bs-interval="3000">
-                    <img th:src="@{/image/banner1.jpg}" class="d-block w-100 c-img" alt="banner1" />
+                <div class="carousel-item active" data-bs-interval="3000">
+                    <img th:src="@{/image/banner1.jpg}" class="d-block w-100" alt="banner1" />
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Bebidas alcoólicas quentes</h5>
                         <p>Uma ampla gama de tipos e variações.</p>
                     </div>
                 </div>
-                <div class="carousel-item c-item" data-bs-interval="3000">
-                    <img th:src="@{/image/banner2.jpg}" class="d-block w-100 c-img" alt="banner2" />
+                <div class="carousel-item" data-bs-interval="3000">
+                    <img th:src="@{/image/banner2.jpg}" class="d-block w-100" alt="banner2" />
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Drinks</h5>
                         <p>Venha desperta sensações e desejos.</p>
                     </div>
                 </div>
-                <div class="carousel-item c-item">
-                    <img th:src="@{/image/banner3.jpg}" class="d-block w-100 c-img" alt="banner3" />
+                <div class="carousel-item">
+                    <img th:src="@{/image/banner3.jpg}" class="d-block w-100" alt="banner3" />
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Vinhos</h5>
                         <p>Apreciar o melhor que se pode encontrar.</p>
                     </div>
                 </div>
             </div>
+            
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
                 data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -51,43 +53,45 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-    </div>
 
-    <nav class="navbar bg-dark">
-        <div class="container justify-content-end">
-            <div class="d-flex">
-                <div class="input-group">
-                    <input class="form-control" type="text" id="searchProdutos" placeholder="Nome ou Marca"
-                        aria-label="Nome ou Marca" aria-describedby="button-addon2" th:value="${param.produtoInfo}">
-                    <button class="btn btn-primary" type="button" id="button-addon2" onclick="searchProdutos()">
-                        <i class="bi bi-search"></i>
-                        Pesquisar
-                    </button>
+        <div class="container">
+            <nav class="navbar">
+                <div class="container justify-content-end">
+                    <div class="d-flex">
+                        <div class="input-group">
+                            <input class="form-control" type="text" id="searchProdutos" placeholder="Nome ou Marca"
+                                aria-label="Nome ou Marca" aria-describedby="button-addon2"
+                                th:value="${param.produtoInfo}">
+                            <button class="btn btn-primary" type="button" id="button-addon2" onclick="searchProdutos()">
+                                <i class="bi bi-search"></i>
+                                Pesquisar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="row mb-2">
+                <div class="col-12 col-md-6 col-lg-4 mt-2" th:each="produto: ${produtos}">
+                    <div class="card" th:onclick="produtoClick([[${produto.id}]])" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        <div class="card-header text-center">
+                            <img class="card-img-top"
+                                th:src="@{${produto.foto} ? |/image/fotos/${produto.foto}| : @{/image/imagem.png}}" alt="">
+                        </div>
+                        <div class="card-body">
+                            <h5 th:text="${produto.nome}"></h5>
+                        </div>
+                        <div class="card-footer text-muted" th:text="|R$ ${produto.precoVenda}|"></div>
+                    </div>
                 </div>
             </div>
+    
+            <div th:replace="fragments/barraPaginacao :: barraPaginacao"></div>
         </div>
-    </nav>
+    </main>
 
-    <div class="container">
-        <div class="row mb-2">
-            <div class="col-12 col-md-6 col-lg-4 mt-2" th:each="produto: ${produtos}">
-                <div class="card" th:onclick="produtoClick([[${produto.id}]])" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
-                    <div class="card-header text-center">
-                        <img class="card-img-top"
-                            th:src="@{${produto.foto} ? |/image/fotos/${produto.foto}| : @{/image/imagem.png}}" alt="">
-                    </div>
-                    <div class="card-body">
-                        <h5 th:text="${produto.nome}"></h5>
-                    </div>
-                    <div class="card-footer text-muted" th:text="|R$ ${produto.precoVenda}|"></div>
-                </div>
-            </div>
-        </div>
-
-        <div th:replace="fragments/barraPaginacao :: barraPaginacao"></div>
-
-    </div>
+    <div th:replace="fragments/footer :: footer"></div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -125,7 +129,12 @@
         </div>
     </div>
 
-    <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
+    <!-- Botão de Topo -->
+    <div class="position-fixed bottom-0 end-0 mb-3 me-3">
+        <a class="btn btn-primary" href="#" role="button">
+            <i class="bi bi-arrow-up-circle"></i>
+        </a>
+    </div>
 
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="/js/jquery.min.js"></script>

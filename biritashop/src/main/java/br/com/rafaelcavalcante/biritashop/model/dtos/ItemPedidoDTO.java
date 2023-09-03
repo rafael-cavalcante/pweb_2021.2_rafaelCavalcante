@@ -13,6 +13,6 @@ public class ItemPedidoDTO {
     
     private Long id;
     private ProdutoDTO produto;
-    private Long quantidade;
+    private Long quantidade = 1L;
 
 }

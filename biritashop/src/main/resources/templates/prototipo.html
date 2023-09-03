@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <title>BiritaShop</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" th:fragment="barraNavegacao">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <img src="/assets/icone.ico" width="30" height="30" class="d-inline-block align-top" alt="">
+                    BiritaShop
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul th:if="${#authorization.expression('isAuthenticated()') AND #authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                        class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="/cliente" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Cliente
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/cliente/listar">listar</a>
+                                <a class="dropdown-item" href="/cliente/adicionar">Adicionar</a>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <ul th:if="${#authorization.expression('isAuthenticated()') AND #authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                        class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="/produto" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Produto
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/produto/listar">listar</a>
+                                <a class="dropdown-item" href="/produto/adicionar">Adicionar</a>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <ul th:if="${#authorization.expression('isAuthenticated()')}" class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="/dependente" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dependente
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/dependente/listar">listar</a>
+                                <a class="dropdown-item" href="/dependente/adicionar">Adicionar</a>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <ul th:if="${#authorization.expression('isAuthenticated()')}" class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="/pedido" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Pedido
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/pedido/listar">listar</a>
+                                <a class="dropdown-item" href="/pedido/adicionar">Adicionar</a>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <ul th:if="${#authorization.expression('isAuthenticated()')}" class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="/carrinho" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Carrinho
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/carrinho/listar">listar</a>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav ms-auto">
+                        <li th:if="${!#authorization.expression('isAuthenticated()')}" class="nav-item">
+                            <a class="nav-link active" href="/login">Entrar</a>
+                        </li>
+                        <li th:if="${!#authorization.expression('isAuthenticated()')}" class="nav-item">
+                            <a class="nav-link active" href="/cadastrar">Cadastrar</a>
+                        </li>
+                        <li th:if="${#authorization.expression('isAuthenticated()')}" class="nav-item">
+                            <a class="nav-link active" href="/logout">Sair</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active c-item" data-bs-interval="3000">
+                    <img th:src="@{/image/banner1.jpg}" class="d-block w-100 c-img" alt="banner1" />
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Bebidas alcoólicas quentes</h5>
+                        <p>Uma ampla gama de tipos e variações.</p>
+                    </div>
+                </div>
+                <div class="carousel-item c-item" data-bs-interval="3000">
+                    <img th:src="@{/image/banner2.jpg}" class="d-block w-100 c-img" alt="banner2" />
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Drinks</h5>
+                        <p>Venha desperta sensações e desejos.</p>
+                    </div>
+                </div>
+                <div class="carousel-item c-item">
+                    <img th:src="@{/image/banner3.jpg}" class="d-block w-100 c-img" alt="banner3" />
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Vinhos</h5>
+                        <p>Apreciar o melhor que se pode encontrar.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div class="container">
+
+            <hr class="featurette-divider">
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <p class="float-end"><a href="#">Back to top</a></p>
+            <p>&copy; 2023–2024 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

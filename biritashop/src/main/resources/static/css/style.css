@@ -1,13 +1,3 @@
-.c-item {
-    height: 440px;
-}
-
-.c-img {
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.6);
-}
-
 .c-icone {
     font-size: 20px;
     color: white;
@@ -21,8 +11,19 @@
 .card-img-top {
     width: auto;
     height: 300px;
-  }  
+}
 
 .card:hover {
     cursor: pointer;
+}
+
+#carouselExampleCaptions .carousel-inner,
+#carouselExampleCaptions .carousel-item {
+    height: 90vh;
+}
+
+#carouselExampleCaptions img {
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
 }

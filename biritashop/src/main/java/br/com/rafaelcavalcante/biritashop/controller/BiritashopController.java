@@ -85,4 +85,14 @@ public class BiritashopController {
         this.clienteService.adicionarCliente(clienteDTO);
         return "redirect:/login";
     }
+
+    @GetMapping("/teste")
+    public ModelAndView teste(){
+        return new ModelAndView("/teste");
+    }
+
+    @GetMapping("/prototipo")
+    public ModelAndView prototipo(){
+        return new ModelAndView("/prototipo");
+    }
 }

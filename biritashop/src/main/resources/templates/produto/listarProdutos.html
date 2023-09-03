@@ -1,21 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" th:href="@{/assets/icone.ico}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-icons.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-    <title>BiritaShop</title>
-</head>
+<div th:replace="fragments/head :: head"></div>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
+
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-    <div class="container-fluid my-5 pt-4">
+    <div class="container pt-4">
         <h2 class="border-bottom">Produtos</h2>
         <table class="table overflow-scroll mb-5">
             <thead class="table-dark">
@@ -29,38 +21,51 @@
                     <th scope="col">Preço de Compra R$</th>
                     <th scope="col">Preço de Venda R$</th>
                     <th scope="col">Data Cadastro</th>
-                    <th scope="col">Opções</th>
+                    <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="produto: ${produtos}">
-                    <th scope="row" th:text="${produto.id}"></th>
-                    <td>
-                        <img th:id="'Produto' + ${produto.id}"
-                            th:src="@{${produto.foto} ? |/image/fotos/${produto.foto}| : /image/imagem.png}"
-                            th:alt="'Foto de' + ${produto.nome}" width="30" height="30">
-                    </td>
-                    <td th:text="${produto.nome}"></td>
-                    <td th:text="${produto.marca}"></td>
-                    <td th:text="${produto.volume}"></td>
-                    <td th:text="${produto.embalagem.valor}"></td>
-                    <td th:text="${produto.precoCompra}"></td>
-                    <td th:text="${produto.precoVenda}"></td>
-                    <td th:text="${#temporals.format(produto.dataCadastro, 'dd/MM/yyyy')}"></td>
-                    <td>
-                        <a th:href="@{editar/{id}(id = ${produto.id})}" class="btn btn-outline-warning">
-                            <i class="bi bi-pencil-square"></i>
-                        </a>
-                        <a th:href="@{remover/{id}(id = ${produto.id})}" class="btn btn-outline-danger">
-                            <i class="bi bi-trash"></i>
-                        </a>
-                    </td>
-                </tr>
+                <div th:each="produto: ${produtos}">
+                    <tr>
+                        <th scope="row" th:text="${produto.id}"></th>
+                        <td>
+                            <img th:id="'Produto' + ${produto.id}"
+                                th:src="@{${produto.foto} ? |/image/fotos/${produto.foto}| : @{/image/imagem.png}}"
+                                th:alt="'Foto de' + ${produto.nome}" width="30" height="30">
+                        </td>
+                        <td th:text="${produto.nome}"></td>
+                        <td th:text="${produto.marca}"></td>
+                        <td th:text="${produto.volume}"></td>
+                        <td th:text="${produto.embalagem.valor}"></td>
+                        <td th:text="${produto.precoCompra}"></td>
+                        <td th:text="${produto.precoVenda}"></td>
+                        <td th:text="${#temporals.format(produto.dataCadastro, 'dd/MM/yyyy')}"></td>
+                        <td>
+                            <a th:href="@{editar/{id}(id = ${produto.id})}" class="btn btn-outline-warning">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                            <a th:href="@{remover/{id}(id = ${produto.id})}" class="btn btn-outline-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                            <a class="btn btn-outline-primary" data-bs-toggle="collapse"
+                                th:href="'#detalhes-' + ${produto.id}" role="button" aria-expanded="false"
+                                th:aria-controls="'detalhes-' + ${produto.id}">
+                                <i class="bi bi-box"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr th:id="'detalhes-' + ${produto.id}" class="collapse">
+                        <td colspan="10">
+                            <h>Apareceu</h>
+                        </td>
+                    </tr>
+                </div>
+
             </tbody>
         </table>
     </div>
 
-    <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
+    <div th:replace="fragments/footer :: footer"></div>
 
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="/js/activePage.js"></script>

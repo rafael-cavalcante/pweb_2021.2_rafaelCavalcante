@@ -3,87 +3,179 @@
 
 <div th:replace="fragments/head :: head"></div>
 
-<body class="my-5 pt-5">
-    <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
+<body class="d-flex flex-column min-vh-100">
 
-    <div class="container">
-        <form class="needs-validation" th:action="@{/pedido/adicionar}" method="POST" th:object="${pedidoDTO}"
-            novalidate>
-            <h2 class="border-bottom">Itens Carrinho</h2>
-            <table class="table">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">
-                            <input class="form-check-input checkbox" type="checkbox" id="master-checkbox"
-                                onclick="checkAll(this)" required>
-                        </th>
-                        <th scope="col">ID</th>
-                        <th scope="col">Imagem</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Valor Unitário R$</th>
-                        <th scope="col">Quantidade</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="item, iStat : ${itensCarrinho}">
-                        <td>
-                            <div class="form-check">
-                                <input class="form-check-input checkbox child-checkbox" type="checkbox"
-                                    th:value="${item.produto.id}" th:field="*{itens[__${iStat.index}__].produto.id}" required>
-                            </div>
-                        </td>
-                        <th scope="row" th:text="${item.produto.id}"></th>
-                        <td>
-                            <img th:id="'Produto' + ${item.produto.id}"
-                                th:src="@{${item.produto.foto} ? |/image/fotos/${item.produto.foto}| : @{/image/imagem.png}}"
-                                th:alt="'Foto de' + ${item.produto.nome}" width="30" height="30">
-                        </td>
-                        <td th:text="${item.produto.nome}"></td>
-                        <td th:text="${item.produto.precoVenda}"></td>
-                        <td>
-                            <input class="form-control input-unidades" type="number"
-                                th:field="*{itens[__${iStat.index}__].quantidade}" value="1" min="1"
-                                aria-label="Quantidade de Produtos">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-end" colspan="5"><strong>QUANTIDADE DE ITENS:</strong></td>
-                        <td th:text="${itensCarrinho.size}"></td>
-                    </tr>
-                </tbody>
-            </table>
+    <div th:replace="fragments/nav :: nav"></div>
 
-            <div class="row mb-2">
-                <div class="col-auto">
-                    <div class="input-group">
-                        <label class="input-group-text" for="formaPagamento">
-                            <i class="bi bi-cash-coin"></i>
-                            Forma de Pagamento
-                        </label>
-                        <select class="form-select form-select-lg" id="formaPagamento" name="formaPagamento" required>
-                            <option selected disabled value="">Selecionar Forma Pagamento</option>
-                            <option th:each="formaPagamento : ${formasPagamento}" th:value="${formaPagamento}"
-                                th:text="${formaPagamento.valor}">
-                            </option>
-                        </select>
+    <main>
+        <div class="container pt-4">
+            <form class="needs-validation" th:action="@{/pedido/adicionar}" method="POST" th:object="${pedidoDTO}"
+                novalidate>
+                <!-- Lista de Itens Carrinho-->
+                <div class="row g-5">
+                    <div class="col-md-10 col-lg order-md-last">
+                        <h4 class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-primary">
+                                <i class="bi bi-cart4"></i>
+                                Carrinho
+                            </span>
+                            <span class="badge bg-primary rounded-pill" th:text="${itensCarrinho.size}"></span>
+                        </h4>
+
+                        <ul class="list-group mb-3">
+                            <li class="list-group-item d-flex justify-content-between lh-sm">
+                                <div class="col-1">
+                                    <input class="form-check-input checkbox" type="checkbox" id="master-checkbox"
+                                        onclick="checkAll(this)" required>
+                                </div>
+                                <div class="col-2">
+                                    <h6>Produto</h6>
+                                </div>
+                                <div class="col-2">
+                                    <h6>Nome</h6>
+                                </div>
+                                <div class="col-2">
+                                    <h6>Quantidade</h6>
+                                </div>
+                                <div class="col-2">
+                                    <h6>Preço Unitario</h6>
+                                </div>
+                                <div class="col-2">
+                                    <h6>Ações</h6>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-sm"
+                                th:each="item, iStat : ${itensCarrinho}">
+                                <div class="col-1">
+                                    <input class="form-check-input checkbox child-checkbox" type="checkbox"
+                                        th:value="${item.produto.id}" th:field="*{itens[__${iStat.index}__].produto.id}"
+                                        required>
+                                </div>
+                                <div class="col-2">
+                                    <img th:id="'Produto' + ${item.produto.id}"
+                                        th:src="@{${item.produto.foto} ? |/image/fotos/${item.produto.foto}| : @{/image/imagem.png}}"
+                                        th:alt="'Foto de' + ${item.produto.nome}" width="30" height="30">
+                                </div>
+                                <div class="col-2">
+                                    <h6 class="my-0" th:text="${item.produto.nome}"></h6>
+                                    <small class="text-body-secondary" th:text="${item.produto.volume} + 'mL'"></small>
+                                </div>
+                                <div class="col-2">
+                                    <input class="form-control input-unidades" type="number" value="1" min="1"
+                                        th:field="*{itens[__${iStat.index}__].quantidade}">
+                                </div>
+                                <div class="col-2">
+                                    <span class="text-body-secondary text-preco"
+                                        th:text="'R$' + ${item.produto.precoVenda}"></span>
+                                </div>
+                                <div class="col-2">
+                                    <a th:href="@{remover/{id}(id = ${item.produto.id})}"
+                                        class="btn btn-outline-danger">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>SubTotal (R$)</span>
+                                <strong id="subTotal"></strong>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Imposto (R$)</span>
+                                <strong id="imposto" class="text-danger"></strong>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Total (R$)</span>
+                                <strong id="total"></strong>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-            </div>
 
-            <div class="row g-2">
-                <button class="btn btn-outline-success" type="submit">
-                    <i class="bi bi-plus-square"></i>
-                    Proximo
-                </button>
-                <button class="btn btn-outline-secondary" type="reset">
-                    <i class="bi bi-x-square"></i>
-                    Limpar Campos
-                </button>
-            </div>
-        </form>
+                <!--<h2 class="border-bottom">Itens Carrinho</h2>
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">
+                                <input class="form-check-input checkbox" type="checkbox" id="master-checkbox"
+                                    onclick="checkAll(this)" required>
+                            </th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Imagem</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Valor Unitário R$</th>
+                            <th scope="col">Quantidade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="item, iStat : ${itensCarrinho}">
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input checkbox child-checkbox" type="checkbox"
+                                        th:value="${item.produto.id}" th:field="*{itens[__${iStat.index}__].produto.id}"
+                                        required>
+                                </div>
+                            </td>
+                            <th scope="row" th:text="${item.produto.id}"></th>
+                            <td>
+                                <img th:id="'Produto' + ${item.produto.id}"
+                                    th:src="@{${item.produto.foto} ? |/image/fotos/${item.produto.foto}| : @{/image/imagem.png}}"
+                                    th:alt="'Foto de' + ${item.produto.nome}" width="30" height="30">
+                            </td>
+                            <td th:text="${item.produto.nome}"></td>
+                            <td th:text="${item.produto.precoVenda}"></td>
+                            <td>
+                                <input class="form-control input-unidades" type="number"
+                                    th:field="*{itens[__${iStat.index}__].quantidade}" value="1" min="1"
+                                    aria-label="Quantidade de Produtos">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-end" colspan="5"><strong>QUANTIDADE DE ITENS:</strong></td>
+                            <td th:text="${itensCarrinho.size}"></td>
+                        </tr>
+                    </tbody>
+                </table>-->
+
+                <div class="row mb-2">
+                    <div class="col-auto">
+                        <div class="input-group">
+                            <label class="input-group-text" for="formaPagamento">
+                                <i class="bi bi-cash-coin"></i>
+                                Forma de Pagamento
+                            </label>
+                            <select class="form-select form-select-lg" id="formaPagamento" name="formaPagamento"
+                                required>
+                                <option selected disabled value="">Selecionar Forma Pagamento</option>
+                                <option th:each="formaPagamento : ${formasPagamento}" th:value="${formaPagamento}"
+                                    th:text="${formaPagamento.valor}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-2">
+                    <button class="btn btn-outline-success" type="submit">
+                        <i class="bi bi-plus-square"></i>
+                        Proximo
+                    </button>
+                    <button class="btn btn-outline-secondary" type="reset">
+                        <i class="bi bi-x-square"></i>
+                        Limpar Campos
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <div th:replace="fragments/footer :: footer"></div>
+
+    <!-- Botão de Topo -->
+    <div class="position-fixed bottom-0 end-0 mb-3 me-3">
+        <a class="btn btn-primary" href="#" role="button">
+            <i class="bi bi-arrow-up-circle"></i>
+        </a>
     </div>
-
-    <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
 
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="/js/jquery.min.js"></script>
