@@ -61,8 +61,12 @@
                                     <small class="text-body-secondary" th:text="${item.produto.volume} + 'mL'"></small>
                                 </div>
                                 <div class="col-2">
-                                    <input class="form-control input-unidades" type="number" value="1" min="1"
-                                        th:field="*{itens[__${iStat.index}__].quantidade}">
+                                    <div class="input-group">
+                                        <button class="btn btn-outline-secondary decrement" type="button">-</button>
+                                        <input class="form-control value input-unidades text-center" type="number"
+                                            value="1" min="1" th:field="*{itens[__${iStat.index}__].quantidade}">
+                                        <button class="btn btn-outline-secondary increment" type="button">+</button>
+                                    </div>
                                 </div>
                                 <div class="col-2">
                                     <span class="text-body-secondary text-preco"
@@ -136,14 +140,36 @@
                     </tbody>
                 </table>-->
 
-                <div class="row mb-2">
-                    <div class="col-auto">
+                <h1>Formulário de seleção de forma de pagamento</h1>
+                <form action="/submit" method="post">
+                    <div class="form-group">
+                        <label for="formaPagamento">Forma de pagamento</label>
+                        <select class="form-control" id="formaPagamento" name="formaPagamento">
+                            <option value="dinheiro">Dinheiro</option>
+                            <option value="pix">Pix</option>
+                            <option value="cartao">Cartão</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="div-valor" style="display: none;">
+                        <label for="valor">Valor</label>
+                        <input type="number" class="form-control" id="valor" name="valor" placeholder="Valor">
+                    </div>
+                    <div class="form-group" id="div-numeroCartao" style="display: none;">
+                        <label for="numeroCartao">Número do cartão</label>
+                        <input type="number" class="form-control" id="numeroCartao" name="numeroCartao"
+                            placeholder="Número do cartão">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+
+                <div class="row mb-4">
+                    <div class="col-lg-6">
                         <div class="input-group">
                             <label class="input-group-text" for="formaPagamento">
                                 <i class="bi bi-cash-coin"></i>
                                 Forma de Pagamento
                             </label>
-                            <select class="form-select form-select-lg" id="formaPagamento" name="formaPagamento"
+                            <select class="form-select form-select-md" id="formaPagamento" name="formaPagamento"
                                 required>
                                 <option selected disabled value="">Selecionar Forma Pagamento</option>
                                 <option th:each="formaPagamento : ${formasPagamento}" th:value="${formaPagamento}"

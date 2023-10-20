@@ -7,63 +7,64 @@
 
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-    <div class="container pt-4">
-        <h2 class="border-bottom">Produtos</h2>
-        <table class="table overflow-scroll mb-5">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Imagem</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Marca</th>
-                    <th scope="col">Volume (ml)</th>
-                    <th scope="col">Tipo Embalagem</th>
-                    <th scope="col">Preço de Compra R$</th>
-                    <th scope="col">Preço de Venda R$</th>
-                    <th scope="col">Data Cadastro</th>
-                    <th scope="col">Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <div th:each="produto: ${produtos}">
+    <main>
+        <div class="container pt-4">
+            <h2 class="border-bottom">Produtos</h2>
+            <table class="table overflow-scroll mb-5">
+                <thead class="table-dark">
                     <tr>
-                        <th scope="row" th:text="${produto.id}"></th>
-                        <td>
-                            <img th:id="'Produto' + ${produto.id}"
-                                th:src="@{${produto.foto} ? |/image/fotos/${produto.foto}| : @{/image/imagem.png}}"
-                                th:alt="'Foto de' + ${produto.nome}" width="30" height="30">
-                        </td>
-                        <td th:text="${produto.nome}"></td>
-                        <td th:text="${produto.marca}"></td>
-                        <td th:text="${produto.volume}"></td>
-                        <td th:text="${produto.embalagem.valor}"></td>
-                        <td th:text="${produto.precoCompra}"></td>
-                        <td th:text="${produto.precoVenda}"></td>
-                        <td th:text="${#temporals.format(produto.dataCadastro, 'dd/MM/yyyy')}"></td>
-                        <td>
-                            <a th:href="@{editar/{id}(id = ${produto.id})}" class="btn btn-outline-warning">
-                                <i class="bi bi-pencil-square"></i>
-                            </a>
-                            <a th:href="@{remover/{id}(id = ${produto.id})}" class="btn btn-outline-danger">
-                                <i class="bi bi-trash"></i>
-                            </a>
-                            <a class="btn btn-outline-primary" data-bs-toggle="collapse"
-                                th:href="'#detalhes-' + ${produto.id}" role="button" aria-expanded="false"
-                                th:aria-controls="'detalhes-' + ${produto.id}">
-                                <i class="bi bi-box"></i>
-                            </a>
-                        </td>
+                        <th scope="col">ID</th>
+                        <th scope="col">Imagem</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Preço de Compra R$</th>
+                        <th scope="col">Preço de Venda R$</th>
+                        <th scope="col">Data Cadastro</th>
+                        <th scope="col">Ações</th>
                     </tr>
-                    <tr th:id="'detalhes-' + ${produto.id}" class="collapse">
-                        <td colspan="10">
-                            <h>Apareceu</h>
-                        </td>
-                    </tr>
-                </div>
-
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                    <div th:each="produto: ${produtos}">
+                        <tr>
+                            <th scope="row" th:text="${produto.id}"></th>
+                            <td>
+                                <img th:id="'Produto' + ${produto.id}"
+                                    th:src="@{${produto.foto} ? |/image/fotos/${produto.foto}| : @{/image/imagem.png}}"
+                                    th:alt="'Foto de' + ${produto.nome}" width="30" height="30">
+                            </td>
+                            <td th:text="${produto.nome}"></td>
+                            <td th:text="${produto.precoCompra}"></td>
+                            <td th:text="${produto.precoVenda}"></td>
+                            <td th:text="${#temporals.format(produto.dataCadastro, 'dd/MM/yyyy')}"></td>
+                            <td>
+                                <a th:href="@{editar/{id}(id = ${produto.id})}" class="btn btn-outline-warning">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a th:href="@{remover/{id}(id = ${produto.id})}" class="btn btn-outline-danger">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                                <a class="btn btn-outline-primary" data-bs-toggle="collapse"
+                                    th:href="'#detalhes-' + ${produto.id}" role="button" aria-expanded="false"
+                                    th:aria-controls="'detalhes-' + ${produto.id}">
+                                    <i class="bi bi-box"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr th:id="'detalhes-' + ${produto.id}" class="collapse">
+                            <td><strong>Marca</strong></td>
+                            <td th:text="${produto.marca}">
+                            </td>
+                            <td><strong>Volume mL</strong></td>
+                            <td th:text="${produto.volume}">
+                            </td>
+                            <td><strong>Matérial da Embalagem</strong></td>
+                            <td th:text="${produto.embalagem.valor}">
+                            </td>
+                        </tr>
+                    </div>
+                </tbody>
+            </table>
+        </div>
+    </main>
 
     <div th:replace="fragments/footer :: footer"></div>
 
