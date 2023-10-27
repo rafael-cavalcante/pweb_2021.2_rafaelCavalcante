@@ -24,5 +24,5 @@ function produtoClick(produtoId) {
 function searchProdutos() {
     var produtoInformacao = document.getElementById("searchProdutos").value;
 
-    window.location.href = "/?produtoInfo=" + produtoInformacao + "&sort=nome,asc&size=9";
+    window.location.href = "/?produtoInfo=" + produtoInformacao + "&sort=nome,asc&size=12";
 }

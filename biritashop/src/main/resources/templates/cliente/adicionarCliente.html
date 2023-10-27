@@ -12,8 +12,9 @@
     <title>BiritaShop</title>
 </head>
 
-<body class="my-5">
-    <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
+<body>
+    
+    <div th:replace="fragments/nav :: nav"></div>
 
     <div class="container-fluid pt-4 d-flex justify-content-center">
         <form class="needs-validation" th:action="@{/cliente/adicionar}" th:object="${cliente}" method="POST"

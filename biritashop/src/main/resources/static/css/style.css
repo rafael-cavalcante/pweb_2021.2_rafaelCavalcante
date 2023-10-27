@@ -9,21 +9,33 @@
 }
 
 .card-img-top {
-    width: auto;
-    height: 300px;
+    width: 300px;
+    height: auto;
 }
 
 .card:hover {
     cursor: pointer;
 }
 
+.card {
+    height: 100%;
+}
+
 #carouselExampleCaptions .carousel-inner,
 #carouselExampleCaptions .carousel-item {
-    height: 90vh;
+    height: 80vh;
 }
 
 #carouselExampleCaptions img {
     height: 100%;
     object-fit: cover;
     filter: brightness(0.6);
+}
+
+.nav-link:hover {
+    background: var(--bs-primary);
+}
+
+#sidebar {
+    width: 280px;
 }

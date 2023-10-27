@@ -1,24 +1,14 @@
-<div th:fragment="barraPaginacao">
-    <nav aria-label="Navegação de página exemplo">
-        <ul class="pagination justify-content-center">
-            <li th:classappend="${produtos.first} ? disabled : ''" class="page-item">
-                <a class="page-link"
-                    th:href="@{/(page = ${produtos.number - 1}, sort='nome,asc', size=1)}">Anterior</a>
-            </li>
-            <li class="page-item active">
-                <a class="page-link" th:text="${produtos.number + 1}"
-                    th:href="@{/(page = ${produtos.number}, sort='nome,asc', size=1)}"></a>
-            </li>
-            <li th:classappend="${produtos.last} ? disabled : ''" class="page-item">
-                <a class="page-link" th:href="@{/(page = ${produtos.number + 1}, sort='nome,asc', size=1)}">Próximo</a>
-            </li>
-        </ul>
-    </nav>
-</div>
-
-<!--
-    th:href="@{/(page = ${produtos.number}, sort=asc, value=12)}"
-
-    
-
--->
+<nav th:fragment="barraPaginacao">
+    <ul class="pagination justify-content-center">
+        <li th:classappend="${produtos.first} ? disabled : ''" class="page-item">
+            <a class="page-link" th:href="@{/(page = ${produtos.number - 1}, sort='nome,asc', size = 12)}">Anterior</a>
+        </li>
+        <li class="page-item active">
+            <a class="page-link" th:text="${produtos.number + 1}"
+                th:href="@{/(page = ${produtos.number}, sort='nome,asc', size = 12)}"></a>
+        </li>
+        <li th:classappend="${produtos.last} ? disabled : ''" class="page-item">
+            <a class="page-link" th:href="@{/(page = ${produtos.number + 1}, sort='nome,asc', size = 12)}">Próximo</a>
+        </li>
+    </ul>
+</nav>

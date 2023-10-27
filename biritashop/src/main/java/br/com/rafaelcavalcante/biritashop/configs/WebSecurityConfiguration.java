@@ -27,6 +27,7 @@ public class WebSecurityConfiguration {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authorize) -> authorize
                 .antMatchers("/").permitAll()
+                .antMatchers("/home").permitAll()
                 .antMatchers("/cadastrar").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/**").permitAll()
                 .anyRequest().authenticated())

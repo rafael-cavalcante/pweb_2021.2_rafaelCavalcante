@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>crud dashboard</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!----css3---->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/custom.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+
+
+    <!--google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+
+    <!--google material icon-->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="body-overlay"></div>
+
+        <!-------sidebar--design------------>
+
+        <div id="sidebar">
+            <div class="sidebar-header">
+                <h3>
+                    <img src="image/icone.jpg" class="img-fluid" />
+                    <span>BiritaShop</span>
+                </h3>
+            </div>
+            <ul class="list-unstyled component m-0">
+                <li class="rounded-pill">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Buscar" aria-label="Campo de busca"
+                            aria-describedby="button-addon2">
+                        <button class="btn btn-primary" type="button" id="button-addon2">
+                            GO
+                        </button>
+                    </div>
+                </li>
+
+                <li class="dropdown active">
+                    <a href="#homeSubmenu1" role="button" data-bs-toggle="collapse" aria-expanded="false"
+                        class="dropdown-toggle">
+                        <i class="material-icons">extension</i>
+                        Cliente
+                    </a>
+                    <ul class="collapse list-unstyled menu" id="homeSubmenu1">
+                        <li><a href="#">Pages 1</a></li>
+                        <li><a href="#">Pages 2</a></li>
+                        <li><a href="#">Pages 3</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#homeSubmenu2" role="button" data-bs-toggle="collapse" aria-expanded="false"
+                        class="dropdown-toggle">
+                        <i class="material-icons">aspect_ratio</i>
+                        Produto
+                    </a>
+                    <ul class="collapse list-unstyled menu" id="homeSubmenu2">
+                        <li><a href="#">layout 1</a></li>
+                        <li><a href="#">layout 2</a></li>
+                        <li><a href="#">layout 3</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#homeSubmenu3" role="button" data-bs-toggle="collapse" aria-expanded="false"
+                        class="dropdown-toggle">
+                        <i class="material-icons">apps</i>
+                        Dependente
+                    </a>
+                    <ul class="collapse list-unstyled menu" id="homeSubmenu3">
+                        <li><a href="#">Apps 1</a></li>
+                        <li><a href="#">Apps 2</a></li>
+                        <li><a href="#">Apps 3</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#homeSubmenu4" role="button" data-bs-toggle="collapse" aria-expanded="false"
+                        class="dropdown-toggle">
+                        <i class="material-icons">equalizer</i>
+                        Pedido
+                    </a>
+                    <ul class="collapse list-unstyled menu" id="homeSubmenu4">
+                        <li><a href="#">Pages 1</a></li>
+                        <li><a href="#">Pages 2</a></li>
+                        <li><a href="#">Pages 3</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#" class="">
+                        <i class="material-icons">date_range</i>
+                        Carrinho
+                    </a>
+                </li>
+
+                <hr>
+
+                <li class="dropdown">
+                    <a href="#" role="button" class="d-flex align-items-center link-dark text-decoration-none"
+                        id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                        <strong>Usuario</strong>
+                    </a>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle"
+                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                        <strong>mdo</strong>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-------sidebar--design- close----------->
+
+
+        <!-------page-content start----------->
+
+        <div id="content">
+
+            <!------top-navbar-start----------->
+
+            <div class="top-navbar">
+                <div class="xd-topbar">
+                    <div class="row">
+                        <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+                            <div class="xp-menubar">
+                                <span class="material-icons text-white">signal_cellular_alt</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="xp-breadcrumbbar text-center">
+                        <h4 class="page-title">BiritaShop</h4>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-curent="page">Home</li>
+                        </ol>
+                        <!--
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Vishweb</a></li>
+                            <li class="breadcrumb-item active" aria-curent="page">Dashboard</li>
+                        </ol>
+                        -->
+                    </div>
+                </div>
+            </div>
+            <!------top-navbar-end----------->
+
+
+            <!------main-content-start----------->
+
+            <div class="main-content">
+                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="3000">
+                            <img th:src="@{/image/banner1.jpg}" class="d-block w-100" alt="banner1" />
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Bebidas alcoólicas quentes</h5>
+                                <p>Uma ampla gama de tipos e variações.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="3000">
+                            <img th:src="@{/image/banner2.jpg}" class="d-block w-100" alt="banner2" />
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Drinks</h5>
+                                <p>Venha desperta sensações e desejos.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img th:src="@{/image/banner3.jpg}" class="d-block w-100" alt="banner3" />
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Vinhos</h5>
+                                <p>Apreciar o melhor que se pode encontrar.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <div class="mt-4"></div>
+
+                <div class="mb-4"></div>
+            </div>
+
+            <!------main-content-end----------->
+
+            <!----footer-design------------->
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="footer-in">
+                        <p class="mb-0">&copy 2021 Vishweb Design . All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+
+
+    <!-------complete html----------->
+
+
+    <!-- Optional JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+        integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/js/sidebars.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".xp-menubar").on('click', function () {
+                $("#sidebar").toggleClass('active');
+                $("#content").toggleClass('active');
+            });
+
+            $('.xp-menubar,.body-overlay').on('click', function () {
+                $("#sidebar,.body-overlay").toggleClass('show-nav');
+            });
+
+        });
+    </script>
+</body>
+
+</html>
