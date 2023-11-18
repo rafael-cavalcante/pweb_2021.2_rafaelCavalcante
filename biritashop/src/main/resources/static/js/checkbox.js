@@ -1,52 +1,35 @@
-function selectAllCheckboxs() {
-    const checkboxes = document.querySelectorAll('.checkbox');
+// Obtemos referências aos elementos HTML
+const selectAllCheckbox = document.getElementById('checkbox-all');
+const checkboxItems = document.querySelectorAll('.checkbox-item');
 
-    checkboxes.forEach(checkbox => {
-        checkbox.setAttribute('checked', '');
+// Função para lidar com o evento "change" da caixa de seleção "Selecionar todos"
+selectAllCheckbox.addEventListener('change', function () {
+    checkboxItems.forEach(checkbox => {
+        checkbox.checked = selectAllCheckbox.checked;
     });
-}
+});
+
+checkboxItems.forEach(checkbox => {
+    checkbox.addEventListener('change', function (event) {
+        if (verificarCheckBox()) {
+            checkboxItems.forEach(checkbox => {
+                checkbox.removeAttribute('required');
+                //checkbox.classList.remove("is-invalid");
+                //checkbox.classList.add("is-valid");
+            });
+        } else {
+            checkboxItems.forEach(checkbox => {
+                checkbox.setAttribute('required', '');
+                //checkbox.classList.remove("is-valid");
+                //checkbox.classList.add("is-invalid");
+            });
+        }
+        const allChecked = [...checkboxItems].every(item => item.checked);
+        selectAllCheckbox.checked = allChecked;
+    });
+});
 
 function verificarCheckBox() {
-    const checkboxes = document.querySelectorAll('.child-checkbox:checked');
-
-    if (checkboxes.length < 1) {
-        return false;
-    }
-    return true;
+    const checkboxesSelecionados = document.querySelectorAll('.checkbox:checked');
+    return checkboxesSelecionados.length > 0;
 }
-
-function checkAll(checkBoxAll) {
-    const checkboxes = document.querySelectorAll(".child-checkbox:not(checked)");
-
-    checkboxes.forEach(c => {
-        c.checked = checkBoxAll.checked;
-    });
-}
-
-function check() {
-    const checkboxes = document.querySelectorAll(".child-checkbox");
-
-    checkboxes.forEach(c => {
-        c.addEventListener("click", function () {
-            ative();
-        });
-    });
-}
-
-function ative() {
-    const checkboxes = document.querySelectorAll(".child-checkbox");
-    const masterCheckbox = document.getElementById("master-checkbox");
-
-    var allChecked = true;
-
-    for (let checkbox of checkboxes) {
-        if (!checkbox.checked) {
-            allChecked = false;
-            break;
-        }
-    }
-    masterCheckbox.checked = allChecked;
-}
-
-check();
-ative();

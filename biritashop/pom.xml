@@ -31,6 +31,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
+			<version>3.0.5</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -39,6 +40,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<version>3.0.5</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -70,6 +72,7 @@
         <dependency>
         <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+            <version>3.0.5</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.xhtmlrenderer/flying-saucer-pdf -->
         <dependency>
@@ -88,7 +91,7 @@
             <version>1.5.5.Final</version>
         </dependency>
 
-</dependencies>
+	</dependencies>
 
 	<build>
 		<plugins>

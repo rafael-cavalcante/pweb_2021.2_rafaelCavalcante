@@ -1,5 +1,8 @@
 package br.com.rafaelcavalcante.biritashop.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.rafaelcavalcante.biritashop.model.BreadcrumbItem;
 import br.com.rafaelcavalcante.biritashop.model.Produto;
 import br.com.rafaelcavalcante.biritashop.model.dtos.ClienteDTO;
 import br.com.rafaelcavalcante.biritashop.model.enums.Genero;
@@ -36,7 +40,7 @@ public class BiritashopController {
 
     @GetMapping
     public ModelAndView index(@RequestParam(value = "produtoInfo", required = false) String produtoInfo,
-            @PageableDefault(sort = "nome", direction = Sort.Direction.ASC, value = 12) Pageable pageable) {
+            @PageableDefault(sort = "nome", direction = Sort.Direction.ASC, size = 12) Pageable pageable) {
         Page<Produto> produtos;
 
         if (produtoInfo == null) {
@@ -53,7 +57,12 @@ public class BiritashopController {
          * System.out.println(ClienteMapper.INSTANCE.toCliente(clienteDTO));
          */
 
+        List<BreadcrumbItem> currentBreadCrumb = new ArrayList<>();
+        currentBreadCrumb.add(new BreadcrumbItem("/", "Home", false));
+        currentBreadCrumb.add(new BreadcrumbItem("/cliente/listar", "cliente", true));
+
         return new ModelAndView("/index")
+                .addObject("currentBreadCrumb", currentBreadCrumb)
                 .addObject("produtos", produtos);
     }
 
@@ -87,12 +96,12 @@ public class BiritashopController {
     }
 
     @GetMapping("/teste")
-    public ModelAndView teste(){
+    public ModelAndView teste() {
         return new ModelAndView("/teste");
     }
 
     @GetMapping("/prototipo")
-    public ModelAndView prototipo(){
+    public ModelAndView prototipo() {
         return new ModelAndView("/prototipo");
     }
 }

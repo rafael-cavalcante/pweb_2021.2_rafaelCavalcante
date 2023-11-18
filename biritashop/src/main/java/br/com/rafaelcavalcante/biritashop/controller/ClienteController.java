@@ -1,6 +1,7 @@
 package br.com.rafaelcavalcante.biritashop.controller;
 
 import br.com.rafaelcavalcante.biritashop.model.Cliente;
+import br.com.rafaelcavalcante.biritashop.model.dtos.ListaClienteDTO;
 import br.com.rafaelcavalcante.biritashop.model.enums.Genero;
 import br.com.rafaelcavalcante.biritashop.repository.ClienteRepository;
 import br.com.rafaelcavalcante.biritashop.repository.RoleRepository;
@@ -44,7 +45,10 @@ public class ClienteController {
         List<Cliente> clientes = this.clienteRepository.findAll();
 
         return new ModelAndView("/cliente/listarClientes")
-                .addObject("clientes", clientes);
+                .addObject("listaClienteDTO", new ListaClienteDTO())
+                .addObject("clientes", clientes)
+                .addObject("generos", Genero.values())
+                .addObject("roles", this.roleRepository.findAll());
     }
 
     @PreAuthorize("hasRole('ADMIN')")

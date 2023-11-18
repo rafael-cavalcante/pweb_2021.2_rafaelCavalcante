@@ -5,26 +5,10 @@
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.querySelectorAll('.needs-validation')
 
-    var checkboxes = document.querySelectorAll(".checkbox");
-
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function (event) {
-            if (verificarCheckBox()) {
-                checkboxes.forEach(checkbox => {
-                    checkbox.removeAttribute('required');
-                });
-            } else {
-                checkboxes.forEach(checkbox => {
-                    checkbox.setAttribute('required', '');
-                });
-            }
-        });
-    });
-
     // Loop over them and prevent submission
     Array.prototype.slice.call(forms)
         .forEach(function (form) {
-            form.addEventListener('submit', function (event) {                
+            form.addEventListener('submit', function (event) {
                 if (!form.checkValidity() || !verificarCheckBox()) {
                     event.preventDefault()
                     event.stopPropagation()

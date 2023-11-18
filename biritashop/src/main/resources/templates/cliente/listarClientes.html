@@ -7,51 +7,99 @@
 
     <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
-    <div class="container pt-4">
-        <h2 class="border-bottom">Clientes</h2>
-        <table class="table mb-5">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">E-mail</th>
-                    <th scope="col">Telefone</th>
-                    <th scope="col">Cidade</th>
-                    <th scope="col">CEP</th>
-                    <th scope="col">Gênero</th>
-                    <th scope="col">Opções</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="cliente : ${clientes}">
-                    <th scope="row" th:text="${cliente.id}"></th>
-                    <td th:text="${cliente.nomeCompleto}"></td>
-                    <td th:text="${cliente.email}"></td>
-                    <td>
-                        <a class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                            th:href="'https://api.whatsapp.com/send?phone=' + ${cliente.telefone}">
-                            <span class="mask-telefone" th:text="${cliente.telefone}"></span>
-                            <i class="bi bi-whatsapp"></i>
+    <header>
+
+    </header>
+
+    <div class="container-fluid">
+        <h2 class="border-bottom"></h2>
+        <form class="needs-validation" th:action="@{/pedido/adicionar}" method="POST" novalidate>
+            <div class="table-header">
+                <div class="row text-bg-dark p-2 m-0 pb-0">
+                    <div class="col-6 text-start">
+                        <h2 class="ml-2">Listar Clientes</h2>
+                    </div>
+                    <div class="col-6 text-end">
+                        <a class="btn btn-outline-success me-2" data-bs-toggle="modal" data-bs-target="#adicionarCliente">
+                            <i class="bi bi-plus-square-fill"></i>
+                            Adicionar
                         </a>
-                    </td>
-                    <td th:text="${cliente.cidade}"></td>
-                    <td class="mask-cep" th:text="${cliente.CEP}"></td>
-                    <td th:text="${cliente.genero}"></td>
-                    <td>
-                        <a class="btn btn-outline-warning" th:href="@{/cliente/editar/{id}(id = ${cliente.id})}">
-                            <i class="bi bi-pencil-square"></i>
-                        </a>
-                        <a class="btn btn-outline-danger" th:onclick="confirmarCliente([[${cliente.id}]])"
-                            data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button class="btn btn-outline-danger" type="submit">
                             <i class="bi bi-trash"></i>
+                            Remover
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            <input class="form-check-input checkbox" type="checkbox" id="checkbox-all">
+                        </th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Telefone</th>
+                        <th scope="col">Cidade</th>
+                        <th scope="col">CEP</th>
+                        <th scope="col">Gênero</th>
+                        <th scope="col">Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cliente, iStat : ${clientes}">
+                        <td>
+                            <input class="form-check-input checkbox checkbox-item" type="checkbox"
+                                th:value="${cliente.id}" th:field="*{listaClienteDTO.itens[__${iStat.index}__].id}" required>
+                        </td>
+                        <th scope="row" th:text="${cliente.id}"></th>
+                        <td th:text="${cliente.nomeCompleto}"></td>
+                        <td th:text="${cliente.email}"></td>
+                        <td>
+                            <a class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                                th:href="'https://api.whatsapp.com/send?phone=' + ${cliente.telefone}">
+                                <span class="mask-telefone" th:text="${cliente.telefone}"></span>
+                                <i class="bi bi-whatsapp"></i>
+                            </a>
+                        </td>
+                        <td th:text="${cliente.cidade}"></td>
+                        <td class="mask-cep" th:text="${cliente.CEP}"></td>
+                        <td th:text="${cliente.genero}"></td>
+                        <td>
+                            <a class="btn btn-outline-warning" th:href="@{/cliente/editar/{id}(id = ${cliente.id})}">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                            <a class="btn btn-outline-danger" th:onclick="confirmarCliente([[${cliente.id}]])"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                            <a th:href="@{/dependente/listar/(clienteId = ${cliente.id})}" class="btn btn-outline-info">
+                                <i class="bi bi-view-list"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="table-footer">
+                <div class="row">
+                    <div class="col-12 col-md-6 d-flex justify-content-start">
+                        <h2 class="ml-2">Listar Clientes</h2>
+                    </div>
+                    <div class="col-12 col-md-6 d-flex justify-content-end">
+                        <a class="btn btn-outline-success me-2" data-bs-toggle="modal"
+                            data-bs-target="#adicionarCliente">
+                            <i class="bi bi-plus-square-fill"></i>
+                            Adicionar
                         </a>
-                        <a th:href="@{/dependente/listar/(clienteId = ${cliente.id})}" class="btn btn-outline-info">
-                            <i class="bi bi-view-list"></i>
+                        <a class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#adicionarCliente">
+                            <i class="bi bi-trash"></i>
+                            Remover
                         </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
 
         <div class="d-flex justify-content-end">
             <a class="btn btn-info text-white" th:href="@{pdf}">
@@ -78,13 +126,127 @@
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="adicionarCliente" tabindex="-1" aria-labelledby="adicionarClienteLabel"
+        aria-hidden="true">
+        <form class="needs-validation" th:action="@{/cliente/adicionar}" th:object="${cliente}" method="POST"
+            novalidate>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h2 class="border-bottom">Adicionar Novo Cliente</h2>
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" type="text" id="username" name="username"
+                                        placeholder="username" required>
+                                    <label for="username">Username*</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input class="form-control" type="password" id="password" name="password"
+                                        placeholder="password" required>
+                                    <label for="password">Password*</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" type="text" id="nomeCompleto" name="nomeCompleto"
+                                        placeholder="nomeCompleto" required>
+                                    <label for="nomeCompleto">Nome Completo*</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <input class="form-control mask-email" type="email" id="email" name="email"
+                                        placeholder="email" required>
+                                    <label for="email">E-mail*</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input class="form-control mask-telefone" type="text" id="telefone" name="telefone"
+                                        placeholder="telefone" required>
+                                    <label for="telefone">Telefone*</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <input class="form-control mask-cep" type="text" id="cep" name="CEP"
+                                        placeholder="CEP" required>
+                                    <label for="cep">CEP*</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input class="form-control" type="text" id="cidade" name="cidade"
+                                        placeholder="cidade" required>
+                                    <label for="cidade">Cidade*</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">
+                                    <i class="bi bi-people"></i>
+                                </span>
+                                <div class="form-floating">
+                                    <select class="form-select" id="floatingSelect"
+                                        aria-label="Floating label select example" name="genero" required>
+                                        <option selected disabled value="">Selecionar Gênero</option>
+                                        <option th:each="genero : ${generos}" th:value="${genero}"
+                                            th:text="${genero.valor}"></option>
+                                    </select>
+                                    <label for="floatingSelect">Selecionar Item</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <legend class="col-form-label col-form-label-lg py-0">Selecionar as Regras*</legend>
+                            <div class="col-md">
+                                <div class="form-check" th:each="role : ${roles}">
+                                    <input class="form-check-input checkbox checkbox-item" type="checkbox" id="roles"
+                                        name="roles" th:value="${role.id}" required>
+                                    <label class="form-check-label" th:for="${role.id}" th:text="${role.nome}"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="bi bi-x-square"></i>
+                            Close
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-plus-square"></i>
+                            Adicionar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
     <div th:replace="fragments/barraInformacao :: barraInformacao"></div>
 
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/jquery.mask.min.js"></script>
     <script type="text/javascript" src="/js/masks.js"></script>
-    <script type="text/javascript" src="/js/poppup.js"></script>
+    <!--<script type="text/javascript" src="/js/poppup.js"></script>-->
+    <script type="text/javascript" src="/js/checkbox.js"></script>
+    <script type="text/javascript" src="/js/validation.js"></script>
     <script type="text/javascript" src="/js/activePage.js"></script>
 </body>
 

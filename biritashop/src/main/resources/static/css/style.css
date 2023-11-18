@@ -27,3 +27,9 @@
     object-fit: cover;
     filter: brightness(0.6);
 }
+
+/* SideBar */
+
+#sidebar {
+    width: 280px;
+}
