@@ -2,6 +2,7 @@ package br.com.rafaelcavalcante.biritashop.configs;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -15,14 +16,11 @@ import br.com.rafaelcavalcante.biritashop.repository.UsuarioRepository;
 @Component
 public class BiritashopStartup implements CommandLineRunner {
 
+    @Autowired
     private UsuarioRepository usuarioRepo;
 
+    @Autowired
     private RoleRepository roleRepo;
-
-    public BiritashopStartup(UsuarioRepository usuarioRepo, RoleRepository roleRepo) {
-        this.usuarioRepo = usuarioRepo;
-        this.roleRepo = roleRepo;
-    }
 
     @Override
     public void run(String... args) throws Exception {
